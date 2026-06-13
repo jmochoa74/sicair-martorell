@@ -1,8 +1,8 @@
 {
-  "generado": "2026-06-13T06:46:36.048249",
-  "ultimo_dato": "2026-06-13T04:50:24",
-  "ultimo_aur": 2.34,
-  "ultimo_mins": 76.0,
+  "generado": "2026-06-13T07:46:36.879054",
+  "ultimo_dato": "2026-06-13T06:28:48",
+  "ultimo_aur": 3.09,
+  "ultimo_mins": 78.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,46 +11,46 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 2.603,
-      "mins_pred": 76.2,
-      "trc_pred": 15.8,
+      "aur_pred": 3.283,
+      "mins_pred": 78.5,
+      "trc_pred": 10.5,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 20.4,
+      "temp_prev": 24.0,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-06-13T08:26:33.988004"
+      "ts_objetivo": "2026-06-13T09:26:34.742987"
     },
     "3c": {
-      "aur_pred": 2.605,
-      "mins_pred": 77.1,
-      "trc_pred": 15.8,
-      "prob_dilucion": 0.0,
-      "precip_mm_prev": 0.0,
-      "temp_prev": 30.8,
-      "ciclos": 3,
-      "horas_eq": 5.0,
-      "ts_objetivo": "2026-06-13T11:46:33.988004"
-    },
-    "6h": {
-      "aur_pred": 2.234,
-      "mins_pred": 83.7,
-      "trc_pred": 15.8,
+      "aur_pred": 3.046,
+      "mins_pred": 73.3,
+      "trc_pred": 10.5,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 32.1,
+      "ciclos": 3,
+      "horas_eq": 5.0,
+      "ts_objetivo": "2026-06-13T12:46:34.742987"
+    },
+    "6h": {
+      "aur_pred": 2.424,
+      "mins_pred": 80.4,
+      "trc_pred": 10.5,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 31.6,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-06-13T13:26:33.988004"
+      "ts_objetivo": "2026-06-13T14:26:34.742987"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 18.2,
+    "temp": 20.4,
     "precip": 0.0,
-    "viento": 5.9,
-    "humedad": 74.0,
+    "viento": 5.4,
+    "humedad": 69.0,
     "presion": 1009.2
   },
   "lluvia_prevista": {
