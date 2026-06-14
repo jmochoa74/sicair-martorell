@@ -1,0 +1,626 @@
+[
+  {
+    "ts": "2026-05-31T14:00:53",
+    "aur": 1.51,
+    "rn": 5.3,
+    "trc": 34.1,
+    "mins_real": 119.0,
+    "mins_formula": 117.9,
+    "eventos": []
+  },
+  {
+    "ts": "2026-05-31T15:39:17",
+    "aur": 2.03,
+    "rn": 7.1,
+    "trc": 18.9,
+    "mins_real": 119.0,
+    "mins_formula": 130.1,
+    "eventos": []
+  },
+  {
+    "ts": "2026-05-31T15:39:17",
+    "aur": 2.03,
+    "rn": 7.1,
+    "trc": 18.9,
+    "mins_real": 119.0,
+    "mins_formula": 130.1,
+    "eventos": []
+  },
+  {
+    "ts": "2026-05-31T17:17:10",
+    "aur": 1.71,
+    "rn": 6.0,
+    "trc": 25.7,
+    "mins_real": 111.0,
+    "mins_formula": 91.4,
+    "eventos": []
+  },
+  {
+    "ts": "2026-05-31T17:17:10",
+    "aur": 1.71,
+    "rn": 6.0,
+    "trc": 25.7,
+    "mins_real": 111.0,
+    "mins_formula": 91.4,
+    "eventos": []
+  },
+  {
+    "ts": "2026-05-31T18:55:53",
+    "aur": 1.83,
+    "rn": 6.4,
+    "trc": 22.4,
+    "mins_real": 97.0,
+    "mins_formula": 81.7,
+    "eventos": []
+  },
+  {
+    "ts": "2026-05-31T18:55:53",
+    "aur": 1.83,
+    "rn": 6.4,
+    "trc": 22.4,
+    "mins_real": 97.0,
+    "mins_formula": 81.7,
+    "eventos": []
+  },
+  {
+    "ts": "2026-05-31T20:37:37",
+    "aur": 1.91,
+    "rn": 6.7,
+    "trc": 20.6,
+    "mins_real": 103.0,
+    "mins_formula": 78.7,
+    "eventos": []
+  },
+  {
+    "ts": "2026-05-31T20:37:37",
+    "aur": 1.91,
+    "rn": 6.7,
+    "trc": 20.6,
+    "mins_real": 103.0,
+    "mins_formula": 78.7,
+    "eventos": []
+  },
+  {
+    "ts": "2026-05-31T22:17:30",
+    "aur": 1.83,
+    "rn": 6.4,
+    "trc": 22.1,
+    "mins_real": 97.0,
+    "mins_formula": 93.3,
+    "eventos": []
+  },
+  {
+    "ts": "2026-05-31T22:17:30",
+    "aur": 1.83,
+    "rn": 6.4,
+    "trc": 22.1,
+    "mins_real": 97.0,
+    "mins_formula": 93.3,
+    "eventos": []
+  },
+  {
+    "ts": "2026-05-31T23:58:03",
+    "aur": 1.6,
+    "rn": 5.6,
+    "trc": 28.6,
+    "mins_real": 101.0,
+    "mins_formula": 99.9,
+    "eventos": []
+  },
+  {
+    "ts": "2026-05-31T23:58:03",
+    "aur": 1.6,
+    "rn": 5.6,
+    "trc": 28.6,
+    "mins_real": 101.0,
+    "mins_formula": 99.9,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-01T01:36:27",
+    "aur": 1.89,
+    "rn": 6.6,
+    "trc": 21.4,
+    "mins_real": 95.0,
+    "mins_formula": 73.0,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-01T01:36:27",
+    "aur": 1.89,
+    "rn": 6.6,
+    "trc": 21.4,
+    "mins_real": 95.0,
+    "mins_formula": 73.0,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-01T03:17:31",
+    "aur": 2.8,
+    "rn": 9.8,
+    "trc": 11.6,
+    "mins_real": 110.0,
+    "mins_formula": 63.2,
+    "eventos": [
+      {
+        "tipo": "sobreaireo_alto",
+        "icono": "💨",
+        "texto": "Sobreaireo 43% — real 110min vs fórmula 63min"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-01T03:17:31",
+    "aur": 2.8,
+    "rn": 9.8,
+    "trc": 11.6,
+    "mins_real": 110.0,
+    "mins_formula": 63.2,
+    "eventos": [
+      {
+        "tipo": "sobreaireo_alto",
+        "icono": "💨",
+        "texto": "Sobreaireo 43% — real 110min vs fórmula 63min"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-01T04:59:14",
+    "aur": 3.34,
+    "rn": 11.7,
+    "trc": 9.2,
+    "mins_real": 96.0,
+    "mins_formula": 69.2,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-01T04:59:14",
+    "aur": 3.34,
+    "rn": 11.7,
+    "trc": 9.2,
+    "mins_real": 96.0,
+    "mins_formula": 69.2,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-01T06:37:57",
+    "aur": 3.43,
+    "rn": 12.0,
+    "trc": 9.1,
+    "mins_real": 99.0,
+    "mins_formula": 70.2,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-01T06:37:57",
+    "aur": 3.43,
+    "rn": 12.0,
+    "trc": 9.1,
+    "mins_real": 99.0,
+    "mins_formula": 70.2,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-01T08:17:51",
+    "aur": 3.54,
+    "rn": 12.4,
+    "trc": 8.7,
+    "mins_real": 101.0,
+    "mins_formula": 79.8,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-01T08:17:51",
+    "aur": 3.54,
+    "rn": 12.4,
+    "trc": 8.7,
+    "mins_real": 101.0,
+    "mins_formula": 79.8,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-01T09:55:05",
+    "aur": 3.66,
+    "rn": 12.8,
+    "trc": 8.3,
+    "mins_real": 95.0,
+    "mins_formula": 82.4,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-01T11:34:17",
+    "aur": 3.37,
+    "rn": 11.8,
+    "trc": 8.9,
+    "mins_real": 98.0,
+    "mins_formula": 93.1,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-01T13:13:51",
+    "aur": 1.74,
+    "rn": 6.1,
+    "trc": 24.9,
+    "mins_real": 119.0,
+    "mins_formula": 86.8,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-01T14:51:45",
+    "aur": 2.14,
+    "rn": 7.5,
+    "trc": 17.2,
+    "mins_real": 120.0,
+    "mins_formula": 116.1,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-01T16:28:48",
+    "aur": 1.66,
+    "rn": 5.8,
+    "trc": 29.4,
+    "mins_real": 115.0,
+    "mins_formula": 106.7,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-01T18:05:51",
+    "aur": 1.57,
+    "rn": 5.5,
+    "trc": 31.8,
+    "mins_real": 119.0,
+    "mins_formula": 107.4,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-01T19:44:14",
+    "aur": 1.66,
+    "rn": 5.8,
+    "trc": 27.2,
+    "mins_real": 98.0,
+    "mins_formula": 94.5,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-01T21:23:59",
+    "aur": 1.69,
+    "rn": 5.9,
+    "trc": 25.6,
+    "mins_real": 98.0,
+    "mins_formula": 92.9,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-01T23:03:22",
+    "aur": 1.6,
+    "rn": 5.6,
+    "trc": 27.5,
+    "mins_real": 97.0,
+    "mins_formula": 105.5,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-02T00:43:04",
+    "aur": 1.6,
+    "rn": 5.6,
+    "trc": 27.2,
+    "mins_real": 99.0,
+    "mins_formula": 102.2,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-02T02:24:38",
+    "aur": 1.66,
+    "rn": 5.8,
+    "trc": 26.9,
+    "mins_real": 103.0,
+    "mins_formula": 77.1,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-02T04:04:21",
+    "aur": 2.2,
+    "rn": 7.7,
+    "trc": 17.0,
+    "mins_real": 98.0,
+    "mins_formula": 80.9,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-02T05:43:25",
+    "aur": 3.37,
+    "rn": 11.8,
+    "trc": 9.1,
+    "mins_real": 119.0,
+    "mins_formula": 67.7,
+    "eventos": [
+      {
+        "tipo": "sobreaireo_alto",
+        "icono": "💨",
+        "texto": "Sobreaireo 43% — real 119min vs fórmula 68min"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-02T07:24:58",
+    "aur": 3.37,
+    "rn": 11.8,
+    "trc": 9.1,
+    "mins_real": 93.0,
+    "mins_formula": 76.4,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-02T09:03:32",
+    "aur": 3.54,
+    "rn": 12.4,
+    "trc": 8.5,
+    "mins_real": 99.0,
+    "mins_formula": 77.8,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-02T10:42:56",
+    "aur": 3.37,
+    "rn": 11.8,
+    "trc": 8.7,
+    "mins_real": 118.0,
+    "mins_formula": 87.7,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-02T12:23:09",
+    "aur": 3.37,
+    "rn": 11.8,
+    "trc": 8.8,
+    "mins_real": 74.0,
+    "mins_formula": 93.1,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-02T14:02:02",
+    "aur": 2.8,
+    "rn": 9.8,
+    "trc": 11.2,
+    "mins_real": 74.0,
+    "mins_formula": 87.0,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-02T15:39:55",
+    "aur": 1.49,
+    "rn": 5.2,
+    "trc": 33.7,
+    "mins_real": 81.0,
+    "mins_formula": 111.1,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-02T17:20:09",
+    "aur": 1.54,
+    "rn": 5.4,
+    "trc": 30.5,
+    "mins_real": 124.0,
+    "mins_formula": 105.8,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-02T18:58:22",
+    "aur": 1.51,
+    "rn": 5.3,
+    "trc": 31.8,
+    "mins_real": 120.0,
+    "mins_formula": 110.2,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-02T20:35:36",
+    "aur": 1.6,
+    "rn": 5.6,
+    "trc": 28.5,
+    "mins_real": 122.0,
+    "mins_formula": 104.3,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-02T22:15:40",
+    "aur": 1.6,
+    "rn": 5.6,
+    "trc": 28.1,
+    "mins_real": 116.0,
+    "mins_formula": 110.5,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-02T23:53:53",
+    "aur": 1.54,
+    "rn": 5.4,
+    "trc": 30.9,
+    "mins_real": 116.0,
+    "mins_formula": 110.6,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-03T01:34:07",
+    "aur": 1.51,
+    "rn": 5.3,
+    "trc": 31.9,
+    "mins_real": 120.0,
+    "mins_formula": 98.2,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-03T03:13:41",
+    "aur": 1.86,
+    "rn": 6.5,
+    "trc": 22.3,
+    "mins_real": 104.0,
+    "mins_formula": 66.2,
+    "eventos": [
+      {
+        "tipo": "sobreaireo_alto",
+        "icono": "💨",
+        "texto": "Sobreaireo 36% — real 104min vs fórmula 66min"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-03T04:54:03",
+    "aur": 2.86,
+    "rn": 10.0,
+    "trc": 11.4,
+    "mins_real": 93.0,
+    "mins_formula": 82.0,
+    "eventos": []
+  },
+  {
+    "ts": "2026-06-04T02:34:08",
+    "aur": 1.71,
+    "rn": 6.0,
+    "trc": 25.1,
+    "mins_real": 107.0,
+    "mins_formula": 73.4,
+    "eventos": [
+      {
+        "tipo": "sobreaireo_alto",
+        "icono": "💨",
+        "texto": "Sobreaireo 31% — real 107min vs fórmula 73min"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-04T09:09:41",
+    "aur": 3.6,
+    "rn": 12.6,
+    "trc": 8.3,
+    "mins_real": 118.0,
+    "mins_formula": 79.2,
+    "eventos": [
+      {
+        "tipo": "sobreaireo_alto",
+        "icono": "💨",
+        "texto": "Sobreaireo 33% — real 118min vs fórmula 79min"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-04T10:48:25",
+    "aur": 3.49,
+    "rn": 12.2,
+    "trc": 8.5,
+    "mins_real": 119.0,
+    "mins_formula": 81.8,
+    "eventos": [
+      {
+        "tipo": "sobreaireo_alto",
+        "icono": "💨",
+        "texto": "Sobreaireo 31% — real 119min vs fórmula 82min"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-04T20:39:45",
+    "aur": 1.43,
+    "rn": 5.0,
+    "trc": 36.5,
+    "mins_real": 93.0,
+    "mins_formula": 180.0,
+    "eventos": [
+      {
+        "tipo": "trc_alto",
+        "icono": "🧫",
+        "texto": "TRC alto (36.5 días) — fango envejecido, aumentar purga"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-04T22:18:29",
+    "aur": 1.2,
+    "rn": 4.2,
+    "trc": 59.9,
+    "mins_real": 95.0,
+    "mins_formula": 180.0,
+    "eventos": [
+      {
+        "tipo": "trc_alto",
+        "icono": "🧫",
+        "texto": "TRC alto (59.9 días) — fango envejecido, aumentar purga"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-05T00:00:32",
+    "aur": 1.26,
+    "rn": 4.4,
+    "trc": 54.5,
+    "mins_real": 106.0,
+    "mins_formula": 180.0,
+    "eventos": [
+      {
+        "tipo": "trc_alto",
+        "icono": "🧫",
+        "texto": "TRC alto (54.5 días) — fango envejecido, aumentar purga"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-05T01:43:46",
+    "aur": 1.17,
+    "rn": 4.1,
+    "trc": 77.6,
+    "mins_real": 106.0,
+    "mins_formula": 180.0,
+    "eventos": [
+      {
+        "tipo": "trc_alto",
+        "icono": "🧫",
+        "texto": "TRC alto (77.6 días) — fango envejecido, aumentar purga"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-05T07:03:26",
+    "aur": 3.09,
+    "rn": 10.8,
+    "trc": 11.7,
+    "mins_real": 119.0,
+    "mins_formula": 82.8,
+    "eventos": [
+      {
+        "tipo": "sobreaireo_alto",
+        "icono": "💨",
+        "texto": "Sobreaireo 30% — real 119min vs fórmula 83min"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-07T03:49:58",
+    "aur": 3.31,
+    "rn": 11.6,
+    "trc": 9.3,
+    "mins_real": 99.0,
+    "mins_formula": 68.7,
+    "eventos": [
+      {
+        "tipo": "sobreaireo_alto",
+        "icono": "💨",
+        "texto": "Sobreaireo 31% — real 99min vs fórmula 69min"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-11T23:50:35",
+    "aur": 1.46,
+    "rn": 5.1,
+    "trc": 36.3,
+    "mins_real": 84.0,
+    "mins_formula": 113.2,
+    "eventos": [
+      {
+        "tipo": "trc_alto",
+        "icono": "🧫",
+        "texto": "TRC alto (36.3 días) — fango envejecido, aumentar purga"
+      }
+    ]
+  }
+]
