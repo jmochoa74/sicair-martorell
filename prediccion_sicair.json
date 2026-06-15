@@ -1,8 +1,8 @@
 {
-  "generado": "2026-06-15T19:46:39.004123",
-  "ultimo_dato": "2026-06-15T17:55:21",
-  "ultimo_aur": 1.66,
-  "ultimo_mins": 84.0,
+  "generado": "2026-06-15T20:46:39.908180",
+  "ultimo_dato": "2026-06-15T19:33:34",
+  "ultimo_aur": 1.63,
+  "ultimo_mins": 78.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,46 +11,46 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 1.909,
-      "mins_pred": 102.8,
-      "trc_pred": 27.2,
+      "aur_pred": 1.639,
+      "mins_pred": 124.3,
+      "trc_pred": 27.8,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 26.4,
+      "temp_prev": 25.0,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-06-15T21:26:36.913011"
+      "ts_objetivo": "2026-06-15T22:26:36.500842"
     },
     "3c": {
-      "aur_pred": 1.985,
-      "mins_pred": 75.5,
-      "trc_pred": 27.2,
-      "prob_dilucion": 0.0,
-      "precip_mm_prev": 0.0,
-      "temp_prev": 21.2,
-      "ciclos": 3,
-      "horas_eq": 5.0,
-      "ts_objetivo": "2026-06-16T00:46:36.913011"
-    },
-    "6h": {
-      "aur_pred": 2.061,
-      "mins_pred": 77.4,
-      "trc_pred": 27.2,
+      "aur_pred": 1.785,
+      "mins_pred": 75.1,
+      "trc_pred": 27.8,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 20.6,
+      "ciclos": 3,
+      "horas_eq": 5.0,
+      "ts_objetivo": "2026-06-16T01:46:36.500842"
+    },
+    "6h": {
+      "aur_pred": 2.143,
+      "mins_pred": 76.0,
+      "trc_pred": 27.8,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 20.2,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-06-16T02:26:36.913011"
+      "ts_objetivo": "2026-06-16T03:26:36.500842"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 27.7,
+    "temp": 26.7,
     "precip": 0.0,
-    "viento": 6.7,
-    "humedad": 27.0,
+    "viento": 3.1,
+    "humedad": 31.0,
     "presion": 1000.2
   },
   "lluvia_prevista": {
