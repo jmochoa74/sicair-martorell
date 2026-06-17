@@ -1,7 +1,7 @@
 {
-  "generado": "2026-06-17T04:46:42.609908",
-  "n_ciclos": 12288,
-  "ultimo_dato": "2026-06-17T02:56:39",
+  "generado": "2026-06-17T05:46:48.747963",
+  "n_ciclos": 12289,
+  "ultimo_dato": "2026-06-17T04:36:43",
   "ciclos": [
     {
       "datetime": "2022-02-23T07:24:41",
@@ -184322,6 +184322,21 @@
       "dilucion": 0,
       "precip": 0.0,
       "temp": 21.0
+    },
+    {
+      "datetime": "2026-06-17T04:36:43",
+      "label": "17/06/2026 04:36",
+      "AUR": 2.66,
+      "RN": 9.3,
+      "TRC": 12.3,
+      "TRH": 15.0,
+      "minsReal": 80,
+      "minsTeo": 58,
+      "minsFormula": 50.0,
+      "sobreaireoMin": 30.0,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 20.0
     }
   ]
 }
