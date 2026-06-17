@@ -1,0 +1,101 @@
+{
+  "ts_validacion": "2026-06-17",
+  "descripcion": "Datos reales Atlas Copco — fichas tecnicas junio 2026",
+  "soplantes": {
+    "S1_fija": {
+      "modelo": "ZS4 75kW",
+      "tipo": "fija",
+      "rol": "Fase inicial Par A",
+      "kw": 75.0,
+      "q_m3h": 2940,
+      "hz": 50
+    },
+    "S2_fija": {
+      "modelo": "ZS4 75kW",
+      "tipo": "fija",
+      "rol": "Fase inicial Par B",
+      "kw": 75.0,
+      "q_m3h": 2940,
+      "hz": 50
+    },
+    "S3_fija": {
+      "modelo": "ZS4 75kW",
+      "tipo": "fija",
+      "rol": "Refuerzo / Averia",
+      "kw": 75.0,
+      "q_m3h": 2940,
+      "hz": 50
+    },
+    "S4_vsd": {
+      "modelo": "ZS4 VSD 45kW",
+      "tipo": "vsd",
+      "rol": "Fase final Par A",
+      "hz_max": 71.15,
+      "nota_escalones": "93%/71%/57% de 71.15Hz",
+      "escalones": [
+        {
+          "label": "T1 (93%)",
+          "hz": 66.2,
+          "kw": 40.2,
+          "q_m3h": 2470,
+          "pct": 0.2
+        },
+        {
+          "label": "T2 (71%)",
+          "hz": 50.5,
+          "kw": 25.5,
+          "q_m3h": 1760,
+          "pct": 0.4
+        },
+        {
+          "label": "T3 (57%)",
+          "hz": 40.6,
+          "kw": 14.2,
+          "q_m3h": 940,
+          "pct": 0.4
+        }
+      ]
+    },
+    "S5_vsd": {
+      "modelo": "ZS55+ VSD",
+      "tipo": "vsd",
+      "rol": "Fase final Par B",
+      "hz_max": 134,
+      "nota_escalones": "75%/60%/45% de 134Hz",
+      "escalones": [
+        {
+          "label": "T1 (75%)",
+          "hz": 100.5,
+          "kw": 42.8,
+          "q_m3h": 1786,
+          "pct": 0.2
+        },
+        {
+          "label": "T2 (60%)",
+          "hz": 80.4,
+          "kw": 33.0,
+          "q_m3h": 1472,
+          "pct": 0.4
+        },
+        {
+          "label": "T3 (45%)",
+          "hz": 60.3,
+          "kw": 22.5,
+          "q_m3h": 1158,
+          "pct": 0.4
+        }
+      ]
+    }
+  },
+  "estrategia": {
+    "fase_inicial_pct": 0.5,
+    "fase_final_pct": 0.5,
+    "min_fase_min": 35,
+    "rotacion": "Par A (S1+S4) ↔ Par B (S2+S5) cada ciclo",
+    "refuerzo": "S3 manual si necesario"
+  },
+  "parametros": {
+    "kw_fija": 75.0,
+    "q_fija_m3h": 2940
+  }
+}
