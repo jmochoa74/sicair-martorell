@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-17T14:07:31.107510",
+  "generado": "2026-06-17T14:15:04.882217",
   "ultimo_dato": "2026-06-17T12:50:20",
   "ultimo_aur": 2.66,
   "ultimo_mins": 76.0,
@@ -19,7 +19,7 @@
       "temp_prev": 31.7,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-06-17T15:47:28.830783"
+      "ts_objetivo": "2026-06-17T15:55:02.698835"
     },
     "3c": {
       "aur_pred": 1.606,
@@ -30,7 +30,7 @@
       "temp_prev": 29.8,
       "ciclos": 3,
       "horas_eq": 5.0,
-      "ts_objetivo": "2026-06-17T19:07:28.830783"
+      "ts_objetivo": "2026-06-17T19:15:02.698835"
     },
     "6h": {
       "aur_pred": 1.17,
@@ -41,7 +41,7 @@
       "temp_prev": 27.2,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-06-17T20:47:28.830783"
+      "ts_objetivo": "2026-06-17T20:55:02.698835"
     },
     "tox_prob": 0.05
   },
