@@ -1,8 +1,8 @@
 {
-  "generado": "2026-06-18T06:46:38.374985",
-  "ultimo_dato": "2026-06-18T05:15:45",
-  "ultimo_aur": 1.94,
-  "ultimo_mins": 86.0,
+  "generado": "2026-06-18T07:46:38.233245",
+  "ultimo_dato": "2026-06-18T06:52:28",
+  "ultimo_aur": 2.6,
+  "ultimo_mins": 72.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,47 +11,47 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 2.613,
-      "mins_pred": 72.1,
-      "trc_pred": 19.8,
+      "aur_pred": 3.306,
+      "mins_pred": 86.4,
+      "trc_pred": 12.6,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 20.0,
+      "temp_prev": 23.7,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-06-18T08:26:36.184695"
+      "ts_objetivo": "2026-06-18T09:26:36.074083"
     },
     "3c": {
-      "aur_pred": 3.19,
-      "mins_pred": 70.3,
-      "trc_pred": 19.8,
-      "prob_dilucion": 0.0,
-      "precip_mm_prev": 0.0,
-      "temp_prev": 29.5,
-      "ciclos": 3,
-      "horas_eq": 5.0,
-      "ts_objetivo": "2026-06-18T11:46:36.184695"
-    },
-    "6h": {
-      "aur_pred": 2.639,
-      "mins_pred": 90.6,
-      "trc_pred": 19.8,
+      "aur_pred": 2.954,
+      "mins_pred": 89.3,
+      "trc_pred": 12.6,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 30.3,
+      "ciclos": 3,
+      "horas_eq": 5.0,
+      "ts_objetivo": "2026-06-18T12:46:36.074083"
+    },
+    "6h": {
+      "aur_pred": 2.813,
+      "mins_pred": 87.2,
+      "trc_pred": 12.6,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 29.7,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-06-18T13:26:36.184695"
+      "ts_objetivo": "2026-06-18T14:26:36.074083"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 18.5,
+    "temp": 20.0,
     "precip": 0.0,
     "viento": 2.8,
-    "humedad": 61.0,
-    "presion": 1005.9
+    "humedad": 57.0,
+    "presion": 1006.3
   },
   "lluvia_prevista": {
     "h6": 0.0,
