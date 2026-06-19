@@ -622,5 +622,65 @@
         "texto": "TRC alto (36.3 días) — fango envejecido, aumentar purga"
       }
     ]
+  },
+  {
+    "ts": "2026-06-15T04:42:34",
+    "aur": 2.63,
+    "rn": 9.2,
+    "trc": 13.2,
+    "mins_real": 100.0,
+    "mins_formula": 68.7,
+    "eventos": [
+      {
+        "tipo": "sobreaireo_alto",
+        "icono": "💨",
+        "texto": "Sobreaireo 31% — real 100min vs fórmula 69min"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-18T05:15:45",
+    "aur": 1.94,
+    "rn": 6.8,
+    "trc": 19.8,
+    "mins_real": 86.0,
+    "mins_formula": 58.8,
+    "eventos": [
+      {
+        "tipo": "sobreaireo_alto",
+        "icono": "💨",
+        "texto": "Sobreaireo 32% — real 86min vs fórmula 59min"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-18T10:11:15",
+    "aur": 1.86,
+    "rn": 6.5,
+    "trc": 20.8,
+    "mins_real": 123.0,
+    "mins_formula": 84.5,
+    "eventos": [
+      {
+        "tipo": "sobreaireo_alto",
+        "icono": "💨",
+        "texto": "Sobreaireo 31% — real 123min vs fórmula 84min"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-18T11:52:08",
+    "aur": 1.89,
+    "rn": 6.6,
+    "trc": 20.2,
+    "mins_real": 143.0,
+    "mins_formula": 89.4,
+    "eventos": [
+      {
+        "tipo": "sobreaireo_alto",
+        "icono": "💨",
+        "texto": "Sobreaireo 37% — real 143min vs fórmula 89min"
+      }
+    ]
   }
 ]
