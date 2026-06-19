@@ -682,5 +682,50 @@
         "texto": "Sobreaireo 37% — real 143min vs fórmula 89min"
       }
     ]
+  },
+  {
+    "ts": "2026-06-19T02:45:59",
+    "aur": 1.86,
+    "rn": 6.5,
+    "trc": 21.3,
+    "mins_real": 102.0,
+    "mins_formula": 67.7,
+    "eventos": [
+      {
+        "tipo": "sobreaireo_alto",
+        "icono": "💨",
+        "texto": "Sobreaireo 34% — real 102min vs fórmula 68min"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-19T06:06:36",
+    "aur": 3.46,
+    "rn": 12.1,
+    "trc": 8.9,
+    "mins_real": 102.0,
+    "mins_formula": 65.2,
+    "eventos": [
+      {
+        "tipo": "sobreaireo_alto",
+        "icono": "💨",
+        "texto": "Sobreaireo 36% — real 102min vs fórmula 65min"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-19T07:48:09",
+    "aur": 3.66,
+    "rn": 12.8,
+    "trc": 8.3,
+    "mins_real": 102.0,
+    "mins_formula": 66.7,
+    "eventos": [
+      {
+        "tipo": "sobreaireo_alto",
+        "icono": "💨",
+        "texto": "Sobreaireo 35% — real 102min vs fórmula 67min"
+      }
+    ]
   }
 ]
