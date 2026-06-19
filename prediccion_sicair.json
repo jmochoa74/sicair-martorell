@@ -1,10 +1,9 @@
 {
-  "generado": "2026-06-19T07:58:04.246946",
-  "ultimo_dato": "2026-06-19T07:48:09",
-  "ultimo_aur": 3.66,
+  "generado": "2026-06-19T10:46:48.662215",
+  "ultimo_dato": "2026-06-19T09:27:23",
+  "ultimo_aur": 3.34,
   "ultimo_mins": 102.0,
-  "duracion_media_min": 100.2,
-  "duracion_media_h": 1.67,
+  "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
     "3c": 3,
@@ -12,62 +11,47 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 2.706,
-      "mins_pred": 83.8,
-      "trc_pred": 8.3,
+      "aur_pred": 2.419,
+      "mins_pred": 101.4,
+      "trc_pred": 9.1,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 29.3,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-06-19T11:38:16.700445"
+      "ts_objetivo": "2026-06-19T12:26:40.111961"
     },
     "3c": {
-      "aur_pred": 1.483,
-      "mins_pred": 89.1,
-      "trc_pred": 8.3,
+      "aur_pred": 2.251,
+      "mins_pred": 80.9,
+      "trc_pred": 9.1,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 30.8,
+      "temp_prev": 30.9,
       "ciclos": 3,
       "horas_eq": 5.0,
-      "ts_objetivo": "2026-06-19T14:58:42.700445"
+      "ts_objetivo": "2026-06-19T15:46:40.111961"
     },
     "6h": {
-      "aur_pred": 2.961,
-      "mins_pred": 81.8,
-      "trc_pred": 8.3,
+      "aur_pred": 1.659,
+      "mins_pred": 94.7,
+      "trc_pred": 9.1,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 30.5,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-06-19T16:38:55.700445"
+      "ts_objetivo": "2026-06-19T17:26:40.111961"
     },
     "tox_prob": 0.05
   },
-  "metricas": {
-    "1c": {
-      "mape_aur": 2.1,
-      "mape_mins": 1.7,
-      "n_test": 125
-    },
-    "3c": {
-      "mape_aur": 0.5,
-      "mape_mins": 0.6,
-      "n_test": 26
-    },
-    "6h": {
-      "mape_aur": 23.0,
-      "mape_mins": 14.3,
-      "n_test": 1975
-    }
-  },
+  "metricas": {},
   "meteo_actual": {
-    "temp": 26.3,
+    "temp": 28.1,
     "precip": 0.0,
-    "viento": 5.8,
-    "humedad": 36.0
+    "viento": 10.1,
+    "humedad": 37.0,
+    "presion": 1005.2
   },
   "lluvia_prevista": {
     "h6": 0.0,
