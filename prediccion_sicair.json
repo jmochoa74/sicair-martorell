@@ -1,8 +1,8 @@
 {
-  "generado": "2026-06-20T10:46:41.756166",
-  "ultimo_dato": "2026-06-20T08:49:41",
-  "ultimo_aur": 2.23,
-  "ultimo_mins": 75.0,
+  "generado": "2026-06-20T11:46:41.313145",
+  "ultimo_dato": "2026-06-20T10:30:25",
+  "ultimo_aur": 2.57,
+  "ultimo_mins": 95.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,47 +11,47 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 2.824,
-      "mins_pred": 92.7,
-      "trc_pred": 17.2,
-      "prob_dilucion": 0.0,
-      "precip_mm_prev": 0.0,
-      "temp_prev": 31.0,
-      "ciclos": 1,
-      "horas_eq": 1.7,
-      "ts_objetivo": "2026-06-20T12:26:39.393778"
-    },
-    "3c": {
-      "aur_pred": 3.142,
-      "mins_pred": 86.4,
-      "trc_pred": 17.2,
-      "prob_dilucion": 0.0,
-      "precip_mm_prev": 0.0,
-      "temp_prev": 32.3,
-      "ciclos": 3,
-      "horas_eq": 5.0,
-      "ts_objetivo": "2026-06-20T15:46:39.393778"
-    },
-    "6h": {
-      "aur_pred": 2.018,
-      "mins_pred": 90.4,
-      "trc_pred": 17.2,
+      "aur_pred": 2.796,
+      "mins_pred": 95.0,
+      "trc_pred": 13.6,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 31.8,
+      "ciclos": 1,
+      "horas_eq": 1.7,
+      "ts_objetivo": "2026-06-20T13:26:38.973344"
+    },
+    "3c": {
+      "aur_pred": 3.196,
+      "mins_pred": 85.6,
+      "trc_pred": 13.6,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 31.8,
+      "ciclos": 3,
+      "horas_eq": 5.0,
+      "ts_objetivo": "2026-06-20T16:46:38.973344"
+    },
+    "6h": {
+      "aur_pred": 2.123,
+      "mins_pred": 89.5,
+      "trc_pred": 13.6,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 31.0,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-06-20T17:26:39.393778"
+      "ts_objetivo": "2026-06-20T18:26:38.973344"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 29.3,
+    "temp": 31.0,
     "precip": 0.0,
-    "viento": 10.1,
-    "humedad": 41.0,
-    "presion": 1008.1
+    "viento": 11.9,
+    "humedad": 37.0,
+    "presion": 1007.9
   },
   "lluvia_prevista": {
     "h6": 0.0,
