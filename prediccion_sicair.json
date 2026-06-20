@@ -1,7 +1,7 @@
 {
-  "generado": "2026-06-20T06:46:42.410809",
-  "ultimo_dato": "2026-06-20T05:26:44",
-  "ultimo_aur": 1.86,
+  "generado": "2026-06-20T07:46:39.623113",
+  "ultimo_dato": "2026-06-20T07:07:37",
+  "ultimo_aur": 1.89,
   "ultimo_mins": 72.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
@@ -11,47 +11,47 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 2.961,
-      "mins_pred": 70.0,
-      "trc_pred": 23.6,
+      "aur_pred": 3.042,
+      "mins_pred": 72.8,
+      "trc_pred": 23.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 21.3,
+      "temp_prev": 24.5,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-06-20T08:26:39.945779"
+      "ts_objetivo": "2026-06-20T09:26:37.232988"
     },
     "3c": {
-      "aur_pred": 3.559,
-      "mins_pred": 73.2,
-      "trc_pred": 23.6,
-      "prob_dilucion": 0.0,
-      "precip_mm_prev": 0.0,
-      "temp_prev": 31.0,
-      "ciclos": 3,
-      "horas_eq": 5.0,
-      "ts_objetivo": "2026-06-20T11:46:39.945779"
-    },
-    "6h": {
-      "aur_pred": 2.509,
-      "mins_pred": 89.8,
-      "trc_pred": 23.6,
+      "aur_pred": 3.344,
+      "mins_pred": 73.9,
+      "trc_pred": 23.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 31.8,
+      "ciclos": 3,
+      "horas_eq": 5.0,
+      "ts_objetivo": "2026-06-20T12:46:37.232988"
+    },
+    "6h": {
+      "aur_pred": 2.787,
+      "mins_pred": 88.6,
+      "trc_pred": 23.0,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 32.1,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-06-20T13:26:39.945779"
+      "ts_objetivo": "2026-06-20T14:26:37.232988"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 19.7,
+    "temp": 21.3,
     "precip": 0.0,
-    "viento": 2.9,
-    "humedad": 54.0,
-    "presion": 1005.7
+    "viento": 2.2,
+    "humedad": 51.0,
+    "presion": 1006.3
   },
   "lluvia_prevista": {
     "h6": 0.0,
