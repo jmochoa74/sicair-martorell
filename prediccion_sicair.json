@@ -1,8 +1,8 @@
 {
-  "generado": "2026-06-20T03:46:39.631893",
-  "ultimo_dato": "2026-06-20T02:06:08",
-  "ultimo_aur": 1.57,
-  "ultimo_mins": 88.0,
+  "generado": "2026-06-20T04:46:38.822476",
+  "ultimo_dato": "2026-06-20T03:45:10",
+  "ultimo_aur": 1.6,
+  "ultimo_mins": 73.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,47 +11,47 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 2.497,
-      "mins_pred": 70.7,
+      "aur_pred": 2.554,
+      "mins_pred": 69.6,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 19.9,
+      "temp_prev": 19.7,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-06-20T05:26:37.334619"
+      "ts_objetivo": "2026-06-20T06:26:36.486993"
     },
     "3c": {
-      "aur_pred": 3.688,
-      "mins_pred": 67.6,
-      "trc_pred": 30.0,
-      "prob_dilucion": 0.0,
-      "precip_mm_prev": 0.0,
-      "temp_prev": 24.4,
-      "ciclos": 3,
-      "horas_eq": 5.0,
-      "ts_objetivo": "2026-06-20T08:46:37.334619"
-    },
-    "6h": {
-      "aur_pred": 3.225,
-      "mins_pred": 72.2,
+      "aur_pred": 3.742,
+      "mins_pred": 76.6,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 27.1,
+      "ciclos": 3,
+      "horas_eq": 5.0,
+      "ts_objetivo": "2026-06-20T09:46:36.486993"
+    },
+    "6h": {
+      "aur_pred": 2.804,
+      "mins_pred": 78.3,
+      "trc_pred": 30.0,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 29.2,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-06-20T10:26:37.334619"
+      "ts_objetivo": "2026-06-20T11:26:36.486993"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 20.3,
+    "temp": 19.9,
     "precip": 0.0,
-    "viento": 2.5,
-    "humedad": 60.0,
-    "presion": 1004.9
+    "viento": 2.9,
+    "humedad": 56.0,
+    "presion": 1004.8
   },
   "lluvia_prevista": {
     "h6": 0.0,
