@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-21T15:46:49.920887",
+  "generado": "2026-06-21T16:46:38.672365",
   "ultimo_dato": "2026-06-21T14:44:53",
   "ultimo_aur": 2.94,
   "ultimo_mins": 95.0,
@@ -11,47 +11,47 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 1.646,
-      "mins_pred": 78.7,
+      "aur_pred": 2.018,
+      "mins_pred": 79.8,
       "trc_pred": 11.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 34.1,
+      "temp_prev": 33.5,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-06-21T17:26:41.756421"
+      "ts_objetivo": "2026-06-21T18:26:36.167245"
     },
     "3c": {
-      "aur_pred": 1.525,
-      "mins_pred": 86.6,
-      "trc_pred": 11.0,
-      "prob_dilucion": 0.0,
-      "precip_mm_prev": 0.0,
-      "temp_prev": 29.9,
-      "ciclos": 3,
-      "horas_eq": 5.0,
-      "ts_objetivo": "2026-06-21T20:46:41.756421"
-    },
-    "6h": {
-      "aur_pred": 1.75,
-      "mins_pred": 77.1,
+      "aur_pred": 1.626,
+      "mins_pred": 86.7,
       "trc_pred": 11.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 27.7,
+      "ciclos": 3,
+      "horas_eq": 5.0,
+      "ts_objetivo": "2026-06-21T21:46:36.167245"
+    },
+    "6h": {
+      "aur_pred": 1.783,
+      "mins_pred": 76.2,
+      "trc_pred": 11.0,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 26.3,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-06-21T22:26:41.756421"
+      "ts_objetivo": "2026-06-21T23:26:36.167245"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 34.6,
+    "temp": 34.1,
     "precip": 0.0,
-    "viento": 15.9,
-    "humedad": 25.0,
-    "presion": 1010.0
+    "viento": 14.5,
+    "humedad": 27.0,
+    "presion": 1009.6
   },
   "lluvia_prevista": {
     "h6": 0.0,
