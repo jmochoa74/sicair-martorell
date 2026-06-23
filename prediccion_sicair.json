@@ -1,8 +1,8 @@
 {
-  "generado": "2026-06-23T09:46:42.097759",
-  "ultimo_dato": "2026-06-23T08:06:55",
-  "ultimo_aur": 3.71,
-  "ultimo_mins": 112.0,
+  "generado": "2026-06-23T10:46:39.919273",
+  "ultimo_dato": "2026-06-23T09:46:59",
+  "ultimo_aur": 3.6,
+  "ultimo_mins": 82.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,46 +11,46 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 3.179,
-      "mins_pred": 80.5,
-      "trc_pred": 8.0,
+      "aur_pred": 2.966,
+      "mins_pred": 92.1,
+      "trc_pred": 8.2,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 32.0,
+      "temp_prev": 33.0,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-06-23T11:26:39.966147"
+      "ts_objetivo": "2026-06-23T12:26:37.870431"
     },
     "3c": {
-      "aur_pred": 2.76,
-      "mins_pred": 85.7,
-      "trc_pred": 8.0,
-      "prob_dilucion": 0.0,
-      "precip_mm_prev": 0.0,
-      "temp_prev": 33.6,
-      "ciclos": 3,
-      "horas_eq": 5.0,
-      "ts_objetivo": "2026-06-23T14:46:39.966147"
-    },
-    "6h": {
-      "aur_pred": 1.246,
-      "mins_pred": 88.3,
-      "trc_pred": 8.0,
+      "aur_pred": 2.28,
+      "mins_pred": 79.5,
+      "trc_pred": 8.2,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 33.1,
+      "ciclos": 3,
+      "horas_eq": 5.0,
+      "ts_objetivo": "2026-06-23T15:46:37.870431"
+    },
+    "6h": {
+      "aur_pred": 1.43,
+      "mins_pred": 87.1,
+      "trc_pred": 8.2,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 32.8,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-06-23T16:26:39.966147"
+      "ts_objetivo": "2026-06-23T17:26:37.870431"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 30.3,
+    "temp": 32.0,
     "precip": 0.0,
-    "viento": 2.1,
-    "humedad": 34.0,
+    "viento": 7.1,
+    "humedad": 33.0,
     "presion": 1005.1
   },
   "lluvia_prevista": {
