@@ -1,8 +1,8 @@
 {
-  "generado": "2026-06-24T05:46:41.263975",
-  "ultimo_dato": "2026-06-24T04:13:57",
-  "ultimo_aur": 2.26,
-  "ultimo_mins": 73.0,
+  "generado": "2026-06-24T06:46:47.135333",
+  "ultimo_dato": "2026-06-24T05:55:01",
+  "ultimo_aur": 3.03,
+  "ultimo_mins": 81.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,47 +11,47 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 3.132,
-      "mins_pred": 77.6,
-      "trc_pred": 16.5,
+      "aur_pred": 3.571,
+      "mins_pred": 82.7,
+      "trc_pred": 10.7,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 21.6,
+      "temp_prev": 23.4,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-06-24T07:26:39.090492"
+      "ts_objetivo": "2026-06-24T08:26:38.588935"
     },
     "3c": {
-      "aur_pred": 3.479,
-      "mins_pred": 85.3,
-      "trc_pred": 16.5,
-      "prob_dilucion": 0.0,
-      "precip_mm_prev": 0.0,
-      "temp_prev": 32.8,
-      "ciclos": 3,
-      "horas_eq": 5.0,
-      "ts_objetivo": "2026-06-24T10:46:39.090492"
-    },
-    "6h": {
-      "aur_pred": 2.374,
-      "mins_pred": 86.2,
-      "trc_pred": 16.5,
+      "aur_pred": 3.374,
+      "mins_pred": 84.3,
+      "trc_pred": 10.7,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 34.5,
+      "ciclos": 3,
+      "horas_eq": 5.0,
+      "ts_objetivo": "2026-06-24T11:46:38.588935"
+    },
+    "6h": {
+      "aur_pred": 2.816,
+      "mins_pred": 89.0,
+      "trc_pred": 10.7,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 35.4,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-06-24T12:26:39.090492"
+      "ts_objetivo": "2026-06-24T13:26:38.588935"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 21.7,
+    "temp": 21.6,
     "precip": 0.0,
     "viento": 4.0,
-    "humedad": 70.0,
-    "presion": 1002.9
+    "humedad": 68.0,
+    "presion": 1002.8
   },
   "lluvia_prevista": {
     "h6": 0.0,
