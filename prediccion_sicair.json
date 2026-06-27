@@ -1,8 +1,8 @@
 {
-  "generado": "2026-06-27T03:46:38.409318",
-  "ultimo_dato": "2026-06-27T01:39:54",
-  "ultimo_aur": 1.43,
-  "ultimo_mins": 81.0,
+  "generado": "2026-06-27T04:46:45.489223",
+  "ultimo_dato": "2026-06-27T03:19:38",
+  "ultimo_aur": 1.6,
+  "ultimo_mins": 73.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,46 +11,46 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 2.382,
-      "mins_pred": 71.5,
-      "trc_pred": 30.0,
+      "aur_pred": 2.609,
+      "mins_pred": 66.3,
+      "trc_pred": 29.8,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 21.3,
+      "temp_prev": 20.7,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-06-27T05:26:36.091821"
+      "ts_objetivo": "2026-06-27T06:26:41.748355"
     },
     "3c": {
-      "aur_pred": 3.505,
-      "mins_pred": 68.6,
-      "trc_pred": 30.0,
-      "prob_dilucion": 0.0,
-      "precip_mm_prev": 0.0,
-      "temp_prev": 26.9,
-      "ciclos": 3,
-      "horas_eq": 5.0,
-      "ts_objetivo": "2026-06-27T08:46:36.091821"
-    },
-    "6h": {
-      "aur_pred": 2.588,
-      "mins_pred": 69.1,
-      "trc_pred": 30.0,
+      "aur_pred": 3.431,
+      "mins_pred": 71.7,
+      "trc_pred": 29.8,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 29.6,
+      "ciclos": 3,
+      "horas_eq": 5.0,
+      "ts_objetivo": "2026-06-27T09:46:41.748355"
+    },
+    "6h": {
+      "aur_pred": 2.813,
+      "mins_pred": 74.5,
+      "trc_pred": 29.8,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 31.9,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-06-27T10:26:36.091821"
+      "ts_objetivo": "2026-06-27T11:26:41.748355"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 21.7,
+    "temp": 21.3,
     "precip": 0.0,
-    "viento": 2.8,
-    "humedad": 71.0,
+    "viento": 3.1,
+    "humedad": 70.0,
     "presion": 1005.2
   },
   "lluvia_prevista": {
