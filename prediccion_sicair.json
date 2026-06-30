@@ -1,8 +1,8 @@
 {
-  "generado": "2026-06-30T11:46:40.836238",
-  "ultimo_dato": "2026-06-30T09:56:55",
-  "ultimo_aur": 3.66,
-  "ultimo_mins": 92.0,
+  "generado": "2026-06-30T12:46:46.175578",
+  "ultimo_dato": "2026-06-30T11:36:00",
+  "ultimo_aur": 3.46,
+  "ultimo_mins": 86.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,52 +11,52 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 3.449,
-      "mins_pred": 83.7,
-      "trc_pred": 8.4,
+      "aur_pred": 2.234,
+      "mins_pred": 99.3,
+      "trc_pred": 8.7,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 34.1,
+      "temp_prev": 35.5,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-06-30T13:26:38.446542"
+      "ts_objetivo": "2026-06-30T14:26:38.042706"
     },
     "3c": {
-      "aur_pred": 2.155,
-      "mins_pred": 82.7,
-      "trc_pred": 8.4,
+      "aur_pred": 1.878,
+      "mins_pred": 85.5,
+      "trc_pred": 8.7,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 32.5,
+      "temp_prev": 32.4,
       "ciclos": 3,
       "horas_eq": 5.0,
-      "ts_objetivo": "2026-06-30T16:46:38.446542"
+      "ts_objetivo": "2026-06-30T17:46:38.042706"
     },
     "6h": {
-      "aur_pred": 0.946,
-      "mins_pred": 86.4,
-      "trc_pred": 8.4,
+      "aur_pred": 0.971,
+      "mins_pred": 79.9,
+      "trc_pred": 8.7,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 31.7,
+      "temp_prev": 31.6,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-06-30T18:26:38.446542"
+      "ts_objetivo": "2026-06-30T19:26:38.042706"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 32.7,
+    "temp": 34.3,
     "precip": 0.0,
-    "viento": 4.9,
-    "humedad": 39.0,
-    "presion": 1006.8
+    "viento": 6.4,
+    "humedad": 35.0,
+    "presion": 1006.1
   },
   "lluvia_prevista": {
-    "h6": 0.0,
-    "h12": 0.0,
-    "h24": 0.0,
+    "h6": 0.2,
+    "h12": 0.2,
+    "h24": 0.2,
     "ok": true
   }
 }
