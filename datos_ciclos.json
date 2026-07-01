@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-01T16:46:43.405715",
+  "generado": "2026-07-01T17:46:40.478147",
   "n_ciclos": 12521,
   "ultimo_dato": "2026-07-01T15:58:57",
   "ciclos": [
@@ -101610,7 +101610,7 @@
       "minsFormula": 69.2,
       "sobreaireoMin": 51.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 12.2
     },
     {
@@ -101625,7 +101625,7 @@
       "minsFormula": 61.9,
       "sobreaireoMin": -13.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 11.9
     },
     {
@@ -101670,7 +101670,7 @@
       "minsFormula": 76.6,
       "sobreaireoMin": -4.6,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 12.0
     },
     {
@@ -102090,7 +102090,7 @@
       "minsFormula": 60.6,
       "sobreaireoMin": 5.4,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.5,
       "temp": 19.1
     },
     {
@@ -102105,7 +102105,7 @@
       "minsFormula": 60.3,
       "sobreaireoMin": 23.7,
       "dilucion": 0,
-      "precip": 0.4,
+      "precip": 0.0,
       "temp": 18.8
     },
     {
@@ -102120,7 +102120,7 @@
       "minsFormula": 94.0,
       "sobreaireoMin": 26.0,
       "dilucion": 0,
-      "precip": 0.5,
+      "precip": 0.1,
       "temp": 16.8
     },
     {
@@ -102135,7 +102135,7 @@
       "minsFormula": 104.4,
       "sobreaireoMin": -22.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 16.5
     },
     {
@@ -102510,7 +102510,7 @@
       "minsFormula": 62.4,
       "sobreaireoMin": -7.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.3,
       "temp": 19.8
     },
     {
@@ -102990,7 +102990,7 @@
       "minsFormula": 65.9,
       "sobreaireoMin": 34.1,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 15.3
     },
     {
@@ -103005,7 +103005,7 @@
       "minsFormula": 65.9,
       "sobreaireoMin": 34.1,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 15.3
     },
     {
@@ -103170,7 +103170,7 @@
       "minsFormula": 49.3,
       "sobreaireoMin": 46.7,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 14.0
     },
     {
@@ -103185,7 +103185,7 @@
       "minsFormula": 49.3,
       "sobreaireoMin": 46.7,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 14.0
     },
     {
@@ -103200,7 +103200,7 @@
       "minsFormula": 55.1,
       "sobreaireoMin": 39.9,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 14.8
     },
     {
@@ -103215,7 +103215,7 @@
       "minsFormula": 55.1,
       "sobreaireoMin": 39.9,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 14.8
     },
     {
@@ -103230,7 +103230,7 @@
       "minsFormula": 51.5,
       "sobreaireoMin": 23.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 16.3
     },
     {
@@ -103245,7 +103245,7 @@
       "minsFormula": 51.5,
       "sobreaireoMin": 23.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 16.3
     },
     {
@@ -103260,7 +103260,7 @@
       "minsFormula": 50.7,
       "sobreaireoMin": 24.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 18.2
     },
     {
@@ -103275,7 +103275,7 @@
       "minsFormula": 50.7,
       "sobreaireoMin": 24.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 18.2
     },
     {
@@ -103290,7 +103290,7 @@
       "minsFormula": 52.7,
       "sobreaireoMin": 10.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 18.6
     },
     {
@@ -103305,7 +103305,7 @@
       "minsFormula": 52.7,
       "sobreaireoMin": 10.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 18.6
     },
     {
@@ -103740,7 +103740,7 @@
       "minsFormula": 55.6,
       "sobreaireoMin": 20.4,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 17.7
     },
     {
@@ -103770,7 +103770,7 @@
       "minsFormula": 56.1,
       "sobreaireoMin": 24.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 14.3
     },
     {
@@ -103785,7 +103785,7 @@
       "minsFormula": 60.8,
       "sobreaireoMin": 18.2,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 2.0,
       "temp": 14.0
     },
     {
@@ -104010,7 +104010,7 @@
       "minsFormula": 47.2,
       "sobreaireoMin": 43.8,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 14.7
     },
     {
@@ -104025,7 +104025,7 @@
       "minsFormula": 49.0,
       "sobreaireoMin": 28.0,
       "dilucion": 0,
-      "precip": 0.4,
+      "precip": 0.0,
       "temp": 13.9
     },
     {
@@ -104130,7 +104130,7 @@
       "minsFormula": 57.4,
       "sobreaireoMin": 21.6,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 18.3
     },
     {
@@ -104160,7 +104160,7 @@
       "minsFormula": 55.9,
       "sobreaireoMin": 15.1,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.2,
       "temp": 17.6
     },
     {
@@ -104175,7 +104175,7 @@
       "minsFormula": 47.9,
       "sobreaireoMin": 29.1,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.4,
       "temp": 16.8
     },
     {
@@ -104190,7 +104190,7 @@
       "minsFormula": 47.9,
       "sobreaireoMin": 32.1,
       "dilucion": 0,
-      "precip": 0.3,
+      "precip": 0.0,
       "temp": 16.3
     },
     {
@@ -104205,7 +104205,7 @@
       "minsFormula": 50.4,
       "sobreaireoMin": 12.6,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": 0.0,
       "temp": 15.0
     },
     {
@@ -104265,7 +104265,7 @@
       "minsFormula": 40.4,
       "sobreaireoMin": 22.6,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 14.3
     },
     {
@@ -104295,7 +104295,7 @@
       "minsFormula": 40.5,
       "sobreaireoMin": 30.5,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 14.2
     },
     {
@@ -104340,7 +104340,7 @@
       "minsFormula": 48.8,
       "sobreaireoMin": -6.8,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 18.3
     },
     {
@@ -104355,7 +104355,7 @@
       "minsFormula": 48.8,
       "sobreaireoMin": -6.8,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 18.3
     },
     {
@@ -104370,7 +104370,7 @@
       "minsFormula": 49.9,
       "sobreaireoMin": -2.9,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.9,
       "temp": 18.7
     },
     {
@@ -104385,7 +104385,7 @@
       "minsFormula": 49.9,
       "sobreaireoMin": -2.9,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.9,
       "temp": 18.7
     },
     {
@@ -104400,7 +104400,7 @@
       "minsFormula": 55.8,
       "sobreaireoMin": 14.2,
       "dilucion": 0,
-      "precip": 0.8,
+      "precip": 0.2,
       "temp": 17.6
     },
     {
@@ -104415,7 +104415,7 @@
       "minsFormula": 62.8,
       "sobreaireoMin": 8.2,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": 0.1,
       "temp": 16.2
     },
     {
@@ -104445,7 +104445,7 @@
       "minsFormula": 55.5,
       "sobreaireoMin": 29.5,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": 0.0,
       "temp": 14.7
     },
     {
@@ -104520,7 +104520,7 @@
       "minsFormula": 46.8,
       "sobreaireoMin": 41.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 14.5
     },
     {
@@ -104565,7 +104565,7 @@
       "minsFormula": 56.9,
       "sobreaireoMin": 24.1,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 17.8
     },
     {
@@ -104580,7 +104580,7 @@
       "minsFormula": 59.2,
       "sobreaireoMin": 19.8,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 18.0
     },
     {
@@ -104610,7 +104610,7 @@
       "minsFormula": 67.6,
       "sobreaireoMin": 34.4,
       "dilucion": 0,
-      "precip": 0.5,
+      "precip": 0.1,
       "temp": 16.4
     },
     {
@@ -104625,7 +104625,7 @@
       "minsFormula": 57.7,
       "sobreaireoMin": 31.3,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 17.1
     },
     {
@@ -104745,7 +104745,7 @@
       "minsFormula": 31.6,
       "sobreaireoMin": 51.4,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 9.1
     },
     {
@@ -104760,7 +104760,7 @@
       "minsFormula": 46.4,
       "sobreaireoMin": 38.6,
       "dilucion": 0,
-      "precip": 0.5,
+      "precip": 0.1,
       "temp": 10.8
     },
     {
@@ -104775,7 +104775,7 @@
       "minsFormula": 46.0,
       "sobreaireoMin": 36.0,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.5,
       "temp": 11.4
     },
     {
@@ -104790,7 +104790,7 @@
       "minsFormula": 46.3,
       "sobreaireoMin": 24.7,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 13.4
     },
     {
@@ -104805,7 +104805,7 @@
       "minsFormula": 47.7,
       "sobreaireoMin": 37.3,
       "dilucion": 0,
-      "precip": 0.3,
+      "precip": 0.1,
       "temp": 15.0
     },
     {
@@ -104819,8 +104819,8 @@
       "minsTeo": 106,
       "minsFormula": 50.6,
       "sobreaireoMin": 28.4,
-      "dilucion": 1,
-      "precip": 2.6,
+      "dilucion": 0,
+      "precip": 0.2,
       "temp": 13.8
     },
     {
@@ -104834,8 +104834,8 @@
       "minsTeo": 123,
       "minsFormula": 49.7,
       "sobreaireoMin": 29.3,
-      "dilucion": 1,
-      "precip": 2.1,
+      "dilucion": 0,
+      "precip": 0.1,
       "temp": 13.8
     },
     {
@@ -104850,7 +104850,7 @@
       "minsFormula": 53.7,
       "sobreaireoMin": 35.3,
       "dilucion": 0,
-      "precip": 0.6,
+      "precip": 0.1,
       "temp": 12.9
     },
     {
@@ -105285,7 +105285,7 @@
       "minsFormula": 40.4,
       "sobreaireoMin": 48.6,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": 0.0,
       "temp": 13.4
     },
     {
@@ -105300,7 +105300,7 @@
       "minsFormula": 61.0,
       "sobreaireoMin": 18.0,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": 0.0,
       "temp": 13.6
     },
     {
@@ -105315,7 +105315,7 @@
       "minsFormula": 79.5,
       "sobreaireoMin": 5.5,
       "dilucion": 0,
-      "precip": 0.3,
+      "precip": 0.2,
       "temp": 15.1
     },
     {
@@ -105330,7 +105330,7 @@
       "minsFormula": 53.5,
       "sobreaireoMin": 67.5,
       "dilucion": 0,
-      "precip": 0.3,
+      "precip": 0.0,
       "temp": 16.9
     },
     {
@@ -105360,7 +105360,7 @@
       "minsFormula": 47.0,
       "sobreaireoMin": 27.0,
       "dilucion": 0,
-      "precip": 0.9,
+      "precip": 0.0,
       "temp": 14.0
     },
     {
@@ -105375,7 +105375,7 @@
       "minsFormula": 46.7,
       "sobreaireoMin": 32.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 14.6
     },
     {
@@ -105495,7 +105495,7 @@
       "minsFormula": 55.4,
       "sobreaireoMin": 65.6,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 16.9
     },
     {
@@ -105675,7 +105675,7 @@
       "minsFormula": 51.2,
       "sobreaireoMin": 69.8,
       "dilucion": 0,
-      "precip": 1.3,
+      "precip": 0.0,
       "temp": 17.1
     },
     {
@@ -105690,7 +105690,7 @@
       "minsFormula": 49.9,
       "sobreaireoMin": 66.1,
       "dilucion": 0,
-      "precip": 0.5,
+      "precip": 0.1,
       "temp": 16.4
     },
     {
