@@ -1,7 +1,7 @@
 {
-  "generado": "2026-07-01T09:46:43.554720",
-  "n_ciclos": 12516,
-  "ultimo_dato": "2026-07-01T07:40:19",
+  "generado": "2026-07-01T10:46:42.750629",
+  "n_ciclos": 12517,
+  "ultimo_dato": "2026-07-01T09:20:23",
   "ciclos": [
     {
       "datetime": "2022-02-23T07:24:41",
@@ -28125,7 +28125,7 @@
       "minsFormula": 116.2,
       "sobreaireoMin": -45.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 2.5
     },
     {
@@ -28140,7 +28140,7 @@
       "minsFormula": 108.9,
       "sobreaireoMin": -50.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 0.8
     },
     {
@@ -28155,7 +28155,7 @@
       "minsFormula": 97.4,
       "sobreaireoMin": -25.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 0.4
     },
     {
@@ -28170,7 +28170,7 @@
       "minsFormula": 94.7,
       "sobreaireoMin": -22.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 0.1
     },
     {
@@ -28185,7 +28185,7 @@
       "minsFormula": 104.6,
       "sobreaireoMin": -32.6,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 0.2
     },
     {
@@ -28200,7 +28200,7 @@
       "minsFormula": 94.1,
       "sobreaireoMin": -22.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 0.7
     },
     {
@@ -28215,7 +28215,7 @@
       "minsFormula": 77.1,
       "sobreaireoMin": -5.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.0
     },
     {
@@ -28230,7 +28230,7 @@
       "minsFormula": 71.9,
       "sobreaireoMin": 0.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.3
     },
     {
@@ -28245,7 +28245,7 @@
       "minsFormula": 73.1,
       "sobreaireoMin": -1.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.7
     },
     {
@@ -28260,7 +28260,7 @@
       "minsFormula": 73.1,
       "sobreaireoMin": 4.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.8
     },
     {
@@ -28275,7 +28275,7 @@
       "minsFormula": 89.6,
       "sobreaireoMin": -17.6,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.3
     },
     {
@@ -28290,7 +28290,7 @@
       "minsFormula": 94.7,
       "sobreaireoMin": -6.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.4
     },
     {
@@ -28305,7 +28305,7 @@
       "minsFormula": 112.2,
       "sobreaireoMin": -30.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.2
     },
     {
@@ -28320,7 +28320,7 @@
       "minsFormula": 117.6,
       "sobreaireoMin": -19.6,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.1
     },
     {
@@ -28335,7 +28335,7 @@
       "minsFormula": 99.4,
       "sobreaireoMin": -11.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.8
     },
     {
@@ -28350,7 +28350,7 @@
       "minsFormula": 92.1,
       "sobreaireoMin": -20.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.9
     },
     {
@@ -28365,7 +28365,7 @@
       "minsFormula": 85.0,
       "sobreaireoMin": -13.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 2.9
     },
     {
@@ -28380,7 +28380,7 @@
       "minsFormula": 73.2,
       "sobreaireoMin": -1.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 1.3
     },
     {
@@ -28395,7 +28395,7 @@
       "minsFormula": 87.3,
       "sobreaireoMin": -15.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 0.5
     },
     {
@@ -28410,7 +28410,7 @@
       "minsFormula": 114.1,
       "sobreaireoMin": -42.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 2.5
     },
     {
@@ -28425,7 +28425,7 @@
       "minsFormula": 90.5,
       "sobreaireoMin": 1.5,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": NaN,
       "temp": 4.9
     },
     {
@@ -28440,7 +28440,7 @@
       "minsFormula": 82.7,
       "sobreaireoMin": -8.7,
       "dilucion": 0,
-      "precip": 0.3,
+      "precip": NaN,
       "temp": 7.3
     },
     {
@@ -28455,7 +28455,7 @@
       "minsFormula": 88.7,
       "sobreaireoMin": -16.7,
       "dilucion": 0,
-      "precip": 0.4,
+      "precip": NaN,
       "temp": 8.0
     },
     {
@@ -28470,7 +28470,7 @@
       "minsFormula": 106.0,
       "sobreaireoMin": -10.0,
       "dilucion": 0,
-      "precip": 0.5,
+      "precip": NaN,
       "temp": 7.9
     },
     {
@@ -28485,7 +28485,7 @@
       "minsFormula": 103.1,
       "sobreaireoMin": -5.1,
       "dilucion": 0,
-      "precip": 0.5,
+      "precip": NaN,
       "temp": 7.1
     },
     {
@@ -28500,7 +28500,7 @@
       "minsFormula": 113.1,
       "sobreaireoMin": -15.1,
       "dilucion": 0,
-      "precip": 0.5,
+      "precip": NaN,
       "temp": 6.5
     },
     {
@@ -28515,7 +28515,7 @@
       "minsFormula": 119.9,
       "sobreaireoMin": -25.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.7
     },
     {
@@ -28530,7 +28530,7 @@
       "minsFormula": 115.5,
       "sobreaireoMin": -17.5,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": NaN,
       "temp": 5.5
     },
     {
@@ -28545,7 +28545,7 @@
       "minsFormula": 117.4,
       "sobreaireoMin": -33.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.2
     },
     {
@@ -28560,7 +28560,7 @@
       "minsFormula": 108.7,
       "sobreaireoMin": -36.7,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": NaN,
       "temp": 6.3
     },
     {
@@ -28575,7 +28575,7 @@
       "minsFormula": 88.7,
       "sobreaireoMin": -16.7,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": NaN,
       "temp": 5.5
     },
     {
@@ -28590,7 +28590,7 @@
       "minsFormula": 81.7,
       "sobreaireoMin": -9.7,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": NaN,
       "temp": 5.6
     },
     {
@@ -28605,7 +28605,7 @@
       "minsFormula": 82.9,
       "sobreaireoMin": -10.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.3
     },
     {
@@ -28620,7 +28620,7 @@
       "minsFormula": 79.2,
       "sobreaireoMin": -7.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.4
     },
     {
@@ -28635,7 +28635,7 @@
       "minsFormula": 69.8,
       "sobreaireoMin": 2.2,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": NaN,
       "temp": 4.2
     },
     {
@@ -28650,7 +28650,7 @@
       "minsFormula": 70.9,
       "sobreaireoMin": 1.1,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": NaN,
       "temp": 4.8
     },
     {
@@ -28665,7 +28665,7 @@
       "minsFormula": 71.6,
       "sobreaireoMin": 0.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.1
     },
     {
@@ -28680,7 +28680,7 @@
       "minsFormula": 75.6,
       "sobreaireoMin": 6.4,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": NaN,
       "temp": 7.3
     },
     {
@@ -28695,7 +28695,7 @@
       "minsFormula": 70.7,
       "sobreaireoMin": 23.3,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": NaN,
       "temp": 7.4
     },
     {
@@ -28710,7 +28710,7 @@
       "minsFormula": 67.6,
       "sobreaireoMin": 4.4,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": NaN,
       "temp": 7.2
     },
     {
@@ -28725,7 +28725,7 @@
       "minsFormula": 63.1,
       "sobreaireoMin": 8.9,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": NaN,
       "temp": 6.6
     },
     {
@@ -28740,7 +28740,7 @@
       "minsFormula": 67.4,
       "sobreaireoMin": 4.6,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": NaN,
       "temp": 5.2
     },
     {
@@ -28755,7 +28755,7 @@
       "minsFormula": 118.4,
       "sobreaireoMin": -24.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 14.6
     },
     {
@@ -28770,7 +28770,7 @@
       "minsFormula": 128.6,
       "sobreaireoMin": -30.6,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 14.9
     },
     {
@@ -28785,7 +28785,7 @@
       "minsFormula": 133.9,
       "sobreaireoMin": -35.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 13.8
     },
     {
@@ -28800,7 +28800,7 @@
       "minsFormula": 148.8,
       "sobreaireoMin": -50.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 10.0
     },
     {
@@ -28815,7 +28815,7 @@
       "minsFormula": 162.6,
       "sobreaireoMin": -64.6,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.0
     },
     {
@@ -28830,7 +28830,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -82.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.8
     },
     {
@@ -28845,7 +28845,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -82.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.0
     },
     {
@@ -28860,7 +28860,7 @@
       "minsFormula": 156.1,
       "sobreaireoMin": -74.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.2
     },
     {
@@ -28875,7 +28875,7 @@
       "minsFormula": 153.5,
       "sobreaireoMin": -81.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.0
     },
     {
@@ -28890,7 +28890,7 @@
       "minsFormula": 153.2,
       "sobreaireoMin": -81.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.6
     },
     {
@@ -28905,7 +28905,7 @@
       "minsFormula": 130.8,
       "sobreaireoMin": -58.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.4
     },
     {
@@ -28920,7 +28920,7 @@
       "minsFormula": 160.3,
       "sobreaireoMin": -88.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.2
     },
     {
@@ -28935,7 +28935,7 @@
       "minsFormula": 134.0,
       "sobreaireoMin": -62.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.7
     },
     {
@@ -28950,7 +28950,7 @@
       "minsFormula": 143.0,
       "sobreaireoMin": -47.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.6
     },
     {
@@ -28965,7 +28965,7 @@
       "minsFormula": 129.1,
       "sobreaireoMin": -31.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 16.3
     },
     {
@@ -28980,7 +28980,7 @@
       "minsFormula": 131.5,
       "sobreaireoMin": -33.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 18.0
     },
     {
@@ -28995,7 +28995,7 @@
       "minsFormula": 128.3,
       "sobreaireoMin": -30.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 18.0
     },
     {
@@ -29010,7 +29010,7 @@
       "minsFormula": 138.4,
       "sobreaireoMin": -40.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 14.8
     },
     {
@@ -29025,7 +29025,7 @@
       "minsFormula": 152.8,
       "sobreaireoMin": -54.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.5
     },
     {
@@ -29040,7 +29040,7 @@
       "minsFormula": 147.5,
       "sobreaireoMin": -49.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.9
     },
     {
@@ -29055,7 +29055,7 @@
       "minsFormula": 161.8,
       "sobreaireoMin": -63.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.0
     },
     {
@@ -29070,7 +29070,7 @@
       "minsFormula": 169.0,
       "sobreaireoMin": -79.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.5
     },
     {
@@ -29085,7 +29085,7 @@
       "minsFormula": 148.1,
       "sobreaireoMin": -76.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.0
     },
     {
@@ -29100,7 +29100,7 @@
       "minsFormula": 138.3,
       "sobreaireoMin": -66.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.8
     },
     {
@@ -29115,7 +29115,7 @@
       "minsFormula": 127.2,
       "sobreaireoMin": -55.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.7
     },
     {
@@ -29130,7 +29130,7 @@
       "minsFormula": 140.0,
       "sobreaireoMin": -68.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.1
     },
     {
@@ -29145,7 +29145,7 @@
       "minsFormula": 124.5,
       "sobreaireoMin": -52.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.1
     },
     {
@@ -29160,7 +29160,7 @@
       "minsFormula": 143.8,
       "sobreaireoMin": -71.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.3
     },
     {
@@ -29175,7 +29175,7 @@
       "minsFormula": 128.8,
       "sobreaireoMin": -30.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 14.5
     },
     {
@@ -29190,7 +29190,7 @@
       "minsFormula": 123.8,
       "sobreaireoMin": -25.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 14.9
     },
     {
@@ -29205,7 +29205,7 @@
       "minsFormula": 133.1,
       "sobreaireoMin": -35.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 14.5
     },
     {
@@ -29220,7 +29220,7 @@
       "minsFormula": 142.0,
       "sobreaireoMin": -44.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.8
     },
     {
@@ -29235,7 +29235,7 @@
       "minsFormula": 160.0,
       "sobreaireoMin": -62.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.8
     },
     {
@@ -29250,7 +29250,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -82.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.6
     },
     {
@@ -29265,7 +29265,7 @@
       "minsFormula": 179.9,
       "sobreaireoMin": -81.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.1
     },
     {
@@ -29280,7 +29280,7 @@
       "minsFormula": 169.8,
       "sobreaireoMin": -71.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.3
     },
     {
@@ -29295,7 +29295,7 @@
       "minsFormula": 155.8,
       "sobreaireoMin": -83.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.6
     },
     {
@@ -29310,7 +29310,7 @@
       "minsFormula": 137.5,
       "sobreaireoMin": -65.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.2
     },
     {
@@ -29325,7 +29325,7 @@
       "minsFormula": 124.8,
       "sobreaireoMin": -52.8,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": NaN,
       "temp": 5.4
     },
     {
@@ -29340,7 +29340,7 @@
       "minsFormula": 143.5,
       "sobreaireoMin": -71.5,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": NaN,
       "temp": 6.6
     },
     {
@@ -29355,7 +29355,7 @@
       "minsFormula": 123.0,
       "sobreaireoMin": -51.0,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": NaN,
       "temp": 6.7
     },
     {
@@ -29370,7 +29370,7 @@
       "minsFormula": 134.7,
       "sobreaireoMin": -58.7,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": NaN,
       "temp": 7.2
     },
     {
@@ -29385,7 +29385,7 @@
       "minsFormula": 134.7,
       "sobreaireoMin": -36.7,
       "dilucion": 0,
-      "precip": 0.5,
+      "precip": NaN,
       "temp": 8.6
     },
     {
@@ -29400,7 +29400,7 @@
       "minsFormula": 146.3,
       "sobreaireoMin": -48.3,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": NaN,
       "temp": 9.3
     },
     {
@@ -29415,7 +29415,7 @@
       "minsFormula": 146.3,
       "sobreaireoMin": -48.3,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": NaN,
       "temp": 9.3
     },
     {
@@ -29430,7 +29430,7 @@
       "minsFormula": 161.9,
       "sobreaireoMin": -63.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.3
     },
     {
@@ -29445,7 +29445,7 @@
       "minsFormula": 161.9,
       "sobreaireoMin": -63.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.3
     },
     {
@@ -29460,7 +29460,7 @@
       "minsFormula": 162.6,
       "sobreaireoMin": -64.6,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.9
     },
     {
@@ -29475,7 +29475,7 @@
       "minsFormula": 162.6,
       "sobreaireoMin": -64.6,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.9
     },
     {
@@ -29490,7 +29490,7 @@
       "minsFormula": 158.7,
       "sobreaireoMin": -72.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.8
     },
     {
@@ -29505,7 +29505,7 @@
       "minsFormula": 174.6,
       "sobreaireoMin": -88.6,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.0
     },
     {
@@ -29520,7 +29520,7 @@
       "minsFormula": 169.6,
       "sobreaireoMin": -83.6,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.3
     },
     {
@@ -29535,7 +29535,7 @@
       "minsFormula": 152.1,
       "sobreaireoMin": -66.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.4
     },
     {
@@ -29550,7 +29550,7 @@
       "minsFormula": 136.7,
       "sobreaireoMin": -64.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.2
     },
     {
@@ -29565,7 +29565,7 @@
       "minsFormula": 116.6,
       "sobreaireoMin": -44.6,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": NaN,
       "temp": 7.4
     },
     {
@@ -29580,7 +29580,7 @@
       "minsFormula": 131.2,
       "sobreaireoMin": -59.2,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": NaN,
       "temp": 6.9
     },
     {
@@ -29595,7 +29595,7 @@
       "minsFormula": 137.8,
       "sobreaireoMin": -65.8,
       "dilucion": 0,
-      "precip": 0.4,
+      "precip": NaN,
       "temp": 6.8
     },
     {
@@ -29610,7 +29610,7 @@
       "minsFormula": 155.4,
       "sobreaireoMin": -83.4,
       "dilucion": 0,
-      "precip": 0.3,
+      "precip": NaN,
       "temp": 6.4
     },
     {
@@ -29625,7 +29625,7 @@
       "minsFormula": 155.9,
       "sobreaireoMin": -77.9,
       "dilucion": 0,
-      "precip": 0.5,
+      "precip": NaN,
       "temp": 7.1
     },
     {
@@ -29640,7 +29640,7 @@
       "minsFormula": 154.2,
       "sobreaireoMin": -68.2,
       "dilucion": 0,
-      "precip": 1.4,
+      "precip": NaN,
       "temp": 6.8
     },
     {
@@ -29655,7 +29655,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -94.0,
       "dilucion": 0,
-      "precip": 1.4,
+      "precip": NaN,
       "temp": 7.6
     },
     {
@@ -29669,8 +29669,8 @@
       "minsTeo": 116,
       "minsFormula": 180.0,
       "sobreaireoMin": -94.0,
-      "dilucion": 1,
-      "precip": 2.4,
+      "dilucion": 0,
+      "precip": NaN,
       "temp": 8.5
     },
     {
@@ -29685,7 +29685,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -94.0,
       "dilucion": 0,
-      "precip": 0.9,
+      "precip": NaN,
       "temp": 8.7
     },
     {
@@ -29700,7 +29700,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -94.0,
       "dilucion": 0,
-      "precip": 0.3,
+      "precip": NaN,
       "temp": 8.2
     },
     {
@@ -29715,7 +29715,7 @@
       "minsFormula": 169.8,
       "sobreaireoMin": -97.8,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": NaN,
       "temp": 8.0
     },
     {
@@ -29730,7 +29730,7 @@
       "minsFormula": 151.5,
       "sobreaireoMin": -79.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.8
     },
     {
@@ -29745,7 +29745,7 @@
       "minsFormula": 155.4,
       "sobreaireoMin": -83.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.6
     },
     {
@@ -29760,7 +29760,7 @@
       "minsFormula": 140.3,
       "sobreaireoMin": -68.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.9
     },
     {
@@ -29775,7 +29775,7 @@
       "minsFormula": 138.2,
       "sobreaireoMin": -66.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.0
     },
     {
@@ -29790,7 +29790,7 @@
       "minsFormula": 159.8,
       "sobreaireoMin": -81.8,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": NaN,
       "temp": 8.9
     },
     {
@@ -29805,7 +29805,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -94.0,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": NaN,
       "temp": 9.7
     },
     {
@@ -29820,7 +29820,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -94.0,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": NaN,
       "temp": 9.7
     },
     {
@@ -29835,7 +29835,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -94.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.1
     },
     {
@@ -29850,7 +29850,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -108.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.7
     },
     {
@@ -29865,7 +29865,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -108.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.6
     },
     {
@@ -29880,7 +29880,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -108.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.1
     },
     {
@@ -29895,7 +29895,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -108.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.1
     },
     {
@@ -29910,7 +29910,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -96.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.9
     },
     {
@@ -29925,7 +29925,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -96.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.9
     },
     {
@@ -29940,7 +29940,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -96.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.5
     },
     {
@@ -29955,7 +29955,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -96.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.8
     },
     {
@@ -29970,7 +29970,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -96.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.2
     },
     {
@@ -29985,7 +29985,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -96.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.4
     },
     {
@@ -30000,7 +30000,7 @@
       "minsFormula": 156.8,
       "sobreaireoMin": -72.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.5
     },
     {
@@ -30015,7 +30015,7 @@
       "minsFormula": 153.9,
       "sobreaireoMin": -81.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.8
     },
     {
@@ -30030,7 +30030,7 @@
       "minsFormula": 168.7,
       "sobreaireoMin": -96.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.8
     },
     {
@@ -30045,7 +30045,7 @@
       "minsFormula": 147.7,
       "sobreaireoMin": -75.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.3
     },
     {
@@ -30060,7 +30060,7 @@
       "minsFormula": 141.3,
       "sobreaireoMin": -69.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.6
     },
     {
@@ -30075,7 +30075,7 @@
       "minsFormula": 149.0,
       "sobreaireoMin": -77.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.2
     },
     {
@@ -30090,7 +30090,7 @@
       "minsFormula": 160.2,
       "sobreaireoMin": -88.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.6
     },
     {
@@ -30105,7 +30105,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -108.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.3
     },
     {
@@ -30120,7 +30120,7 @@
       "minsFormula": 165.7,
       "sobreaireoMin": -81.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.3
     },
     {
@@ -30135,7 +30135,7 @@
       "minsFormula": 151.6,
       "sobreaireoMin": -67.6,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.5
     },
     {
@@ -30150,7 +30150,7 @@
       "minsFormula": 146.7,
       "sobreaireoMin": -62.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 10.3
     },
     {
@@ -30165,7 +30165,7 @@
       "minsFormula": 156.1,
       "sobreaireoMin": -72.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.4
     },
     {
@@ -30180,7 +30180,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -96.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.6
     },
     {
@@ -30195,7 +30195,7 @@
       "minsFormula": 175.8,
       "sobreaireoMin": -91.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 10.3
     },
     {
@@ -30210,7 +30210,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -96.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.2
     },
     {
@@ -30225,7 +30225,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -96.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.6
     },
     {
@@ -30240,7 +30240,7 @@
       "minsFormula": 165.2,
       "sobreaireoMin": -81.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.8
     },
     {
@@ -30255,7 +30255,7 @@
       "minsFormula": 156.2,
       "sobreaireoMin": -84.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 2.6
     },
     {
@@ -30270,7 +30270,7 @@
       "minsFormula": 155.0,
       "sobreaireoMin": -83.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 1.7
     },
     {
@@ -30285,7 +30285,7 @@
       "minsFormula": 142.8,
       "sobreaireoMin": -70.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 1.0
     },
     {
@@ -30300,7 +30300,7 @@
       "minsFormula": 142.5,
       "sobreaireoMin": -70.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 0.7
     },
     {
@@ -30315,7 +30315,7 @@
       "minsFormula": 164.1,
       "sobreaireoMin": -92.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 0.7
     },
     {
@@ -30330,7 +30330,7 @@
       "minsFormula": 178.2,
       "sobreaireoMin": -106.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 1.9
     },
     {
@@ -30345,7 +30345,7 @@
       "minsFormula": 164.4,
       "sobreaireoMin": -80.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.9
     },
     {
@@ -30360,7 +30360,7 @@
       "minsFormula": 153.0,
       "sobreaireoMin": -69.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.0
     },
     {
@@ -30375,7 +30375,7 @@
       "minsFormula": 129.8,
       "sobreaireoMin": -45.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.6
     },
     {
@@ -30390,7 +30390,7 @@
       "minsFormula": 138.8,
       "sobreaireoMin": -54.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.7
     },
     {
@@ -30405,7 +30405,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -96.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 10.9
     },
     {
@@ -30420,7 +30420,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -96.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.3
     },
     {
@@ -30435,7 +30435,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -96.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.0
     },
     {
@@ -30450,7 +30450,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -96.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.6
     },
     {
@@ -30465,7 +30465,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -96.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.0
     },
     {
@@ -30480,7 +30480,7 @@
       "minsFormula": 171.4,
       "sobreaireoMin": -89.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 1.8
     },
     {
@@ -30495,7 +30495,7 @@
       "minsFormula": 174.8,
       "sobreaireoMin": -102.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 1.2
     },
     {
@@ -30510,7 +30510,7 @@
       "minsFormula": 156.0,
       "sobreaireoMin": -84.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 0.6
     },
     {
@@ -30525,7 +30525,7 @@
       "minsFormula": 148.9,
       "sobreaireoMin": -76.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 0.0
     },
     {
@@ -30540,7 +30540,7 @@
       "minsFormula": 136.8,
       "sobreaireoMin": -64.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": -0.3
     },
     {
@@ -30555,7 +30555,7 @@
       "minsFormula": 148.9,
       "sobreaireoMin": -76.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.6
     },
     {
@@ -30570,7 +30570,7 @@
       "minsFormula": 143.1,
       "sobreaireoMin": -59.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 10.2
     },
     {
@@ -30585,7 +30585,7 @@
       "minsFormula": 138.5,
       "sobreaireoMin": -54.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 10.9
     },
     {
@@ -30600,7 +30600,7 @@
       "minsFormula": 136.7,
       "sobreaireoMin": -52.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.5
     },
     {
@@ -30615,7 +30615,7 @@
       "minsFormula": 143.4,
       "sobreaireoMin": -59.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 10.8
     },
     {
@@ -30630,7 +30630,7 @@
       "minsFormula": 161.0,
       "sobreaireoMin": -77.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.6
     },
     {
@@ -30645,7 +30645,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -96.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.9
     },
     {
@@ -30660,7 +30660,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -108.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.2
     },
     {
@@ -30675,7 +30675,7 @@
       "minsFormula": 168.7,
       "sobreaireoMin": -84.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 2.2
     },
     {
@@ -30690,7 +30690,7 @@
       "minsFormula": 148.6,
       "sobreaireoMin": -76.6,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 1.3
     },
     {
@@ -30705,7 +30705,7 @@
       "minsFormula": 176.7,
       "sobreaireoMin": -104.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": -0.1
     },
     {
@@ -30720,7 +30720,7 @@
       "minsFormula": 141.9,
       "sobreaireoMin": -67.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 1.9
     },
     {
@@ -30735,7 +30735,7 @@
       "minsFormula": 135.3,
       "sobreaireoMin": -53.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.3
     },
     {
@@ -30750,7 +30750,7 @@
       "minsFormula": 128.8,
       "sobreaireoMin": -46.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.8
     },
     {
@@ -30765,7 +30765,7 @@
       "minsFormula": 114.5,
       "sobreaireoMin": -32.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 12.6
     },
     {
@@ -30780,7 +30780,7 @@
       "minsFormula": 131.9,
       "sobreaireoMin": -49.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 13.1
     },
     {
@@ -30795,7 +30795,7 @@
       "minsFormula": 155.4,
       "sobreaireoMin": -73.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.0
     },
     {
@@ -30810,7 +30810,7 @@
       "minsFormula": 175.7,
       "sobreaireoMin": -93.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.3
     },
     {
@@ -30825,7 +30825,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -98.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.8
     },
     {
@@ -30840,7 +30840,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -98.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.7
     },
     {
@@ -30855,7 +30855,7 @@
       "minsFormula": 170.8,
       "sobreaireoMin": -88.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.4
     },
     {
@@ -30870,7 +30870,7 @@
       "minsFormula": 163.4,
       "sobreaireoMin": -91.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.7
     },
     {
@@ -30885,7 +30885,7 @@
       "minsFormula": 150.6,
       "sobreaireoMin": -78.6,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 2.2
     },
     {
@@ -30900,7 +30900,7 @@
       "minsFormula": 140.9,
       "sobreaireoMin": -68.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 1.7
     },
     {
@@ -30915,7 +30915,7 @@
       "minsFormula": 161.3,
       "sobreaireoMin": -89.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 1.2
     },
     {
@@ -30930,7 +30930,7 @@
       "minsFormula": 156.5,
       "sobreaireoMin": -84.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.7
     },
     {
@@ -30945,7 +30945,7 @@
       "minsFormula": 133.6,
       "sobreaireoMin": -51.6,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.1
     },
     {
@@ -30960,7 +30960,7 @@
       "minsFormula": 121.4,
       "sobreaireoMin": -39.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.2
     },
     {
@@ -30975,7 +30975,7 @@
       "minsFormula": 109.2,
       "sobreaireoMin": -27.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 12.3
     },
     {
@@ -30990,7 +30990,7 @@
       "minsFormula": 128.7,
       "sobreaireoMin": -46.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 12.3
     },
     {
@@ -31005,7 +31005,7 @@
       "minsFormula": 128.5,
       "sobreaireoMin": -46.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.5
     },
     {
@@ -31020,7 +31020,7 @@
       "minsFormula": 145.4,
       "sobreaireoMin": -63.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.9
     },
     {
@@ -31035,7 +31035,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -98.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.2
     },
     {
@@ -31050,7 +31050,7 @@
       "minsFormula": 171.2,
       "sobreaireoMin": -89.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.0
     },
     {
@@ -31065,7 +31065,7 @@
       "minsFormula": 179.6,
       "sobreaireoMin": -97.6,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.1
     },
     {
@@ -31080,7 +31080,7 @@
       "minsFormula": 152.3,
       "sobreaireoMin": -80.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 2.8
     },
     {
@@ -31095,7 +31095,7 @@
       "minsFormula": 140.5,
       "sobreaireoMin": -68.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 2.6
     },
     {
@@ -31110,7 +31110,7 @@
       "minsFormula": 148.2,
       "sobreaireoMin": -76.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.2
     },
     {
@@ -31125,7 +31125,7 @@
       "minsFormula": 167.9,
       "sobreaireoMin": -95.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 2.7
     },
     {
@@ -31140,7 +31140,7 @@
       "minsFormula": 148.7,
       "sobreaireoMin": -66.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.1
     },
     {
@@ -31155,7 +31155,7 @@
       "minsFormula": 116.9,
       "sobreaireoMin": -34.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.9
     },
     {
@@ -31170,7 +31170,7 @@
       "minsFormula": 115.4,
       "sobreaireoMin": -33.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 12.4
     },
     {
@@ -31185,7 +31185,7 @@
       "minsFormula": 124.5,
       "sobreaireoMin": -42.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 13.0
     },
     {
@@ -31200,7 +31200,7 @@
       "minsFormula": 133.9,
       "sobreaireoMin": -51.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 12.1
     },
     {
@@ -31215,7 +31215,7 @@
       "minsFormula": 138.8,
       "sobreaireoMin": -56.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 10.8
     },
     {
@@ -31230,7 +31230,7 @@
       "minsFormula": 168.0,
       "sobreaireoMin": -86.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.5
     },
     {
@@ -31245,7 +31245,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -98.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.1
     },
     {
@@ -31260,7 +31260,7 @@
       "minsFormula": 180.0,
       "sobreaireoMin": -98.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.7
     },
     {
@@ -31275,7 +31275,7 @@
       "minsFormula": 159.3,
       "sobreaireoMin": -77.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.6
     },
     {
@@ -78646,7 +78646,7 @@
       "sobreaireoMin": 82.2,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 11.5
+      "temp": 11.0
     },
     {
       "datetime": "2024-03-21T00:39:23",
@@ -78661,7 +78661,7 @@
       "sobreaireoMin": 77.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 11.5
+      "temp": 10.5
     },
     {
       "datetime": "2024-03-21T02:30:11",
@@ -78676,7 +78676,7 @@
       "sobreaireoMin": 22.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.9
+      "temp": NaN
     },
     {
       "datetime": "2024-03-21T04:18:49",
@@ -78691,7 +78691,7 @@
       "sobreaireoMin": 44.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.9
+      "temp": NaN
     },
     {
       "datetime": "2024-03-21T06:10:28",
@@ -78706,7 +78706,7 @@
       "sobreaireoMin": 75.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.5
+      "temp": NaN
     },
     {
       "datetime": "2024-03-21T08:01:16",
@@ -78721,7 +78721,7 @@
       "sobreaireoMin": 55.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.2
+      "temp": NaN
     },
     {
       "datetime": "2024-03-21T09:49:05",
@@ -78736,7 +78736,7 @@
       "sobreaireoMin": 40.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.6
+      "temp": NaN
     },
     {
       "datetime": "2024-03-21T11:37:13",
@@ -78751,7 +78751,7 @@
       "sobreaireoMin": 83.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 18.5
+      "temp": NaN
     },
     {
       "datetime": "2024-03-21T13:24:42",
@@ -78766,7 +78766,7 @@
       "sobreaireoMin": 90.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 19.5
+      "temp": NaN
     },
     {
       "datetime": "2024-03-21T15:17:30",
@@ -78781,7 +78781,7 @@
       "sobreaireoMin": 90.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 20.8
+      "temp": NaN
     },
     {
       "datetime": "2024-03-21T17:07:18",
@@ -78796,7 +78796,7 @@
       "sobreaireoMin": 100.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 19.7
+      "temp": NaN
     },
     {
       "datetime": "2024-03-21T18:56:46",
@@ -78811,7 +78811,7 @@
       "sobreaireoMin": 70.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 17.8
+      "temp": NaN
     },
     {
       "datetime": "2024-03-21T20:46:05",
@@ -78826,7 +78826,7 @@
       "sobreaireoMin": 66.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.9
+      "temp": NaN
     },
     {
       "datetime": "2024-03-21T22:36:53",
@@ -78841,7 +78841,7 @@
       "sobreaireoMin": 78.2,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.6
+      "temp": NaN
     },
     {
       "datetime": "2024-03-22T00:24:23",
@@ -78856,7 +78856,7 @@
       "sobreaireoMin": 53.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.3
+      "temp": NaN
     },
     {
       "datetime": "2024-03-22T02:13:11",
@@ -78871,7 +78871,7 @@
       "sobreaireoMin": 38.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.1
+      "temp": NaN
     },
     {
       "datetime": "2024-03-22T04:02:30",
@@ -78886,7 +78886,7 @@
       "sobreaireoMin": 72.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.5
+      "temp": NaN
     },
     {
       "datetime": "2024-03-22T05:49:17",
@@ -78901,7 +78901,7 @@
       "sobreaireoMin": 48.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.7
+      "temp": NaN
     },
     {
       "datetime": "2024-03-22T07:44:27",
@@ -78916,7 +78916,7 @@
       "sobreaireoMin": 49.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.7
+      "temp": NaN
     },
     {
       "datetime": "2024-03-22T09:36:44",
@@ -78931,7 +78931,7 @@
       "sobreaireoMin": 89.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 17.6
+      "temp": NaN
     },
     {
       "datetime": "2024-03-22T11:25:43",
@@ -78946,7 +78946,7 @@
       "sobreaireoMin": 54.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 20.5
+      "temp": NaN
     },
     {
       "datetime": "2024-03-22T13:12:32",
@@ -78961,7 +78961,7 @@
       "sobreaireoMin": 63.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 24.8
+      "temp": NaN
     },
     {
       "datetime": "2024-03-22T14:57:10",
@@ -78976,7 +78976,7 @@
       "sobreaireoMin": 89.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 24.2
+      "temp": NaN
     },
     {
       "datetime": "2024-03-22T16:45:37",
@@ -78991,7 +78991,7 @@
       "sobreaireoMin": 136.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 22.4
+      "temp": NaN
     },
     {
       "datetime": "2024-03-22T18:31:16",
@@ -79006,7 +79006,7 @@
       "sobreaireoMin": 106.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 20.0
+      "temp": NaN
     },
     {
       "datetime": "2024-03-22T20:19:25",
@@ -79021,7 +79021,7 @@
       "sobreaireoMin": 92.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 18.4
+      "temp": NaN
     },
     {
       "datetime": "2024-03-22T22:10:13",
@@ -79036,7 +79036,7 @@
       "sobreaireoMin": 76.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 16.2
+      "temp": NaN
     },
     {
       "datetime": "2024-03-23T00:01:32",
@@ -79051,7 +79051,7 @@
       "sobreaireoMin": 74.2,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.1
+      "temp": NaN
     },
     {
       "datetime": "2024-03-23T01:53:00",
@@ -79066,7 +79066,7 @@
       "sobreaireoMin": 77.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.7
+      "temp": NaN
     },
     {
       "datetime": "2024-03-23T03:41:59",
@@ -79081,7 +79081,7 @@
       "sobreaireoMin": 71.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.8
+      "temp": NaN
     },
     {
       "datetime": "2024-03-23T05:31:47",
@@ -79096,7 +79096,7 @@
       "sobreaireoMin": 33.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.4
+      "temp": NaN
     },
     {
       "datetime": "2024-03-23T07:21:26",
@@ -79111,7 +79111,7 @@
       "sobreaireoMin": 53.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.0
+      "temp": NaN
     },
     {
       "datetime": "2024-03-23T09:09:33",
@@ -79126,7 +79126,7 @@
       "sobreaireoMin": 29.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.9
+      "temp": NaN
     },
     {
       "datetime": "2024-03-23T10:57:03",
@@ -79141,7 +79141,7 @@
       "sobreaireoMin": 77.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 19.6
+      "temp": NaN
     },
     {
       "datetime": "2024-03-23T12:46:21",
@@ -79156,7 +79156,7 @@
       "sobreaireoMin": 94.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 21.2
+      "temp": NaN
     },
     {
       "datetime": "2024-03-23T14:37:19",
@@ -79171,7 +79171,7 @@
       "sobreaireoMin": 116.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 20.8
+      "temp": NaN
     },
     {
       "datetime": "2024-03-23T16:26:38",
@@ -79186,7 +79186,7 @@
       "sobreaireoMin": 135.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 19.2
+      "temp": NaN
     },
     {
       "datetime": "2024-03-23T18:15:25",
@@ -79201,7 +79201,7 @@
       "sobreaireoMin": 97.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 17.4
+      "temp": NaN
     },
     {
       "datetime": "2024-03-23T20:04:44",
@@ -79216,7 +79216,7 @@
       "sobreaireoMin": 93.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.2
+      "temp": NaN
     },
     {
       "datetime": "2024-03-23T21:52:03",
@@ -79231,7 +79231,7 @@
       "sobreaireoMin": 74.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.8
+      "temp": NaN
     },
     {
       "datetime": "2024-03-23T23:38:51",
@@ -79246,7 +79246,7 @@
       "sobreaireoMin": 87.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.4
+      "temp": NaN
     },
     {
       "datetime": "2024-03-24T01:29:59",
@@ -79261,7 +79261,7 @@
       "sobreaireoMin": 71.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.4
+      "temp": NaN
     },
     {
       "datetime": "2024-03-24T03:18:37",
@@ -79276,7 +79276,7 @@
       "sobreaireoMin": 75.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.3
+      "temp": NaN
     },
     {
       "datetime": "2024-03-24T05:09:47",
@@ -79291,7 +79291,7 @@
       "sobreaireoMin": 69.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.6
+      "temp": NaN
     },
     {
       "datetime": "2024-03-24T07:05:55",
@@ -79306,7 +79306,7 @@
       "sobreaireoMin": 25.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.2
+      "temp": NaN
     },
     {
       "datetime": "2024-03-24T08:54:42",
@@ -79321,7 +79321,7 @@
       "sobreaireoMin": 70.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.7
+      "temp": NaN
     },
     {
       "datetime": "2024-03-24T10:54:22",
@@ -79336,7 +79336,7 @@
       "sobreaireoMin": 127.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.0
+      "temp": NaN
     },
     {
       "datetime": "2024-03-24T12:45:31",
@@ -79351,7 +79351,7 @@
       "sobreaireoMin": 102.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.9
+      "temp": NaN
     },
     {
       "datetime": "2024-03-24T14:34:39",
@@ -79366,7 +79366,7 @@
       "sobreaireoMin": 84.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.2
+      "temp": NaN
     },
     {
       "datetime": "2024-03-24T16:26:07",
@@ -79381,7 +79381,7 @@
       "sobreaireoMin": 90.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.4
+      "temp": NaN
     },
     {
       "datetime": "2024-03-24T18:15:35",
@@ -79396,7 +79396,7 @@
       "sobreaireoMin": 80.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.3
+      "temp": NaN
     },
     {
       "datetime": "2024-03-24T20:06:13",
@@ -79411,7 +79411,7 @@
       "sobreaireoMin": 120.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.8
+      "temp": NaN
     },
     {
       "datetime": "2024-03-24T21:54:52",
@@ -79426,7 +79426,7 @@
       "sobreaireoMin": 119.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.5
+      "temp": NaN
     },
     {
       "datetime": "2024-03-24T23:45:21",
@@ -79441,7 +79441,7 @@
       "sobreaireoMin": 112.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.5
+      "temp": NaN
     },
     {
       "datetime": "2024-03-25T01:36:19",
@@ -79456,7 +79456,7 @@
       "sobreaireoMin": 99.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.0
+      "temp": NaN
     },
     {
       "datetime": "2024-03-25T03:28:47",
@@ -79471,7 +79471,7 @@
       "sobreaireoMin": 82.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.7
+      "temp": NaN
     },
     {
       "datetime": "2024-03-25T05:23:55",
@@ -79486,7 +79486,7 @@
       "sobreaireoMin": 31.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.4
+      "temp": NaN
     },
     {
       "datetime": "2024-03-25T07:13:24",
@@ -79501,7 +79501,7 @@
       "sobreaireoMin": 71.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.1
+      "temp": NaN
     },
     {
       "datetime": "2024-03-25T09:05:23",
@@ -79516,7 +79516,7 @@
       "sobreaireoMin": 10.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.4
+      "temp": NaN
     },
     {
       "datetime": "2024-03-25T10:54:11",
@@ -79531,7 +79531,7 @@
       "sobreaireoMin": 112.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.6
+      "temp": NaN
     },
     {
       "datetime": "2024-03-25T12:47:00",
@@ -79546,7 +79546,7 @@
       "sobreaireoMin": 24.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.7
+      "temp": NaN
     },
     {
       "datetime": "2024-03-25T14:41:57",
@@ -79561,7 +79561,7 @@
       "sobreaireoMin": 111.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.6
+      "temp": NaN
     },
     {
       "datetime": "2024-03-25T16:40:56",
@@ -79576,7 +79576,7 @@
       "sobreaireoMin": 101.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.0
+      "temp": NaN
     },
     {
       "datetime": "2024-03-25T18:41:24",
@@ -79591,7 +79591,7 @@
       "sobreaireoMin": 98.2,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.8
+      "temp": NaN
     },
     {
       "datetime": "2024-03-25T20:31:23",
@@ -79606,7 +79606,7 @@
       "sobreaireoMin": 96.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.3
+      "temp": NaN
     },
     {
       "datetime": "2024-03-25T22:20:02",
@@ -79621,7 +79621,7 @@
       "sobreaireoMin": 72.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.3
+      "temp": NaN
     },
     {
       "datetime": "2024-03-26T00:15:30",
@@ -79636,7 +79636,7 @@
       "sobreaireoMin": 52.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.4
+      "temp": NaN
     },
     {
       "datetime": "2024-03-26T02:12:18",
@@ -79651,7 +79651,7 @@
       "sobreaireoMin": 43.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.3
+      "temp": NaN
     },
     {
       "datetime": "2024-03-26T04:09:57",
@@ -79666,7 +79666,7 @@
       "sobreaireoMin": 52.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.3
+      "temp": NaN
     },
     {
       "datetime": "2024-03-26T06:03:05",
@@ -79681,7 +79681,7 @@
       "sobreaireoMin": 61.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.5
+      "temp": NaN
     },
     {
       "datetime": "2024-03-26T08:04:23",
@@ -79696,7 +79696,7 @@
       "sobreaireoMin": 43.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.8
+      "temp": NaN
     },
     {
       "datetime": "2024-03-26T10:02:01",
@@ -79711,7 +79711,7 @@
       "sobreaireoMin": 43.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.1
+      "temp": NaN
     },
     {
       "datetime": "2024-03-26T11:57:41",
@@ -79726,7 +79726,7 @@
       "sobreaireoMin": 35.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.8
+      "temp": NaN
     },
     {
       "datetime": "2024-03-26T13:47:49",
@@ -79741,7 +79741,7 @@
       "sobreaireoMin": -16.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.8
+      "temp": NaN
     },
     {
       "datetime": "2024-03-26T15:42:28",
@@ -79756,7 +79756,7 @@
       "sobreaireoMin": 93.2,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 16.0
+      "temp": NaN
     },
     {
       "datetime": "2024-03-26T17:38:36",
@@ -79771,7 +79771,7 @@
       "sobreaireoMin": 106.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.0
+      "temp": NaN
     },
     {
       "datetime": "2024-03-26T19:33:24",
@@ -79786,7 +79786,7 @@
       "sobreaireoMin": 107.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.4
+      "temp": NaN
     },
     {
       "datetime": "2024-03-26T21:27:03",
@@ -79801,7 +79801,7 @@
       "sobreaireoMin": 104.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 10.7
+      "temp": NaN
     },
     {
       "datetime": "2024-03-26T23:18:51",
@@ -79816,7 +79816,7 @@
       "sobreaireoMin": 102.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 9.7
+      "temp": NaN
     },
     {
       "datetime": "2024-03-27T01:11:19",
@@ -79831,7 +79831,7 @@
       "sobreaireoMin": 103.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 9.0
+      "temp": NaN
     },
     {
       "datetime": "2024-03-27T03:03:58",
@@ -79846,7 +79846,7 @@
       "sobreaireoMin": 67.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 8.0
+      "temp": NaN
     },
     {
       "datetime": "2024-03-27T04:59:37",
@@ -79861,7 +79861,7 @@
       "sobreaireoMin": 18.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 6.9
+      "temp": NaN
     },
     {
       "datetime": "2024-03-27T06:55:55",
@@ -79876,7 +79876,7 @@
       "sobreaireoMin": 68.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 7.2
+      "temp": NaN
     },
     {
       "datetime": "2024-03-27T08:48:43",
@@ -79891,7 +79891,7 @@
       "sobreaireoMin": 5.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 8.7
+      "temp": NaN
     },
     {
       "datetime": "2024-03-27T10:36:42",
@@ -79906,7 +79906,7 @@
       "sobreaireoMin": 45.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.1
+      "temp": NaN
     },
     {
       "datetime": "2024-03-27T12:26:00",
@@ -79921,7 +79921,7 @@
       "sobreaireoMin": 72.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.4
+      "temp": NaN
     },
     {
       "datetime": "2024-03-27T14:17:38",
@@ -79936,7 +79936,7 @@
       "sobreaireoMin": 73.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.4
+      "temp": NaN
     },
     {
       "datetime": "2024-03-27T16:10:17",
@@ -79951,7 +79951,7 @@
       "sobreaireoMin": 33.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.2
+      "temp": NaN
     },
     {
       "datetime": "2024-03-27T17:59:15",
@@ -79966,7 +79966,7 @@
       "sobreaireoMin": 27.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.1
+      "temp": NaN
     },
     {
       "datetime": "2024-03-27T19:46:24",
@@ -79981,7 +79981,7 @@
       "sobreaireoMin": 50.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.9
+      "temp": NaN
     },
     {
       "datetime": "2024-03-27T21:36:03",
@@ -79996,7 +79996,7 @@
       "sobreaireoMin": 38.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.7
+      "temp": NaN
     },
     {
       "datetime": "2024-03-27T23:23:00",
@@ -80011,7 +80011,7 @@
       "sobreaireoMin": 27.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.4
+      "temp": NaN
     },
     {
       "datetime": "2024-03-28T01:07:09",
@@ -80026,7 +80026,7 @@
       "sobreaireoMin": -1.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.5
+      "temp": NaN
     },
     {
       "datetime": "2024-03-28T02:51:47",
@@ -80041,7 +80041,7 @@
       "sobreaireoMin": -4.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.4
+      "temp": NaN
     },
     {
       "datetime": "2024-03-28T04:37:56",
@@ -80056,7 +80056,7 @@
       "sobreaireoMin": 35.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.1
+      "temp": NaN
     },
     {
       "datetime": "2024-03-28T06:25:15",
@@ -80071,7 +80071,7 @@
       "sobreaireoMin": 36.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.7
+      "temp": NaN
     },
     {
       "datetime": "2024-03-28T08:14:12",
@@ -80086,7 +80086,7 @@
       "sobreaireoMin": 4.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.0
+      "temp": NaN
     },
     {
       "datetime": "2024-03-28T09:59:01",
@@ -80101,7 +80101,7 @@
       "sobreaireoMin": 26.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.9
+      "temp": NaN
     },
     {
       "datetime": "2024-03-28T11:46:30",
@@ -80116,7 +80116,7 @@
       "sobreaireoMin": 57.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 17.8
+      "temp": NaN
     },
     {
       "datetime": "2024-03-28T13:31:58",
@@ -80131,7 +80131,7 @@
       "sobreaireoMin": 49.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 20.3
+      "temp": NaN
     },
     {
       "datetime": "2024-03-28T15:15:27",
@@ -80146,7 +80146,7 @@
       "sobreaireoMin": 45.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 20.5
+      "temp": NaN
     },
     {
       "datetime": "2024-03-28T17:00:15",
@@ -80161,7 +80161,7 @@
       "sobreaireoMin": 36.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 19.1
+      "temp": NaN
     },
     {
       "datetime": "2024-03-28T18:43:03",
@@ -80176,7 +80176,7 @@
       "sobreaireoMin": 18.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 17.8
+      "temp": NaN
     },
     {
       "datetime": "2024-03-28T20:27:21",
@@ -80191,7 +80191,7 @@
       "sobreaireoMin": 42.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 16.9
+      "temp": NaN
     },
     {
       "datetime": "2024-03-28T22:11:30",
@@ -80206,7 +80206,7 @@
       "sobreaireoMin": 44.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 16.0
+      "temp": NaN
     },
     {
       "datetime": "2024-03-28T23:56:58",
@@ -80221,7 +80221,7 @@
       "sobreaireoMin": 24.2,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.7
+      "temp": NaN
     },
     {
       "datetime": "2024-03-29T01:40:57",
@@ -80236,7 +80236,7 @@
       "sobreaireoMin": -2.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.3
+      "temp": NaN
     },
     {
       "datetime": "2024-03-29T03:26:06",
@@ -80251,7 +80251,7 @@
       "sobreaireoMin": 30.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.6
+      "temp": NaN
     },
     {
       "datetime": "2024-03-29T05:12:13",
@@ -80266,7 +80266,7 @@
       "sobreaireoMin": 20.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.2
+      "temp": NaN
     },
     {
       "datetime": "2024-03-29T06:57:21",
@@ -80281,7 +80281,7 @@
       "sobreaireoMin": 2.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.6
+      "temp": NaN
     },
     {
       "datetime": "2024-03-29T08:43:50",
@@ -80296,7 +80296,7 @@
       "sobreaireoMin": 33.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.4
+      "temp": NaN
     },
     {
       "datetime": "2024-03-29T10:31:19",
@@ -80311,7 +80311,7 @@
       "sobreaireoMin": 64.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 17.8
+      "temp": NaN
     },
     {
       "datetime": "2024-03-29T12:17:47",
@@ -80326,7 +80326,7 @@
       "sobreaireoMin": 43.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 19.0
+      "temp": NaN
     },
     {
       "datetime": "2024-03-29T14:02:15",
@@ -80341,7 +80341,7 @@
       "sobreaireoMin": 16.2,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 19.7
+      "temp": NaN
     },
     {
       "datetime": "2024-03-29T15:44:15",
@@ -80356,7 +80356,7 @@
       "sobreaireoMin": 38.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 19.5
+      "temp": NaN
     },
     {
       "datetime": "2024-03-29T17:30:22",
@@ -80371,7 +80371,7 @@
       "sobreaireoMin": 65.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 18.7
+      "temp": NaN
     },
     {
       "datetime": "2024-03-29T19:14:41",
@@ -80386,7 +80386,7 @@
       "sobreaireoMin": 26.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 17.6
+      "temp": NaN
     },
     {
       "datetime": "2024-03-29T20:57:19",
@@ -80401,7 +80401,7 @@
       "sobreaireoMin": 18.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.1
+      "temp": NaN
     },
     {
       "datetime": "2024-03-29T22:39:47",
@@ -80416,7 +80416,7 @@
       "sobreaireoMin": 18.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.8
+      "temp": NaN
     },
     {
       "datetime": "2024-03-30T00:23:16",
@@ -80431,7 +80431,7 @@
       "sobreaireoMin": 47.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.7
+      "temp": NaN
     },
     {
       "datetime": "2024-03-30T02:09:35",
@@ -80446,7 +80446,7 @@
       "sobreaireoMin": 19.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.1
+      "temp": NaN
     },
     {
       "datetime": "2024-03-30T03:52:04",
@@ -80461,7 +80461,7 @@
       "sobreaireoMin": -2.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.1
+      "temp": NaN
     },
     {
       "datetime": "2024-03-30T05:38:11",
@@ -80476,7 +80476,7 @@
       "sobreaireoMin": 47.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.9
+      "temp": NaN
     },
     {
       "datetime": "2024-03-30T07:23:40",
@@ -80491,7 +80491,7 @@
       "sobreaireoMin": 43.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 10.8
+      "temp": NaN
     },
     {
       "datetime": "2024-03-30T09:13:18",
@@ -80506,7 +80506,7 @@
       "sobreaireoMin": 12.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.2
+      "temp": NaN
     },
     {
       "datetime": "2024-03-30T10:58:07",
@@ -80521,7 +80521,7 @@
       "sobreaireoMin": 43.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.0
+      "temp": NaN
     },
     {
       "datetime": "2024-03-30T12:43:34",
@@ -80536,7 +80536,7 @@
       "sobreaireoMin": 64.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 16.1
+      "temp": NaN
     },
     {
       "datetime": "2024-03-30T14:30:54",
@@ -80551,7 +80551,7 @@
       "sobreaireoMin": 70.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.7
+      "temp": NaN
     },
     {
       "datetime": "2024-03-30T16:18:12",
@@ -80566,7 +80566,7 @@
       "sobreaireoMin": 40.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 16.3
+      "temp": NaN
     },
     {
       "datetime": "2024-03-30T18:01:20",
@@ -80581,7 +80581,7 @@
       "sobreaireoMin": 13.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.7
+      "temp": NaN
     },
     {
       "datetime": "2024-03-30T19:47:38",
@@ -80596,7 +80596,7 @@
       "sobreaireoMin": 59.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.2
+      "temp": NaN
     },
     {
       "datetime": "2024-03-30T21:33:38",
@@ -80611,7 +80611,7 @@
       "sobreaireoMin": 44.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.7
+      "temp": NaN
     },
     {
       "datetime": "2024-03-30T23:18:45",
@@ -80626,7 +80626,7 @@
       "sobreaireoMin": 104.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.3
+      "temp": NaN
     },
     {
       "datetime": "2024-03-31T01:03:24",
@@ -80641,7 +80641,7 @@
       "sobreaireoMin": 51.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.4
+      "temp": NaN
     },
     {
       "datetime": "2024-03-31T03:51:23",
@@ -80656,7 +80656,7 @@
       "sobreaireoMin": 15.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.0
+      "temp": NaN
     },
     {
       "datetime": "2024-03-31T05:40:40",
@@ -80671,7 +80671,7 @@
       "sobreaireoMin": 16.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.9
+      "temp": NaN
     },
     {
       "datetime": "2024-03-31T07:32:30",
@@ -80686,7 +80686,7 @@
       "sobreaireoMin": 58.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.0
+      "temp": NaN
     },
     {
       "datetime": "2024-03-31T09:25:38",
@@ -80701,7 +80701,7 @@
       "sobreaireoMin": 42.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.5
+      "temp": NaN
     },
     {
       "datetime": "2024-03-31T11:21:26",
@@ -80716,7 +80716,7 @@
       "sobreaireoMin": 30.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.6
+      "temp": NaN
     },
     {
       "datetime": "2024-03-31T13:09:25",
@@ -80731,7 +80731,7 @@
       "sobreaireoMin": 36.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.8
+      "temp": NaN
     },
     {
       "datetime": "2024-03-31T14:57:12",
@@ -80746,7 +80746,7 @@
       "sobreaireoMin": 58.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.2
+      "temp": NaN
     },
     {
       "datetime": "2024-03-31T16:45:51",
@@ -80761,7 +80761,7 @@
       "sobreaireoMin": 75.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.5
+      "temp": NaN
     },
     {
       "datetime": "2024-03-31T18:34:09",
@@ -80776,7 +80776,7 @@
       "sobreaireoMin": 50.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.0
+      "temp": NaN
     },
     {
       "datetime": "2024-03-31T20:21:58",
@@ -80791,7 +80791,7 @@
       "sobreaireoMin": 46.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.2
+      "temp": NaN
     },
     {
       "datetime": "2024-03-31T22:13:46",
@@ -80806,7 +80806,7 @@
       "sobreaireoMin": -7.2,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.4
+      "temp": NaN
     },
     {
       "datetime": "2024-04-01T02:03:23",
@@ -80821,7 +80821,7 @@
       "sobreaireoMin": 61.2,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 10.8
+      "temp": NaN
     },
     {
       "datetime": "2024-04-01T04:04:01",
@@ -80836,7 +80836,7 @@
       "sobreaireoMin": 3.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 9.4
+      "temp": NaN
     },
     {
       "datetime": "2024-04-01T06:00:40",
@@ -80851,7 +80851,7 @@
       "sobreaireoMin": 35.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 9.1
+      "temp": NaN
     },
     {
       "datetime": "2024-04-01T07:57:49",
@@ -80866,7 +80866,7 @@
       "sobreaireoMin": 65.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 8.5
+      "temp": NaN
     },
     {
       "datetime": "2024-04-01T09:54:57",
@@ -80881,7 +80881,7 @@
       "sobreaireoMin": 25.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.1
+      "temp": NaN
     },
     {
       "datetime": "2024-04-01T11:45:15",
@@ -80896,7 +80896,7 @@
       "sobreaireoMin": 46.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.6
+      "temp": NaN
     },
     {
       "datetime": "2024-04-01T13:35:33",
@@ -80911,7 +80911,7 @@
       "sobreaireoMin": 76.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 17.5
+      "temp": NaN
     },
     {
       "datetime": "2024-04-01T15:23:33",
@@ -80926,7 +80926,7 @@
       "sobreaireoMin": 80.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 17.9
+      "temp": NaN
     },
     {
       "datetime": "2024-04-01T17:14:01",
@@ -80941,7 +80941,7 @@
       "sobreaireoMin": 56.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 18.1
+      "temp": NaN
     },
     {
       "datetime": "2024-04-01T18:57:29",
@@ -80956,7 +80956,7 @@
       "sobreaireoMin": 46.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.9
+      "temp": NaN
     },
     {
       "datetime": "2024-04-01T20:43:08",
@@ -80971,7 +80971,7 @@
       "sobreaireoMin": 21.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.8
+      "temp": NaN
     },
     {
       "datetime": "2024-04-01T22:30:06",
@@ -80986,7 +80986,7 @@
       "sobreaireoMin": 48.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 10.2
+      "temp": NaN
     },
     {
       "datetime": "2024-04-02T00:16:54",
@@ -81001,7 +81001,7 @@
       "sobreaireoMin": 45.2,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 8.9
+      "temp": NaN
     },
     {
       "datetime": "2024-04-02T02:04:53",
@@ -81016,7 +81016,7 @@
       "sobreaireoMin": 8.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 9.5
+      "temp": NaN
     },
     {
       "datetime": "2024-04-02T03:52:42",
@@ -81031,7 +81031,7 @@
       "sobreaireoMin": 2.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 10.8
+      "temp": NaN
     },
     {
       "datetime": "2024-04-02T05:41:40",
@@ -81046,7 +81046,7 @@
       "sobreaireoMin": 47.2,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 9.9
+      "temp": NaN
     },
     {
       "datetime": "2024-04-02T07:31:29",
@@ -81061,7 +81061,7 @@
       "sobreaireoMin": 70.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 9.7
+      "temp": NaN
     },
     {
       "datetime": "2024-04-02T09:19:17",
@@ -81076,7 +81076,7 @@
       "sobreaireoMin": 63.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.0
+      "temp": NaN
     },
     {
       "datetime": "2024-04-02T11:08:44",
@@ -81091,7 +81091,7 @@
       "sobreaireoMin": 48.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.2
+      "temp": NaN
     },
     {
       "datetime": "2024-04-02T12:56:53",
@@ -81106,7 +81106,7 @@
       "sobreaireoMin": 38.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 16.6
+      "temp": NaN
     },
     {
       "datetime": "2024-04-02T14:43:02",
@@ -81121,7 +81121,7 @@
       "sobreaireoMin": 47.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 17.3
+      "temp": NaN
     },
     {
       "datetime": "2024-04-02T16:29:30",
@@ -81136,7 +81136,7 @@
       "sobreaireoMin": 66.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 16.9
+      "temp": NaN
     },
     {
       "datetime": "2024-04-02T18:16:19",
@@ -81151,7 +81151,7 @@
       "sobreaireoMin": 39.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.1
+      "temp": NaN
     },
     {
       "datetime": "2024-04-02T19:59:57",
@@ -81166,7 +81166,7 @@
       "sobreaireoMin": 7.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.2
+      "temp": NaN
     },
     {
       "datetime": "2024-04-02T21:43:36",
@@ -81181,7 +81181,7 @@
       "sobreaireoMin": 22.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.4
+      "temp": NaN
     },
     {
       "datetime": "2024-04-02T23:29:14",
@@ -81196,7 +81196,7 @@
       "sobreaireoMin": 44.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.1
+      "temp": NaN
     },
     {
       "datetime": "2024-04-03T01:15:42",
@@ -81211,7 +81211,7 @@
       "sobreaireoMin": 16.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.6
+      "temp": NaN
     },
     {
       "datetime": "2024-04-03T03:01:20",
@@ -81226,7 +81226,7 @@
       "sobreaireoMin": -3.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 9.8
+      "temp": NaN
     },
     {
       "datetime": "2024-04-03T04:47:59",
@@ -81241,7 +81241,7 @@
       "sobreaireoMin": 17.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 8.7
+      "temp": NaN
     },
     {
       "datetime": "2024-04-03T06:38:27",
@@ -81256,7 +81256,7 @@
       "sobreaireoMin": 54.2,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 8.0
+      "temp": NaN
     },
     {
       "datetime": "2024-04-03T08:29:06",
@@ -81271,7 +81271,7 @@
       "sobreaireoMin": -46.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 8.5
+      "temp": NaN
     },
     {
       "datetime": "2024-04-03T10:15:54",
@@ -81286,7 +81286,7 @@
       "sobreaireoMin": -67.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.8
+      "temp": NaN
     },
     {
       "datetime": "2024-04-03T12:02:12",
@@ -81301,7 +81301,7 @@
       "sobreaireoMin": 22.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 20.1
+      "temp": NaN
     },
     {
       "datetime": "2024-04-03T13:47:20",
@@ -81316,7 +81316,7 @@
       "sobreaireoMin": 21.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 21.5
+      "temp": NaN
     },
     {
       "datetime": "2024-04-03T15:29:19",
@@ -81331,7 +81331,7 @@
       "sobreaireoMin": 27.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 21.8
+      "temp": NaN
     },
     {
       "datetime": "2024-04-03T17:12:08",
@@ -81346,7 +81346,7 @@
       "sobreaireoMin": 42.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 21.4
+      "temp": NaN
     },
     {
       "datetime": "2024-04-03T18:59:37",
@@ -81361,7 +81361,7 @@
       "sobreaireoMin": 58.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 19.9
+      "temp": NaN
     },
     {
       "datetime": "2024-04-03T20:46:24",
@@ -81376,7 +81376,7 @@
       "sobreaireoMin": 58.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.3
+      "temp": NaN
     },
     {
       "datetime": "2024-04-03T22:35:23",
@@ -81391,7 +81391,7 @@
       "sobreaireoMin": 32.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.6
+      "temp": NaN
     },
     {
       "datetime": "2024-04-04T00:19:42",
@@ -81406,7 +81406,7 @@
       "sobreaireoMin": 3.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.0
+      "temp": NaN
     },
     {
       "datetime": "2024-04-04T02:04:00",
@@ -81421,7 +81421,7 @@
       "sobreaireoMin": 6.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.4
+      "temp": NaN
     },
     {
       "datetime": "2024-04-04T03:50:28",
@@ -81436,7 +81436,7 @@
       "sobreaireoMin": 19.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 10.5
+      "temp": NaN
     },
     {
       "datetime": "2024-04-04T05:41:06",
@@ -81451,7 +81451,7 @@
       "sobreaireoMin": 39.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 9.6
+      "temp": NaN
     },
     {
       "datetime": "2024-04-04T07:30:26",
@@ -81466,7 +81466,7 @@
       "sobreaireoMin": 50.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 9.6
+      "temp": NaN
     },
     {
       "datetime": "2024-04-04T09:20:44",
@@ -81481,7 +81481,7 @@
       "sobreaireoMin": 35.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.6
+      "temp": NaN
     },
     {
       "datetime": "2024-04-04T11:10:42",
@@ -81496,7 +81496,7 @@
       "sobreaireoMin": 16.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 18.7
+      "temp": NaN
     },
     {
       "datetime": "2024-04-04T12:55:00",
@@ -81511,7 +81511,7 @@
       "sobreaireoMin": 40.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 21.4
+      "temp": NaN
     },
     {
       "datetime": "2024-04-04T14:40:29",
@@ -81526,7 +81526,7 @@
       "sobreaireoMin": 59.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 21.6
+      "temp": NaN
     },
     {
       "datetime": "2024-04-04T16:24:58",
@@ -81541,7 +81541,7 @@
       "sobreaireoMin": 60.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 21.3
+      "temp": NaN
     },
     {
       "datetime": "2024-04-04T18:09:45",
@@ -81556,7 +81556,7 @@
       "sobreaireoMin": 62.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 20.3
+      "temp": NaN
     },
     {
       "datetime": "2024-04-04T19:54:24",
@@ -81571,7 +81571,7 @@
       "sobreaireoMin": 42.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 17.3
+      "temp": NaN
     },
     {
       "datetime": "2024-04-04T21:39:33",
@@ -81586,7 +81586,7 @@
       "sobreaireoMin": 19.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.9
+      "temp": NaN
     },
     {
       "datetime": "2024-04-04T23:22:01",
@@ -81601,7 +81601,7 @@
       "sobreaireoMin": 14.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.2
+      "temp": NaN
     },
     {
       "datetime": "2024-04-05T01:05:40",
@@ -81616,7 +81616,7 @@
       "sobreaireoMin": 2.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.5
+      "temp": NaN
     },
     {
       "datetime": "2024-04-05T02:50:07",
@@ -81631,7 +81631,7 @@
       "sobreaireoMin": 35.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.2
+      "temp": NaN
     },
     {
       "datetime": "2024-04-05T04:37:56",
@@ -81646,7 +81646,7 @@
       "sobreaireoMin": 42.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.7
+      "temp": NaN
     },
     {
       "datetime": "2024-04-05T06:26:55",
@@ -81661,7 +81661,7 @@
       "sobreaireoMin": 40.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.0
+      "temp": NaN
     },
     {
       "datetime": "2024-04-05T08:15:43",
@@ -81676,7 +81676,7 @@
       "sobreaireoMin": 26.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.3
+      "temp": NaN
     },
     {
       "datetime": "2024-04-05T10:00:41",
@@ -81691,7 +81691,7 @@
       "sobreaireoMin": 15.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 16.6
+      "temp": NaN
     },
     {
       "datetime": "2024-04-05T11:46:26",
@@ -81706,7 +81706,7 @@
       "sobreaireoMin": 49.2,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 19.7
+      "temp": NaN
     },
     {
       "datetime": "2024-04-05T13:32:06",
@@ -81721,7 +81721,7 @@
       "sobreaireoMin": 98.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 20.2
+      "temp": NaN
     },
     {
       "datetime": "2024-04-05T15:20:39",
@@ -81736,7 +81736,7 @@
       "sobreaireoMin": 30.2,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 19.7
+      "temp": NaN
     },
     {
       "datetime": "2024-04-05T17:02:22",
@@ -81751,7 +81751,7 @@
       "sobreaireoMin": 41.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 19.3
+      "temp": NaN
     },
     {
       "datetime": "2024-04-05T18:44:36",
@@ -81766,7 +81766,7 @@
       "sobreaireoMin": 37.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 18.0
+      "temp": NaN
     },
     {
       "datetime": "2024-04-05T20:28:48",
@@ -81781,7 +81781,7 @@
       "sobreaireoMin": 48.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 16.5
+      "temp": NaN
     },
     {
       "datetime": "2024-04-05T22:13:23",
@@ -81796,7 +81796,7 @@
       "sobreaireoMin": 37.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.8
+      "temp": NaN
     },
     {
       "datetime": "2024-04-06T00:00:16",
@@ -81811,7 +81811,7 @@
       "sobreaireoMin": 49.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.3
+      "temp": NaN
     },
     {
       "datetime": "2024-04-06T01:47:39",
@@ -81826,7 +81826,7 @@
       "sobreaireoMin": 48.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.6
+      "temp": NaN
     },
     {
       "datetime": "2024-04-06T03:37:03",
@@ -81841,7 +81841,7 @@
       "sobreaireoMin": 24.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 10.1
+      "temp": NaN
     },
     {
       "datetime": "2024-04-06T05:26:05",
@@ -81856,7 +81856,7 @@
       "sobreaireoMin": 10.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 9.9
+      "temp": NaN
     },
     {
       "datetime": "2024-04-06T07:09:40",
@@ -81871,7 +81871,7 @@
       "sobreaireoMin": 5.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 9.7
+      "temp": NaN
     },
     {
       "datetime": "2024-04-06T08:54:43",
@@ -81886,7 +81886,7 @@
       "sobreaireoMin": 44.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.6
+      "temp": NaN
     },
     {
       "datetime": "2024-04-06T10:43:56",
@@ -81901,7 +81901,7 @@
       "sobreaireoMin": 61.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 20.1
+      "temp": NaN
     },
     {
       "datetime": "2024-04-06T12:30:40",
@@ -81916,7 +81916,7 @@
       "sobreaireoMin": 60.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 22.2
+      "temp": NaN
     },
     {
       "datetime": "2024-04-06T14:13:43",
@@ -81931,7 +81931,7 @@
       "sobreaireoMin": 52.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 22.7
+      "temp": NaN
     },
     {
       "datetime": "2024-04-06T15:58:06",
@@ -81946,7 +81946,7 @@
       "sobreaireoMin": 50.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 22.2
+      "temp": NaN
     },
     {
       "datetime": "2024-04-06T17:39:30",
@@ -81961,7 +81961,7 @@
       "sobreaireoMin": 77.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 20.9
+      "temp": NaN
     },
     {
       "datetime": "2024-04-06T19:22:14",
@@ -81976,7 +81976,7 @@
       "sobreaireoMin": 76.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 20.1
+      "temp": NaN
     },
     {
       "datetime": "2024-04-06T21:07:06",
@@ -81991,7 +81991,7 @@
       "sobreaireoMin": 43.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 17.0
+      "temp": NaN
     },
     {
       "datetime": "2024-04-06T22:48:41",
@@ -82006,7 +82006,7 @@
       "sobreaireoMin": 55.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 16.1
+      "temp": NaN
     },
     {
       "datetime": "2024-04-07T00:31:44",
@@ -82021,7 +82021,7 @@
       "sobreaireoMin": 34.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.7
+      "temp": NaN
     },
     {
       "datetime": "2024-04-07T02:16:06",
@@ -82036,7 +82036,7 @@
       "sobreaireoMin": 31.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 16.0
+      "temp": NaN
     },
     {
       "datetime": "2024-04-07T03:57:51",
@@ -82051,7 +82051,7 @@
       "sobreaireoMin": 20.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.7
+      "temp": NaN
     },
     {
       "datetime": "2024-04-07T05:41:45",
@@ -82066,7 +82066,7 @@
       "sobreaireoMin": 39.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.0
+      "temp": NaN
     },
     {
       "datetime": "2024-04-07T07:28:38",
@@ -82081,7 +82081,7 @@
       "sobreaireoMin": 51.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.3
+      "temp": NaN
     },
     {
       "datetime": "2024-04-07T09:15:41",
@@ -82096,7 +82096,7 @@
       "sobreaireoMin": 67.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 17.4
+      "temp": NaN
     },
     {
       "datetime": "2024-04-07T11:01:25",
@@ -82111,7 +82111,7 @@
       "sobreaireoMin": 43.2,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 20.0
+      "temp": NaN
     },
     {
       "datetime": "2024-04-07T12:45:18",
@@ -82126,7 +82126,7 @@
       "sobreaireoMin": 68.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 21.7
+      "temp": NaN
     },
     {
       "datetime": "2024-04-07T14:27:21",
@@ -82141,7 +82141,7 @@
       "sobreaireoMin": 102.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 21.8
+      "temp": NaN
     },
     {
       "datetime": "2024-04-07T16:12:04",
@@ -82156,7 +82156,7 @@
       "sobreaireoMin": 68.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 21.3
+      "temp": NaN
     },
     {
       "datetime": "2024-04-07T17:55:57",
@@ -82171,7 +82171,7 @@
       "sobreaireoMin": 55.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 19.9
+      "temp": NaN
     },
     {
       "datetime": "2024-04-07T19:40:02",
@@ -82186,7 +82186,7 @@
       "sobreaireoMin": 56.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 18.6
+      "temp": NaN
     },
     {
       "datetime": "2024-04-07T21:22:34",
@@ -82201,7 +82201,7 @@
       "sobreaireoMin": 73.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 17.9
+      "temp": NaN
     },
     {
       "datetime": "2024-04-08T07:26:42",
@@ -82216,7 +82216,7 @@
       "sobreaireoMin": 37.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.9
+      "temp": NaN
     },
     {
       "datetime": "2024-04-08T15:57:23",
@@ -82231,7 +82231,7 @@
       "sobreaireoMin": 68.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 21.5
+      "temp": NaN
     },
     {
       "datetime": "2024-04-08T17:38:27",
@@ -82246,7 +82246,7 @@
       "sobreaireoMin": 33.5,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 20.0
+      "temp": NaN
     },
     {
       "datetime": "2024-04-08T19:21:29",
@@ -82261,7 +82261,7 @@
       "sobreaireoMin": 59.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 19.2
+      "temp": NaN
     },
     {
       "datetime": "2024-04-08T21:06:02",
@@ -82276,7 +82276,7 @@
       "sobreaireoMin": 20.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 16.6
+      "temp": NaN
     },
     {
       "datetime": "2024-04-08T22:50:26",
@@ -82291,7 +82291,7 @@
       "sobreaireoMin": 41.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 17.1
+      "temp": NaN
     },
     {
       "datetime": "2024-04-09T00:32:10",
@@ -82306,7 +82306,7 @@
       "sobreaireoMin": 47.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 18.0
+      "temp": NaN
     },
     {
       "datetime": "2024-04-09T02:15:24",
@@ -82321,7 +82321,7 @@
       "sobreaireoMin": 28.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 18.2
+      "temp": NaN
     },
     {
       "datetime": "2024-04-09T04:03:47",
@@ -82336,7 +82336,7 @@
       "sobreaireoMin": 72.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 14.0
+      "temp": NaN
     },
     {
       "datetime": "2024-04-09T05:52:20",
@@ -82351,7 +82351,7 @@
       "sobreaireoMin": 19.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.9
+      "temp": NaN
     },
     {
       "datetime": "2024-04-09T07:38:13",
@@ -82366,7 +82366,7 @@
       "sobreaireoMin": 8.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.0
+      "temp": NaN
     },
     {
       "datetime": "2024-04-09T09:24:46",
@@ -82381,7 +82381,7 @@
       "sobreaireoMin": 57.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.1
+      "temp": NaN
     },
     {
       "datetime": "2024-04-09T11:11:51",
@@ -82396,7 +82396,7 @@
       "sobreaireoMin": 77.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 16.5
+      "temp": NaN
     },
     {
       "datetime": "2024-04-09T13:00:03",
@@ -82411,7 +82411,7 @@
       "sobreaireoMin": 37.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 18.3
+      "temp": NaN
     },
     {
       "datetime": "2024-04-09T14:41:47",
@@ -82426,7 +82426,7 @@
       "sobreaireoMin": 55.2,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 17.4
+      "temp": NaN
     },
     {
       "datetime": "2024-04-09T18:33:37",
@@ -82441,7 +82441,7 @@
       "sobreaireoMin": 153.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.2
+      "temp": NaN
     },
     {
       "datetime": "2024-04-09T20:14:51",
@@ -82456,7 +82456,7 @@
       "sobreaireoMin": 135.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.1
+      "temp": NaN
     },
     {
       "datetime": "2024-04-09T22:01:44",
@@ -82471,7 +82471,7 @@
       "sobreaireoMin": 142.8,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.3
+      "temp": NaN
     },
     {
       "datetime": "2024-04-09T23:50:28",
@@ -82486,7 +82486,7 @@
       "sobreaireoMin": 162.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 10.9
+      "temp": NaN
     },
     {
       "datetime": "2024-04-10T01:35:41",
@@ -82501,7 +82501,7 @@
       "sobreaireoMin": 117.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 9.4
+      "temp": NaN
     },
     {
       "datetime": "2024-04-10T03:25:04",
@@ -82516,7 +82516,7 @@
       "sobreaireoMin": 119.2,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 9.4
+      "temp": NaN
     },
     {
       "datetime": "2024-04-10T05:16:17",
@@ -82531,7 +82531,7 @@
       "sobreaireoMin": 125.3,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 8.7
+      "temp": NaN
     },
     {
       "datetime": "2024-04-10T07:07:51",
@@ -82546,7 +82546,7 @@
       "sobreaireoMin": 79.1,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 7.6
+      "temp": NaN
     },
     {
       "datetime": "2024-04-10T08:58:05",
@@ -82561,7 +82561,7 @@
       "sobreaireoMin": 53.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.3
+      "temp": NaN
     },
     {
       "datetime": "2024-04-10T10:47:18",
@@ -82576,7 +82576,7 @@
       "sobreaireoMin": 82.0,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.7
+      "temp": NaN
     },
     {
       "datetime": "2024-04-10T14:18:40",
@@ -82591,7 +82591,7 @@
       "sobreaireoMin": 229.6,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 18.6
+      "temp": NaN
     },
     {
       "datetime": "2024-04-10T16:09:04",
@@ -82606,7 +82606,7 @@
       "sobreaireoMin": 73.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 20.4
+      "temp": NaN
     },
     {
       "datetime": "2024-04-10T17:54:15",
@@ -82621,7 +82621,7 @@
       "sobreaireoMin": 74.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 19.9
+      "temp": NaN
     },
     {
       "datetime": "2024-04-10T19:44:50",
@@ -82636,7 +82636,7 @@
       "sobreaireoMin": 75.9,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 15.8
+      "temp": NaN
     },
     {
       "datetime": "2024-04-10T21:37:43",
@@ -82651,7 +82651,7 @@
       "sobreaireoMin": 52.2,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 13.4
+      "temp": NaN
     },
     {
       "datetime": "2024-04-10T23:24:57",
@@ -82666,7 +82666,7 @@
       "sobreaireoMin": 34.7,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 12.3
+      "temp": NaN
     },
     {
       "datetime": "2024-04-11T01:15:00",
@@ -82681,7 +82681,7 @@
       "sobreaireoMin": 8.4,
       "dilucion": 0,
       "precip": NaN,
-      "temp": 11.9
+      "temp": NaN
     },
     {
       "datetime": "2024-04-11T05:15:46",
@@ -93885,7 +93885,7 @@
       "minsFormula": 70.1,
       "sobreaireoMin": 34.9,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 14.2
     },
     {
@@ -94005,7 +94005,7 @@
       "minsFormula": 48.3,
       "sobreaireoMin": 72.7,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 11.0
     },
     {
@@ -94020,7 +94020,7 @@
       "minsFormula": 51.4,
       "sobreaireoMin": 69.6,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": 0.1,
       "temp": 11.0
     },
     {
@@ -94035,7 +94035,7 @@
       "minsFormula": 60.2,
       "sobreaireoMin": 58.8,
       "dilucion": 0,
-      "precip": 0.3,
+      "precip": 0.1,
       "temp": 10.8
     },
     {
@@ -94050,7 +94050,7 @@
       "minsFormula": 73.3,
       "sobreaireoMin": 47.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.2,
       "temp": 11.4
     },
     {
@@ -94095,7 +94095,7 @@
       "minsFormula": 67.6,
       "sobreaireoMin": 40.4,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": 0.1,
       "temp": 12.9
     },
     {
@@ -94155,7 +94155,7 @@
       "minsFormula": 62.6,
       "sobreaireoMin": 35.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 11.1
     },
     {
@@ -94170,7 +94170,7 @@
       "minsFormula": 59.6,
       "sobreaireoMin": 27.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.2,
       "temp": 10.8
     },
     {
@@ -94185,7 +94185,7 @@
       "minsFormula": 53.4,
       "sobreaireoMin": 60.6,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.2,
       "temp": 11.3
     },
     {
@@ -94200,7 +94200,7 @@
       "minsFormula": 48.6,
       "sobreaireoMin": 72.4,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.2,
       "temp": 10.6
     },
     {
@@ -94245,7 +94245,7 @@
       "minsFormula": 47.3,
       "sobreaireoMin": 41.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.3,
       "temp": 12.1
     },
     {
@@ -94260,7 +94260,7 @@
       "minsFormula": 54.5,
       "sobreaireoMin": 66.5,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.3,
       "temp": 12.7
     },
     {
@@ -94290,7 +94290,7 @@
       "minsFormula": 113.6,
       "sobreaireoMin": -18.6,
       "dilucion": 0,
-      "precip": 1.9,
+      "precip": 0.5,
       "temp": 13.0
     },
     {
@@ -94305,7 +94305,7 @@
       "minsFormula": 104.9,
       "sobreaireoMin": -27.9,
       "dilucion": 0,
-      "precip": 1.6,
+      "precip": 1.4,
       "temp": 12.4
     },
     {
@@ -94320,7 +94320,7 @@
       "minsFormula": 99.0,
       "sobreaireoMin": -20.0,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.4,
       "temp": 12.5
     },
     {
@@ -94335,7 +94335,7 @@
       "minsFormula": 69.4,
       "sobreaireoMin": 15.6,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": 0.6,
       "temp": 10.9
     },
     {
@@ -94350,7 +94350,7 @@
       "minsFormula": 65.7,
       "sobreaireoMin": 10.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.5,
       "temp": 11.2
     },
     {
@@ -94365,7 +94365,7 @@
       "minsFormula": 64.7,
       "sobreaireoMin": 36.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 9.9
     },
     {
@@ -94380,7 +94380,7 @@
       "minsFormula": 62.2,
       "sobreaireoMin": 47.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 9.5
     },
     {
@@ -94395,7 +94395,7 @@
       "minsFormula": 51.3,
       "sobreaireoMin": 64.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 9.8
     },
     {
@@ -94440,7 +94440,7 @@
       "minsFormula": 49.5,
       "sobreaireoMin": 52.5,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": 0.0,
       "temp": 8.5
     },
     {
@@ -94455,7 +94455,7 @@
       "minsFormula": 58.9,
       "sobreaireoMin": 50.1,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 10.7
     },
     {
@@ -94485,7 +94485,7 @@
       "minsFormula": 60.9,
       "sobreaireoMin": 26.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 14.5
     },
     {
@@ -94920,7 +94920,7 @@
       "minsFormula": 48.8,
       "sobreaireoMin": 40.2,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.3,
       "temp": 12.9
     },
     {
@@ -94950,7 +94950,7 @@
       "minsFormula": 54.8,
       "sobreaireoMin": 44.2,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": 1.5,
       "temp": 11.1
     },
     {
@@ -94965,7 +94965,7 @@
       "minsFormula": 63.2,
       "sobreaireoMin": 27.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 1.3,
       "temp": 9.9
     },
     {
@@ -94980,7 +94980,7 @@
       "minsFormula": 60.1,
       "sobreaireoMin": 56.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 1.3,
       "temp": 9.2
     },
     {
@@ -94994,8 +94994,8 @@
       "minsTeo": 164,
       "minsFormula": 53.3,
       "sobreaireoMin": 37.7,
-      "dilucion": 1,
-      "precip": 3.7,
+      "dilucion": 0,
+      "precip": 1.8,
       "temp": 9.8
     },
     {
@@ -95010,7 +95010,7 @@
       "minsFormula": 46.8,
       "sobreaireoMin": 74.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 1.2,
       "temp": 8.5
     },
     {
@@ -95025,7 +95025,7 @@
       "minsFormula": 41.9,
       "sobreaireoMin": 71.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 6.4
     },
     {
@@ -95475,7 +95475,7 @@
       "minsFormula": 58.3,
       "sobreaireoMin": 92.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.2,
       "temp": 7.5
     },
     {
@@ -95760,7 +95760,7 @@
       "minsFormula": 64.6,
       "sobreaireoMin": 28.4,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": 0.0,
       "temp": 11.5
     },
     {
@@ -95775,7 +95775,7 @@
       "minsFormula": 60.6,
       "sobreaireoMin": 36.4,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 10.0
     },
     {
@@ -95865,7 +95865,7 @@
       "minsFormula": 48.2,
       "sobreaireoMin": 63.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 6.3
     },
     {
@@ -96119,8 +96119,8 @@
       "minsTeo": 128,
       "minsFormula": 60.9,
       "sobreaireoMin": 21.1,
-      "dilucion": 1,
-      "precip": 6.8,
+      "dilucion": 0,
+      "precip": 0.2,
       "temp": 12.3
     },
     {
@@ -96135,7 +96135,7 @@
       "minsFormula": 56.2,
       "sobreaireoMin": 34.8,
       "dilucion": 0,
-      "precip": 0.3,
+      "precip": 0.5,
       "temp": 12.8
     },
     {
@@ -96150,7 +96150,7 @@
       "minsFormula": 59.8,
       "sobreaireoMin": 42.2,
       "dilucion": 0,
-      "precip": 0.3,
+      "precip": 0.5,
       "temp": 13.0
     },
     {
@@ -96165,7 +96165,7 @@
       "minsFormula": 63.7,
       "sobreaireoMin": 34.3,
       "dilucion": 0,
-      "precip": 0.3,
+      "precip": 0.5,
       "temp": 12.8
     },
     {
@@ -96180,7 +96180,7 @@
       "minsFormula": 62.1,
       "sobreaireoMin": 39.9,
       "dilucion": 0,
-      "precip": 0.4,
+      "precip": 0.1,
       "temp": 11.9
     },
     {
@@ -96195,7 +96195,7 @@
       "minsFormula": 63.9,
       "sobreaireoMin": 57.1,
       "dilucion": 0,
-      "precip": 1.6,
+      "precip": 0.0,
       "temp": 10.6
     },
     {
@@ -96270,7 +96270,7 @@
       "minsFormula": 48.8,
       "sobreaireoMin": 42.2,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 10.2
     },
     {
@@ -96300,7 +96300,7 @@
       "minsFormula": 55.7,
       "sobreaireoMin": 92.3,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 9.5
     },
     {
@@ -96345,7 +96345,7 @@
       "minsFormula": 30.0,
       "sobreaireoMin": 59.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 16.1
     },
     {
@@ -96675,7 +96675,7 @@
       "minsFormula": 56.3,
       "sobreaireoMin": 53.7,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 10.3
     },
     {
@@ -96720,7 +96720,7 @@
       "minsFormula": 67.8,
       "sobreaireoMin": 46.2,
       "dilucion": 0,
-      "precip": 1.2,
+      "precip": 0.0,
       "temp": 11.6
     },
     {
@@ -96735,7 +96735,7 @@
       "minsFormula": 64.6,
       "sobreaireoMin": 56.4,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.3,
       "temp": 12.8
     },
     {
@@ -96750,7 +96750,7 @@
       "minsFormula": 67.1,
       "sobreaireoMin": 29.9,
       "dilucion": 0,
-      "precip": 1.1,
+      "precip": 0.2,
       "temp": 12.4
     },
     {
@@ -96764,8 +96764,8 @@
       "minsTeo": 159,
       "minsFormula": 71.7,
       "sobreaireoMin": 49.3,
-      "dilucion": 1,
-      "precip": 2.8,
+      "dilucion": 0,
+      "precip": 0.2,
       "temp": 12.9
     },
     {
@@ -96780,7 +96780,7 @@
       "minsFormula": 75.9,
       "sobreaireoMin": 45.1,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.4,
       "temp": 12.5
     },
     {
@@ -96795,7 +96795,7 @@
       "minsFormula": 67.8,
       "sobreaireoMin": 34.2,
       "dilucion": 0,
-      "precip": 0.4,
+      "precip": 0.8,
       "temp": 11.3
     },
     {
@@ -96810,7 +96810,7 @@
       "minsFormula": 72.3,
       "sobreaireoMin": 42.7,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": 0.4,
       "temp": 10.7
     },
     {
@@ -96825,7 +96825,7 @@
       "minsFormula": 88.6,
       "sobreaireoMin": 7.4,
       "dilucion": 0,
-      "precip": 0.7,
+      "precip": 0.2,
       "temp": 10.6
     },
     {
@@ -96840,7 +96840,7 @@
       "minsFormula": 87.6,
       "sobreaireoMin": 21.4,
       "dilucion": 0,
-      "precip": 1.3,
+      "precip": 0.5,
       "temp": 10.4
     },
     {
@@ -96855,7 +96855,7 @@
       "minsFormula": 79.3,
       "sobreaireoMin": 17.7,
       "dilucion": 0,
-      "precip": 0.6,
+      "precip": 0.2,
       "temp": 10.3
     },
     {
@@ -96870,7 +96870,7 @@
       "minsFormula": 109.7,
       "sobreaireoMin": 7.3,
       "dilucion": 0,
-      "precip": 0.6,
+      "precip": 0.1,
       "temp": 10.5
     },
     {
@@ -96900,7 +96900,7 @@
       "minsFormula": 66.7,
       "sobreaireoMin": 40.3,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 10.2
     },
     {
@@ -96915,7 +96915,7 @@
       "minsFormula": 69.0,
       "sobreaireoMin": 49.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 10.5
     },
     {
@@ -96930,7 +96930,7 @@
       "minsFormula": 69.2,
       "sobreaireoMin": 24.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 11.5
     },
     {
@@ -96945,7 +96945,7 @@
       "minsFormula": 78.7,
       "sobreaireoMin": 42.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.2,
       "temp": 13.8
     },
     {
@@ -96960,7 +96960,7 @@
       "minsFormula": 70.0,
       "sobreaireoMin": 34.0,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.8,
       "temp": 13.1
     },
     {
@@ -96975,7 +96975,7 @@
       "minsFormula": 91.1,
       "sobreaireoMin": 29.9,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": 1.3,
       "temp": 12.7
     },
     {
@@ -96990,7 +96990,7 @@
       "minsFormula": 144.4,
       "sobreaireoMin": -45.4,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 1.3,
       "temp": 13.0
     },
     {
@@ -97005,7 +97005,7 @@
       "minsFormula": 144.0,
       "sobreaireoMin": -50.0,
       "dilucion": 0,
-      "precip": 0.3,
+      "precip": 1.6,
       "temp": 11.6
     },
     {
@@ -97020,7 +97020,7 @@
       "minsFormula": 128.7,
       "sobreaireoMin": -48.7,
       "dilucion": 0,
-      "precip": 1.4,
+      "precip": 0.6,
       "temp": 11.2
     },
     {
@@ -97034,8 +97034,8 @@
       "minsTeo": 145,
       "minsFormula": 135.3,
       "sobreaireoMin": -33.3,
-      "dilucion": 1,
-      "precip": 2.9,
+      "dilucion": 0,
+      "precip": 1.2,
       "temp": 11.2
     },
     {
@@ -97050,7 +97050,7 @@
       "minsFormula": 122.0,
       "sobreaireoMin": -14.0,
       "dilucion": 0,
-      "precip": 1.2,
+      "precip": 1.1,
       "temp": 11.6
     },
     {
@@ -97065,7 +97065,7 @@
       "minsFormula": 137.1,
       "sobreaireoMin": -35.1,
       "dilucion": 0,
-      "precip": 0.7,
+      "precip": 1.6,
       "temp": 11.7
     },
     {
@@ -97080,7 +97080,7 @@
       "minsFormula": 129.8,
       "sobreaireoMin": -65.8,
       "dilucion": 0,
-      "precip": 1.2,
+      "precip": 1.1,
       "temp": 11.5
     },
     {
@@ -97094,8 +97094,8 @@
       "minsTeo": 67,
       "minsFormula": 91.2,
       "sobreaireoMin": -29.2,
-      "dilucion": 1,
-      "precip": 2.1,
+      "dilucion": 0,
+      "precip": 0.6,
       "temp": 11.5
     },
     {
@@ -97110,7 +97110,7 @@
       "minsFormula": 89.2,
       "sobreaireoMin": -32.2,
       "dilucion": 0,
-      "precip": 2.0,
+      "precip": 0.4,
       "temp": 11.1
     },
     {
@@ -97125,7 +97125,7 @@
       "minsFormula": 85.1,
       "sobreaireoMin": -10.1,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.4,
       "temp": 11.8
     },
     {
@@ -97140,7 +97140,7 @@
       "minsFormula": 107.1,
       "sobreaireoMin": -41.1,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.7,
       "temp": 12.8
     },
     {
@@ -97154,8 +97154,8 @@
       "minsTeo": 86,
       "minsFormula": 89.0,
       "sobreaireoMin": 1.0,
-      "dilucion": 1,
-      "precip": 4.0,
+      "dilucion": 0,
+      "precip": 1.2,
       "temp": 13.8
     },
     {
@@ -97170,7 +97170,7 @@
       "minsFormula": 83.5,
       "sobreaireoMin": -15.5,
       "dilucion": 0,
-      "precip": 1.4,
+      "precip": 0.7,
       "temp": 13.3
     },
     {
@@ -97185,7 +97185,7 @@
       "minsFormula": 74.5,
       "sobreaireoMin": 1.5,
       "dilucion": 0,
-      "precip": 1.8,
+      "precip": 0.3,
       "temp": 13.4
     },
     {
@@ -97200,7 +97200,7 @@
       "minsFormula": 75.3,
       "sobreaireoMin": 13.7,
       "dilucion": 0,
-      "precip": 0.5,
+      "precip": 0.9,
       "temp": 13.6
     },
     {
@@ -97215,7 +97215,7 @@
       "minsFormula": 69.6,
       "sobreaireoMin": 44.4,
       "dilucion": 0,
-      "precip": 0.3,
+      "precip": 0.2,
       "temp": 12.3
     },
     {
@@ -97230,7 +97230,7 @@
       "minsFormula": 61.4,
       "sobreaireoMin": 48.6,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": 0.5,
       "temp": 12.4
     },
     {
@@ -97245,7 +97245,7 @@
       "minsFormula": 59.4,
       "sobreaireoMin": 61.6,
       "dilucion": 0,
-      "precip": 1.8,
+      "precip": 0.5,
       "temp": 12.4
     },
     {
@@ -97260,7 +97260,7 @@
       "minsFormula": 62.9,
       "sobreaireoMin": 18.1,
       "dilucion": 0,
-      "precip": 0.2,
+      "precip": 0.1,
       "temp": 12.1
     },
     {
@@ -97274,8 +97274,8 @@
       "minsTeo": 134,
       "minsFormula": 106.3,
       "sobreaireoMin": 6.7,
-      "dilucion": 1,
-      "precip": 2.6,
+      "dilucion": 0,
+      "precip": 0.6,
       "temp": 12.1
     },
     {
@@ -97290,7 +97290,7 @@
       "minsFormula": 118.5,
       "sobreaireoMin": -21.5,
       "dilucion": 1,
-      "precip": 3.0,
+      "precip": 2.2,
       "temp": 11.9
     },
     {
@@ -97305,7 +97305,7 @@
       "minsFormula": 101.3,
       "sobreaireoMin": 17.7,
       "dilucion": 1,
-      "precip": 4.8,
+      "precip": 3.9,
       "temp": 11.9
     },
     {
@@ -97319,8 +97319,8 @@
       "minsTeo": 127,
       "minsFormula": 94.4,
       "sobreaireoMin": -11.4,
-      "dilucion": 0,
-      "precip": 2.0,
+      "dilucion": 1,
+      "precip": 3.9,
       "temp": 12.1
     },
     {
@@ -97335,7 +97335,7 @@
       "minsFormula": 92.4,
       "sobreaireoMin": -1.4,
       "dilucion": 0,
-      "precip": 1.2,
+      "precip": 0.2,
       "temp": 12.3
     },
     {
@@ -97350,7 +97350,7 @@
       "minsFormula": 103.8,
       "sobreaireoMin": -12.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 12.4
     },
     {
@@ -97365,7 +97365,7 @@
       "minsFormula": 90.9,
       "sobreaireoMin": -1.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 14.7
     },
     {
@@ -97380,7 +97380,7 @@
       "minsFormula": 86.0,
       "sobreaireoMin": 2.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.2,
       "temp": 14.9
     },
     {
@@ -97395,7 +97395,7 @@
       "minsFormula": 101.5,
       "sobreaireoMin": -7.5,
       "dilucion": 0,
-      "precip": 0.6,
+      "precip": 0.3,
       "temp": 13.4
     },
     {
@@ -97410,7 +97410,7 @@
       "minsFormula": 115.2,
       "sobreaireoMin": -4.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": 0.1,
       "temp": 13.0
     },
     {
@@ -97545,7 +97545,7 @@
       "minsFormula": 76.4,
       "sobreaireoMin": 43.6,
       "dilucion": 0,
-      "precip": 0.1,
+      "precip": 0.0,
       "temp": 12.3
     },
     {
@@ -141780,7 +141780,7 @@
       "minsFormula": 102.8,
       "sobreaireoMin": 0.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.2
     },
     {
@@ -141795,7 +141795,7 @@
       "minsFormula": 102.5,
       "sobreaireoMin": 8.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.7
     },
     {
@@ -141810,7 +141810,7 @@
       "minsFormula": 131.0,
       "sobreaireoMin": -24.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.8
     },
     {
@@ -141825,7 +141825,7 @@
       "minsFormula": 109.8,
       "sobreaireoMin": -4.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.8
     },
     {
@@ -141840,7 +141840,7 @@
       "minsFormula": 96.5,
       "sobreaireoMin": -5.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.8
     },
     {
@@ -141855,7 +141855,7 @@
       "minsFormula": 96.7,
       "sobreaireoMin": -15.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.3
     },
     {
@@ -141870,7 +141870,7 @@
       "minsFormula": 89.8,
       "sobreaireoMin": -6.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.7
     },
     {
@@ -141885,7 +141885,7 @@
       "minsFormula": 91.2,
       "sobreaireoMin": -6.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.2
     },
     {
@@ -141900,7 +141900,7 @@
       "minsFormula": 119.4,
       "sobreaireoMin": -36.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 2.6
     },
     {
@@ -141915,7 +141915,7 @@
       "minsFormula": 80.9,
       "sobreaireoMin": 2.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.0
     },
     {
@@ -141930,7 +141930,7 @@
       "minsFormula": 93.2,
       "sobreaireoMin": 6.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.3
     },
     {
@@ -141945,7 +141945,7 @@
       "minsFormula": 82.0,
       "sobreaireoMin": 19.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.6
     },
     {
@@ -141960,7 +141960,7 @@
       "minsFormula": 86.5,
       "sobreaireoMin": 16.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.8
     },
     {
@@ -141975,7 +141975,7 @@
       "minsFormula": 149.7,
       "sobreaireoMin": -44.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.6
     },
     {
@@ -141990,7 +141990,7 @@
       "minsFormula": 170.4,
       "sobreaireoMin": -71.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.9
     },
     {
@@ -142005,7 +142005,7 @@
       "minsFormula": 131.3,
       "sobreaireoMin": -50.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.0
     },
     {
@@ -142020,7 +142020,7 @@
       "minsFormula": 149.7,
       "sobreaireoMin": -66.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.6
     },
     {
@@ -142035,7 +142035,7 @@
       "minsFormula": 131.4,
       "sobreaireoMin": -50.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.4
     },
     {
@@ -142050,7 +142050,7 @@
       "minsFormula": 99.1,
       "sobreaireoMin": 9.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.5
     },
     {
@@ -142065,7 +142065,7 @@
       "minsFormula": 92.5,
       "sobreaireoMin": 10.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.2
     },
     {
@@ -142080,7 +142080,7 @@
       "minsFormula": 86.8,
       "sobreaireoMin": 14.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 2.9
     },
     {
@@ -142095,7 +142095,7 @@
       "minsFormula": 70.9,
       "sobreaireoMin": 30.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.3
     },
     {
@@ -142110,7 +142110,7 @@
       "minsFormula": 75.2,
       "sobreaireoMin": 5.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.0
     },
     {
@@ -142125,7 +142125,7 @@
       "minsFormula": 65.7,
       "sobreaireoMin": 15.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.1
     },
     {
@@ -142140,7 +142140,7 @@
       "minsFormula": 123.3,
       "sobreaireoMin": -22.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.0
     },
     {
@@ -142155,7 +142155,7 @@
       "minsFormula": 159.9,
       "sobreaireoMin": -58.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.3
     },
     {
@@ -142170,7 +142170,7 @@
       "minsFormula": 139.6,
       "sobreaireoMin": -36.6,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.7
     },
     {
@@ -142185,7 +142185,7 @@
       "minsFormula": 115.0,
       "sobreaireoMin": -16.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.9
     },
     {
@@ -142200,7 +142200,7 @@
       "minsFormula": 91.9,
       "sobreaireoMin": -12.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.0
     },
     {
@@ -142215,7 +142215,7 @@
       "minsFormula": 87.0,
       "sobreaireoMin": 0.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 1.7
     },
     {
@@ -142230,7 +142230,7 @@
       "minsFormula": 74.0,
       "sobreaireoMin": 9.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 2.8
     },
     {
@@ -142245,7 +142245,7 @@
       "minsFormula": 71.8,
       "sobreaireoMin": 13.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.7
     },
     {
@@ -142260,7 +142260,7 @@
       "minsFormula": 66.4,
       "sobreaireoMin": 20.6,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.4
     },
     {
@@ -142275,7 +142275,7 @@
       "minsFormula": 68.5,
       "sobreaireoMin": 21.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.0
     },
     {
@@ -142290,7 +142290,7 @@
       "minsFormula": 69.8,
       "sobreaireoMin": 31.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 10.4
     },
     {
@@ -142305,7 +142305,7 @@
       "minsFormula": 72.1,
       "sobreaireoMin": 28.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 12.8
     },
     {
@@ -142320,7 +142320,7 @@
       "minsFormula": 70.8,
       "sobreaireoMin": 30.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 13.5
     },
     {
@@ -142335,7 +142335,7 @@
       "minsFormula": 89.2,
       "sobreaireoMin": 11.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 13.0
     },
     {
@@ -142350,7 +142350,7 @@
       "minsFormula": 88.7,
       "sobreaireoMin": 22.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.1
     },
     {
@@ -142365,7 +142365,7 @@
       "minsFormula": 84.4,
       "sobreaireoMin": 6.6,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.1
     },
     {
@@ -142380,7 +142380,7 @@
       "minsFormula": 83.2,
       "sobreaireoMin": -4.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.0
     },
     {
@@ -142395,7 +142395,7 @@
       "minsFormula": 66.0,
       "sobreaireoMin": 15.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.0
     },
     {
@@ -142410,7 +142410,7 @@
       "minsFormula": 64.1,
       "sobreaireoMin": 19.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 10.9
     },
     {
@@ -142425,7 +142425,7 @@
       "minsFormula": 59.1,
       "sobreaireoMin": 41.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.0
     },
     {
@@ -142440,7 +142440,7 @@
       "minsFormula": 68.5,
       "sobreaireoMin": 32.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.0
     },
     {
@@ -142455,7 +142455,7 @@
       "minsFormula": 53.7,
       "sobreaireoMin": 47.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 12.9
     },
     {
@@ -142470,7 +142470,7 @@
       "minsFormula": 61.8,
       "sobreaireoMin": 39.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 14.2
     },
     {
@@ -142485,7 +142485,7 @@
       "minsFormula": 65.6,
       "sobreaireoMin": -12.6,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 16.8
     },
     {
@@ -142500,7 +142500,7 @@
       "minsFormula": 84.2,
       "sobreaireoMin": -18.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 16.6
     },
     {
@@ -142515,7 +142515,7 @@
       "minsFormula": 113.7,
       "sobreaireoMin": -31.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 15.5
     },
     {
@@ -142530,7 +142530,7 @@
       "minsFormula": 92.7,
       "sobreaireoMin": 23.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.7
     },
     {
@@ -142545,7 +142545,7 @@
       "minsFormula": 62.6,
       "sobreaireoMin": 71.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 10.5
     },
     {
@@ -142560,7 +142560,7 @@
       "minsFormula": 57.2,
       "sobreaireoMin": 17.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.5
     },
     {
@@ -142575,7 +142575,7 @@
       "minsFormula": 60.2,
       "sobreaireoMin": 12.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.0
     },
     {
@@ -142590,7 +142590,7 @@
       "minsFormula": 65.5,
       "sobreaireoMin": 8.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.1
     },
     {
@@ -142605,7 +142605,7 @@
       "minsFormula": 58.3,
       "sobreaireoMin": 75.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 10.3
     },
     {
@@ -142620,7 +142620,7 @@
       "minsFormula": 73.3,
       "sobreaireoMin": -8.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 12.4
     },
     {
@@ -142635,7 +142635,7 @@
       "minsFormula": 59.1,
       "sobreaireoMin": -1.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 13.9
     },
     {
@@ -142650,7 +142650,7 @@
       "minsFormula": 75.7,
       "sobreaireoMin": -8.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 14.2
     },
     {
@@ -142665,7 +142665,7 @@
       "minsFormula": 98.2,
       "sobreaireoMin": -25.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 13.2
     },
     {
@@ -142680,7 +142680,7 @@
       "minsFormula": 110.9,
       "sobreaireoMin": -3.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.5
     },
     {
@@ -142695,7 +142695,7 @@
       "minsFormula": 141.5,
       "sobreaireoMin": -19.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.5
     },
     {
@@ -142710,7 +142710,7 @@
       "minsFormula": 122.8,
       "sobreaireoMin": -9.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.6
     },
     {
@@ -142725,7 +142725,7 @@
       "minsFormula": 75.9,
       "sobreaireoMin": 58.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.7
     },
     {
@@ -142740,7 +142740,7 @@
       "minsFormula": 71.0,
       "sobreaireoMin": 18.0,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.6
     },
     {
@@ -142755,7 +142755,7 @@
       "minsFormula": 113.5,
       "sobreaireoMin": 6.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.3
     },
     {
@@ -142770,7 +142770,7 @@
       "minsFormula": 113.5,
       "sobreaireoMin": 6.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.3
     },
     {
@@ -142785,7 +142785,7 @@
       "minsFormula": 151.3,
       "sobreaireoMin": -31.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.2
     },
     {
@@ -142800,7 +142800,7 @@
       "minsFormula": 151.3,
       "sobreaireoMin": -31.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.2
     },
     {
@@ -142815,7 +142815,7 @@
       "minsFormula": 165.8,
       "sobreaireoMin": -67.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.1
     },
     {
@@ -142830,7 +142830,7 @@
       "minsFormula": 165.8,
       "sobreaireoMin": -67.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.1
     },
     {
@@ -142845,7 +142845,7 @@
       "minsFormula": 111.4,
       "sobreaireoMin": -33.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.6
     },
     {
@@ -142860,7 +142860,7 @@
       "minsFormula": 111.4,
       "sobreaireoMin": -33.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.6
     },
     {
@@ -142875,7 +142875,7 @@
       "minsFormula": 104.1,
       "sobreaireoMin": -22.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.1
     },
     {
@@ -142890,7 +142890,7 @@
       "minsFormula": 104.1,
       "sobreaireoMin": -22.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.1
     },
     {
@@ -142905,7 +142905,7 @@
       "minsFormula": 81.5,
       "sobreaireoMin": 0.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.9
     },
     {
@@ -142920,7 +142920,7 @@
       "minsFormula": 81.5,
       "sobreaireoMin": 0.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.9
     },
     {
@@ -142935,7 +142935,7 @@
       "minsFormula": 60.7,
       "sobreaireoMin": 23.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.1
     },
     {
@@ -142950,7 +142950,7 @@
       "minsFormula": 60.7,
       "sobreaireoMin": 23.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.1
     },
     {
@@ -142965,7 +142965,7 @@
       "minsFormula": 68.3,
       "sobreaireoMin": 19.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.0
     },
     {
@@ -142980,7 +142980,7 @@
       "minsFormula": 68.3,
       "sobreaireoMin": 19.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.0
     },
     {
@@ -142995,7 +142995,7 @@
       "minsFormula": 77.2,
       "sobreaireoMin": 6.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.8
     },
     {
@@ -143010,7 +143010,7 @@
       "minsFormula": 77.2,
       "sobreaireoMin": 6.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.8
     },
     {
@@ -143025,7 +143025,7 @@
       "minsFormula": 73.1,
       "sobreaireoMin": 4.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.1
     },
     {
@@ -143040,7 +143040,7 @@
       "minsFormula": 73.1,
       "sobreaireoMin": 4.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.1
     },
     {
@@ -143055,7 +143055,7 @@
       "minsFormula": 81.3,
       "sobreaireoMin": 38.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 13.7
     },
     {
@@ -143070,7 +143070,7 @@
       "minsFormula": 81.3,
       "sobreaireoMin": 38.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 13.7
     },
     {
@@ -143085,7 +143085,7 @@
       "minsFormula": 109.9,
       "sobreaireoMin": -27.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 13.7
     },
     {
@@ -143100,7 +143100,7 @@
       "minsFormula": 104.1,
       "sobreaireoMin": -22.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 11.3
     },
     {
@@ -143115,7 +143115,7 @@
       "minsFormula": 131.9,
       "sobreaireoMin": -21.9,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.7
     },
     {
@@ -143130,7 +143130,7 @@
       "minsFormula": 109.8,
       "sobreaireoMin": -9.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 6.6
     },
     {
@@ -143145,7 +143145,7 @@
       "minsFormula": 84.1,
       "sobreaireoMin": -4.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 5.8
     },
     {
@@ -143160,7 +143160,7 @@
       "minsFormula": 114.3,
       "sobreaireoMin": -0.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 13.3
     },
     {
@@ -143175,7 +143175,7 @@
       "minsFormula": 115.3,
       "sobreaireoMin": -13.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 12.0
     },
     {
@@ -143190,7 +143190,7 @@
       "minsFormula": 144.7,
       "sobreaireoMin": -46.7,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 10.7
     },
     {
@@ -143205,7 +143205,7 @@
       "minsFormula": 139.3,
       "sobreaireoMin": -55.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.8
     },
     {
@@ -143220,7 +143220,7 @@
       "minsFormula": 133.8,
       "sobreaireoMin": -23.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.4
     },
     {
@@ -143235,7 +143235,7 @@
       "minsFormula": 128.4,
       "sobreaireoMin": -26.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 3.4
     },
     {
@@ -143250,7 +143250,7 @@
       "minsFormula": 112.5,
       "sobreaireoMin": -18.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 4.1
     },
     {
@@ -143265,7 +143265,7 @@
       "minsFormula": 67.2,
       "sobreaireoMin": 1351.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 10.0
     },
     {
@@ -143280,7 +143280,7 @@
       "minsFormula": 67.2,
       "sobreaireoMin": 1351.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 10.0
     },
     {
@@ -143295,7 +143295,7 @@
       "minsFormula": 52.2,
       "sobreaireoMin": 52.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 12.2
     },
     {
@@ -143310,7 +143310,7 @@
       "minsFormula": 52.2,
       "sobreaireoMin": 52.8,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 12.2
     },
     {
@@ -143325,7 +143325,7 @@
       "minsFormula": 65.5,
       "sobreaireoMin": 21.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 15.1
     },
     {
@@ -143340,7 +143340,7 @@
       "minsFormula": 65.5,
       "sobreaireoMin": 21.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 15.1
     },
     {
@@ -143355,7 +143355,7 @@
       "minsFormula": 60.6,
       "sobreaireoMin": 21.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 16.8
     },
     {
@@ -143370,7 +143370,7 @@
       "minsFormula": 60.6,
       "sobreaireoMin": 21.4,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 16.8
     },
     {
@@ -143385,7 +143385,7 @@
       "minsFormula": 70.8,
       "sobreaireoMin": 68.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 16.9
     },
     {
@@ -143400,7 +143400,7 @@
       "minsFormula": 70.8,
       "sobreaireoMin": 68.2,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 16.9
     },
     {
@@ -143415,7 +143415,7 @@
       "minsFormula": 118.5,
       "sobreaireoMin": 20.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 15.3
     },
     {
@@ -143430,7 +143430,7 @@
       "minsFormula": 118.5,
       "sobreaireoMin": 20.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 15.3
     },
     {
@@ -143445,7 +143445,7 @@
       "minsFormula": 103.1,
       "sobreaireoMin": -20.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 10.8
     },
     {
@@ -143460,7 +143460,7 @@
       "minsFormula": 103.1,
       "sobreaireoMin": -20.1,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 10.8
     },
     {
@@ -143475,7 +143475,7 @@
       "minsFormula": 114.5,
       "sobreaireoMin": -31.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.4
     },
     {
@@ -143490,7 +143490,7 @@
       "minsFormula": 114.5,
       "sobreaireoMin": -31.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 9.4
     },
     {
@@ -143505,7 +143505,7 @@
       "minsFormula": 127.5,
       "sobreaireoMin": -15.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.0
     },
     {
@@ -143520,7 +143520,7 @@
       "minsFormula": 127.5,
       "sobreaireoMin": -15.5,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 8.0
     },
     {
@@ -143535,7 +143535,7 @@
       "minsFormula": 149.3,
       "sobreaireoMin": -10.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.6
     },
     {
@@ -143550,7 +143550,7 @@
       "minsFormula": 149.3,
       "sobreaireoMin": -10.3,
       "dilucion": 0,
-      "precip": 0.0,
+      "precip": NaN,
       "temp": 7.6
     },
     {
@@ -152431,7 +152431,7 @@
       "sobreaireoMin": -78.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 12.1
+      "temp": 14.8
     },
     {
       "datetime": "2026-02-13T00:44:27",
@@ -152446,7 +152446,7 @@
       "sobreaireoMin": -78.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 12.1
+      "temp": 14.8
     },
     {
       "datetime": "2026-02-13T02:26:00",
@@ -152461,7 +152461,7 @@
       "sobreaireoMin": -78.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 11.7
+      "temp": 14.0
     },
     {
       "datetime": "2026-02-13T02:26:00",
@@ -152476,7 +152476,7 @@
       "sobreaireoMin": -78.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 11.7
+      "temp": 14.0
     },
     {
       "datetime": "2026-02-17T20:29:26",
@@ -152491,7 +152491,7 @@
       "sobreaireoMin": -75.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 11.0
+      "temp": 11.6
     },
     {
       "datetime": "2026-02-17T22:10:11",
@@ -152506,7 +152506,7 @@
       "sobreaireoMin": -41.2,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.8
+      "temp": 9.7
     },
     {
       "datetime": "2026-02-17T23:54:14",
@@ -152521,7 +152521,7 @@
       "sobreaireoMin": -33.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.0
+      "temp": 10.8
     },
     {
       "datetime": "2026-02-18T01:36:37",
@@ -152536,7 +152536,7 @@
       "sobreaireoMin": -30.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.0
+      "temp": 10.9
     },
     {
       "datetime": "2026-02-18T03:18:10",
@@ -152551,7 +152551,7 @@
       "sobreaireoMin": -66.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.9
+      "temp": 10.8
     },
     {
       "datetime": "2026-02-18T06:42:58",
@@ -152566,7 +152566,7 @@
       "sobreaireoMin": -74.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.2
+      "temp": 9.7
     },
     {
       "datetime": "2026-02-18T09:06:42",
@@ -152581,7 +152581,7 @@
       "sobreaireoMin": 30.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.0
+      "temp": 9.7
     },
     {
       "datetime": "2026-02-18T10:49:34",
@@ -152596,7 +152596,7 @@
       "sobreaireoMin": 16.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.9
+      "temp": 11.7
     },
     {
       "datetime": "2026-02-18T12:43:23",
@@ -152611,7 +152611,7 @@
       "sobreaireoMin": 52.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 13.8
+      "temp": 15.0
     },
     {
       "datetime": "2026-02-18T12:43:23",
@@ -152626,7 +152626,7 @@
       "sobreaireoMin": 52.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 13.8
+      "temp": 15.0
     },
     {
       "datetime": "2026-02-18T14:33:42",
@@ -152641,7 +152641,7 @@
       "sobreaireoMin": 36.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 15.2
+      "temp": 16.4
     },
     {
       "datetime": "2026-02-18T16:16:05",
@@ -152656,7 +152656,7 @@
       "sobreaireoMin": 8.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 15.3
+      "temp": 17.2
     },
     {
       "datetime": "2026-02-18T18:03:19",
@@ -152671,7 +152671,7 @@
       "sobreaireoMin": -1.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 14.3
+      "temp": 16.2
     },
     {
       "datetime": "2026-02-18T21:29:45",
@@ -152686,7 +152686,7 @@
       "sobreaireoMin": -45.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 11.7
+      "temp": 13.4
     },
     {
       "datetime": "2026-02-18T23:13:38",
@@ -152701,7 +152701,7 @@
       "sobreaireoMin": -40.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.9
+      "temp": 11.1
     },
     {
       "datetime": "2026-02-19T00:52:33",
@@ -152716,7 +152716,7 @@
       "sobreaireoMin": -25.9,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 11.4
+      "temp": 13.0
     },
     {
       "datetime": "2026-02-19T02:37:56",
@@ -152731,7 +152731,7 @@
       "sobreaireoMin": -2.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 11.8
+      "temp": 13.0
     },
     {
       "datetime": "2026-02-19T06:01:53",
@@ -152746,7 +152746,7 @@
       "sobreaireoMin": 12.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.2
+      "temp": 11.9
     },
     {
       "datetime": "2026-02-19T06:01:53",
@@ -152761,7 +152761,7 @@
       "sobreaireoMin": 12.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.2
+      "temp": 11.9
     },
     {
       "datetime": "2026-02-19T07:43:26",
@@ -152776,7 +152776,7 @@
       "sobreaireoMin": 22.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.3
+      "temp": 10.7
     },
     {
       "datetime": "2026-02-19T07:43:26",
@@ -152791,7 +152791,7 @@
       "sobreaireoMin": 22.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.3
+      "temp": 10.7
     },
     {
       "datetime": "2026-02-19T09:32:09",
@@ -152806,7 +152806,7 @@
       "sobreaireoMin": 20.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.4
+      "temp": 10.6
     },
     {
       "datetime": "2026-02-19T09:32:10",
@@ -152821,7 +152821,7 @@
       "sobreaireoMin": 20.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.4
+      "temp": 10.6
     },
     {
       "datetime": "2026-02-19T11:18:53",
@@ -152836,7 +152836,7 @@
       "sobreaireoMin": 17.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.2
+      "temp": 11.4
     },
     {
       "datetime": "2026-02-19T11:18:54",
@@ -152851,7 +152851,7 @@
       "sobreaireoMin": 17.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.2
+      "temp": 11.4
     },
     {
       "datetime": "2026-02-19T13:06:05",
@@ -152866,7 +152866,7 @@
       "sobreaireoMin": 17.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 11.8
+      "temp": 13.3
     },
     {
       "datetime": "2026-02-19T13:06:07",
@@ -152881,7 +152881,7 @@
       "sobreaireoMin": 17.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 11.8
+      "temp": 13.3
     },
     {
       "datetime": "2026-02-19T14:48:40",
@@ -152896,7 +152896,7 @@
       "sobreaireoMin": 8.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 13.7
+      "temp": 15.7
     },
     {
       "datetime": "2026-02-19T14:48:40",
@@ -152911,7 +152911,7 @@
       "sobreaireoMin": 8.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 13.7
+      "temp": 15.7
     },
     {
       "datetime": "2026-02-19T16:35:33",
@@ -152926,7 +152926,7 @@
       "sobreaireoMin": -1.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 15.1
+      "temp": 17.1
     },
     {
       "datetime": "2026-02-19T16:35:33",
@@ -152941,7 +152941,7 @@
       "sobreaireoMin": -1.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 15.1
+      "temp": 17.1
     },
     {
       "datetime": "2026-02-19T18:18:36",
@@ -152956,7 +152956,7 @@
       "sobreaireoMin": -19.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 14.6
+      "temp": 16.5
     },
     {
       "datetime": "2026-02-19T18:18:37",
@@ -152971,7 +152971,7 @@
       "sobreaireoMin": -19.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 14.6
+      "temp": 16.5
     },
     {
       "datetime": "2026-02-19T20:02:20",
@@ -152986,7 +152986,7 @@
       "sobreaireoMin": -40.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 11.9
+      "temp": 13.9
     },
     {
       "datetime": "2026-02-19T20:02:20",
@@ -153001,7 +153001,7 @@
       "sobreaireoMin": -40.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 11.9
+      "temp": 13.9
     },
     {
       "datetime": "2026-02-19T21:43:43",
@@ -153016,7 +153016,7 @@
       "sobreaireoMin": -46.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.9
+      "temp": 12.9
     },
     {
       "datetime": "2026-02-19T21:43:43",
@@ -153031,7 +153031,7 @@
       "sobreaireoMin": -46.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.9
+      "temp": 12.9
     },
     {
       "datetime": "2026-02-19T23:24:27",
@@ -153046,7 +153046,7 @@
       "sobreaireoMin": -54.7,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.4
+      "temp": 12.4
     },
     {
       "datetime": "2026-02-19T23:24:27",
@@ -153061,7 +153061,7 @@
       "sobreaireoMin": -54.7,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.4
+      "temp": 12.4
     },
     {
       "datetime": "2026-02-20T01:05:30",
@@ -153076,7 +153076,7 @@
       "sobreaireoMin": -27.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.3
+      "temp": 10.8
     },
     {
       "datetime": "2026-02-20T01:05:31",
@@ -153091,7 +153091,7 @@
       "sobreaireoMin": -27.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.3
+      "temp": 10.8
     },
     {
       "datetime": "2026-02-20T02:49:14",
@@ -153106,7 +153106,7 @@
       "sobreaireoMin": -20.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.4
+      "temp": 9.7
     },
     {
       "datetime": "2026-02-20T02:49:14",
@@ -153121,7 +153121,7 @@
       "sobreaireoMin": -20.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.4
+      "temp": 9.7
     },
     {
       "datetime": "2026-02-20T04:31:26",
@@ -153136,7 +153136,7 @@
       "sobreaireoMin": -8.7,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.4
+      "temp": 10.4
     },
     {
       "datetime": "2026-02-20T04:31:27",
@@ -153151,7 +153151,7 @@
       "sobreaireoMin": -8.7,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.4
+      "temp": 10.4
     },
     {
       "datetime": "2026-02-20T06:14:40",
@@ -153166,7 +153166,7 @@
       "sobreaireoMin": -8.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.0
+      "temp": 9.7
     },
     {
       "datetime": "2026-02-20T06:14:41",
@@ -153181,7 +153181,7 @@
       "sobreaireoMin": -8.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.0
+      "temp": 9.7
     },
     {
       "datetime": "2026-02-20T07:57:14",
@@ -153196,7 +153196,7 @@
       "sobreaireoMin": -54.2,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 7.3
+      "temp": 9.0
     },
     {
       "datetime": "2026-02-20T07:57:15",
@@ -153211,7 +153211,7 @@
       "sobreaireoMin": -54.2,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 7.3
+      "temp": 9.0
     },
     {
       "datetime": "2026-02-20T09:39:17",
@@ -153226,7 +153226,7 @@
       "sobreaireoMin": -19.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.4
+      "temp": 9.8
     },
     {
       "datetime": "2026-02-20T09:39:17",
@@ -153241,7 +153241,7 @@
       "sobreaireoMin": -19.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.4
+      "temp": 9.8
     },
     {
       "datetime": "2026-02-20T11:28:01",
@@ -153256,7 +153256,7 @@
       "sobreaireoMin": 12.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.4
+      "temp": 11.7
     },
     {
       "datetime": "2026-02-20T11:28:01",
@@ -153271,7 +153271,7 @@
       "sobreaireoMin": 12.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.4
+      "temp": 11.7
     },
     {
       "datetime": "2026-02-20T13:13:04",
@@ -153286,7 +153286,7 @@
       "sobreaireoMin": -29.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 13.5
+      "temp": 15.0
     },
     {
       "datetime": "2026-02-20T13:13:04",
@@ -153301,7 +153301,7 @@
       "sobreaireoMin": -29.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 13.5
+      "temp": 15.0
     },
     {
       "datetime": "2026-02-20T14:55:17",
@@ -153316,7 +153316,7 @@
       "sobreaireoMin": -54.9,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 15.6
+      "temp": 16.8
     },
     {
       "datetime": "2026-02-20T14:55:17",
@@ -153331,7 +153331,7 @@
       "sobreaireoMin": -54.9,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 15.6
+      "temp": 16.8
     },
     {
       "datetime": "2026-02-20T16:34:20",
@@ -153346,7 +153346,7 @@
       "sobreaireoMin": -40.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 15.5
+      "temp": 17.2
     },
     {
       "datetime": "2026-02-20T16:34:21",
@@ -153361,7 +153361,7 @@
       "sobreaireoMin": -40.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 15.5
+      "temp": 17.2
     },
     {
       "datetime": "2026-02-20T18:15:24",
@@ -153376,7 +153376,7 @@
       "sobreaireoMin": -39.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 14.8
+      "temp": 16.6
     },
     {
       "datetime": "2026-02-20T18:15:24",
@@ -153391,7 +153391,7 @@
       "sobreaireoMin": -39.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 14.8
+      "temp": 16.6
     },
     {
       "datetime": "2026-02-20T21:44:41",
@@ -153406,7 +153406,7 @@
       "sobreaireoMin": -40.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.4
+      "temp": 10.3
     },
     {
       "datetime": "2026-02-20T21:44:42",
@@ -153421,7 +153421,7 @@
       "sobreaireoMin": -40.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.4
+      "temp": 10.3
     },
     {
       "datetime": "2026-02-25T12:51:35",
@@ -153436,7 +153436,7 @@
       "sobreaireoMin": 3271.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 15.5
+      "temp": 15.0
     },
     {
       "datetime": "2026-02-25T14:34:59",
@@ -153451,7 +153451,7 @@
       "sobreaireoMin": 29.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 16.2
+      "temp": 16.1
     },
     {
       "datetime": "2026-02-25T16:14:41",
@@ -153466,7 +153466,7 @@
       "sobreaireoMin": 22.7,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 16.1
+      "temp": 16.3
     },
     {
       "datetime": "2026-02-25T17:55:55",
@@ -153481,7 +153481,7 @@
       "sobreaireoMin": 13.2,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 15.1
+      "temp": 15.8
     },
     {
       "datetime": "2026-02-25T19:37:27",
@@ -153496,7 +153496,7 @@
       "sobreaireoMin": 6.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 12.6
+      "temp": 13.5
     },
     {
       "datetime": "2026-02-25T21:18:01",
@@ -153511,7 +153511,7 @@
       "sobreaireoMin": -7.7,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.8
+      "temp": 12.7
     },
     {
       "datetime": "2026-02-25T22:58:55",
@@ -153526,7 +153526,7 @@
       "sobreaireoMin": -29.2,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.8
+      "temp": 9.4
     },
     {
       "datetime": "2026-02-26T00:39:38",
@@ -153541,7 +153541,7 @@
       "sobreaireoMin": -1.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.7
+      "temp": 10.2
     },
     {
       "datetime": "2026-02-26T02:20:02",
@@ -153556,7 +153556,7 @@
       "sobreaireoMin": 7.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.9
+      "temp": 9.9
     },
     {
       "datetime": "2026-02-26T04:01:05",
@@ -153571,7 +153571,7 @@
       "sobreaireoMin": 11.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.1
+      "temp": 9.8
     },
     {
       "datetime": "2026-02-26T05:42:08",
@@ -153586,7 +153586,7 @@
       "sobreaireoMin": 14.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.5
+      "temp": 8.3
     },
     {
       "datetime": "2026-02-26T07:23:12",
@@ -153601,7 +153601,7 @@
       "sobreaireoMin": 8.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.1
+      "temp": 7.9
     },
     {
       "datetime": "2026-02-26T09:07:05",
@@ -153616,7 +153616,7 @@
       "sobreaireoMin": -2.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.4
+      "temp": 7.9
     },
     {
       "datetime": "2026-02-26T10:46:28",
@@ -153631,7 +153631,7 @@
       "sobreaireoMin": 5.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 11.3
+      "temp": 12.2
     },
     {
       "datetime": "2026-02-26T12:24:43",
@@ -153646,7 +153646,7 @@
       "sobreaireoMin": 25.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 13.0
+      "temp": 14.3
     },
     {
       "datetime": "2026-02-26T14:07:25",
@@ -153661,7 +153661,7 @@
       "sobreaireoMin": 9.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 14.8
+      "temp": 16.9
     },
     {
       "datetime": "2026-02-26T15:48:30",
@@ -153676,7 +153676,7 @@
       "sobreaireoMin": 24.7,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 15.5
+      "temp": 17.8
     },
     {
       "datetime": "2026-02-26T17:29:42",
@@ -153691,7 +153691,7 @@
       "sobreaireoMin": 9.7,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 15.5
+      "temp": 17.7
     },
     {
       "datetime": "2026-02-26T19:10:35",
@@ -153706,7 +153706,7 @@
       "sobreaireoMin": 3.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 13.6
+      "temp": 14.8
     },
     {
       "datetime": "2026-02-26T20:52:10",
@@ -153721,7 +153721,7 @@
       "sobreaireoMin": -14.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.6
+      "temp": 11.9
     },
     {
       "datetime": "2026-02-26T22:31:13",
@@ -153736,7 +153736,7 @@
       "sobreaireoMin": -21.7,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.8
+      "temp": 11.6
     },
     {
       "datetime": "2026-02-27T00:10:56",
@@ -153751,7 +153751,7 @@
       "sobreaireoMin": 2.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.0
+      "temp": 10.7
     },
     {
       "datetime": "2026-02-27T01:52:50",
@@ -153766,7 +153766,7 @@
       "sobreaireoMin": 3.9,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.3
+      "temp": 10.9
     },
     {
       "datetime": "2026-02-27T03:33:13",
@@ -153781,7 +153781,7 @@
       "sobreaireoMin": 18.2,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.1
+      "temp": 10.4
     },
     {
       "datetime": "2026-02-27T05:13:37",
@@ -153796,7 +153796,7 @@
       "sobreaireoMin": 12.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.9
+      "temp": 9.7
     },
     {
       "datetime": "2026-02-27T06:55:40",
@@ -153811,7 +153811,7 @@
       "sobreaireoMin": 21.9,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.0
+      "temp": 7.6
     },
     {
       "datetime": "2026-02-27T08:36:53",
@@ -153826,7 +153826,7 @@
       "sobreaireoMin": -20.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 6.7
+      "temp": 7.9
     },
     {
       "datetime": "2026-02-27T10:19:47",
@@ -153841,7 +153841,7 @@
       "sobreaireoMin": 0.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.1
+      "temp": 9.8
     },
     {
       "datetime": "2026-02-27T12:01:30",
@@ -153856,7 +153856,7 @@
       "sobreaireoMin": -13.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 13.2
+      "temp": 12.8
     },
     {
       "datetime": "2026-02-27T13:44:43",
@@ -153871,7 +153871,7 @@
       "sobreaireoMin": -31.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 15.2
+      "temp": 15.6
     },
     {
       "datetime": "2026-02-27T15:28:47",
@@ -153886,7 +153886,7 @@
       "sobreaireoMin": -5.9,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 15.5
+      "temp": 16.0
     },
     {
       "datetime": "2026-02-27T17:10:00",
@@ -153901,7 +153901,7 @@
       "sobreaireoMin": -4.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 14.8
+      "temp": 15.4
     },
     {
       "datetime": "2026-02-27T18:50:53",
@@ -153916,7 +153916,7 @@
       "sobreaireoMin": -9.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 12.8
+      "temp": 13.4
     },
     {
       "datetime": "2026-02-27T20:32:28",
@@ -153931,7 +153931,7 @@
       "sobreaireoMin": -9.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.1
+      "temp": 11.3
     },
     {
       "datetime": "2026-02-27T22:13:01",
@@ -153946,7 +153946,7 @@
       "sobreaireoMin": -7.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.9
+      "temp": 11.7
     },
     {
       "datetime": "2026-02-27T23:54:33",
@@ -153961,7 +153961,7 @@
       "sobreaireoMin": 2.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.6
+      "temp": 10.9
     },
     {
       "datetime": "2026-02-28T01:35:37",
@@ -153976,7 +153976,7 @@
       "sobreaireoMin": 11.7,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 7.7
+      "temp": 9.7
     },
     {
       "datetime": "2026-02-28T03:16:30",
@@ -153991,7 +153991,7 @@
       "sobreaireoMin": 22.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 7.5
+      "temp": 9.6
     },
     {
       "datetime": "2026-02-28T04:57:24",
@@ -154006,7 +154006,7 @@
       "sobreaireoMin": 16.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.1
+      "temp": 9.6
     },
     {
       "datetime": "2026-02-28T06:38:17",
@@ -154021,7 +154021,7 @@
       "sobreaireoMin": -23.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.8
+      "temp": 10.0
     },
     {
       "datetime": "2026-02-28T08:19:02",
@@ -154036,7 +154036,7 @@
       "sobreaireoMin": -78.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.0
+      "temp": 10.2
     },
     {
       "datetime": "2026-02-28T10:01:34",
@@ -154051,7 +154051,7 @@
       "sobreaireoMin": -76.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.1
+      "temp": 11.1
     },
     {
       "datetime": "2026-02-28T11:44:47",
@@ -154066,7 +154066,7 @@
       "sobreaireoMin": -78.0,
       "dilucion": 0,
       "precip": 0.2,
-      "temp": 12.1
+      "temp": 13.4
     },
     {
       "datetime": "2026-02-28T13:28:11",
@@ -154081,7 +154081,7 @@
       "sobreaireoMin": -70.2,
       "dilucion": 0,
       "precip": 0.1,
-      "temp": 13.0
+      "temp": 14.3
     },
     {
       "datetime": "2026-02-28T15:08:14",
@@ -154096,7 +154096,7 @@
       "sobreaireoMin": -16.6,
       "dilucion": 0,
       "precip": 0.1,
-      "temp": 13.5
+      "temp": 14.9
     },
     {
       "datetime": "2026-02-28T16:49:18",
@@ -154111,7 +154111,7 @@
       "sobreaireoMin": -6.9,
       "dilucion": 0,
       "precip": 0.2,
-      "temp": 13.6
+      "temp": 14.7
     },
     {
       "datetime": "2026-02-28T18:29:51",
@@ -154126,7 +154126,7 @@
       "sobreaireoMin": 7.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 13.3
+      "temp": 14.1
     },
     {
       "datetime": "2026-02-28T20:09:34",
@@ -154141,7 +154141,7 @@
       "sobreaireoMin": -11.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 12.0
+      "temp": 13.0
     },
     {
       "datetime": "2026-02-28T21:49:58",
@@ -154156,7 +154156,7 @@
       "sobreaireoMin": 14.7,
       "dilucion": 0,
       "precip": 0.2,
-      "temp": 10.6
+      "temp": 12.8
     },
     {
       "datetime": "2026-02-28T23:30:12",
@@ -154171,7 +154171,7 @@
       "sobreaireoMin": 9.4,
       "dilucion": 0,
       "precip": 0.1,
-      "temp": 11.2
+      "temp": 12.3
     },
     {
       "datetime": "2026-03-01T01:10:56",
@@ -154186,7 +154186,7 @@
       "sobreaireoMin": 16.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 11.0
+      "temp": 11.9
     },
     {
       "datetime": "2026-03-01T02:50:48",
@@ -154201,7 +154201,7 @@
       "sobreaireoMin": 10.7,
       "dilucion": 0,
       "precip": 0.1,
-      "temp": 10.1
+      "temp": 11.3
     },
     {
       "datetime": "2026-03-01T04:30:52",
@@ -154216,7 +154216,7 @@
       "sobreaireoMin": -15.7,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.9
+      "temp": 11.3
     },
     {
       "datetime": "2026-03-01T06:11:05",
@@ -154231,7 +154231,7 @@
       "sobreaireoMin": -80.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.1
+      "temp": 11.3
     },
     {
       "datetime": "2026-03-01T07:51:19",
@@ -154246,7 +154246,7 @@
       "sobreaireoMin": -68.5,
       "dilucion": 0,
       "precip": 0.1,
-      "temp": 10.9
+      "temp": 12.0
     },
     {
       "datetime": "2026-03-01T09:31:42",
@@ -154261,7 +154261,7 @@
       "sobreaireoMin": -52.2,
       "dilucion": 0,
       "precip": 0.6,
-      "temp": 10.7
+      "temp": 11.7
     },
     {
       "datetime": "2026-03-01T11:13:05",
@@ -154276,7 +154276,7 @@
       "sobreaireoMin": -78.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 11.9
+      "temp": 12.8
     },
     {
       "datetime": "2026-03-01T12:52:58",
@@ -154291,7 +154291,7 @@
       "sobreaireoMin": -80.0,
       "dilucion": 0,
       "precip": 0.2,
-      "temp": 13.7
+      "temp": 15.4
     },
     {
       "datetime": "2026-03-01T14:33:23",
@@ -154306,7 +154306,7 @@
       "sobreaireoMin": -44.7,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 13.8
+      "temp": 15.6
     },
     {
       "datetime": "2026-03-01T16:12:16",
@@ -154321,7 +154321,7 @@
       "sobreaireoMin": 2.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 13.3
+      "temp": 15.1
     },
     {
       "datetime": "2026-03-01T17:55:49",
@@ -154336,7 +154336,7 @@
       "sobreaireoMin": 23.2,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 13.1
+      "temp": 14.6
     },
     {
       "datetime": "2026-03-01T19:36:53",
@@ -154351,7 +154351,7 @@
       "sobreaireoMin": -3.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 11.5
+      "temp": 11.8
     },
     {
       "datetime": "2026-03-01T21:16:26",
@@ -154366,7 +154366,7 @@
       "sobreaireoMin": -1.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.8
+      "temp": 11.0
     },
     {
       "datetime": "2026-03-01T23:00:00",
@@ -154381,7 +154381,7 @@
       "sobreaireoMin": -18.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.7
+      "temp": 11.0
     },
     {
       "datetime": "2026-03-02T00:48:03",
@@ -154396,7 +154396,7 @@
       "sobreaireoMin": 16.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.5
+      "temp": 9.9
     },
     {
       "datetime": "2026-03-02T02:30:26",
@@ -154411,7 +154411,7 @@
       "sobreaireoMin": 9.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.0
+      "temp": 9.1
     },
     {
       "datetime": "2026-03-02T04:12:00",
@@ -154441,7 +154441,7 @@
       "sobreaireoMin": -76.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.7
+      "temp": 8.3
     },
     {
       "datetime": "2026-03-02T07:37:26",
@@ -154456,7 +154456,7 @@
       "sobreaireoMin": -74.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.5
+      "temp": 8.0
     },
     {
       "datetime": "2026-03-02T09:20:31",
@@ -154471,7 +154471,7 @@
       "sobreaireoMin": -74.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.0
+      "temp": 8.1
     },
     {
       "datetime": "2026-03-02T11:02:04",
@@ -154486,7 +154486,7 @@
       "sobreaireoMin": -70.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.1
+      "temp": 11.3
     },
     {
       "datetime": "2026-03-02T12:45:27",
@@ -154501,7 +154501,7 @@
       "sobreaireoMin": -32.2,
       "dilucion": 0,
       "precip": 0.1,
-      "temp": 12.6
+      "temp": 13.7
     },
     {
       "datetime": "2026-03-02T14:26:50",
@@ -154516,7 +154516,7 @@
       "sobreaireoMin": -10.6,
       "dilucion": 0,
       "precip": 0.1,
-      "temp": 13.0
+      "temp": 14.2
     },
     {
       "datetime": "2026-03-02T16:08:24",
@@ -154531,7 +154531,7 @@
       "sobreaireoMin": -18.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 13.1
+      "temp": 15.0
     },
     {
       "datetime": "2026-03-02T17:56:37",
@@ -154546,7 +154546,7 @@
       "sobreaireoMin": -19.7,
       "dilucion": 0,
       "precip": 0.1,
-      "temp": 12.9
+      "temp": 14.5
     },
     {
       "datetime": "2026-03-02T19:36:10",
@@ -154561,7 +154561,7 @@
       "sobreaireoMin": -8.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 11.3
+      "temp": 11.7
     },
     {
       "datetime": "2026-03-02T21:16:14",
@@ -154576,7 +154576,7 @@
       "sobreaireoMin": -28.9,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.2
+      "temp": 11.2
     },
     {
       "datetime": "2026-03-02T22:57:27",
@@ -154591,7 +154591,7 @@
       "sobreaireoMin": -20.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 8.9
+      "temp": 10.6
     },
     {
       "datetime": "2026-03-03T00:36:32",
@@ -154606,7 +154606,7 @@
       "sobreaireoMin": -6.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.2
+      "temp": 11.9
     },
     {
       "datetime": "2026-03-03T02:15:24",
@@ -154621,7 +154621,7 @@
       "sobreaireoMin": 10.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.2
+      "temp": 11.6
     },
     {
       "datetime": "2026-03-03T03:54:18",
@@ -154636,7 +154636,7 @@
       "sobreaireoMin": 16.7,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 9.0
+      "temp": 11.7
     },
     {
       "datetime": "2026-03-03T05:34:11",
@@ -154651,7 +154651,7 @@
       "sobreaireoMin": 10.7,
       "dilucion": 0,
       "precip": 0.2,
-      "temp": 9.4
+      "temp": 11.8
     },
     {
       "datetime": "2026-03-03T07:14:54",
@@ -154666,7 +154666,7 @@
       "sobreaireoMin": -5.9,
       "dilucion": 0,
       "precip": 0.1,
-      "temp": 9.5
+      "temp": 11.7
     },
     {
       "datetime": "2026-03-03T08:54:48",
@@ -154681,7 +154681,7 @@
       "sobreaireoMin": -16.2,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 10.8
+      "temp": 12.1
     },
     {
       "datetime": "2026-03-03T10:35:12",
@@ -154696,7 +154696,7 @@
       "sobreaireoMin": -15.2,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 13.1
+      "temp": 14.0
     },
     {
       "datetime": "2026-03-03T12:14:15",
@@ -154711,7 +154711,7 @@
       "sobreaireoMin": -11.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 14.1
+      "temp": 15.2
     },
     {
       "datetime": "2026-03-03T13:55:08",
@@ -154726,7 +154726,7 @@
       "sobreaireoMin": 10.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 15.2
+      "temp": 15.8
     },
     {
       "datetime": "2026-03-03T15:34:42",
@@ -154741,7 +154741,7 @@
       "sobreaireoMin": 17.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 15.8
+      "temp": 16.5
     },
     {
       "datetime": "2026-03-03T17:16:15",
@@ -154756,7 +154756,7 @@
       "sobreaireoMin": -12.9,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 15.7
+      "temp": 16.7
     },
     {
       "datetime": "2026-03-03T18:56:09",
@@ -154771,7 +154771,7 @@
       "sobreaireoMin": -10.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 14.7
+      "temp": 15.9
     },
     {
       "datetime": "2026-03-03T20:38:12",
@@ -154786,7 +154786,7 @@
       "sobreaireoMin": -22.2,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 12.6
+      "temp": 14.2
     },
     {
       "datetime": "2026-03-03T22:29:06",
@@ -154801,7 +154801,7 @@
       "sobreaireoMin": -13.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 12.4
+      "temp": 13.7
     },
     {
       "datetime": "2026-03-04T00:12:48",
@@ -154816,7 +154816,7 @@
       "sobreaireoMin": -4.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 12.1
+      "temp": 13.4
     },
     {
       "datetime": "2026-03-04T01:53:02",
@@ -154831,7 +154831,7 @@
       "sobreaireoMin": -1.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 12.0
+      "temp": 13.5
     },
     {
       "datetime": "2026-03-04T03:40:46",
@@ -154846,7 +154846,7 @@
       "sobreaireoMin": 20.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 12.1
+      "temp": 13.5
     },
     {
       "datetime": "2026-03-04T05:21:39",
@@ -154861,7 +154861,7 @@
       "sobreaireoMin": 15.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 12.2
+      "temp": 13.5
     },
     {
       "datetime": "2026-03-04T07:01:32",
@@ -154876,7 +154876,7 @@
       "sobreaireoMin": -24.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 12.5
+      "temp": 14.0
     },
     {
       "datetime": "2026-03-04T08:41:16",
@@ -154891,7 +154891,7 @@
       "sobreaireoMin": -78.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 12.2
+      "temp": 14.1
     },
     {
       "datetime": "2026-03-04T10:21:50",
@@ -154906,7 +154906,7 @@
       "sobreaireoMin": -78.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 12.8
+      "temp": 14.2
     },
     {
       "datetime": "2026-03-04T12:02:53",
@@ -154921,7 +154921,7 @@
       "sobreaireoMin": 52.9,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 15.0
+      "temp": 15.4
     },
     {
       "datetime": "2026-03-04T13:43:46",
@@ -154936,7 +154936,7 @@
       "sobreaireoMin": -24.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 16.2
+      "temp": 16.6
     },
     {
       "datetime": "2026-03-04T15:24:49",
@@ -154951,7 +154951,7 @@
       "sobreaireoMin": -17.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 16.5
+      "temp": 16.8
     },
     {
       "datetime": "2026-03-04T17:08:13",
@@ -154966,7 +154966,7 @@
       "sobreaireoMin": -29.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 15.9
+      "temp": 16.3
     },
     {
       "datetime": "2026-03-04T18:46:06",
@@ -154981,7 +154981,7 @@
       "sobreaireoMin": -8.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 14.5
+      "temp": 15.4
     },
     {
       "datetime": "2026-03-04T20:30:10",
@@ -154996,7 +154996,7 @@
       "sobreaireoMin": -25.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 13.1
+      "temp": 14.9
     },
     {
       "datetime": "2026-03-04T22:12:03",
@@ -155011,7 +155011,7 @@
       "sobreaireoMin": -20.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 12.8
+      "temp": 14.5
     },
     {
       "datetime": "2026-03-04T23:52:16",
@@ -155026,7 +155026,7 @@
       "sobreaireoMin": -31.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 12.5
+      "temp": 14.3
     },
     {
       "datetime": "2026-03-05T01:35:30",
@@ -187696,7 +187696,7 @@
       "sobreaireoMin": -19.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 24.4
+      "temp": 24.0
     },
     {
       "datetime": "2026-07-01T04:17:53",
@@ -187711,7 +187711,7 @@
       "sobreaireoMin": -11.9,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 23.9
+      "temp": 23.5
     },
     {
       "datetime": "2026-07-01T05:58:07",
@@ -187742,6 +187742,21 @@
       "dilucion": 0,
       "precip": 0.0,
       "temp": 24.3
+    },
+    {
+      "datetime": "2026-07-01T09:20:23",
+      "label": "01/07/2026 09:20",
+      "AUR": 2.4,
+      "RN": 8.4,
+      "TRC": 14.4,
+      "TRH": 10.1,
+      "minsReal": 92,
+      "minsTeo": 90,
+      "minsFormula": 58.2,
+      "sobreaireoMin": 33.8,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 26.5
     }
   ]
 }
