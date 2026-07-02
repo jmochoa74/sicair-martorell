@@ -1,7 +1,7 @@
 {
-  "generado": "2026-07-02T08:46:46.573095",
-  "n_ciclos": 12535,
-  "ultimo_dato": "2026-07-02T07:19:24",
+  "generado": "2026-07-02T09:46:54.392948",
+  "n_ciclos": 12536,
+  "ultimo_dato": "2026-07-02T09:00:35",
   "ciclos": [
     {
       "datetime": "2022-02-23T07:24:41",
@@ -187921,7 +187921,7 @@
       "sobreaireoMin": -19.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 22.8
+      "temp": 22.9
     },
     {
       "datetime": "2026-07-02T02:12:03",
@@ -187936,7 +187936,7 @@
       "sobreaireoMin": -19.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 22.8
+      "temp": 22.9
     },
     {
       "datetime": "2026-07-02T03:53:27",
@@ -187951,7 +187951,7 @@
       "sobreaireoMin": -14.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 22.0
+      "temp": 22.4
     },
     {
       "datetime": "2026-07-02T03:53:27",
@@ -187966,7 +187966,7 @@
       "sobreaireoMin": -14.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 22.0
+      "temp": 22.4
     },
     {
       "datetime": "2026-07-02T05:41:52",
@@ -187981,7 +187981,7 @@
       "sobreaireoMin": -5.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 20.9
+      "temp": 21.1
     },
     {
       "datetime": "2026-07-02T05:41:52",
@@ -187996,7 +187996,7 @@
       "sobreaireoMin": -5.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 20.9
+      "temp": 21.1
     },
     {
       "datetime": "2026-07-02T07:19:24",
@@ -188011,7 +188011,7 @@
       "sobreaireoMin": -20.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 20.9
+      "temp": 21.2
     },
     {
       "datetime": "2026-07-02T07:19:24",
@@ -188026,7 +188026,22 @@
       "sobreaireoMin": -20.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 20.9
+      "temp": 21.2
+    },
+    {
+      "datetime": "2026-07-02T09:00:35",
+      "label": "02/07/2026 09:00",
+      "AUR": 1.94,
+      "RN": 6.8,
+      "TRC": 21.4,
+      "TRH": 9.1,
+      "minsReal": 76,
+      "minsTeo": 74,
+      "minsFormula": 76.7,
+      "sobreaireoMin": -0.7,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 24.6
     }
   ]
 }
