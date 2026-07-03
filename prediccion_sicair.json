@@ -1,8 +1,8 @@
 {
-  "generado": "2026-07-03T17:47:50.159691",
-  "ultimo_dato": "2026-07-03T15:52:17",
-  "ultimo_aur": 1.43,
-  "ultimo_mins": 93.0,
+  "generado": "2026-07-03T18:46:48.892108",
+  "ultimo_dato": "2026-07-03T17:32:30",
+  "ultimo_aur": 1.34,
+  "ultimo_mins": 133.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,47 +11,47 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 1.653,
-      "mins_pred": 100.5,
+      "aur_pred": 1.405,
+      "mins_pred": 125.8,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 29.8,
+      "temp_prev": 28.0,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-07-03T19:27:44.779417"
+      "ts_objetivo": "2026-07-03T20:26:39.145747"
     },
     "3c": {
-      "aur_pred": 1.652,
-      "mins_pred": 89.8,
-      "trc_pred": 30.0,
-      "prob_dilucion": 0.0,
-      "precip_mm_prev": 0.0,
-      "temp_prev": 25.1,
-      "ciclos": 3,
-      "horas_eq": 5.0,
-      "ts_objetivo": "2026-07-03T22:47:44.779417"
-    },
-    "6h": {
-      "aur_pred": 1.447,
-      "mins_pred": 78.5,
+      "aur_pred": 1.849,
+      "mins_pred": 99.5,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 24.1,
+      "ciclos": 3,
+      "horas_eq": 5.0,
+      "ts_objetivo": "2026-07-03T23:46:39.145747"
+    },
+    "6h": {
+      "aur_pred": 1.48,
+      "mins_pred": 82.8,
+      "trc_pred": 30.0,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 23.6,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-07-04T00:27:44.779417"
+      "ts_objetivo": "2026-07-04T01:26:39.145747"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 30.8,
+    "temp": 29.4,
     "precip": 0.0,
-    "viento": 16.7,
-    "humedad": 39.0,
-    "presion": 1008.0
+    "viento": 15.1,
+    "humedad": 43.0,
+    "presion": 1007.9
   },
   "lluvia_prevista": {
     "h6": 0.0,
