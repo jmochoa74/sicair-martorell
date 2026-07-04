@@ -1,8 +1,8 @@
 {
-  "generado": "2026-07-04T18:46:42.590035",
-  "ultimo_dato": "2026-07-04T17:19:05",
-  "ultimo_aur": 2.51,
-  "ultimo_mins": 98.0,
+  "generado": "2026-07-04T19:46:49.378656",
+  "ultimo_dato": "2026-07-04T18:58:50",
+  "ultimo_aur": 2.37,
+  "ultimo_mins": 91.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,47 +11,47 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 2.519,
-      "mins_pred": 87.1,
-      "trc_pred": 13.8,
+      "aur_pred": 2.286,
+      "mins_pred": 91.2,
+      "trc_pred": 14.9,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 30.9,
+      "temp_prev": 29.3,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-07-04T20:26:39.140999"
+      "ts_objetivo": "2026-07-04T21:26:40.054162"
     },
     "3c": {
-      "aur_pred": 0.921,
-      "mins_pred": 91.9,
-      "trc_pred": 13.8,
-      "prob_dilucion": 0.0,
-      "precip_mm_prev": 0.0,
-      "temp_prev": 25.1,
-      "ciclos": 3,
-      "horas_eq": 5.0,
-      "ts_objetivo": "2026-07-04T23:46:39.140999"
-    },
-    "6h": {
-      "aur_pred": 1.106,
-      "mins_pred": 82.8,
-      "trc_pred": 13.8,
+      "aur_pred": 1.058,
+      "mins_pred": 82.3,
+      "trc_pred": 14.9,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 24.4,
+      "ciclos": 3,
+      "horas_eq": 5.0,
+      "ts_objetivo": "2026-07-05T00:46:40.054162"
+    },
+    "6h": {
+      "aur_pred": 1.405,
+      "mins_pred": 79.2,
+      "trc_pred": 14.9,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 24.1,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-07-05T01:26:39.140999"
+      "ts_objetivo": "2026-07-05T02:26:40.054162"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 32.3,
+    "temp": 30.9,
     "precip": 0.0,
-    "viento": 12.7,
-    "humedad": 34.0,
-    "presion": 1008.3
+    "viento": 11.2,
+    "humedad": 35.0,
+    "presion": 1008.4
   },
   "lluvia_prevista": {
     "h6": 0.0,
