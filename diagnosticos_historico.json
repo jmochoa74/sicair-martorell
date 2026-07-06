@@ -727,5 +727,16 @@
         "texto": "Sobreaireo 35% — real 102min vs fórmula 67min"
       }
     ]
+  },
+  {
+    "ts": "2026-07-06T20:46:43.698263",
+    "aur": 1.46,
+    "eventos": [
+      {
+        "tipo": "recovery_auto",
+        "icono": "🤖",
+        "texto": "Recovery automatico activado — AUR cayo 40% sin evidencia de dilucion/lluvia"
+      }
+    ]
   }
 ]
