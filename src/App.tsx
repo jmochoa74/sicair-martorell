@@ -2,13 +2,13 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import { ComposedChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, BarChart, Bar, Scatter, Legend } from "recharts";
 
 const C = {
-  green:"#4a9c3f", greenLight:"#6dba5f", greenFade:"rgba(74,156,63,0.12)",
-  amber:"#e65100", amberFade:"rgba(230,81,0,0.10)",
-  blue:"#1565c0", blueFade:"rgba(21,101,192,0.10)",
-  red:"#c62828", redFade:"rgba(198,40,40,0.10)",
-  purple:"#6a1b9a", yellow:"#f9a825",
-  bg:"#ffffff", panel:"#f5f7fa", border:"#dde1e7",
-  text:"#1a1f2e", muted:"#6b7280", gridLine:"#e8eaed",
+  green:"#2d7a27", greenLight:"#4a9c3f", greenFade:"rgba(45,122,39,0.08)",
+  amber:"#c2410c", amberFade:"rgba(194,65,12,0.08)",
+  blue:"#1d4ed8", blueFade:"rgba(29,78,216,0.08)",
+  red:"#b91c1c", redFade:"rgba(185,28,28,0.08)",
+  purple:"#6d28d9", yellow:"#d97706",
+  bg:"#ffffff", panel:"#fafafa", border:"#f0f0f0",
+  text:"#111111", muted:"#888888", gridLine:"#f4f4f4",
 };
 const RC = ["#4a9c3f","#1565c0","#e65100","#6a1b9a","#c62828","#f9a825"];
 const TIPOS_INC = [
@@ -25,9 +25,102 @@ const ALERT_DEF = [
   {id:"mins_alto",label:"Soplante exceso",icon:"💨",unit:"min/ciclo",campo:"minsReal",tipo:"max",valor:120,activa:true,sonido:false,severidad:"aviso"},
   {id:"energia",label:"Sobreconsumo energía",icon:"⚡",unit:"% desviac.",campo:"energPct",tipo:"max",valor:20,activa:true,sonido:false,severidad:"aviso"},
   {id:"ciclo_anom",label:"Ciclo anómalo",icon:"⚠️",unit:"% desviación",campo:"cicloDesv",tipo:"max",valor:20,activa:true,sonido:true,severidad:"critica"},
-  {id:"trc_alto",label:"TRC demasiado alto",icon:"🧫",unit:"días",campo:"TRC",tipo:"max",valor:15,activa:true,sonido:false,severidad:"aviso"},
+  {id:"trc_alto",label:"TRC demasiado alto",icon:"🧫",unit:"días",campo:"TRC",tipo:"max",valor:30,activa:true,sonido:false,severidad:"aviso"},
   {id:"trc_bajo",label:"TRC demasiado bajo",icon:"🧫",unit:"días",campo:"TRC",tipo:"min",valor:5,activa:true,sonido:true,severidad:"critica"},
 ];
+
+
+// ── Cálculo desglose Hz soplante VSD ─────────────────────────────
+const VSD = {
+  // S4 (VSD-A) ZS4 45kW — escalones como % de 71.15Hz (frecuencia máx)
+  s4: {
+    nombre: "S4 VSD-A (ZS4 45kW)",
+    hz_max: 71.15,
+    escalones: [
+      {pct:0.20, hz:66.2, kw:40.2, q:2470, label:"T1 (93% de 71.15Hz)"},
+      {pct:0.40, hz:50.5, kw:25.5, q:1760, label:"T2 (71% de 71.15Hz)"},
+      {pct:0.40, hz:40.6, kw:14.2, q:940,  label:"T3 (57% de 71.15Hz)"},
+    ]
+  },
+  // Valores por defecto para cálculos (usando S4)
+  escalones: [
+      {pct:0.20, hz:66.2, kw:40.2, q:2470},
+      {pct:0.40, hz:50.5, kw:25.5, q:1760},
+      {pct:0.40, hz:40.6, kw:14.2, q:940},
+  ],
+  // S5 (VSD-B) ZS55+ — escalones como % de 134Hz (frecuencia máx)
+  s5: {
+    nombre: "S5 VSD-B (ZS55+)",
+    hz_max: 134,
+    escalones: [
+      {pct:0.20, hz:100.5, kw:42.8, q:1786, label:"T1 (75% de 134Hz)"},
+      {pct:0.40, hz:80.4,  kw:33.0, q:1472, label:"T2 (60% de 134Hz)"},
+      {pct:0.40, hz:60.3,  kw:22.5, q:1158, label:"T3 (45% de 134Hz)"},
+    ]
+  },
+  // Soplantes fijas S1, S2, S3
+  kw_fija: 75.0,
+  q_fija:  2940,
+
+  min_fase: 35,
+};
+// Calcula desglose ciclo completo: 50% VSD + 50% Fija
+function calcCiclo(minsTotal) {
+  const mins = Math.max(Math.round(minsTotal||0), VSD.min_fase*2);
+  const minsVSD  = Math.max(VSD.min_fase, Math.round(mins*0.5));
+  const minsFija = Math.max(VSD.min_fase, mins - minsVSD);
+  return { minsVSD, minsFija, minsTotal: minsVSD+minsFija };
+}
+function calcHzDesglose(mins) {
+  if (!mins || mins <= 0) return null;
+  return VSD.escalones.map(e => ({
+    hz: e.hz, kw: e.kw, q: e.q,
+    mins: +(mins * e.pct).toFixed(1),
+    kwh:  +(mins * e.pct / 60 * e.kw).toFixed(2),
+  }));
+}
+function calcKwhTotal(mins) {
+  if (!mins) return null;
+  const vsd = VSD.escalones.reduce((s,e) => s + mins*e.pct/60*e.kw, 0);
+  const fija = mins/60 * VSD.kw_fija;
+  return +((vsd + fija)).toFixed(2);
+}
+
+function HzDesgloseCard({mins, label, color}) {
+  if (!mins) return null;
+  const ciclo = calcCiclo(mins);
+  const desglose = calcHzDesglose(ciclo.minsVSD);
+  const kwhFija = +(ciclo.minsFija/60*VSD.kw_fija).toFixed(2);
+  const kwhVSD  = desglose ? +desglose.reduce((s,e)=>s+e.kwh,0).toFixed(2) : 0;
+  return (
+    <div style={{background:"#fafafa",border:"1px solid #f0f0f0",borderRadius:12,padding:"12px 16px"}}>
+      <div style={{fontSize:11,fontWeight:600,color:color||C.text,marginBottom:8}}>{label} — {mins} min</div>
+      {/* Barra visual 50/50 */}
+      <div style={{display:"flex",height:20,borderRadius:6,overflow:"hidden",marginBottom:8}}>
+        <div style={{width:"50%",background:C.green,display:"flex",alignItems:"center",justifyContent:"center"}}>
+          <span style={{fontSize:9,color:"#fff",fontWeight:700}}>VSD {ciclo.minsVSD}min</span>
+        </div>
+        <div style={{width:"50%",background:C.blue,display:"flex",alignItems:"center",justifyContent:"center"}}>
+          <span style={{fontSize:9,color:"#fff",fontWeight:700}}>Fija {ciclo.minsFija}min</span>
+        </div>
+      </div>
+      {/* Desglose Hz fase VSD */}
+      {desglose&&desglose.map(e=>(
+        <div key={e.hz} style={{display:"flex",alignItems:"center",gap:6,marginBottom:4}}>
+          <div style={{width:38,textAlign:"center",background:e.hz===65?"#fef3c7":e.hz===50?"#dbeafe":"#f0fdf4",borderRadius:5,padding:"1px 0",fontSize:9,fontWeight:700,color:e.hz===65?C.amber:e.hz===50?C.blue:C.green,flexShrink:0}}>{e.hz}Hz</div>
+          <div style={{flex:1,height:5,background:"#e8e8e8",borderRadius:3,overflow:"hidden"}}>
+            <div style={{width:`${e.pct*100}%`,height:"100%",background:e.hz===65?C.amber:e.hz===50?C.blue:C.green,borderRadius:3}}/>
+          </div>
+          <div style={{fontSize:9,color:C.muted,minWidth:100,textAlign:"right"}}><b style={{color:C.text}}>{e.mins}min</b> · <b style={{color:C.amber}}>{e.kwh}kWh</b></div>
+        </div>
+      ))}
+      <div style={{borderTop:"1px solid #f0f0f0",marginTop:6,paddingTop:6,display:"flex",justifyContent:"space-between",fontSize:9}}>
+        <span style={{color:C.muted}}>Fija {ciclo.minsFija}min @{VSD.kw_fija}kW = <b style={{color:C.blue}}>{kwhFija}kWh</b></span>
+        <span style={{fontWeight:700,color:C.amber}}>Total: {+(kwhVSD+kwhFija).toFixed(2)} kWh</span>
+      </div>
+    </div>
+  );
+}
 
 const SensaraLogo = ({size=36}) => (
   <svg width={size*1.5} height={size} viewBox="0 0 120 80" fill="none">
@@ -279,14 +372,14 @@ function diagnosticarCausa(data, pred, alertas) {
 
 // ── UI primitives ──────────────────────────────────────────────────
 function Badge({children,color}) {
-  return <span style={{background:color+"18",color,border:`1px solid ${color}44`,borderRadius:4,padding:"2px 8px",fontSize:11,fontWeight:600}}>{children}</span>;
+  return <span style={{background:color+"12",color,borderRadius:20,padding:"3px 10px",fontSize:11,fontWeight:600,letterSpacing:"0.02em"}}>{children}</span>;
 }
 function KpiCard({label,value,unit,color,icon}) {
   return (
-    <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"14px 16px",borderTop:`3px solid ${color}`}}>
-      <div style={{fontSize:10,color:C.muted,textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>{icon} {label}</div>
-      <div style={{fontSize:20,fontWeight:800,color,fontFamily:"monospace"}}>{value}</div>
-      <div style={{fontSize:11,color:C.muted,marginTop:2}}>{unit}</div>
+    <div style={{background:"#fff",borderRadius:16,padding:"20px 22px",boxShadow:"0 1px 3px rgba(0,0,0,0.06)",border:"1px solid #f0f0f0"}}>
+      <div style={{fontSize:11,color:C.muted,textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:10,fontWeight:500}}>{label}</div>
+      <div style={{fontSize:28,fontWeight:700,color,lineHeight:1,marginBottom:6,letterSpacing:"-0.02em"}}>{value}</div>
+      <div style={{fontSize:11,color:C.muted}}>{unit}</div>
     </div>
   );
 }
@@ -340,7 +433,7 @@ function DemoBanner({onExit}) {
 // ── Panels ─────────────────────────────────────────────────────────
 function MeteoPanel() {
   return (
-    <div style={{background:C.blueFade,border:`1px solid ${C.blue}44`,borderRadius:10,padding:"14px 20px",marginBottom:14,display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:12}}>
+    <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,padding:"14px 22px",marginBottom:20,boxShadow:"0 1px 3px rgba(0,0,0,0.04)",display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:12}}>
       <div style={{display:"flex",alignItems:"center",gap:10}}>
         <span style={{fontSize:22}}>🌤</span>
         <div><div style={{fontSize:12,fontWeight:700,color:C.blue}}>Meteorología — Martorell</div><div style={{fontSize:11,color:C.muted}}>Datos en tiempo real en AEMET</div></div>
@@ -366,7 +459,7 @@ function ScoreSalud({data}) {
   const circum = 2*Math.PI*36;
   const offset = circum*(1-s.global/100);
   return (
-    <div style={{background:C.panel,border:`1.5px solid ${s.color}44`,borderRadius:10,padding:"16px 20px",marginBottom:14,display:"flex",alignItems:"center",gap:24,flexWrap:"wrap"}}>
+    <div style={{background:"#fff",borderRadius:16,padding:"20px 24px",marginBottom:20,display:"flex",alignItems:"center",gap:24,flexWrap:"wrap",boxShadow:"0 1px 3px rgba(0,0,0,0.06)",border:"1px solid #f0f0f0"}}>
       <div style={{textAlign:"center",flexShrink:0,width:90}}>
         <svg width={90} height={90} style={{transform:"rotate(-90deg)"}}>
           <circle cx={45} cy={45} r={36} fill="none" stroke={C.gridLine} strokeWidth={8}/>
@@ -412,19 +505,15 @@ function Semaforo({data,pred,toxUmbral,alertasDisparadas,alertas}) {
   }
   const col = {verde:C.green,ambar:C.yellow,rojo:C.red}[estado];
   return (
-    <div style={{background:col+"10",border:`2px solid ${col}`,borderRadius:12,padding:"16px 24px",display:"flex",alignItems:"center",gap:20,marginBottom:14}}>
-      <div style={{display:"flex",flexDirection:"column",gap:8}}>
-        {["rojo","ambar","verde"].map(e => (
-          <div key={e} style={{width:22,height:22,borderRadius:"50%",background:estado===e?{verde:C.green,ambar:C.yellow,rojo:C.red}[e]:"#ccc",boxShadow:estado===e?`0 0 12px 4px ${col}88`:"none",transition:"all .4s"}}/>
-        ))}
-      </div>
+    <div style={{background:"#fff",borderRadius:16,padding:"20px 28px",display:"flex",alignItems:"center",gap:24,marginBottom:20,boxShadow:"0 1px 3px rgba(0,0,0,0.06)",border:"1px solid #f0f0f0"}}>
+      <div style={{width:12,height:12,borderRadius:"50%",background:col,boxShadow:`0 0 0 4px ${col}22`,flexShrink:0}}/>
       <div style={{flex:1}}>
-        <div style={{fontSize:16,fontWeight:800,color:col,marginBottom:4}}>{msg}</div>
-        <div style={{display:"flex",gap:16,fontSize:12,color:C.muted,flexWrap:"wrap"}}>
-          <span>AUR: <b style={{color:C.text}}>{aur.toFixed(2)} mg O₂/L·h</b></span>
-          <span>TRC: <b style={{color:trcFuera?trc<5?C.red:C.amber:C.text}}>{trc.toFixed(1)} d</b></span>
-          <span>SICTOX: <b style={{color:C.text}}>{toxProb.toFixed(1)}%</b></span>
-          {alertasDisparadas?.length>0&&<span>Alertas: <b style={{color:C.red}}>{alertasDisparadas.length}</b></span>}
+        <div style={{fontSize:14,fontWeight:600,color:col,marginBottom:6,letterSpacing:"-0.01em"}}>{msg}</div>
+        <div style={{display:"flex",gap:20,fontSize:12,color:C.muted,flexWrap:"wrap"}}>
+          <span>AUR <b style={{color:C.text,fontWeight:600}}>{aur.toFixed(2)}</b> mg O₂/L·h</span>
+          <span>TRC <b style={{color:trcFuera?trc<5?C.red:C.amber:C.text,fontWeight:600}}>{trc.toFixed(1)}</b> d</span>
+          <span>SICTOX <b style={{color:C.text,fontWeight:600}}>{toxProb.toFixed(1)}%</b></span>
+          {alertasDisparadas?.length>0&&<span>Alertas <b style={{color:C.red,fontWeight:600}}>{alertasDisparadas.length}</b></span>}
         </div>
       </div>
       <Badge color={col}>{estado.toUpperCase()}</Badge>
@@ -442,7 +531,7 @@ function DiagnosticoPanel({data,pred,alertas,trcMin=5,trcMax=15}) {
   const trcSalida = trcPreds.find(p=>p.val<trcMin||p.val>trcMax);
   if (!diag&&!trcAlerta&&!trcSalida) return null;
   return (
-    <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"20px 24px",marginBottom:14}}>
+    <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"20px 24px",marginBottom:14}}>
       <div style={{fontSize:14,fontWeight:700,marginBottom:14}}>🔍 Diagnóstico Automático</div>
       {diag && (
         <div style={{background:C.redFade,border:`1.5px solid ${C.red}`,borderRadius:10,padding:"14px 18px",marginBottom:12}}>
@@ -547,7 +636,7 @@ function PredPanel({pred,toxUmbral,data}) {
   const durH = data&&data.length>2 ? (()=>{ const diffs=data.slice(1).map((d,i)=>(d.datetime-data[i].datetime)/3600000).filter(x=>x>=1&&x<=3); return diffs.length?diffs.reduce((s,v)=>s+v,0)/diffs.length:1.6; })() : 1.6;
   const HORZ = [{key:"1c",label:"+1 ciclo",desc:`~${Math.round(durH*60)} min`},{key:"3c",label:"+3 ciclos",desc:`~${Math.round(durH*3*60)} min`},{key:"6h",label:"+6h",desc:`~${Math.round(6/durH)} ciclos`}];
   return (
-    <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"20px 24px",marginBottom:14}}>
+    <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"20px 24px",marginBottom:14}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
         <div>
           <div style={{fontSize:14,fontWeight:700}}>🧠 Predicciones SICAIR</div>
@@ -597,6 +686,16 @@ function PredPanel({pred,toxUmbral,data}) {
           );
         })}
       </div>
+      {/* Desglose Hz por horizonte */}
+      <div style={{marginTop:16}}>
+        <div style={{fontSize:12,fontWeight:600,color:C.muted,marginBottom:10}}>⚡ Estimación consumo soplante por Hz</div>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:10}}>
+          {HORZ.map(({key,label})=>(
+            <HzDesgloseCard key={key} mins={p[key]?.mins_pred} label={`SICAIR ${label}`} color={C.green}/>
+          ))}
+        </div>
+        <div style={{fontSize:10,color:C.muted,marginTop:8}}>Distribución estimada: 20% a 65Hz · 40% a 50Hz · 40% a 40Hz · 2 soplantes fijas + 2 VSD</div>
+      </div>
     </div>
   );
 }
@@ -611,14 +710,19 @@ function HistoricoChart({data,pred}) {
   const predPts = p&&last ? [{label:"+0",aur:last.aur},{label:"+1c",aurPred:p["1c"]?.aur_pred},{label:"+3c",aurPred:p["3c"]?.aur_pred},{label:"+6h",aurPred:p["6h"]?.aur_pred}] : [];
   const combined = [...histR,...predPts.slice(1)];
   const nAnom = dA.filter(d=>d.anomalia).length;
+  // Datos de minutos para gráfica
+  const histMins = dA.slice(-60).map(d=>({label:d.label, minsReal:d.minsReal, minsTeo:d.minsTeo||null}));
+  const predMinsPts = p&&last ? [{label:"+0",minsReal:data.at(-1)?.minsReal},{label:"+1c",minsPred:p["1c"]?.mins_pred},{label:"+3c",minsPred:p["3c"]?.mins_pred},{label:"+6h",minsPred:p["6h"]?.mins_pred}] : [];
+  const combinedMins = [...histMins,...predMinsPts.slice(1)];
+
   return (
-    <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"18px 20px",marginBottom:14}}>
+    <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"18px 20px",marginBottom:14}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:4}}>
         <div style={{fontSize:13,fontWeight:700}}>📈 Histórico + Predicciones</div>
         <div style={{display:"flex",gap:8}}>{nAnom>0&&<Badge color={C.red}>⚠️ {nAnom} anomalías</Badge>}<Badge color={reg.m>0?C.amber:C.green}>Tendencia {reg.m>0?"↑":"↓"} R²={reg.r2}</Badge></div>
       </div>
       <div style={{fontSize:11,color:C.muted,marginBottom:8}}>🔴 Anomalías · 🔵 Dilución · — — Pred.</div>
-      <ResponsiveContainer width="100%" height={200}>
+      <ResponsiveContainer width="100%" height={180}>
         <ComposedChart data={combined} margin={{top:4,right:8,bottom:4,left:0}}>
           <CartesianGrid strokeDasharray="3 3" stroke={C.gridLine}/>
           <XAxis dataKey="label" tick={{fontSize:9,fill:C.muted}} interval={Math.floor(combined.length/8)} angle={-20} textAnchor="end" height={36}/>
@@ -630,6 +734,34 @@ function HistoricoChart({data,pred}) {
           <Line dataKey="tendencia" stroke={C.amber} strokeWidth={1} strokeDasharray="3 3" dot={false} name="Tendencia" connectNulls/>
         </ComposedChart>
       </ResponsiveContainer>
+      <div style={{fontSize:12,fontWeight:600,color:C.muted,margin:"14px 0 6px"}}>💨 Minutos soplante — Fase VSD (inicial) + Fase Fija (final)</div>
+      <ResponsiveContainer width="100%" height={180}>
+        <ComposedChart data={histMins.map(d=>({
+          label: d.label,
+          minsVSD:  d.minsReal ? Math.round(d.minsReal*0.5) : null,
+          minsFija: d.minsReal ? Math.round(d.minsReal*0.5) : null,
+          minsPredTotal: d.minsPred || null,
+        }))} margin={{top:4,right:8,bottom:4,left:0}}>
+          <CartesianGrid strokeDasharray="3 3" stroke={C.gridLine}/>
+          <XAxis dataKey="label" tick={{fontSize:9,fill:C.muted}} interval={Math.floor(histMins.length/8)} angle={-20} textAnchor="end" height={36}/>
+          <YAxis domain={[0,180]} tick={{fontSize:9,fill:C.muted}} unit=" min"/>
+          <Tooltip content={<CT/>}/><Legend wrapperStyle={{fontSize:10}}/>
+          <Bar dataKey="minsVSD"  stackId="real" fill={C.green} name="VSD inicial" radius={[0,0,0,0]}/>
+          <Bar dataKey="minsFija" stackId="real" fill={C.blue}  name="Fija final"  radius={[3,3,0,0]}/>
+          <Line dataKey="minsPredTotal" stroke={C.amber} strokeWidth={2} strokeDasharray="5 3" dot={false} name="Total pred. SICAIR" connectNulls/>
+        </ComposedChart>
+      </ResponsiveContainer>
+      {/* Desglose Hz último ciclo vs predicción */}
+      {data&&data.length>0&&(
+        <div style={{marginTop:16}}>
+          <div style={{fontSize:12,fontWeight:600,color:C.muted,marginBottom:10}}>⚡ Desglose Hz — último ciclo real vs SICAIR +1c</div>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+            <HzDesgloseCard mins={data.at(-1)?.minsReal} label="Real último ciclo" color={C.amber}/>
+            <HzDesgloseCard mins={pred?.predicciones?.["1c"]?.mins_pred} label="SICAIR +1c" color={C.green}/>
+          </div>
+          <div style={{fontSize:10,color:C.muted,marginTop:6}}>Estimación: 20% a 65Hz · 40% a 50Hz · 40% a 40Hz · 2 fijas ({VSD.kw_fija}kW) + 2 VSD</div>
+        </div>
+      )}
     </div>
   );
 }
@@ -637,12 +769,12 @@ function HistoricoChart({data,pred}) {
 function CorrelacionPanel({data}) {
   if (!data||!data.length) return null;
   const pts = data.filter(d=>d.temp>0).map(d=>({x:d.temp,y:d.AUR}));
-  if (pts.length<5) return <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"20px",marginBottom:14}}><div style={{fontSize:12,color:C.muted}}>Sin datos de temperatura en el CSV.</div></div>;
+  if (pts.length<5) return <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"20px",marginBottom:14}}><div style={{fontSize:12,color:C.muted}}>Sin datos de temperatura en el CSV.</div></div>;
   const reg = linReg(pts.map(p=>({x:p.x,y:p.y})));
   const xMin=Math.min(...pts.map(p=>p.x)), xMax=Math.max(...pts.map(p=>p.x));
   const ld = [{x:xMin,y:+(reg.m*xMin+reg.b).toFixed(3)},{x:xMax,y:+(reg.m*xMax+reg.b).toFixed(3)}];
   return (
-    <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"18px 20px",marginBottom:14}}>
+    <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"18px 20px",marginBottom:14}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
         <div style={{fontSize:13,fontWeight:700}}>🔬 Correlación AUR vs Tª</div>
         <div style={{display:"flex",gap:8}}><Badge color={C.purple}>R² = {reg.r2}</Badge><Badge color={C.blue}>{pts.length} pts</Badge></div>
@@ -676,39 +808,16 @@ function AhorroPanel({data,pred,historico,demoMode}) {
     if (!sem[s]) sem[s]={sem:s,real:0,teo:0};
     sem[s].real+=d.minsReal; sem[s].teo+=d.minsTeo;
   });
-  const [vista,setVista] = useState("teo");
   const MINIMO=10,FIABLE=50,n=cruces.length,pct2=Math.min(100,Math.round(n/FIABLE*100));
   const col2=n>=FIABLE?C.green:n>=MINIMO?C.amber:C.muted;
-  const msg2=n>=FIABLE?"✅ Estadística fiable":n>=MINIMO?`Acumulando — faltan ${FIABLE-n} ciclos`:n>0?`Inicio — faltan ${MINIMO-n} ciclos`:"Sin datos — carga prediccion_historico.json";
+  const msg2=n>=FIABLE?"✅ Estadística fiable":n>=MINIMO?`Acumulando — faltan ${FIABLE-n} ciclos`:n>0?`Inicio — faltan ${MINIMO-n} ciclos`:"Pendiente de acumular ciclos";
   return (
-    <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"20px 24px",marginBottom:14}}>
+    <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"20px 24px",marginBottom:14}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
-        <div style={{fontSize:14,fontWeight:700}}>💰 Ahorro Energético</div>
-        <div style={{display:"flex",gap:6}}>
-          <button onClick={()=>setVista("teo")} style={{background:vista==="teo"?C.green:"#fff",color:vista==="teo"?"#fff":C.muted,border:`1px solid ${vista==="teo"?C.green:C.border}`,borderRadius:6,padding:"4px 12px",fontSize:11,fontWeight:700,cursor:"pointer"}}>📊 vs Teo SN8</button>
-          <button onClick={()=>setVista("sicair")} disabled={!cruces.length} style={{background:vista==="sicair"?C.green:"#fff",color:vista==="sicair"?"#fff":cruces.length?C.muted:C.gridLine,border:`1px solid ${vista==="sicair"?C.green:C.border}`,borderRadius:6,padding:"4px 12px",fontSize:11,fontWeight:700,cursor:cruces.length?"pointer":"default"}}>🧠 vs SICAIR {cruces.length?`(${cruces.length})`:"—"}</button>
-        </div>
+        <div><div style={{fontSize:14,fontWeight:700}}>💰 Ahorro Energético vs SICAIR</div><div style={{fontSize:11,color:C.muted,marginTop:2}}>Minutos reales planta vs predicción SICAIR +1c · {cruces.length} ciclos</div></div>
+        <Badge color={col2}>{n}/{FIABLE} ciclos</Badge>
       </div>
-      {vista==="teo" && (
-        <>
-          <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:12,marginBottom:16}}>
-            <KpiCard label="Min sobreaireo" value={ah>0?`+${ah.toLocaleString()}`:ah.toLocaleString()} unit="min total" color={ah>0?C.amber:C.green} icon="⏱"/>
-            <KpiCard label="Energía" value={Math.abs(kwh).toLocaleString()} unit="kWh" color={C.blue} icon="⚡"/>
-            <KpiCard label="Impacto €" value={`${Math.abs(eur).toLocaleString()} €`} unit="@0.15€/kWh" color={ah>0?C.amber:C.green} icon="💶"/>
-            <KpiCard label="Desviación" value={`${Math.abs(pct)}%`} unit="Real vs Teo." color={ah>0?C.amber:C.green} icon="📊"/>
-          </div>
-          <ResponsiveContainer width="100%" height={150}>
-            <BarChart data={Object.values(sem).slice(-8)} margin={{top:4,right:8,bottom:4,left:0}}>
-              <CartesianGrid strokeDasharray="3 3" stroke={C.gridLine}/>
-              <XAxis dataKey="sem" tick={{fontSize:9,fill:C.muted}}/><YAxis tick={{fontSize:9,fill:C.muted}}/>
-              <Tooltip content={<CT/>}/><Legend wrapperStyle={{fontSize:11}}/>
-              <Bar dataKey="real" name="Min Real" fill={C.red} radius={[3,3,0,0]}/>
-              <Bar dataKey="teo" name="Min Teo SN8" fill={C.green} radius={[3,3,0,0]}/>
-            </BarChart>
-          </ResponsiveContainer>
-        </>
-      )}
-      {vista==="sicair" && cruces.length>0 && (
+      {cruces.length>0 ? (
         <>
           <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:12,marginBottom:16}}>
             <KpiCard label="Min sobreaireo" value={ahS>0?`+${ahS.toLocaleString()}`:ahS.toLocaleString()} unit="min total" color={ahS>0?C.amber:C.green} icon="⏱"/>
@@ -726,9 +835,8 @@ function AhorroPanel({data,pred,historico,demoMode}) {
             </ComposedChart>
           </ResponsiveContainer>
         </>
-      )}
-      {vista==="sicair" && !cruces.length && (
-        <div style={{background:C.amberFade,border:`1px solid ${C.amber}44`,borderRadius:8,padding:"16px 20px",fontSize:13,color:C.amber}}>⚠️ Carga <b>prediccion_historico.json</b> para activar esta vista.</div>
+      ) : (
+        <div style={{background:C.amberFade,border:`1px solid ${C.amber}44`,borderRadius:8,padding:"16px 20px",fontSize:13,color:C.amber,marginBottom:16}}>⏳ Acumulando ciclos de validación — disponible con {MINIMO}+ ciclos.</div>
       )}
       <div style={{marginTop:12,background:"#fff",border:`1.5px solid ${col2}44`,borderRadius:8,padding:"12px 16px"}}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}>
@@ -751,7 +859,7 @@ function ComparativaPanel({data}) {
   const A=st(eS), B=st(aS), dl=(a,b)=>b?+(((a-b)/b)*100).toFixed(1):0;
   const filas=[{label:"AUR medio",a:A.aur,b:B.aur,unit:"mg/L·h",mejor:"up"},{label:"Min soplante",a:A.mins,b:B.mins,unit:"min",mejor:"down"},{label:"RN medio",a:A.rn,b:B.rn,unit:"mg N/L·h",mejor:"up"},{label:"Nº ciclos",a:A.n,b:B.n,unit:"ciclos",mejor:"up"}];
   return (
-    <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"20px 24px",marginBottom:14}}>
+    <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"20px 24px",marginBottom:14}}>
       <div style={{fontSize:14,fontWeight:700,marginBottom:16}}>📅 Comparativa Semanal</div>
       <div style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr"}}>
         {["Métrica","Esta semana","Semana anterior","Variación"].map(h=><div key={h} style={{fontSize:10,color:C.muted,textTransform:"uppercase",paddingBottom:8,borderBottom:`1px solid ${C.border}`}}>{h}</div>)}
@@ -766,10 +874,121 @@ function ComparativaPanel({data}) {
   );
 }
 
+const GITHUB_TOKEN_DASH = import.meta.env.VITE_GITHUB_TOKEN;
+const GITHUB_REPO_DASH  = 'jmochoa74/sicair-martorell';
+const RECOVERY_CYCLES_DASH = 8;
+
+async function activarRecovery(ciclos: number): Promise<{ok:boolean, msg:string}> {
+  const url = `https://api.github.com/repos/${GITHUB_REPO_DASH}/contents/recovery.json`;
+  const headers = {
+    'Authorization': `token ${GITHUB_TOKEN_DASH}`,
+    'Accept': 'application/vnd.github.v3+json',
+    'Content-Type': 'application/json',
+  };
+  try {
+    // Obtener SHA si existe
+    let sha: string|undefined;
+    const get = await fetch(url, {headers});
+    if (get.ok) { const d = await get.json(); sha = d.sha; }
+    const payload = {activo: true, ciclos, updated: new Date().toISOString()};
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2))));
+    const body: any = {message: `Recovery activado — ${ciclos} ciclos`, content};
+    if (sha) body.sha = sha;
+    const put = await fetch(url, {method:'PUT', headers, body: JSON.stringify(body)});
+    if (put.ok) return {ok:true, msg:`✅ Modo recuperación activado — ${ciclos} ciclos (~${Math.round(ciclos*100/60)}h)`};
+    return {ok:false, msg:`❌ Error GitHub: ${put.status}`};
+  } catch(e: any) {
+    return {ok:false, msg:`❌ Error: ${e.message}`};
+  }
+}
+
+async function leerRecovery(): Promise<{activo:boolean, ciclos:number}|null> {
+  const url = `https://api.github.com/repos/${GITHUB_REPO_DASH}/contents/recovery.json`;
+  const headers = {'Authorization': `token ${GITHUB_TOKEN_DASH}`, 'Accept': 'application/vnd.github.v3+json'};
+  try {
+    const get = await fetch(url, {headers});
+    if (!get.ok) return null;
+    const d = await get.json();
+    const payload = JSON.parse(atob(d.content.replace(/\n/g,'')));
+    return {activo: payload.activo, ciclos: payload.ciclos};
+  } catch { return null; }
+}
+
+function RecoveryPanel() {
+  const [estado, setEstado] = useState<{activo:boolean,ciclos:number}|null>(null);
+  const [cargando, setCargando] = useState(false);
+  const [msg, setMsg] = useState("");
+
+  useEffect(() => {
+    leerRecovery().then(r => setEstado(r));
+  }, []);
+
+  const activar = async () => {
+    setCargando(true); setMsg("");
+    const res = await activarRecovery(RECOVERY_CYCLES_DASH);
+    setMsg(res.msg);
+    if (res.ok) setEstado({activo:true, ciclos:RECOVERY_CYCLES_DASH});
+    setCargando(false);
+  };
+
+  const desactivar = async () => {
+    setCargando(true); setMsg("");
+    const url = `https://api.github.com/repos/${GITHUB_REPO_DASH}/contents/recovery.json`;
+    const headers = {'Authorization': `token ${GITHUB_TOKEN_DASH}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json'};
+    try {
+      let sha: string|undefined;
+      const get = await fetch(url, {headers});
+      if (get.ok) { const d = await get.json(); sha = d.sha; }
+      const payload = {activo: false, ciclos: 0, updated: new Date().toISOString()};
+      const content = btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2))));
+      const body: any = {message: 'Recovery desactivado manualmente', content};
+      if (sha) body.sha = sha;
+      await fetch(url, {method:'PUT', headers, body: JSON.stringify(body)});
+      setEstado({activo:false, ciclos:0});
+      setMsg("✅ Modo recuperación desactivado");
+    } catch(e: any) { setMsg(`❌ Error: ${e.message}`); }
+    setCargando(false);
+  };
+
+  return (
+    <div style={{background:"#fff",border:`2px solid ${estado?.activo ? C.amber : C.border}`,borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"20px 24px"}}>
+      <div style={{fontSize:14,fontWeight:700,marginBottom:6}}>🔄 Modo Recuperación</div>
+      <div style={{fontSize:12,color:C.muted,marginBottom:20,lineHeight:1.6}}>
+        Aumenta la aireación un <b>+30%</b> durante <b>{RECOVERY_CYCLES_DASH} ciclos (~13h)</b> tras un evento de subaireo (corte eléctrico, avería, etc.).<br/>
+        SICAIR lo detecta automáticamente en el siguiente ciclo del pipeline.
+      </div>
+      <div style={{background: estado?.activo ? C.amberFade : "#f0fdf4", border:`1.5px solid ${estado?.activo ? C.amber : C.green}`, borderRadius:10, padding:"16px 20px", marginBottom:20, display:"flex", alignItems:"center", gap:16}}>
+        <div style={{width:14,height:14,borderRadius:"50%",background:estado?.activo?C.amber:C.green,boxShadow:`0 0 8px 2px ${estado?.activo?C.amber:C.green}88`}}/>
+        <div style={{flex:1}}>
+          <div style={{fontSize:13,fontWeight:700,color:estado?.activo?C.amber:C.green}}>
+            {estado===null ? "Consultando estado..." : estado.activo ? `ACTIVO — ${estado.ciclos} ciclos restantes (~${Math.round(estado.ciclos*100/60)}h)` : "INACTIVO — aireación normal"}
+          </div>
+          <div style={{fontSize:11,color:C.muted,marginTop:2}}>
+            {estado?.activo ? "El pipeline aplicará +30% en cada ciclo hasta completar el contador" : "Activa tras un evento de subaireo para acelerar la recuperación biológica"}
+          </div>
+        </div>
+      </div>
+      <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
+        <button onClick={activar} disabled={cargando||estado?.activo===true}
+          style={{background:estado?.activo?C.gridLine:C.amber,color:"#fff",border:"none",borderRadius:8,padding:"10px 24px",fontSize:13,fontWeight:700,cursor:estado?.activo||cargando?"default":"pointer",opacity:estado?.activo?0.5:1}}>
+          {cargando?"⏳ Enviando...":"🔄 Activar recuperación (+30% · 8 ciclos)"}
+        </button>
+        {estado?.activo&&(
+          <button onClick={desactivar} disabled={cargando}
+            style={{background:"#fff",color:C.muted,border:`1px solid ${C.border}`,borderRadius:8,padding:"10px 20px",fontSize:13,fontWeight:700,cursor:"pointer"}}>
+            ✕ Desactivar
+          </button>
+        )}
+      </div>
+      {msg&&<div style={{marginTop:12,fontSize:12,fontWeight:700,color:msg.startsWith("✅")?C.green:C.red}}>{msg}</div>}
+    </div>
+  );
+}
+
 function IncidenciasPanel({incidencias,setIncidencias,diagHistorico,setDiagHistorico,parseJSON}) {
   const [texto,setTexto]=useState(""),[tipo,setTipo]=useState("otro");
   const [fecha,setFecha]=useState(new Date().toISOString().slice(0,16)),[filtro,setFiltro]=useState("todos");
-  const [vistadiag,setVistaDiag]=useState("manual"); // 'manual' | 'auto'
+  const [vistadiag,setVistaDiag]=useState("manual"); // 'manual' | 'auto' | 'recovery'
   const agregar = () => { if(!texto.trim())return; setIncidencias(prev=>[{id:Date.now(),texto:texto.trim(),tipo,fecha},...prev]); setTexto(""); };
   const col = id => TIPOS_INC.find(t=>t.id===id)?.color||C.muted;
   const lbl = id => TIPOS_INC.find(t=>t.id===id)?.label||id;
@@ -781,14 +1000,15 @@ function IncidenciasPanel({incidencias,setIncidencias,diagHistorico,setDiagHisto
 
   return (
     <div style={{marginBottom:14}}>
-      {/* Toggle manual / automático */}
+      {/* Toggle manual / automático / recuperación */}
       <div style={{display:"flex",gap:6,marginBottom:14}}>
         <button onClick={()=>setVistaDiag("manual")} style={{background:vistadiag==="manual"?C.green:"#fff",color:vistadiag==="manual"?"#fff":C.muted,border:`1px solid ${vistadiag==="manual"?C.green:C.border}`,borderRadius:6,padding:"6px 16px",fontSize:12,fontWeight:700,cursor:"pointer"}}>📋 Incidencias manuales {incidencias.length>0&&`(${incidencias.length})`}</button>
         <button onClick={()=>setVistaDiag("auto")} style={{background:vistadiag==="auto"?C.purple:"#fff",color:vistadiag==="auto"?"#fff":C.muted,border:`1px solid ${vistadiag==="auto"?C.purple:C.border}`,borderRadius:6,padding:"6px 16px",fontSize:12,fontWeight:700,cursor:"pointer"}}>🤖 Diagnósticos automáticos {diagConEventos.length>0&&`(${diagConEventos.length})`}</button>
+        <button onClick={()=>setVistaDiag("recovery")} style={{background:vistadiag==="recovery"?C.amber:"#fff",color:vistadiag==="recovery"?"#fff":C.muted,border:`1px solid ${vistadiag==="recovery"?C.amber:C.border}`,borderRadius:6,padding:"6px 16px",fontSize:12,fontWeight:700,cursor:"pointer"}}>🔄 Modo recuperación</button>
       </div>
 
       {vistadiag==="manual"&&(
-        <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"20px 24px"}}>
+        <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"20px 24px"}}>
           <div style={{fontSize:14,fontWeight:700,marginBottom:16}}>📋 Historial de Incidencias</div>
           <div style={{background:"#fff",border:`1px solid ${C.border}`,borderRadius:10,padding:"16px",marginBottom:16}}>
             <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:12}}>
@@ -810,7 +1030,7 @@ function IncidenciasPanel({incidencias,setIncidencias,diagHistorico,setDiagHisto
       )}
 
       {vistadiag==="auto"&&(
-        <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"20px 24px"}}>
+        <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"20px 24px"}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16,flexWrap:"wrap",gap:8}}>
             <div>
               <div style={{fontSize:14,fontWeight:700}}>🤖 Diagnósticos Automáticos</div>
@@ -859,6 +1079,7 @@ function IncidenciasPanel({incidencias,setIncidencias,diagHistorico,setDiagHisto
           )}
         </div>
       )}
+      {vistadiag==="recovery"&&<RecoveryPanel/>}
     </div>
   );
 }
@@ -866,7 +1087,7 @@ function IncidenciasPanel({incidencias,setIncidencias,diagHistorico,setDiagHisto
 function AlertasPanel({alertas,setAlertas,disparadas,onTest}) {
   const upd = (id,key,val) => setAlertas(prev=>prev.map(a=>a.id===id?{...a,[key]:val}:a));
   return (
-    <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"20px 24px",marginBottom:14}}>
+    <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"20px 24px",marginBottom:14}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
         <div style={{fontSize:14,fontWeight:700}}>🔔 Configuración de Alertas</div>
         <button onClick={onTest} style={{background:C.amber,color:"#fff",border:"none",borderRadius:8,padding:"6px 14px",fontSize:12,fontWeight:700,cursor:"pointer"}}>🔊 Probar sonido</button>
@@ -954,7 +1175,7 @@ function DerivaPanel({deriva}) {
 function MultiPlantasPanel({reactores}) {
   const nombres = Object.keys(reactores);
   if (nombres.length<2) return (
-    <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"32px 24px",marginBottom:14,textAlign:"center"}}>
+    <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"32px 24px",marginBottom:14,textAlign:"center"}}>
       <div style={{fontSize:24,marginBottom:12}}>🏭</div>
       <div style={{fontSize:14,fontWeight:700,marginBottom:8}}>Vista Multiplantas</div>
       <div style={{fontSize:13,color:C.muted}}>Carga al menos 2 reactores para comparar plantas en paralelo.</div>
@@ -963,7 +1184,7 @@ function MultiPlantasPanel({reactores}) {
   return (
     <div style={{marginBottom:14}}>
       <div style={{fontSize:14,fontWeight:700,marginBottom:14}}>🏭 Comparativa — {nombres.length} reactores</div>
-      <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"18px 20px",marginBottom:14,overflowX:"auto"}}>
+      <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"18px 20px",marginBottom:14,overflowX:"auto"}}>
         <table style={{width:"100%",borderCollapse:"collapse",fontSize:12}}>
           <thead><tr style={{borderBottom:`2px solid ${C.border}`}}>{["Reactor","Ciclos","AUR actual","AUR medio","Min sopl.","TRC actual","Estado"].map(h=>(<th key={h} style={{padding:"8px 12px",fontSize:10,color:C.muted,textTransform:"uppercase",fontWeight:700,textAlign:"right",whiteSpace:"nowrap"}}>{h}</th>))}</tr></thead>
           <tbody>{nombres.map((n,i) => {
@@ -983,7 +1204,7 @@ function MultiPlantasPanel({reactores}) {
           })}</tbody>
         </table>
       </div>
-      <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"18px 20px"}}>
+      <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"18px 20px"}}>
         <div style={{fontSize:13,fontWeight:700,marginBottom:12}}>📈 AUR comparativo</div>
         <ResponsiveContainer width="100%" height={200}>
           <ComposedChart margin={{top:4,right:8,bottom:4,left:0}}>
@@ -1002,7 +1223,7 @@ function ROIMensualPanel({data,historico,demoMode}) {
   if (!data||!data.length) return null;
   const cruces = demoMode ? cruzarDemoDirecto(historico) : cruzarHistoricoConReal(historico,data);
   if (!cruces.length) return (
-    <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"32px 24px",marginBottom:14,textAlign:"center"}}>
+    <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"32px 24px",marginBottom:14,textAlign:"center"}}>
       <div style={{fontSize:24,marginBottom:12}}>🧠</div>
       <div style={{fontSize:14,fontWeight:700,marginBottom:8}}>ROI Mensual SICAIR</div>
       <div style={{fontSize:13,color:C.muted,marginBottom:16,lineHeight:1.7}}>Compara <b>lo que ha aireado la planta</b> vs <b>lo que habría aireado SICAIR</b>.<br/>Carga <b>prediccion_historico.json</b> para activar.</div>
@@ -1030,7 +1251,7 @@ function ROIMensualPanel({data,historico,demoMode}) {
     });
   };
   return (
-    <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"20px 24px",marginBottom:14}}>
+    <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"20px 24px",marginBottom:14}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16,flexWrap:"wrap",gap:8}}>
         <div><div style={{fontSize:14,fontWeight:700}}>📆 ROI Mensual SICAIR</div><div style={{fontSize:11,color:C.muted,marginTop:2}}>Algoritmo planta vs SICAIR +1c · {cruces.length} ciclos{demoMode?" · Planta demo 50k he":""}</div></div>
         <button onClick={exportExcel} style={{background:C.green,color:"#fff",border:"none",borderRadius:8,padding:"8px 18px",fontSize:12,fontWeight:700,cursor:"pointer"}}>📥 Exportar Excel</button>
@@ -1060,8 +1281,11 @@ function ROIMensualPanel({data,historico,demoMode}) {
   );
 }
 
-function ValidacionPanel({data,demoMode}) {
+function ValidacionPanel({data,demoMode,historico}) {
   const [histRaw,setHistRaw] = useState(null);
+  useEffect(() => {
+    if (historico && Array.isArray(historico) && !demoMode) setHistRaw(historico);
+  }, [historico, demoMode]);
   const [valRows,setValRows] = useState([]);
   const [horizFiltro,setHorizFiltro] = useState("todos");
   const [paginaActual,setPaginaActual] = useState(0);
@@ -1112,7 +1336,7 @@ function ValidacionPanel({data,demoMode}) {
   return (
     <div style={{marginBottom:14}}>
       {!demoMode&&!histRaw&&(
-        <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"20px 24px",marginBottom:14}}>
+        <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"20px 24px",marginBottom:14}}>
           <div style={{fontSize:14,fontWeight:700,marginBottom:12}}>🎯 Validar predicciones vs datos reales</div>
           {!data&&<div style={{background:C.amberFade,border:`1px solid ${C.amber}44`,borderRadius:8,padding:"10px 14px",fontSize:12,color:C.amber,marginBottom:12}}>⚠️ Carga primero el CSV real (R1).</div>}
           <DropZone onFile={handleHistJSON} accept=".json" color={C.purple} done={false} label="prediccion_historico.json" sublabel="Array de predicciones históricas"/>
@@ -1127,19 +1351,34 @@ function ValidacionPanel({data,demoMode}) {
       {valRows.length>0&&(
         <>
           <div style={{display:"grid",gridTemplateColumns:`repeat(${metricas.length},1fr)`,gap:12,marginBottom:14}}>
-            {metricas.map(m=>(
-              <div key={m.h} style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"16px 18px",borderTop:`3px solid ${colorErr(m.mapeAUR)}`}}>
-                <div style={{fontSize:11,color:C.muted,textTransform:"uppercase",marginBottom:8}}>+{m.h}</div>
-                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
-                  <div><div style={{fontSize:10,color:C.muted}}>MAPE AUR</div><div style={{fontSize:22,fontWeight:800,color:colorErr(m.mapeAUR),fontFamily:"monospace"}}>{m.mapeAUR}%</div></div>
-                  <div><div style={{fontSize:10,color:C.muted}}>Acierto</div><div style={{fontSize:22,fontWeight:800,color:m.pctAciertos>=70?C.green:C.amber,fontFamily:"monospace"}}>{m.pctAciertos}%</div></div>
-                  <div><div style={{fontSize:10,color:C.muted}}>Sesgo</div><div style={{fontSize:15,fontWeight:700,color:Math.abs(m.sesgoProm)<0.3?C.green:C.amber,fontFamily:"monospace"}}>{m.sesgoProm>0?"+":""}{m.sesgoProm}</div></div>
-                  <div><div style={{fontSize:10,color:C.muted}}>Puntos</div><div style={{fontSize:15,fontWeight:700,fontFamily:"monospace"}}>{m.n}</div></div>
+            {metricas.map(m=>{
+              const conMins=valRows.filter(r=>r.horizonte===m.h&&r.mins_pred!=null&&r.mins_real!=null);
+              const mapeMins=conMins.length?+(conMins.reduce((s,r)=>s+Math.abs(r.mins_pred-r.mins_real)/r.mins_real*100,0)/conMins.length).toFixed(1):null;
+              const sesgoMins=conMins.length?+(conMins.reduce((s,r)=>s+(r.mins_pred-r.mins_real),0)/conMins.length).toFixed(1):null;
+              const aciertMins=conMins.length?+(conMins.filter(r=>Math.abs(r.mins_pred-r.mins_real)/r.mins_real*100<=20).length/conMins.length*100).toFixed(0):null;
+              return (
+              <div key={m.h} style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"16px 18px",borderTop:`3px solid ${colorErr(m.mapeAUR)}`}}>
+                <div style={{fontSize:11,color:C.muted,textTransform:"uppercase",marginBottom:10}}>+{m.h} · {m.n} puntos</div>
+                <div style={{marginBottom:10}}>
+                  <div style={{fontSize:10,fontWeight:600,color:"#333",marginBottom:6}}>AUR mg O₂/L·h</div>
+                  <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:6}}>
+                    <div><div style={{fontSize:9,color:C.muted}}>MAPE</div><div style={{fontSize:18,fontWeight:700,color:colorErr(m.mapeAUR)}}>{m.mapeAUR}%</div></div>
+                    <div><div style={{fontSize:9,color:C.muted}}>Acierto</div><div style={{fontSize:18,fontWeight:700,color:m.pctAciertos>=70?C.green:C.amber}}>{m.pctAciertos}%</div></div>
+                    <div><div style={{fontSize:9,color:C.muted}}>Sesgo</div><div style={{fontSize:13,fontWeight:600,color:Math.abs(m.sesgoProm)<0.3?C.green:C.amber}}>{m.sesgoProm>0?"+":""}{m.sesgoProm}</div></div>
+                  </div>
                 </div>
+                {mapeMins!=null&&<div style={{borderTop:"1px solid #f4f4f4",paddingTop:8}}>
+                  <div style={{fontSize:10,fontWeight:600,color:"#333",marginBottom:6}}>Minutos soplante</div>
+                  <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:6}}>
+                    <div><div style={{fontSize:9,color:C.muted}}>MAPE</div><div style={{fontSize:18,fontWeight:700,color:colorErr(mapeMins)}}>{mapeMins}%</div></div>
+                    <div><div style={{fontSize:9,color:C.muted}}>Acierto</div><div style={{fontSize:18,fontWeight:700,color:aciertMins>=70?C.green:C.amber}}>{aciertMins}%</div></div>
+                    <div><div style={{fontSize:9,color:C.muted}}>Sesgo</div><div style={{fontSize:13,fontWeight:600,color:Math.abs(sesgoMins)<5?C.green:C.amber}}>{sesgoMins>0?"+":""}{sesgoMins} min</div></div>
+                  </div>
+                </div>}
               </div>
-            ))}
+            );})}
           </div>
-          <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"18px 20px",marginBottom:14}}>
+          <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"18px 20px",marginBottom:14}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
               <div style={{fontSize:13,fontWeight:700}}>📊 AUR Predicho vs Real</div>
               <div style={{display:"flex",gap:6}}>{["todos","1c","3c","6h"].map(h=>(<button key={h} onClick={()=>{setHorizFiltro(h);setPaginaActual(0);}} style={{background:horizFiltro===h?C.green:"#fff",color:horizFiltro===h?"#fff":C.muted,border:`1px solid ${horizFiltro===h?C.green:C.border}`,borderRadius:6,padding:"4px 10px",fontSize:11,fontWeight:700,cursor:"pointer"}}>{h==="todos"?"Todos":`+${h}`}</button>))}</div>
@@ -1157,7 +1396,25 @@ function ValidacionPanel({data,demoMode}) {
               </ComposedChart>
             </ResponsiveContainer>
           </div>
-          <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"18px 20px",marginBottom:14}}>
+          <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"18px 20px",marginBottom:14}}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
+              <div style={{fontSize:13,fontWeight:700}}>💨 Minutos Predichos vs Reales</div>
+              <div style={{display:"flex",gap:6}}>{["todos","1c","3c","6h"].map(h=>(<button key={h} onClick={()=>{setHorizFiltro(h);setPaginaActual(0);}} style={{background:horizFiltro===h?C.amber:"#fff",color:horizFiltro===h?"#fff":C.muted,border:`1px solid ${horizFiltro===h?C.amber:C.border}`,borderRadius:6,padding:"4px 10px",fontSize:11,fontWeight:700,cursor:"pointer"}}>{h==="todos"?"Todos":`+${h}`}</button>))}</div>
+            </div>
+            <ResponsiveContainer width="100%" height={200}>
+              <ComposedChart data={filtradas.filter(r=>r.mins_pred!=null).slice(-60).map(r=>({label:r.ts_obj.toISOString().slice(5,16).replace("T"," "),pred:r.mins_pred,real:r.mins_real,error:r.mins_pred!=null&&r.mins_real!=null?+(Math.abs(r.mins_pred-r.mins_real)/r.mins_real*100).toFixed(1):null}))} margin={{top:4,right:8,bottom:4,left:0}}>
+                <CartesianGrid strokeDasharray="3 3" stroke={C.gridLine}/>
+                <XAxis dataKey="label" tick={{fontSize:9,fill:C.muted}} interval={8} angle={-20} textAnchor="end" height={36}/>
+                <YAxis yAxisId="mins" domain={[0,180]} tick={{fontSize:9,fill:C.muted}} unit=" min"/>
+                <YAxis yAxisId="err" orientation="right" domain={[0,80]} tick={{fontSize:9,fill:C.muted}} unit="%"/>
+                <Tooltip content={<CT/>}/><Legend wrapperStyle={{fontSize:11}}/>
+                <Area yAxisId="mins" dataKey="real" fill={C.amberFade} stroke={C.amber} strokeWidth={2} dot={false} name="Min real" connectNulls/>
+                <Line yAxisId="mins" dataKey="pred" stroke={C.green} strokeWidth={2} strokeDasharray="6 3" dot={{r:3,fill:C.green}} name="Min pred." connectNulls/>
+                <Bar yAxisId="err" dataKey="error" fill={C.blue} opacity={0.25} name="Error %"/>
+              </ComposedChart>
+            </ResponsiveContainer>
+          </div>
+          <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"18px 20px",marginBottom:14}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
               <div style={{fontSize:13,fontWeight:700}}>📋 Detalle ({filtradas.length} puntos)</div>
               <div style={{display:"flex",gap:8,alignItems:"center"}}>
@@ -1168,8 +1425,10 @@ function ValidacionPanel({data,demoMode}) {
             </div>
             <div style={{overflowX:"auto"}}>
               <table style={{width:"100%",borderCollapse:"collapse",fontSize:12}}>
-                <thead><tr style={{borderBottom:`2px solid ${C.border}`}}>{["","Ts objetivo","Hor.","AUR pred.","AUR real","Error","Sesgo"].map((h,i)=>(<th key={i} style={{textAlign:i>2?"center":"left",padding:"8px 10px",fontSize:10,color:C.muted,textTransform:"uppercase",fontWeight:700,whiteSpace:"nowrap"}}>{h}</th>))}</tr></thead>
-                <tbody>{pagina.map((r,i)=>(
+                <thead><tr style={{borderBottom:`2px solid ${C.border}`}}>{["","Ts objetivo","Hor.","AUR pred.","AUR real","Error AUR","Sesgo AUR","Min pred.","Min real","Error Min"].map((h,i)=>(<th key={i} style={{textAlign:i>2?"center":"left",padding:"8px 10px",fontSize:10,color:C.muted,textTransform:"uppercase",fontWeight:700,whiteSpace:"nowrap"}}>{h}</th>))}</tr></thead>
+                <tbody>{pagina.map((r,i)=>{
+                  const errMins=r.mins_pred!=null&&r.mins_real!=null?+(Math.abs(r.mins_pred-r.mins_real)/r.mins_real*100).toFixed(1):null;
+                  return (
                   <tr key={i} style={{borderBottom:`1px solid ${C.gridLine}`,background:r.acierto?"transparent":C.redFade}}>
                     <td style={{padding:"8px 10px"}}>{r.acierto?"✅":"❌"}</td>
                     <td style={{padding:"8px 10px",fontFamily:"monospace",fontSize:11,color:C.muted,whiteSpace:"nowrap"}}>{r.ts_obj.toISOString().slice(0,16).replace("T"," ")}</td>
@@ -1178,8 +1437,11 @@ function ValidacionPanel({data,demoMode}) {
                     <td style={{padding:"8px 10px",textAlign:"center",fontWeight:700,fontFamily:"monospace",color:C.green}}>{r.aur_real}</td>
                     <td style={{padding:"8px 10px",textAlign:"center"}}><Badge color={colorErr(r.err_aur_pct)}>{r.err_aur_pct}%</Badge></td>
                     <td style={{padding:"8px 10px",textAlign:"center",fontFamily:"monospace",fontSize:11,color:r.sesgo>0.5?C.amber:r.sesgo<-0.5?C.blue:C.green,fontWeight:700}}>{r.sesgo>0?"+":""}{r.sesgo}</td>
+                    <td style={{padding:"8px 10px",textAlign:"center",fontFamily:"monospace",color:C.amber,fontWeight:700}}>{r.mins_pred!=null?Math.round(r.mins_pred):"—"}</td>
+                    <td style={{padding:"8px 10px",textAlign:"center",fontFamily:"monospace",fontWeight:700}}>{r.mins_real!=null?r.mins_real:"—"}</td>
+                    <td style={{padding:"8px 10px",textAlign:"center"}}>{errMins!=null?<Badge color={colorErr(errMins)}>{errMins}%</Badge>:<span style={{color:C.muted}}>—</span>}</td>
                   </tr>
-                ))}</tbody>
+                )})}</tbody>
               </table>
             </div>
           </div>
@@ -1201,7 +1463,7 @@ function ExportCSV({data}) {
     setTxt([hdr,...f.map(d=>[d.datetime.toISOString().slice(0,10),d.datetime.toISOString().slice(11,19),d.AUR,d.RN,d.TRC,d.TRH,d.minsReal,d.minsTeo].join(";"))].join("\n")); setN(f.length);
   };
   return (
-    <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"20px 24px",marginBottom:14}}>
+    <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"20px 24px",marginBottom:14}}>
       <div style={{fontSize:14,fontWeight:700,marginBottom:16}}>📤 Exportar CSV Filtrado</div>
       <div style={{display:"flex",gap:16,alignItems:"flex-end",marginBottom:16,flexWrap:"wrap"}}>
         <div><div style={{fontSize:11,color:C.muted,marginBottom:4}}>Desde</div><input type="date" value={desde} min={minDate} max={hasta} onChange={e=>setDesde(e.target.value)} style={{border:`1px solid ${C.border}`,borderRadius:6,padding:"6px 10px",fontSize:13}}/></div>
@@ -1322,6 +1584,538 @@ function generarInforme(data,pred,toxUmbral,incidencias,alertasDisparadas) {
   return `INFORME SICAIR 3.0 — SENSARA\nGenerado: ${ahora}\n${"═".repeat(40)}\nSCORE DE SALUD: ${s?.global??'—'}/100 — ${s?.estado??'—'}\nESTADO: AUR ${last?.AUR?.toFixed(2)??"—"} mg/L·h · TRC ${last?.TRC?.toFixed(1)??"—"} d · Sopl. ${last?.minsReal??"—"} min\nALERTAS:\n${alertStr}\nPREDICCIONES:\n  +1c: AUR ${p?.["1c"]?.aur_pred?.toFixed(2)??"—"} · ${p?.["1c"]?.mins_pred?.toFixed(0)??"—"} min · TRC ${p?.["1c"]?.trc_pred?.toFixed(1)??"—"} d\n  +3c: AUR ${p?.["3c"]?.aur_pred?.toFixed(2)??"—"} · ${p?.["3c"]?.mins_pred?.toFixed(0)??"—"} min · TRC ${p?.["3c"]?.trc_pred?.toFixed(1)??"—"} d\n  +6h: AUR ${p?.["6h"]?.aur_pred?.toFixed(2)??"—"} · ${p?.["6h"]?.mins_pred?.toFixed(0)??"—"} min · TRC ${p?.["6h"]?.trc_pred?.toFixed(1)??"—"} d\nAHORRO: ${ah.toLocaleString()} min · ${Math.abs(kwh).toLocaleString()} kWh · ${Math.abs(eur).toLocaleString()} €\nINCIDENCIAS:\n${incStr}\n${"═".repeat(40)}\nSENSARA · sensaratech.com · Logroño`;
 }
 
+
+function generarInformePDF(data, pred, historico, incidencias, periodo, diagHistorico=null) {
+  if (!data || !data.length) return;
+  const ahora = new Date();
+  let desde, label;
+  if (periodo==="dia")    { desde=new Date(ahora-86400000);           label="Último día"; }
+  else if (periodo==="semana") { desde=new Date(ahora-7*86400000);   label="Última semana"; }
+  else if (periodo==="mes")    { desde=new Date(ahora-30*86400000);  label="Último mes"; }
+  else                         { desde=new Date(ahora-365*86400000); label="Último año"; }
+  const df = data.filter(d => d.datetime >= desde);
+  if (!df.length) { alert("Sin datos para el período seleccionado."); return; }
+  const aurMed = +(df.reduce((s,d)=>s+d.AUR,0)/df.length).toFixed(2);
+  const minsMed = +(df.reduce((s,d)=>s+d.minsReal,0)/df.length).toFixed(0);
+  const trcMed = +(df.reduce((s,d)=>s+d.TRC,0)/df.length).toFixed(1);
+  const conF = df.filter(d=>d.minsFormula!=null);
+  const sobMin = conF.length ? +(conF.reduce((s,d)=>s+(d.minsReal-(d.minsFormula||0)),0)/conF.length).toFixed(0) : 0;
+  const ahMin = df.reduce((s,d)=>s+d.minsReal,0) - conF.reduce((s,d)=>s+(d.minsFormula||0),0);
+  const ahKwh = +(ahMin/60*7.5).toFixed(0);
+  const ahEur = +(ahKwh*0.15).toFixed(0);
+  const incP  = (incidencias||[]).filter(i=>new Date(i.fecha)>=desde);
+  const diagP = (diagHistorico||[]).filter(d=>d.eventos?.length>0&&new Date(d.ts)>=desde);
+  const p = pred?.predicciones;
+  const step = Math.max(1, Math.floor(df.length/80));
+  const dfR = df.filter((_,i)=>i%step===0);
+  const fmtLbl = d => {
+    const dt = d.datetime;
+    if (periodo==="dia") return dt.toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"});
+    if (periodo==="semana") return `${dt.getDate()}/${dt.getMonth()+1}`;
+    return `${dt.getDate()}/${dt.getMonth()+1}`;
+  };
+  function svgLinea(datos, color, titulo, unit) {
+    if (!datos.length) return "";
+    const W=680, H=130, PL=36, PR=12, PT=24, PB=28;
+    const vals = datos.map(d=>d.y), mx = Math.max(...vals)*1.15||1;
+    const xS = (i) => PL+(i/(datos.length-1||1))*(W-PL-PR);
+    const yS = (v) => PT+(1-v/mx)*(H-PT-PB);
+    const pts = datos.map((d,i)=>`${xS(i).toFixed(1)},${yS(d.y).toFixed(1)}`).join(" ");
+    const fill = `${PL},${H-PB} ${pts} ${xS(datos.length-1).toFixed(1)},${H-PB}`;
+    const step2 = Math.max(1,Math.floor(datos.length/6));
+    const xl = datos.filter((_,i)=>i%step2===0||i===datos.length-1).map((d,_,arr)=>{
+      const i=datos.indexOf(d), x=xS(i);
+      return `<text x="${x.toFixed(0)}" y="${H-6}" font-size="8" fill="#bbb" text-anchor="middle">${d.label}</text>`;
+    }).join("");
+    const yl = [0,0.5,1].map(f=>{
+      const v=(mx*f).toFixed(1), y=yS(mx*f);
+      return `<text x="${PL-4}" y="${y.toFixed(0)}" font-size="8" fill="#bbb" text-anchor="end" dominant-baseline="middle">${v}</text><line x1="${PL}" y1="${y.toFixed(0)}" x2="${W-PR}" y2="${y.toFixed(0)}" stroke="#f0f0f0" stroke-width="1"/>`;
+    }).join("");
+    return `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
+      <rect width="${W}" height="${H}" fill="#fafafa" rx="6"/>
+      ${yl}${xl}
+      <polygon points="${fill}" fill="${color}15"/>
+      <polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round"/>
+      <text x="${PL}" y="15" font-size="10" font-weight="600" fill="#333">${titulo}</text>
+      <text x="${W-PR}" y="15" font-size="9" fill="#aaa" text-anchor="end">${unit}</text>
+    </svg>`;
+  }
+  function svgDoble(real, formula) {
+    if (!real.length) return "";
+    const W=680, H=130, PL=36, PR=12, PT=24, PB=28;
+    const vals=[...real.map(d=>d.y),...formula.map(d=>d.y)], mx=Math.max(...vals)*1.15||1;
+    const xS=(i,len)=>PL+(i/(len-1||1))*(W-PL-PR), yS=(v)=>PT+(1-v/mx)*(H-PT-PB);
+    const pts1=real.map((d,i)=>`${xS(i,real.length).toFixed(1)},${yS(d.y).toFixed(1)}`).join(" ");
+    const pts2=formula.map((d,i)=>`${xS(i,formula.length).toFixed(1)},${yS(d.y).toFixed(1)}`).join(" ");
+    const step2=Math.max(1,Math.floor(real.length/6));
+    const xl=real.filter((_,i)=>i%step2===0).map(d=>{
+      const i=real.indexOf(d), x=xS(i,real.length);
+      return `<text x="${x.toFixed(0)}" y="${H-6}" font-size="8" fill="#bbb" text-anchor="middle">${d.label}</text>`;
+    }).join("");
+    return `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
+      <rect width="${W}" height="${H}" fill="#fafafa" rx="6"/>
+      ${xl}
+      <polyline points="${pts1}" fill="none" stroke="#c2410c" stroke-width="2"/>
+      <polyline points="${pts2}" fill="none" stroke="#2d7a27" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="${PL}" y="15" font-size="10" font-weight="600" fill="#333">Minutos soplante real vs SICAIR</text>
+      <circle cx="${W-130}" cy="12" r="4" fill="#c2410c"/>
+      <text x="${W-123}" y="16" font-size="9" fill="#555">Real</text>
+      <line x1="${W-90}" y1="12" x2="${W-76}" y2="12" stroke="#2d7a27" stroke-width="2" stroke-dasharray="4,2"/>
+      <text x="${W-72}" y="16" font-size="9" fill="#555">SICAIR</text>
+    </svg>`;
+  }
+  const dAUR  = dfR.map(d=>({y:d.AUR, label:fmtLbl(d)}));
+  const dReal = dfR.map(d=>({y:d.minsReal, label:fmtLbl(d)}));
+  const dForm = dfR.filter(d=>d.minsFormula!=null).map(d=>({y:d.minsFormula, label:fmtLbl(d)}));
+  const dTRC  = dfR.map(d=>({y:d.TRC, label:fmtLbl(d)}));
+  const svgAUR  = svgLinea(dAUR,  "#2d7a27", "AUR — Tasa de Nitrificación", "mg O₂/L·h");
+  const svgMins = svgDoble(dReal, dForm);
+  const svgTRC  = svgLinea(dTRC,  "#1d4ed8", "TRC — Tiempo de Retención de Fango", "días");
+  // Resumen diario para PDF
+  const crP = cruzarHistoricoConReal(historico||[], data);
+  const dRealPDF = {}, dPredPDF = {};
+  df.forEach(d => { const k=d.datetime.toISOString().slice(0,10); if(!dRealPDF[k])dRealPDF[k]=0; dRealPDF[k]+=d.minsReal; });
+  crP.filter(c=>c.ts>=desde).forEach(c => { const k=c.ts.toISOString().slice(0,10); if(!dPredPDF[k])dPredPDF[k]=0; dPredPDF[k]+=c.minsPred; });
+  const diasPDF = Object.keys(dRealPDF).sort().map(dia => {
+    const real=Math.round(dRealPDF[dia]), pred=dPredPDF[dia]?Math.round(dPredPDF[dia]):null;
+    const diff=pred?real-pred:null, pct=pred?+((diff/real)*100).toFixed(1):null;
+    const kwh=diff?+(diff/60*7.5).toFixed(0):null, eur=kwh?+(kwh*0.15).toFixed(0):null;
+    return {dia,real,pred,diff,pct,kwh,eur};
+  });
+  const totDiffPDF = diasPDF.filter(d=>d.diff!=null).reduce((s,d)=>s+(d.diff||0),0);
+
+  const existente = document.getElementById("sicair-pdf-frame");
+  if (existente) existente.remove();
+  const btnOld = document.getElementById("sicair-close-btn");
+  if (btnOld) btnOld.remove();
+  const iframe = document.createElement("iframe");
+  iframe.id = "sicair-pdf-frame";
+  iframe.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;border:none;background:#fff;";
+  document.body.appendChild(iframe);
+  const cerrar = document.createElement("button");
+  cerrar.id = "sicair-close-btn";
+  cerrar.textContent = "✕ Cerrar";
+  cerrar.style.cssText = "position:fixed;top:16px;right:16px;z-index:10000;background:#111;color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;";
+  cerrar.onclick = () => { iframe.remove(); cerrar.remove(); };
+  document.body.appendChild(cerrar);
+  const win = iframe.contentWindow;
+  win.document.open();
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"/>
+  <title>Informe SICAIR 3.0</title>
+  <style>
+    @page{margin:14mm;size:A4}*{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,sans-serif;font-size:11px;color:#111;padding:20px 24px}
+    h1{font-size:22px;font-weight:700;color:#2d7a27;margin-bottom:3px;letter-spacing:-0.5px}
+    .sub{font-size:11px;color:#888;margin-bottom:14px}
+    hr{border:none;border-top:1px solid #f0f0f0;margin:14px 0}
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+    .kpi{background:#fafafa;border-left:3px solid #2d7a27;padding:8px 12px;border-radius:6px}
+    .kpi.a{border-color:#c2410c}.kpi.b{border-color:#1d4ed8}
+    .kv{font-size:18px;font-weight:700;color:#111;margin:2px 0}
+    .kl{font-size:8px;color:#aaa;text-transform:uppercase;letter-spacing:.05em}
+    .ahorro{background:#f0fdf4;border:1px solid #4a9c3f;border-radius:8px;padding:10px 14px;margin:12px 0;display:flex;gap:20px;align-items:center}
+    .av{font-size:18px;font-weight:700;color:#2d7a27}
+    .st{font-size:10px;font-weight:700;color:#444;margin:14px 0 6px;text-transform:uppercase;letter-spacing:.05em}
+    .chart{margin:6px 0 12px}
+    .pred{display:flex;gap:10px;margin:8px 0}
+    .pc{flex:1;background:#fafafa;border-radius:8px;padding:8px;text-align:center}
+    .pv{font-size:15px;font-weight:700;color:#2d7a27}
+    .pm{font-size:11px;color:#c2410c;font-weight:600;margin-top:2px}
+    .inc{border-left:3px solid #c2410c;padding:5px 8px;margin:3px 0;background:#fff8f5;border-radius:0 4px 4px 0;font-size:10px}
+    .foot{font-size:9px;color:#ccc;margin-top:20px;padding-top:10px;border-top:1px solid #f0f0f0}
+    .pbtn{background:#2d7a27;color:#fff;border:none;padding:8px 20px;border-radius:8px;font-size:12px;cursor:pointer;margin:12px 0}
+    @media print{.pbtn{display:none}}
+  </style></head><body>
+  <h1>Informe SICAIR 3.0</h1>
+  <div class="sub">EDAR Martorell (Acciona) · ${label} · ${desde.toLocaleDateString("es-ES")} → ${ahora.toLocaleDateString("es-ES")} · ${df.length} ciclos</div>
+  <button class="pbtn" onclick="window.print()">🖨 Guardar como PDF</button>
+  <hr/>
+  <div class="st">KPIs del período</div>
+  <div class="kpis">
+    <div class="kpi"><div class="kl">AUR medio</div><div class="kv">${aurMed}</div><div class="kl">mg O₂/L·h</div></div>
+    <div class="kpi a"><div class="kl">Min. soplante</div><div class="kv">${minsMed}</div><div class="kl">min/ciclo</div></div>
+    <div class="kpi b"><div class="kl">TRC medio</div><div class="kv">${trcMed}</div><div class="kl">días</div></div>
+    <div class="kpi a"><div class="kl">Sobreaireo</div><div class="kv">${sobMin}</div><div class="kl">min/ciclo</div></div>
+  </div>
+  <div class="ahorro">
+    <div><div class="kl">Ahorro min</div><div class="av">${Math.abs(ahMin).toLocaleString()}</div></div>
+    <div><div class="kl">kWh</div><div class="av">${Math.abs(ahKwh).toLocaleString()}</div></div>
+    <div><div class="kl">Impacto €</div><div class="av">${Math.abs(ahEur).toLocaleString()} €</div></div>
+    <div style="flex:1;font-size:10px;color:#2d7a27">Estimación @0.15€/kWh · 7.5kW</div>
+  </div>
+  <hr/>
+  <div class="st">AUR — Evolución</div><div class="chart">${svgAUR}</div>
+  <div class="st">Minutos soplante — Real vs SICAIR</div><div class="chart">${svgMins}</div>
+  <div class="st">TRC — Tiempo de Retención de Fango</div><div class="chart">${svgTRC}</div>
+  <hr/>
+  ${diasPDF.length>0?`<div class="st">Resumen diario — Minutos Real vs SICAIR</div>
+  <table style="width:100%;border-collapse:collapse;font-size:10px;margin-bottom:12px">
+    <thead><tr style="background:#2d7a27;color:#fff">
+      <th style="padding:5px 8px;text-align:left">Fecha</th>
+      <th style="padding:5px 8px;text-align:right">Min Real</th>
+      <th style="padding:5px 8px;text-align:right">Min SICAIR</th>
+      <th style="padding:5px 8px;text-align:right">Diferencia</th>
+      <th style="padding:5px 8px;text-align:right">Ahorro %</th>
+      <th style="padding:5px 8px;text-align:right">kWh</th>
+      <th style="padding:5px 8px;text-align:right">€</th>
+    </tr></thead>
+    <tbody>
+      ${diasPDF.map((d,i)=>`<tr style="background:${i%2===0?"#fff":"#fafafa"};border-bottom:1px solid #f0f0f0">
+        <td style="padding:5px 8px;font-weight:600">${d.dia}</td>
+        <td style="padding:5px 8px;text-align:right;color:#c2410c;font-weight:700">${d.real.toLocaleString()}</td>
+        <td style="padding:5px 8px;text-align:right;color:#2d7a27;font-weight:700">${d.pred!=null?d.pred.toLocaleString():"—"}</td>
+        <td style="padding:5px 8px;text-align:right;color:${d.diff>0?"#c2410c":"#2d7a27"};font-weight:700">${d.diff!=null?(d.diff>0?"+":"")+d.diff.toLocaleString():"—"}</td>
+        <td style="padding:5px 8px;text-align:right;color:${d.pct>0?"#c2410c":"#2d7a27"}">${d.pct!=null?(d.pct>0?"+":"")+d.pct+"%":"—"}</td>
+        <td style="padding:5px 8px;text-align:right;color:#1d4ed8">${d.kwh!=null?Math.abs(d.kwh):"—"}</td>
+        <td style="padding:5px 8px;text-align:right">${d.eur!=null?Math.abs(d.eur)+" €":"—"}</td>
+      </tr>`).join("")}
+      <tr style="background:#f0fdf4;font-weight:700;border-top:2px solid #2d7a27">
+        <td style="padding:5px 8px">TOTAL</td>
+        <td style="padding:5px 8px;text-align:right;color:#c2410c">${diasPDF.reduce((s,d)=>s+d.real,0).toLocaleString()}</td>
+        <td style="padding:5px 8px;text-align:right;color:#2d7a27">${diasPDF.filter(d=>d.pred).reduce((s,d)=>s+(d.pred||0),0).toLocaleString()}</td>
+        <td style="padding:5px 8px;text-align:right;color:${totDiffPDF>0?"#c2410c":"#2d7a27"}">${totDiffPDF>0?"+":""}${totDiffPDF.toLocaleString()}</td>
+        <td style="padding:5px 8px;text-align:right"></td>
+        <td style="padding:5px 8px;text-align:right;color:#1d4ed8">${Math.abs(+(totDiffPDF/60*7.5).toFixed(0)).toLocaleString()}</td>
+        <td style="padding:5px 8px;text-align:right">${Math.abs(+(totDiffPDF/60*7.5*0.15).toFixed(0)).toLocaleString()} €</td>
+      </tr>
+    </tbody>
+  </table>`:""}
+  ${p?`<div class="st">Predicción actual</div><div class="pred">
+    ${["1c","3c","6h"].map(h=>`<div class="pc"><div class="kl">+${h}</div><div class="pv">${p[h]?.aur_pred?.toFixed(2)||"—"}</div><div class="kl">mg O₂/L·h</div><div class="pm">${p[h]?.mins_pred?.toFixed(0)||"—"} min</div></div>`).join("")}
+  </div><hr/>`:""}
+  <div class="st">Incidencias manuales (${incP.length})</div>
+  ${incP.length===0?'<div style="color:#aaa;font-size:10px">Sin incidencias manuales en el período.</div>':incP.slice(0,15).map(i=>`<div class="inc"><b>${i.fecha?.replace("T"," ")||""}</b> · ${i.tipo.toUpperCase()} · ${i.texto}</div>`).join("")}
+  ${diagP.length>0?`<div class="st" style="margin-top:14px">Diagnósticos automáticos SICAIR (${diagP.length})</div>
+  ${diagP.slice(0,20).map(d=>`<div class="inc" style="border-color:#1d4ed8;background:#eff6ff">
+    <b>${d.ts?.slice(0,16).replace("T"," ")||""}</b> · AUR ${d.aur} · TRC ${d.trc}d · ${d.mins_real}min<br/>
+    ${d.eventos?.map(e=>`${e.icono} ${e.texto}`).join(" · ")||""}
+  </div>`).join("")}`:""}
+  <div class="foot">SENSARA · sensaratech.com · Logroño, La Rioja · SICAIR 3.0 · ${ahora.toLocaleString("es-ES")}</div>
+  </body></html>`);
+  win.document.close();
+}
+
+
+function ModeloFisicoPanel({pred, data}) {
+  const minsPred1c = pred?.predicciones?.["1c"]?.mins_pred;
+  const minsReal   = data?.at(-1)?.minsReal;
+  const ciclo1c    = calcCiclo(minsPred1c);
+  const cicloReal  = calcCiclo(minsReal);
+
+  // Curva VSD para gráfica
+  const curvaData = VSD.escalones.map(e=>({hz:e.hz, kw:e.kw, q:e.q}));
+
+  // kWh por ciclo — VSD fase inicial + Fija fase final
+  const calcKwhCiclo = (mins) => {
+    if (!mins) return null;
+    const c = calcCiclo(mins);
+    const kwhVSD = VSD.escalones.reduce((s,e)=>s+(c.minsVSD*e.pct/60*e.kw),0);
+    const kwhFija = c.minsFija/60*VSD.kw_fija;
+    return { kwhVSD:+kwhVSD.toFixed(2), kwhFija:+kwhFija.toFixed(2), total:+(kwhVSD+kwhFija).toFixed(2) };
+  };
+
+  const kwh1c   = calcKwhCiclo(minsPred1c);
+  const kwhReal = calcKwhCiclo(minsReal);
+
+  return (
+    <div style={{marginBottom:14}}>
+      {/* Banner estrategia */}
+      <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,padding:"16px 24px",marginBottom:14,boxShadow:"0 1px 3px rgba(0,0,0,0.05)"}}>
+        <div style={{fontSize:14,fontWeight:700,marginBottom:12}}>⚡ Estrategia de Soplantes — EDAR Martorell</div>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:12,marginBottom:12}}>
+          <div style={{background:"#eff6ff",border:"1px solid #1d4ed8",borderRadius:10,padding:"12px 16px",textAlign:"center"}}>
+            <div style={{fontSize:10,color:C.muted,marginBottom:4}}>FASE INICIAL (50%)</div>
+            <div style={{fontSize:16,fontWeight:700,color:C.blue}}>Fija activa</div>
+            <div style={{fontSize:11,color:C.muted}}>{VSD.kw_fija} kW constante</div>
+          </div>
+          <div style={{background:"#f0fdf4",border:"1px solid #4a9c3f",borderRadius:10,padding:"12px 16px",textAlign:"center"}}>
+            <div style={{fontSize:10,color:C.muted,marginBottom:4}}>FASE FINAL (50%)</div>
+            <div style={{fontSize:16,fontWeight:700,color:C.green}}>VSD activa</div>
+            <div style={{fontSize:11,color:C.muted}}>Hz variable · 3 tramos</div>
+          </div>
+          <div style={{background:"#fafafa",border:"1px solid #f0f0f0",borderRadius:10,padding:"12px 16px",textAlign:"center"}}>
+            <div style={{fontSize:10,color:C.muted,marginBottom:4}}>ROTACIÓN</div>
+            <div style={{fontSize:16,fontWeight:700,color:C.purple}}>Par A / Par B</div>
+            <div style={{fontSize:11,color:C.muted}}>S1+S4 ↔ S2+S5 (cada ciclo)</div>
+          </div>
+        </div>
+        <div style={{background:"#fafafa",borderRadius:8,padding:"8px 14px",fontSize:11,color:C.muted,display:"flex",gap:20}}>
+          <span>⚠️ Mínimo por fase: <b style={{color:C.text}}>{VSD.min_fase} min</b></span>
+          <span>🔧 5ª soplante de refuerzo disponible</span>
+          <span>🔄 Rotación automática cada ciclo</span>
+        </div>
+      </div>
+
+      {/* Comparativa predicción vs real */}
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14,marginBottom:14}}>
+        {[
+          {label:"SICAIR +1c (predicción)", mins:minsPred1c, ciclo:ciclo1c, kwh:kwh1c, color:C.green},
+          {label:"Último ciclo real",        mins:minsReal,   ciclo:cicloReal, kwh:kwhReal, color:C.amber},
+        ].map(({label,mins,ciclo,kwh,color})=>(
+          <div key={label} style={{background:"#fff",border:`1px solid ${color}33`,borderRadius:16,padding:"16px 20px",boxShadow:"0 1px 3px rgba(0,0,0,0.05)"}}>
+            <div style={{fontSize:12,fontWeight:700,color,marginBottom:12}}>{label}</div>
+            {mins ? (<>
+              {/* Línea de tiempo del ciclo */}
+              <div style={{marginBottom:12}}>
+                <div style={{display:"flex",height:32,borderRadius:8,overflow:"hidden",marginBottom:6}}>
+                  <div style={{width:`${ciclo.minsFija/ciclo.minsTotal*100}%`,background:C.blue,display:"flex",alignItems:"center",justifyContent:"center"}}>
+                    <span style={{fontSize:10,color:"#fff",fontWeight:700}}>Fija {ciclo.minsFija}min</span>
+                  </div>
+                  <div style={{width:`${ciclo.minsVSD/ciclo.minsTotal*100}%`,background:C.green,display:"flex",alignItems:"center",justifyContent:"center"}}>
+                    <span style={{fontSize:10,color:"#fff",fontWeight:700}}>VSD {ciclo.minsVSD}min</span>
+                  </div>
+                </div>
+                <div style={{display:"flex",justifyContent:"space-between",fontSize:10,color:C.muted}}>
+                  <span>0 min</span><span>Total: <b style={{color:C.text}}>{ciclo.minsTotal} min</b></span>
+                </div>
+              </div>
+
+              {/* Desglose VSD por Hz */}
+              <div style={{marginBottom:10}}>
+                <div style={{fontSize:10,fontWeight:600,color:C.muted,marginBottom:6}}>Fase VSD — {ciclo.minsVSD} min:</div>
+                {VSD.escalones.map(e=>{
+                  const mHz = +(ciclo.minsVSD*e.pct).toFixed(1);
+                  const kwhHz = +(mHz/60*e.kw).toFixed(2);
+                  return (
+                    <div key={e.hz} style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
+                      <div style={{width:40,textAlign:"center",background:e.hz===65?"#fef3c7":e.hz===50?"#dbeafe":"#f0fdf4",borderRadius:5,padding:"2px 0",fontSize:10,fontWeight:700,color:e.hz===65?C.amber:e.hz===50?C.blue:C.green,flexShrink:0}}>{e.hz}Hz</div>
+                      <div style={{flex:1,height:5,background:"#f0f0f0",borderRadius:3,overflow:"hidden"}}>
+                        <div style={{width:`${e.pct*100}%`,height:"100%",background:e.hz===65?C.amber:e.hz===50?C.blue:C.green,borderRadius:3}}/>
+                      </div>
+                      <div style={{fontSize:10,color:C.muted,minWidth:110,textAlign:"right"}}><b style={{color:C.text}}>{mHz}min</b> · {e.kw}kW · <b style={{color:C.amber}}>{kwhHz}kWh</b></div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Fase fija */}
+              <div style={{background:"#eff6ff",borderRadius:8,padding:"8px 12px",marginBottom:10,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                <span style={{fontSize:10,color:C.blue,fontWeight:600}}>Fase Fija ({VSD.kw_fija}kW)</span>
+                <span style={{fontSize:10,color:C.muted}}><b style={{color:C.text}}>{ciclo.minsFija} min</b> · <b style={{color:C.amber}}>{kwh?.kwhFija} kWh</b></span>
+              </div>
+
+              {/* Total kWh */}
+              <div style={{background:"#fafafa",borderRadius:8,padding:"8px 12px",display:"flex",justifyContent:"space-between"}}>
+                <span style={{fontSize:11,fontWeight:600,color:"#333"}}>Total ciclo</span>
+                <div style={{textAlign:"right"}}>
+                  <div style={{fontSize:16,fontWeight:700,color:C.amber}}>{kwh?.total} kWh</div>
+                  <div style={{fontSize:9,color:C.muted}}>{kwh?.kwhVSD}kWh VSD + {kwh?.kwhFija}kWh Fija</div>
+                </div>
+              </div>
+            </>) : <div style={{color:C.muted,fontSize:12}}>Sin datos</div>}
+          </div>
+        ))}
+      </div>
+
+      {/* Curvas soplantes */}
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
+        {/* Curva S4 VSD-A */}
+        <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,padding:"16px 20px",boxShadow:"0 1px 3px rgba(0,0,0,0.05)"}}>
+          <div style={{fontSize:12,fontWeight:700,color:C.green,marginBottom:2}}>S4 VSD-A — ZS4 45kW</div>
+          <div style={{fontSize:10,color:C.muted,marginBottom:10}}>Par A · 93%/71%/57% de 71.15Hz · {VSD.s4.escalones.map(e=>`${e.hz.toFixed(1)}Hz`).join(" · ")}</div>
+          <ResponsiveContainer width="100%" height={140}>
+            <ComposedChart data={VSD.s4.escalones.map(e=>({hz:e.hz,kw:e.kw,q:e.q}))} margin={{top:4,right:36,bottom:4,left:0}}>
+              <CartesianGrid strokeDasharray="3 3" stroke={C.gridLine}/>
+              <XAxis dataKey="hz" tick={{fontSize:9,fill:C.muted}} unit="Hz"/>
+              <YAxis yAxisId="kw" domain={[0,55]} tick={{fontSize:9,fill:C.muted}} unit="kW"/>
+              <YAxis yAxisId="q" orientation="right" domain={[0,3200]} tick={{fontSize:9,fill:C.muted}} unit="m³/h"/>
+              <Tooltip content={<CT/>}/>
+              <Line yAxisId="kw" dataKey="kw" stroke={C.green} strokeWidth={2} dot={{r:5,fill:C.green,stroke:"#fff",strokeWidth:2}} name="kW" connectNulls/>
+              <Line yAxisId="q" dataKey="q" stroke={C.blue} strokeWidth={2} strokeDasharray="5 3" dot={{r:4,fill:C.blue,stroke:"#fff",strokeWidth:2}} name="m³/h" connectNulls/>
+            </ComposedChart>
+          </ResponsiveContainer>
+          <div style={{marginTop:8,display:"flex",gap:6}}>
+            {VSD.s4.escalones.map(e=>(
+              <div key={e.hz} style={{flex:1,textAlign:"center",background:"#f0fdf4",borderRadius:8,padding:"5px 3px"}}>
+                <div style={{fontSize:9,color:C.muted,fontWeight:600}}>{e.hz} Hz</div>
+                <div style={{fontSize:11,fontWeight:700,color:C.green}}>{e.kw} kW</div>
+                <div style={{fontSize:9,color:C.muted}}>{e.q} m³/h</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* Curva S5 VSD-B */}
+        <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,padding:"16px 20px",boxShadow:"0 1px 3px rgba(0,0,0,0.05)"}}>
+          <div style={{fontSize:12,fontWeight:700,color:C.purple,marginBottom:2}}>S5 VSD-B — ZS55+ (134Hz máx)</div>
+          <div style={{fontSize:10,color:C.muted,marginBottom:10}}>Par B · 75%/60%/45% de 134Hz · {VSD.s5.escalones.map(e=>`${e.hz}Hz`).join(" · ")}</div>
+          <ResponsiveContainer width="100%" height={140}>
+            <ComposedChart data={VSD.s5.escalones.map(e=>({hz:e.hz,kw:e.kw,q:e.q}))} margin={{top:4,right:36,bottom:4,left:0}}>
+              <CartesianGrid strokeDasharray="3 3" stroke={C.gridLine}/>
+              <XAxis dataKey="hz" tick={{fontSize:9,fill:C.muted}} unit="Hz" tickFormatter={v=>v.toFixed(0)}/>
+              <YAxis yAxisId="kw" domain={[0,55]} tick={{fontSize:9,fill:C.muted}} unit="kW"/>
+              <YAxis yAxisId="q" orientation="right" domain={[0,2000]} tick={{fontSize:9,fill:C.muted}} unit="m³/h"/>
+              <Tooltip content={<CT/>}/>
+              <Line yAxisId="kw" dataKey="kw" stroke={C.purple} strokeWidth={2} dot={{r:5,fill:C.purple,stroke:"#fff",strokeWidth:2}} name="kW" connectNulls/>
+              <Line yAxisId="q" dataKey="q" stroke={C.amber} strokeWidth={2} strokeDasharray="5 3" dot={{r:4,fill:C.amber,stroke:"#fff",strokeWidth:2}} name="m³/h" connectNulls/>
+            </ComposedChart>
+          </ResponsiveContainer>
+          <div style={{marginTop:8,display:"flex",gap:6}}>
+            {VSD.s5.escalones.map(e=>(
+              <div key={e.hz} style={{flex:1,textAlign:"center",background:"#faf5ff",borderRadius:8,padding:"5px 3px"}}>
+                <div style={{fontSize:9,color:C.muted,fontWeight:600}}>{e.hz.toFixed(0)}Hz</div>
+                <div style={{fontSize:11,fontWeight:700,color:C.purple}}>{e.kw} kW</div>
+                <div style={{fontSize:9,color:C.muted}}>{e.q} m³/h</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Soplantes Fijas */}
+        <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,padding:"16px 20px",boxShadow:"0 1px 3px rgba(0,0,0,0.05)"}}>
+          <div style={{fontSize:12,fontWeight:700,color:C.blue,marginBottom:4}}>Soplantes 1, 2 y 3 — Fijas ZS4 75kW</div>
+          <div style={{fontSize:10,color:C.muted,marginBottom:10}}>Fase final · arranque directo a red 50Hz · sin variador</div>
+          <div style={{display:"flex",flexDirection:"column",gap:10,marginBottom:12}}>
+            {[
+              {nombre:"Soplante 1", rol:"Fase inicial — Par A (con Soplante 4)", color:C.blue},
+              {nombre:"Soplante 2", rol:"Fase inicial — Par B (con Soplante 5)", color:C.blue},
+              {nombre:"Soplante 3", rol:"Refuerzo / Avería", color:C.muted},
+            ].map(s=>(
+              <div key={s.nombre} style={{background:"#fafafa",borderRadius:10,padding:"10px 14px",display:"flex",alignItems:"center",gap:12,border:`1px solid ${s.color}22`}}>
+                <div style={{width:36,height:36,borderRadius:8,background:s.color+"15",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+                  <span style={{fontSize:16}}>💨</span>
+                </div>
+                <div style={{flex:1}}>
+                  <div style={{fontSize:12,fontWeight:600,color:"#333"}}>{s.nombre}</div>
+                  <div style={{fontSize:10,color:C.muted}}>{s.rol}</div>
+                </div>
+                <div style={{textAlign:"right"}}>
+                  <div style={{fontSize:14,fontWeight:700,color:s.color}}>{VSD.kw_fija} kW</div>
+                  <div style={{fontSize:10,color:C.muted}}>{VSD.q_fija} m³/h</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div style={{background:"#eff6ff",borderRadius:8,padding:"10px 14px",fontSize:10,color:C.blue}}>
+            <b>Punto de operación único:</b> 50 Hz (red) · {VSD.kw_fija} kW · {VSD.q_fija} m³/h<br/>
+            <span style={{color:C.muted}}>Sin regulación de velocidad — ON/OFF directo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+function ResumenDiarioPanel({data, historico, demoMode}) {
+  if (!data || !data.length) return null;
+
+  // Cruzar datos reales con predicciones históricas
+  const cruces = demoMode ? cruzarDemoDirecto(historico) : cruzarHistoricoConReal(historico, data);
+
+  // Agrupar por día
+  const diasReal = {};
+  data.forEach(d => {
+    const dia = d.datetime.toISOString().slice(0,10);
+    if (!diasReal[dia]) diasReal[dia] = {real:0, n:0};
+    diasReal[dia].real += d.minsReal;
+    diasReal[dia].n++;
+  });
+
+  const diasPred = {};
+  cruces.forEach(c => {
+    const dia = c.ts.toISOString().slice(0,10);
+    if (!diasPred[dia]) diasPred[dia] = {pred:0, n:0};
+    diasPred[dia].pred += c.minsPred;
+    diasPred[dia].n++;
+  });
+
+  // Combinar
+  const dias = Object.keys(diasReal).sort().slice(-14).map(dia => {
+    const r = diasReal[dia] || {real:0,n:0};
+    const p = diasPred[dia] || {pred:null,n:0};
+    const diff = p.pred ? r.real - p.pred : null;
+    const pct  = p.pred ? +((diff/r.real)*100).toFixed(1) : null;
+    const kwh  = diff ? +(diff/60*7.5).toFixed(0) : null;
+    const eur  = kwh ? +(kwh*0.15).toFixed(0) : null;
+    return { dia, real: Math.round(r.real), pred: p.pred ? Math.round(p.pred) : null, diff, pct, kwh, eur, nReal:r.n, nPred:p.n };
+  });
+
+  const totReal = dias.reduce((s,d)=>s+d.real,0);
+  const totPred = dias.filter(d=>d.pred).reduce((s,d)=>s+(d.pred||0),0);
+  const totDiff = totReal - totPred;
+  const totKwh  = +(totDiff/60*7.5).toFixed(0);
+  const totEur  = +(totKwh*0.15).toFixed(0);
+
+  const colorDiff = v => v==null?C.muted:v>0?C.amber:C.green;
+
+  return (
+    <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,padding:"20px 24px",marginBottom:14,boxShadow:"0 1px 3px rgba(0,0,0,0.05)"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16,flexWrap:"wrap",gap:8}}>
+        <div>
+          <div style={{fontSize:14,fontWeight:700}}>📅 Resumen Diario — Minutos Reales vs SICAIR</div>
+          <div style={{fontSize:11,color:C.muted,marginTop:2}}>Últimos 14 días · {cruces.length} ciclos con predicción</div>
+        </div>
+        {totPred>0&&<div style={{display:"flex",gap:16,flexWrap:"wrap"}}>
+          {[
+            {lbl:"Total real",  val:`${totReal.toLocaleString()} min`, color:C.amber},
+            {lbl:"Total SICAIR",val:`${totPred.toLocaleString()} min`, color:C.green},
+            {lbl:"Diferencia",  val:`${totDiff>0?"+":""}${totDiff.toLocaleString()} min`, color:colorDiff(totDiff)},
+            {lbl:"kWh",         val:`${Math.abs(totKwh).toLocaleString()}`, color:C.blue},
+            {lbl:"€",           val:`${Math.abs(totEur).toLocaleString()} €`, color:colorDiff(totDiff)},
+          ].map(({lbl,val,color})=>(
+            <div key={lbl} style={{textAlign:"center"}}>
+              <div style={{fontSize:9,color:C.muted,textTransform:"uppercase"}}>{lbl}</div>
+              <div style={{fontSize:16,fontWeight:700,color}}>{val}</div>
+            </div>
+          ))}
+        </div>}
+      </div>
+
+      {/* Gráfica barras diarias */}
+      <ResponsiveContainer width="100%" height={180}>
+        <BarChart data={dias} margin={{top:4,right:8,bottom:4,left:0}}>
+          <CartesianGrid strokeDasharray="3 3" stroke={C.gridLine}/>
+          <XAxis dataKey="dia" tick={{fontSize:9,fill:C.muted}} tickFormatter={v=>v.slice(5)}/>
+          <YAxis tick={{fontSize:9,fill:C.muted}} unit=" min"/>
+          <Tooltip content={<CT/>}/><Legend wrapperStyle={{fontSize:10}}/>
+          <Bar dataKey="real" name="Real" fill={C.amber} radius={[3,3,0,0]} opacity={0.85}/>
+          <Bar dataKey="pred" name="SICAIR" fill={C.green} radius={[3,3,0,0]} opacity={0.85}/>
+        </BarChart>
+      </ResponsiveContainer>
+
+      {/* Tabla detalle */}
+      <div style={{overflowX:"auto",marginTop:12}}>
+        <table style={{width:"100%",borderCollapse:"collapse",fontSize:11}}>
+          <thead>
+            <tr style={{borderBottom:`2px solid ${C.border}`}}>
+              {["Fecha","Ciclos","Min Real","Min SICAIR","Diferencia","Ahorro %","kWh","€"].map(h=>(
+                <th key={h} style={{padding:"8px 10px",fontSize:10,color:C.muted,textTransform:"uppercase",fontWeight:700,textAlign:"right",whiteSpace:"nowrap"}}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {dias.map((d,i)=>(
+              <tr key={d.dia} style={{borderBottom:`1px solid ${C.gridLine}`,background:i%2===0?"#fff":"#fafafa"}}>
+                <td style={{padding:"8px 10px",fontWeight:600,color:C.text,whiteSpace:"nowrap"}}>{d.dia}</td>
+                <td style={{padding:"8px 10px",textAlign:"right",color:C.muted}}>{d.nReal}</td>
+                <td style={{padding:"8px 10px",textAlign:"right",fontWeight:700,color:C.amber,fontFamily:"monospace"}}>{d.real.toLocaleString()}</td>
+                <td style={{padding:"8px 10px",textAlign:"right",fontWeight:700,color:C.green,fontFamily:"monospace"}}>{d.pred?.toLocaleString()||"—"}</td>
+                <td style={{padding:"8px 10px",textAlign:"right",fontFamily:"monospace",fontWeight:700,color:colorDiff(d.diff)}}>{d.diff!=null?(d.diff>0?"+":"")+d.diff.toLocaleString():"—"}</td>
+                <td style={{padding:"8px 10px",textAlign:"right"}}>{d.pct!=null?<Badge color={colorDiff(d.diff)}>{d.pct>0?"+":""}{d.pct}%</Badge>:"—"}</td>
+                <td style={{padding:"8px 10px",textAlign:"right",color:C.blue,fontFamily:"monospace"}}>{d.kwh!=null?Math.abs(d.kwh):"—"}</td>
+                <td style={{padding:"8px 10px",textAlign:"right",fontFamily:"monospace",color:colorDiff(d.diff)}}>{d.eur!=null?Math.abs(d.eur)+" €":"—"}</td>
+              </tr>
+            ))}
+            {totPred>0&&(
+              <tr style={{borderTop:`2px solid ${C.border}`,background:"#f9f9f9",fontWeight:700}}>
+                <td style={{padding:"8px 10px",color:C.text}}>TOTAL</td>
+                <td style={{padding:"8px 10px",textAlign:"right",color:C.muted}}>{dias.reduce((s,d)=>s+d.nReal,0)}</td>
+                <td style={{padding:"8px 10px",textAlign:"right",color:C.amber,fontFamily:"monospace"}}>{totReal.toLocaleString()}</td>
+                <td style={{padding:"8px 10px",textAlign:"right",color:C.green,fontFamily:"monospace"}}>{totPred.toLocaleString()}</td>
+                <td style={{padding:"8px 10px",textAlign:"right",fontFamily:"monospace",color:colorDiff(totDiff)}}>{totDiff>0?"+":""}{totDiff.toLocaleString()}</td>
+                <td style={{padding:"8px 10px",textAlign:"right"}}><Badge color={colorDiff(totDiff)}>{totDiff>0?"+":""}{+((totDiff/totReal)*100).toFixed(1)}%</Badge></td>
+                <td style={{padding:"8px 10px",textAlign:"right",color:C.blue,fontFamily:"monospace"}}>{Math.abs(totKwh).toLocaleString()}</td>
+                <td style={{padding:"8px 10px",textAlign:"right",fontFamily:"monospace",color:colorDiff(totDiff)}}>{Math.abs(totEur).toLocaleString()} €</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+      {!cruces.length&&<div style={{background:C.amberFade,border:`1px solid ${C.amber}44`,borderRadius:8,padding:"12px 16px",fontSize:12,color:C.amber,marginTop:8}}>⏳ Acumulando ciclos de validación — disponible con más datos.</div>}
+    </div>
+  );
+}
+
 function InformeModal({texto,onClose}) {
   const imprimir = () => {
     const win=window.open("","_blank","width=900,height=1000"); if(!win)return;
@@ -1345,6 +2139,188 @@ function InformeModal({texto,onClose}) {
   );
 }
 
+// ── GitHub URLs ───────────────────────────────────────────────────
+const GITHUB_RAW = 'https://raw.githubusercontent.com/jmochoa74/sicair-martorell/main';
+function githubUrl(file) { return `${GITHUB_RAW}/${file}?t=${Date.now()}`; }
+
+
+// ── Calidad Efluente Panel ────────────────────────────────────────
+const NH4_LIM = [{max:5,color:"#4a9c3f",label:"Correcto"},{max:10,color:"#f9a825",label:"Aviso"},{max:20,color:"#e65100",label:"Alto"},{max:999,color:"#c62828",label:"Crítico"}];
+const NO3_LIM = [{max:10,color:"#4a9c3f",label:"Correcto"},{max:25,color:"#f9a825",label:"Aviso"},{max:50,color:"#e65100",label:"Alto"},{max:999,color:"#c62828",label:"Crítico"}];
+const colLim = (v,L) => (L.find(l=>v<=l.max)||L.at(-1)).color;
+const lblLim = (v,L) => (L.find(l=>v<=l.max)||L.at(-1)).label;
+
+function CalidadEfluentePanel({calidad, setCalidad, data}) {
+  const [fecha, setFecha] = useState(new Date().toISOString().slice(0,10));
+  const [nh4, setNh4] = useState("");
+  const [no3, setNo3] = useState("");
+  const [nota, setNota] = useState("");
+  const [vista, setVista] = useState("tabla");
+
+  const agregar = () => {
+    const n4=parseFloat(nh4), n3=parseFloat(no3);
+    if (isNaN(n4)||isNaN(n3)) return;
+    setCalidad([{id:Date.now(),fecha,nh4:n4,no3:n3,nota:nota.trim()},...calidad]);
+    setNh4(""); setNo3(""); setNota("");
+  };
+
+  const ult = calidad[0];
+
+  return (
+    <div style={{marginBottom:14}}>
+      {ult && (
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:14}}>
+          <div style={{background:C.panel,border:`2px solid ${colLim(ult.nh4,NH4_LIM)}`,borderRadius:10,padding:"16px 20px",textAlign:"center"}}>
+            <div style={{fontSize:11,color:C.muted,marginBottom:4}}>NH₄ efluente — último análisis</div>
+            <div style={{fontSize:36,fontWeight:900,color:colLim(ult.nh4,NH4_LIM),fontFamily:"monospace"}}>{ult.nh4?.toFixed(1)}</div>
+            <div style={{fontSize:11,color:C.muted,marginBottom:6}}>mg/L · {ult.fecha}</div>
+            <Badge color={colLim(ult.nh4,NH4_LIM)}>{lblLim(ult.nh4,NH4_LIM)}</Badge>
+          </div>
+          <div style={{background:C.panel,border:`2px solid ${colLim(ult.no3,NO3_LIM)}`,borderRadius:10,padding:"16px 20px",textAlign:"center"}}>
+            <div style={{fontSize:11,color:C.muted,marginBottom:4}}>NO₃ efluente — último análisis</div>
+            <div style={{fontSize:36,fontWeight:900,color:colLim(ult.no3,NO3_LIM),fontFamily:"monospace"}}>{ult.no3?.toFixed(1)}</div>
+            <div style={{fontSize:11,color:C.muted,marginBottom:6}}>mg/L · {ult.fecha}</div>
+            <Badge color={colLim(ult.no3,NO3_LIM)}>{lblLim(ult.no3,NO3_LIM)}</Badge>
+          </div>
+        </div>
+      )}
+
+      <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"20px 24px",marginBottom:14}}>
+        <div style={{fontSize:14,fontWeight:700,marginBottom:16}}>🧪 Registrar análisis de laboratorio</div>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 2fr",gap:12,marginBottom:12}}>
+          <div>
+            <div style={{fontSize:11,color:C.muted,marginBottom:4}}>Fecha muestra</div>
+            <input type="date" value={fecha} onChange={e=>setFecha(e.target.value)} style={{width:"100%",border:`1px solid ${C.border}`,borderRadius:6,padding:"6px 10px",fontSize:13,boxSizing:"border-box"}}/>
+          </div>
+          <div>
+            <div style={{fontSize:11,color:C.muted,marginBottom:4}}>NH₄ (mg/L)</div>
+            <input type="number" value={nh4} onChange={e=>setNh4(e.target.value)} placeholder="ej. 2.5" step="0.1"
+              style={{width:"100%",border:`2px solid ${nh4?colLim(parseFloat(nh4),NH4_LIM):C.border}`,borderRadius:6,padding:"6px 10px",fontSize:13,boxSizing:"border-box"}}/>
+          </div>
+          <div>
+            <div style={{fontSize:11,color:C.muted,marginBottom:4}}>NO₃ (mg/L)</div>
+            <input type="number" value={no3} onChange={e=>setNo3(e.target.value)} placeholder="ej. 8.0" step="0.1"
+              style={{width:"100%",border:`2px solid ${no3?colLim(parseFloat(no3),NO3_LIM):C.border}`,borderRadius:6,padding:"6px 10px",fontSize:13,boxSizing:"border-box"}}/>
+          </div>
+          <div>
+            <div style={{fontSize:11,color:C.muted,marginBottom:4}}>Nota (opcional)</div>
+            <input type="text" value={nota} onChange={e=>setNota(e.target.value)} placeholder="Observaciones..."
+              style={{width:"100%",border:`1px solid ${C.border}`,borderRadius:6,padding:"6px 10px",fontSize:13,boxSizing:"border-box"}}/>
+          </div>
+        </div>
+        <div style={{display:"flex",gap:12,alignItems:"center"}}>
+          <button onClick={agregar} disabled={!nh4||!no3}
+            style={{background:nh4&&no3?C.green:C.gridLine,color:"#fff",border:"none",borderRadius:8,padding:"8px 20px",fontSize:13,fontWeight:700,cursor:nh4&&no3?"pointer":"default"}}>
+            ✅ Guardar análisis
+          </button>
+          <div style={{fontSize:11,color:C.muted}}>Límites NH₄: &lt;5✅ &lt;10⚠️ &gt;10🔴 · NO₃: &lt;10✅ &lt;25⚠️ &gt;25🔴</div>
+        </div>
+      </div>
+
+      {calidad.length > 0 && (
+        <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"18px 20px"}}>
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
+            <div style={{fontSize:13,fontWeight:700}}>📊 Histórico calidad efluente ({calidad.length} análisis)</div>
+            <div style={{display:"flex",gap:6}}>
+              <button onClick={()=>setVista("tabla")} style={{background:vista==="tabla"?C.green:"#fff",color:vista==="tabla"?"#fff":C.muted,border:`1px solid ${C.border}`,borderRadius:6,padding:"4px 12px",fontSize:11,fontWeight:700,cursor:"pointer"}}>📋 Tabla</button>
+              <button onClick={()=>setVista("grafico")} style={{background:vista==="grafico"?C.green:"#fff",color:vista==="grafico"?"#fff":C.muted,border:`1px solid ${C.border}`,borderRadius:6,padding:"4px 12px",fontSize:11,fontWeight:700,cursor:"pointer"}}>📈 Gráfico</button>
+            </div>
+          </div>
+          {vista==="tabla" && (
+            <table style={{width:"100%",borderCollapse:"collapse",fontSize:12}}>
+              <thead><tr style={{borderBottom:`2px solid ${C.border}`}}>
+                {["Fecha","NH₄ (mg/L)","Estado","NO₃ (mg/L)","Estado","Nota",""].map((h,i)=>(
+                  <th key={i} style={{padding:"8px 10px",fontSize:10,color:C.muted,textTransform:"uppercase",fontWeight:700,textAlign:"left"}}>{h}</th>
+                ))}
+              </tr></thead>
+              <tbody>{calidad.map(r=>(
+                <tr key={r.id} style={{borderBottom:`1px solid ${C.gridLine}`}}>
+                  <td style={{padding:"8px 10px",fontFamily:"monospace",fontSize:11}}>{r.fecha}</td>
+                  <td style={{padding:"8px 10px",fontWeight:800,color:colLim(r.nh4,NH4_LIM),fontFamily:"monospace"}}>{r.nh4?.toFixed(1)}</td>
+                  <td style={{padding:"8px 10px"}}><Badge color={colLim(r.nh4,NH4_LIM)}>{lblLim(r.nh4,NH4_LIM)}</Badge></td>
+                  <td style={{padding:"8px 10px",fontWeight:800,color:colLim(r.no3,NO3_LIM),fontFamily:"monospace"}}>{r.no3?.toFixed(1)}</td>
+                  <td style={{padding:"8px 10px"}}><Badge color={colLim(r.no3,NO3_LIM)}>{lblLim(r.no3,NO3_LIM)}</Badge></td>
+                  <td style={{padding:"8px 10px",fontSize:11,color:C.muted}}>{r.nota}</td>
+                  <td style={{padding:"8px 10px"}}><button onClick={()=>setCalidad(calidad.filter(x=>x.id!==r.id))} style={{background:"none",border:"none",color:C.muted,cursor:"pointer",fontSize:14}}>✕</button></td>
+                </tr>
+              ))}</tbody>
+            </table>
+          )}
+          {vista==="grafico" && (
+            <ResponsiveContainer width="100%" height={220}>
+              <ComposedChart data={[...calidad].reverse().map(r=>({fecha:r.fecha,nh4:r.nh4,no3:r.no3}))} margin={{top:4,right:8,bottom:4,left:0}}>
+                <CartesianGrid strokeDasharray="3 3" stroke={C.gridLine}/>
+                <XAxis dataKey="fecha" tick={{fontSize:9,fill:C.muted}} angle={-20} textAnchor="end" height={36}/>
+                <YAxis yAxisId="nh4" tick={{fontSize:9,fill:C.muted}}/>
+                <YAxis yAxisId="no3" orientation="right" tick={{fontSize:9,fill:C.muted}}/>
+                <Tooltip content={<CT/>}/><Legend wrapperStyle={{fontSize:11}}/>
+                <Line yAxisId="nh4" dataKey="nh4" stroke={C.green} strokeWidth={2} dot={{r:5,fill:C.green}} name="NH₄ mg/L" connectNulls/>
+                <Line yAxisId="no3" dataKey="no3" stroke={C.blue} strokeWidth={2} dot={{r:5,fill:C.blue}} name="NO₃ mg/L" connectNulls/>
+              </ComposedChart>
+            </ResponsiveContainer>
+          )}
+        </div>
+      )}
+
+      {/* Comparativa laboratorio vs minutos SICAIR */}
+      {calidad.length > 0 && (
+        <div style={{background:C.panel,border:`1px solid ${C.border}`,borderRadius:10,padding:"18px 20px",marginTop:14}}>
+          <div style={{fontSize:13,fontWeight:700,marginBottom:14}}>📊 Comparativa calidad vs minutos aireación</div>
+          <div style={{overflowX:"auto"}}>
+            <table style={{width:"100%",borderCollapse:"collapse",fontSize:12}}>
+              <thead><tr style={{borderBottom:`2px solid ${C.border}`}}>
+                {["Fecha","Min/ciclo medio","NH₄ (mg/L)","Estado NH₄","NO₃ (mg/L)","Estado NO₃","Nota"].map((h,i)=>(
+                  <th key={i} style={{padding:"8px 10px",fontSize:10,color:C.muted,textTransform:"uppercase",fontWeight:700,textAlign:"left",whiteSpace:"nowrap"}}>{h}</th>
+                ))}
+              </tr></thead>
+              <tbody>{calidad.map(r => {
+                const ciclosDia = (data||[]).filter(d => d.datetime?.toISOString().slice(0,10) === r.fecha);
+                const minsMedio = ciclosDia.length ? Math.round(ciclosDia.reduce((s,d)=>s+d.minsReal,0)/ciclosDia.length) : null;
+                const minsColor = minsMedio==null?C.muted:minsMedio<=90?C.green:minsMedio<=120?C.amber:C.red;
+                return (
+                  <tr key={r.id} style={{borderBottom:`1px solid ${C.gridLine}`}}>
+                    <td style={{padding:"8px 10px",fontFamily:"monospace",fontSize:11,fontWeight:700}}>{r.fecha}</td>
+                    <td style={{padding:"8px 10px"}}>
+                      {minsMedio!=null
+                        ? <span style={{fontWeight:800,color:minsColor,fontFamily:"monospace"}}>{minsMedio} min <span style={{fontSize:10,color:C.muted}}>({ciclosDia.length} ciclos)</span></span>
+                        : <span style={{color:C.muted,fontSize:11}}>Sin datos en BD</span>}
+                    </td>
+                    <td style={{padding:"8px 10px",fontWeight:800,color:colLim(r.nh4,NH4_LIM),fontFamily:"monospace"}}>{r.nh4?.toFixed(1)}</td>
+                    <td style={{padding:"8px 10px"}}><Badge color={colLim(r.nh4,NH4_LIM)}>{lblLim(r.nh4,NH4_LIM)}</Badge></td>
+                    <td style={{padding:"8px 10px",fontWeight:800,color:colLim(r.no3,NO3_LIM),fontFamily:"monospace"}}>{r.no3?.toFixed(1)}</td>
+                    <td style={{padding:"8px 10px"}}><Badge color={colLim(r.no3,NO3_LIM)}>{lblLim(r.no3,NO3_LIM)}</Badge></td>
+                    <td style={{padding:"8px 10px",fontSize:11,color:C.muted}}>{r.nota}</td>
+                  </tr>
+                );
+              })}</tbody>
+            </table>
+          </div>
+          <div style={{marginTop:10,fontSize:11,color:C.muted}}>
+            🟢 Min/ciclo ≤90 = SICAIR eficiente · 🟡 ≤120 = aceptable · 🔴 &gt;120 = sobreaireo
+          </div>
+          {(() => {
+            const conMins = calidad.filter(r => (data||[]).some(d => d.datetime?.toISOString().slice(0,10) === r.fecha));
+            if (conMins.length < 2) return null;
+            const minsMedios = conMins.map(r => {
+              const ciclosDia = (data||[]).filter(d => d.datetime?.toISOString().slice(0,10) === r.fecha);
+              return ciclosDia.length ? Math.round(ciclosDia.reduce((s,d)=>s+d.minsReal,0)/ciclosDia.length) : null;
+            }).filter(Boolean);
+            const minsMin = Math.min(...minsMedios), minsMax = Math.max(...minsMedios);
+            const nh4Max = Math.max(...conMins.map(r=>r.nh4));
+            const todosOk = conMins.every(r=>r.nh4<=5&&r.no3<=10);
+            if (!todosOk) return null;
+            return (
+              <div style={{marginTop:12,background:"#f0fdf4",border:"1.5px solid #4a9c3f",borderRadius:8,padding:"12px 16px",fontSize:12,color:"#1a3a1a",lineHeight:1.7}}>
+                <b>📌 Conclusión automática:</b> En los {conMins.length} días analizados, la planta aireó entre <b>{minsMin} y {minsMax} min/ciclo</b> manteniendo siempre NH₄ ≤ <b>{nh4Max.toFixed(1)} mg/L</b> — dentro del límite legal. Esto confirma que con <b>~{minsMin} min/ciclo</b> se garantiza la calidad del efluente, con un ahorro potencial de <b>{minsMax-minsMin} min/ciclo</b> respecto al máximo observado.
+              </div>
+            );
+          })()}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function App() {
   const [reactores,   setReactores]   = useState({});
   const [pred,        setPred]        = useState(null);
@@ -1353,11 +2329,15 @@ export default function App() {
   const [diagHistorico, setDiagHistorico] = useState(null);
   const [showOnboard, setShowOnboard] = useState(true);
   const [demoMode,    setDemoMode]    = useState(false);
+  const [autoLoading, setAutoLoading] = useState(false);
+  const [autoError,   setAutoError]   = useState(null);
+  const [informePDF,  setInformePDF]  = useState(false);
   const [tab,         setTab]         = useState("pred");
   const [toxUmbral,   setToxUmbral]   = useState(40);
   const [informe,     setInforme]     = useState(null);
   const [quiosco,     setQuiosco]     = useState(false);
-  const [incidencias, setIncidencias] = useState([]);
+  const [incidencias, setIncidencias] = useState(() => { try { return JSON.parse(localStorage.getItem("sicair_incidencias")||"[]"); } catch { return []; } });
+  const [calidad,     setCalidad]     = useState(() => { try { return JSON.parse(localStorage.getItem("sicair_calidad")||"[]"); } catch { return []; } });
   const [alertas,     setAlertas]     = useState(ALERT_DEF);
   const [alertasDisp, setAlertasDisp] = useState([]);
   const [dismissed,   setDismissed]   = useState(new Set());
@@ -1375,7 +2355,39 @@ export default function App() {
     setDemoMode(true); setShowOnboard(false); setTab("pred");
   }, []);
 
-  const salirDemo = () => { setReactores({}); setPred(null); setHistorico(null); setDeriva(null); setDemoMode(false); setShowOnboard(true); setTab("pred"); };
+  const salirDemo = () => {
+    setReactores({}); setPred(null); setHistorico(null); setDeriva(null);
+    setDemoMode(false); setShowOnboard(false); setTab("pred");
+    setTimeout(() => cargarDesdeGitHub(), 100);
+  };
+
+  const cargarDesdeGitHub = useCallback(async () => {
+    setAutoLoading(true); setAutoError(null);
+    try {
+      const [rPred, rHist, rCiclos, rDiag] = await Promise.all([
+        fetch(githubUrl('prediccion_sicair.json')),
+        fetch(githubUrl('prediccion_historico.json')),
+        fetch(githubUrl('datos_ciclos.json')),
+        fetch(githubUrl('diagnosticos_historico.json')).catch(()=>null),
+      ]);
+      if (!rPred.ok || !rCiclos.ok) throw new Error("Error cargando datos");
+      const [jPred, jHist, jCiclos] = await Promise.all([
+        rPred.json(), rHist.json(), rCiclos.json()
+      ]);
+      if (jPred?.predicciones) setPred(jPred);
+      if (Array.isArray(jHist)) setHistorico(jHist);
+      if (rDiag?.ok) { const jDiag = await rDiag.json(); if (Array.isArray(jDiag)) setDiagHistorico(jDiag); }
+      if (jCiclos?.ciclos) {
+        const rows = jCiclos.ciclos.map(c => ({
+          ...c, datetime: new Date(c.datetime),
+        })).filter(c => c.AUR > 0 && c.minsReal > 0 && c.minsReal < 400);
+        if (rows.length) { setReactores({"R1": rows}); setDemoMode(false); setShowOnboard(false); setTab("pred"); }
+      }
+    } catch(e) { setAutoError("Error cargando desde GitHub"); }
+    setAutoLoading(false);
+  }, []);
+
+  useEffect(() => { cargarDesdeGitHub(); }, []);
 
   useEffect(() => {
     if (!data) return;
@@ -1406,6 +2418,7 @@ export default function App() {
     {id:"correlacion", label:"🔬 Correlación T°", disabled:!data},
     {id:"ahorro",      label:"💰 Ahorro",         disabled:!data},
     {id:"semana",      label:"📅 Semanal",        disabled:!data},
+    {id:"calidad",     label:"🧪 Calidad efluente", disabled:false},
     {id:"incidencias", label:"📋 Incidencias",    disabled:false, badge:incidencias.length},
     {id:"alertas",     label:"🔔 Alertas",        disabled:false, badge:alertasVis.length, badgeColor:alertasVis.some(a=>a.severidad==="critica")?C.red:C.amber},
     {id:"deriva",      label:"🧬 Salud modelo",   disabled:!deriva},
@@ -1413,19 +2426,42 @@ export default function App() {
     {id:"roi",         label:"📆 ROI mensual",    disabled:!data},
     {id:"validacion",  label:"🎯 Validación",     disabled:false},
     {id:"exportar",    label:"📤 Exportar CSV",   disabled:!data||demoMode},
+    {id:"diario",      label:"📅 Resumen diario",  disabled:!data},
+    {id:"soplante",    label:"⚡ Soplante VSD",    disabled:!pred},
   ];
 
   return (
     <div style={{background:C.bg,minHeight:"100vh",color:C.text,fontFamily:"system-ui,sans-serif"}}>
       {quiosco&&<ModoQuiosco data={data} pred={pred} toxUmbral={toxUmbral} incidencias={incidencias} alertasDisparadas={alertasDisp} onClose={()=>setQuiosco(false)}/>}
       {informe&&<InformeModal texto={informe} onClose={()=>setInforme(null)}/>}
+      {informePDF&&(
+        <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.4)",zIndex:1000,display:"flex",alignItems:"center",justifyContent:"center"}} onClick={()=>setInformePDF(false)}>
+          <div style={{background:"#fff",borderRadius:20,padding:"32px 36px",width:360,boxShadow:"0 8px 40px rgba(0,0,0,0.18)"}} onClick={e=>e.stopPropagation()}>
+            <div style={{fontSize:16,fontWeight:700,marginBottom:6,color:"#111"}}>📄 Generar Informe PDF</div>
+            <div style={{fontSize:12,color:"#888",marginBottom:24}}>Selecciona el período del informe</div>
+            {[
+              {id:"dia",label:"Último día",desc:"~14-15 ciclos"},
+              {id:"semana",label:"Última semana",desc:"~100 ciclos"},
+              {id:"mes",label:"Último mes",desc:"~420 ciclos"},
+              {id:"anio",label:"Último año",desc:"~5.000 ciclos"},
+            ].map(p=>(
+              <button key={p.id} onClick={()=>{generarInformePDF(data,pred,historico,incidencias,p.id,diagHistorico);setInformePDF(false);}}
+                style={{width:"100%",background:"#fafafa",border:"1px solid #f0f0f0",borderRadius:12,padding:"14px 18px",marginBottom:10,cursor:"pointer",textAlign:"left",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                <span style={{fontWeight:600,color:"#111",fontSize:13}}>{p.label}</span>
+                <span style={{fontSize:11,color:"#888"}}>{p.desc} →</span>
+              </button>
+            ))}
+            <button onClick={()=>setInformePDF(false)} style={{width:"100%",background:"none",border:"none",color:"#aaa",fontSize:12,cursor:"pointer",marginTop:4}}>Cancelar</button>
+          </div>
+        </div>
+      )}
       <AlertaBanner alertas={alertasVis} onDismiss={id=>setDismissed(prev=>new Set([...prev,id]))}/>
 
-      <div style={{background:"#fff",borderBottom:`1px solid ${C.border}`,padding:"0 24px",display:"flex",alignItems:"center",justifyContent:"space-between",height:60,boxShadow:"0 1px 4px rgba(0,0,0,0.06)"}}>
+      <div style={{background:"#fff",borderBottom:"1px solid #f0f0f0",padding:"0 32px",display:"flex",alignItems:"center",justifyContent:"space-between",height:64}}>
         <div style={{display:"flex",alignItems:"center",gap:16}}>
-          <SensaraLogo size={38}/>
-          <div style={{width:1,height:28,background:C.border}}/>
-          <div><div style={{fontSize:14,fontWeight:700,lineHeight:1.2}}>SIC<span style={{color:C.green}}>AIR</span> <span style={{fontWeight:300,color:C.muted}}>3.0</span></div><div style={{fontSize:10,color:C.muted}}>Control Inteligente de Aireación · Martorell</div></div>
+          <SensaraLogo size={34}/>
+          <div style={{width:1,height:24,background:"#e8e8e8"}}/>
+          <div><div style={{fontSize:15,fontWeight:700,letterSpacing:"-0.02em",color:C.text}}>SIC<span style={{color:C.green}}>AIR</span> <span style={{fontWeight:300,color:"#bbb"}}>3.0</span></div><div style={{fontSize:10,color:C.muted,letterSpacing:"0.03em",marginTop:1}}>Martorell · EDAR</div></div>
         </div>
         <div style={{display:"flex",gap:8,alignItems:"center",flexWrap:"wrap"}}>
           {nombres.map((n,i)=><Badge key={n} color={RC[i]}>{n}: {reactores[n].length}</Badge>)}
@@ -1438,11 +2474,14 @@ export default function App() {
             <span style={{fontSize:12,fontWeight:700,color:C.green,fontFamily:"monospace",minWidth:30}}>{toxUmbral}%</span>
           </div>
           <button onClick={()=>setQuiosco(true)} style={{background:"#0d1117",color:"#fff",border:"none",borderRadius:8,padding:"6px 14px",fontSize:12,fontWeight:700,cursor:"pointer"}}>🖥 Quiosco</button>
-          {data&&<button onClick={()=>setInforme(generarInforme(data,pred,toxUmbral,incidencias,alertasDisp))} style={{background:C.green,color:"#fff",border:"none",borderRadius:8,padding:"6px 14px",fontSize:12,fontWeight:700,cursor:"pointer"}}>📄 Informe</button>}
+          <button onClick={cargarDesdeGitHub} disabled={autoLoading} style={{background:autoLoading?"#f0f0f0":C.green,color:autoLoading?"#999":"#fff",border:"none",borderRadius:20,padding:"7px 18px",fontSize:12,fontWeight:600,cursor:autoLoading?"default":"pointer"}}>
+            {autoLoading?"⏳":"↻"} Actualizar
+          </button>
+          {data&&<button onClick={()=>setInformePDF(true)} style={{background:"#fff",color:C.green,border:`1px solid ${C.green}`,borderRadius:20,padding:"7px 18px",fontSize:12,fontWeight:600,cursor:"pointer"}}>📄 Informe</button>}
         </div>
       </div>
 
-      <div style={{padding:"20px 24px",maxWidth:1300,margin:"0 auto"}}>
+      <div style={{padding:"28px 40px",maxWidth:1280,margin:"0 auto"}}>
         {showOnboard&&<OnboardingPanel reactores={reactores} pred={pred} historico={historico} deriva={deriva} onSkip={()=>setShowOnboard(false)} handleCSV={handleCSV} handleXLSX={handleXLSX} handleJSON={handleJSON} parseJSON={parseJSON} setHistorico={setHistorico} setDeriva={setDeriva} nombres={nombres} addingR={addingR} setAddingR={setAddingR} newRN={newRN} setNewRN={setNewRN}/>}
         {!showOnboard&&<button onClick={()=>setShowOnboard(true)} style={{background:C.panel,color:C.muted,border:`1px solid ${C.border}`,borderRadius:8,padding:"5px 14px",fontSize:11,fontWeight:700,cursor:"pointer",marginBottom:14}}>⚙️ Cargar archivos</button>}
         {demoMode&&<DemoBanner onExit={salirDemo}/>}
@@ -1450,7 +2489,7 @@ export default function App() {
         {data&&<Semaforo data={data} pred={pred} toxUmbral={toxUmbral} alertasDisparadas={alertasDisp} alertas={alertas}/>}
         {data&&<ScoreSalud data={data}/>}
         {data&&(
-          <div style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:10,marginBottom:18}}>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:12,marginBottom:24}}>
             <KpiCard icon="🔬" label="AUR actual"    value={data.at(-1)?.AUR?.toFixed(2)||"—"}                     unit="mg O₂/L·h" color={C.green}/>
             <KpiCard icon="💨" label="Min soplante"  value={data.at(-1)?.minsReal||"—"}                            unit="min/ciclo"  color={C.amber}/>
             <KpiCard icon="🔮" label="AUR pred. +1c" value={pred?.predicciones?.["1c"]?.aur_pred?.toFixed(2)||"—"} unit="mg O₂/L·h" color={C.greenLight}/>
@@ -1459,10 +2498,16 @@ export default function App() {
           </div>
         )}
 
-        <div style={{display:"flex",gap:6,marginBottom:14,flexWrap:"wrap"}}>
+        <div style={{display:"flex",gap:4,marginBottom:20,flexWrap:"wrap",borderBottom:"1px solid #f0f0f0",paddingBottom:0}}>
           {tabs.map(t=>(
-            <button key={t.id} onClick={()=>!t.disabled&&setTab(t.id)} style={{background:tab===t.id?C.green:"#fff",color:tab===t.id?"#fff":t.disabled?C.gridLine:C.muted,border:`1px solid ${tab===t.id?C.green:C.border}`,borderRadius:6,padding:"6px 14px",fontSize:12,fontWeight:700,cursor:t.disabled?"default":"pointer",transition:"all .2s",position:"relative"}}>
-              {t.label}{t.badge>0&&<span style={{position:"absolute",top:-6,right:-6,background:t.badgeColor||C.amber,color:"#fff",borderRadius:10,padding:"1px 5px",fontSize:9,fontWeight:700}}>{t.badge}</span>}
+            <button key={t.id} onClick={()=>!t.disabled&&setTab(t.id)} style={{
+              background:"transparent",color:tab===t.id?C.green:t.disabled?"#d0d0d0":C.muted,
+              border:"none",borderBottom:tab===t.id?`2px solid ${C.green}`:"2px solid transparent",
+              padding:"10px 16px",fontSize:12,fontWeight:tab===t.id?600:400,
+              cursor:t.disabled?"default":"pointer",transition:"all .15s",
+              position:"relative",marginBottom:-1,letterSpacing:"0.01em",whiteSpace:"nowrap",
+            }}>
+              {t.label}{t.badge>0&&<span style={{marginLeft:6,background:t.badgeColor||C.amber,color:"#fff",borderRadius:20,padding:"1px 6px",fontSize:9,fontWeight:700}}>{t.badge}</span>}
             </button>
           ))}
         </div>
@@ -1474,15 +2519,18 @@ export default function App() {
         {tab==="correlacion" &&data&&<CorrelacionPanel data={data}/>}
         {tab==="ahorro"      &&data&&<AhorroPanel data={data} pred={pred} historico={historico} demoMode={demoMode}/>}
         {tab==="semana"      &&data&&<ComparativaPanel data={data}/>}
+        {tab==="calidad"     &&<CalidadEfluentePanel calidad={calidad} setCalidad={v=>{setCalidad(v);try{localStorage.setItem("sicair_calidad",JSON.stringify(v));}catch{}}} data={data}/>}
         {tab==="incidencias" &&<IncidenciasPanel incidencias={incidencias} setIncidencias={setIncidencias} diagHistorico={diagHistorico} setDiagHistorico={setDiagHistorico} parseJSON={parseJSON}/>}
         {tab==="alertas"     &&<AlertasPanel alertas={alertas} setAlertas={setAlertas} disparadas={alertasDisp} onTest={()=>playAlertTone("critical")}/>}
         {tab==="deriva"      &&<DerivaPanel deriva={deriva}/>}
         {tab==="multiplantas"&&<MultiPlantasPanel reactores={reactores}/>}
         {tab==="roi"         &&data&&<ROIMensualPanel data={data} historico={historico} demoMode={demoMode}/>}
-        {tab==="validacion"  &&<ValidacionPanel data={data} demoMode={demoMode}/>}
+        {tab==="validacion"  &&<ValidacionPanel data={data} demoMode={demoMode} historico={historico}/>}
         {tab==="exportar"    &&data&&!demoMode&&<ExportCSV data={data}/>}
+        {tab==="diario"      &&data&&<ResumenDiarioPanel data={data} historico={historico} demoMode={demoMode}/>}
+        {tab==="soplante"    &&pred&&<ModeloFisicoPanel pred={pred} data={data}/>}
 
-        <div style={{marginTop:20,textAlign:"center",fontSize:11,color:C.muted,paddingTop:14,borderTop:`1px solid ${C.border}`,display:"flex",justifyContent:"center",alignItems:"center",gap:8}}>
+        <div style={{marginTop:40,textAlign:"center",fontSize:11,color:"#ccc",paddingTop:24,borderTop:"1px solid #f4f4f4",display:"flex",justifyContent:"center",alignItems:"center",gap:8}}>
           <SensaraLogo size={18}/>
           <span><span style={{color:C.green,fontWeight:700}}>SENSARA</span> · sensaratech.com · Logroño, La Rioja · SICAIR 3.0</span>
         </div>
