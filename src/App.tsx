@@ -2445,15 +2445,10 @@ export default function App() {
   const tabs = [
     {id:"pred",        label:"🧠 Predicciones",  disabled:!pred},
     {id:"historico",   label:"📈 Histórico",      disabled:!data},
-    {id:"correlacion", label:"🔬 Correlación T°", disabled:!data},
-    {id:"ahorro",      label:"💰 Ahorro",         disabled:!data},
     {id:"semana",      label:"📅 Semanal",        disabled:!data},
     {id:"calidad",     label:"🧪 Calidad efluente", disabled:false},
     {id:"incidencias", label:"📋 Incidencias",    disabled:false, badge:incidencias.length},
     {id:"alertas",     label:"🔔 Alertas",        disabled:false, badge:alertasVis.length, badgeColor:alertasVis.some(a=>a.severidad==="critica")?C.red:C.amber},
-    {id:"deriva",      label:"🧬 Salud modelo",   disabled:!deriva},
-    {id:"multiplantas",label:"🏭 Multiplantas",   disabled:nombres.length<2},
-    {id:"roi",         label:"📆 ROI mensual",    disabled:!data},
     {id:"validacion",  label:"🎯 Validación",     disabled:false},
     {id:"exportar",    label:"📤 Exportar CSV",   disabled:!data||demoMode},
     {id:"diario",      label:"📅 Resumen diario",  disabled:!data},
@@ -2547,15 +2542,10 @@ export default function App() {
         {tab==="pred"        &&pred&&data&&<DiagnosticoPanel data={data} pred={pred} alertas={alertas}/>}
         {tab==="pred"        &&pred&&data&&<HistoricoChart data={data} pred={pred}/>}
         {tab==="historico"   &&data&&<HistoricoChart data={data} pred={pred}/>}
-        {tab==="correlacion" &&data&&<CorrelacionPanel data={data}/>}
-        {tab==="ahorro"      &&data&&<AhorroPanel data={data} pred={pred} historico={historico} demoMode={demoMode}/>}
         {tab==="semana"      &&data&&<ComparativaPanel data={data}/>}
         {tab==="calidad"     &&<CalidadEfluentePanel calidad={calidad} setCalidad={v=>{setCalidad(v);try{localStorage.setItem("sicair_calidad",JSON.stringify(v));}catch{}}} data={data}/>}
         {tab==="incidencias" &&<IncidenciasPanel incidencias={incidencias} setIncidencias={setIncidencias} diagHistorico={diagHistorico} setDiagHistorico={setDiagHistorico} parseJSON={parseJSON}/>}
         {tab==="alertas"     &&<AlertasPanel alertas={alertas} setAlertas={setAlertas} disparadas={alertasDisp} onTest={()=>playAlertTone("critical")}/>}
-        {tab==="deriva"      &&<DerivaPanel deriva={deriva}/>}
-        {tab==="multiplantas"&&<MultiPlantasPanel reactores={reactores}/>}
-        {tab==="roi"         &&data&&<ROIMensualPanel data={data} historico={historico} demoMode={demoMode}/>}
         {tab==="validacion"  &&<ValidacionPanel data={data} demoMode={demoMode} historico={historico}/>}
         {tab==="exportar"    &&data&&!demoMode&&<ExportCSV data={data}/>}
         {tab==="diario"      &&data&&<ResumenDiarioPanel data={data} historico={historico} demoMode={demoMode}/>}
