@@ -446,6 +446,36 @@ function MeteoPanel() {
   );
 }
 
+function calcularDatoCongelado(pred, umbralHoras = 2.5) {
+  if (!pred?.ultimo_dato) return null;
+  const ultimo = new Date(pred.ultimo_dato);
+  if (isNaN(ultimo)) return null;
+  const horas = (Date.now() - ultimo.getTime()) / 3600000;
+  if (horas < umbralHoras) return null;
+  return { horas: +horas.toFixed(1), ultimo };
+}
+
+function DatoCongeladoBanner({ pred }) {
+  const cong = calcularDatoCongelado(pred);
+  if (!cong) return null;
+  return (
+    <div style={{
+      background: C.redFade, border: `2px solid ${C.red}`, borderRadius: 10,
+      padding: "14px 20px", marginBottom: 14, display: "flex", alignItems: "center", gap: 14,
+    }}>
+      <span style={{ fontSize: 24 }}>🥶</span>
+      <div>
+        <div style={{ fontSize: 14, fontWeight: 800, color: C.red }}>
+          Dato congelado — sin lecturas nuevas del SN8
+        </div>
+        <div style={{ fontSize: 12, color: C.muted, marginTop: 2 }}>
+          Último dato: <b>{cong.ultimo.toLocaleString("es-ES")}</b> · hace <b>{cong.horas}h</b>. Revisa el SN8 / MySQL nitrificacion1.
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ScoreSalud({data}) {
   if (!data||!data.length) return null;
   const s = calcularScore(data);
@@ -2485,6 +2515,7 @@ export default function App() {
         {showOnboard&&<OnboardingPanel reactores={reactores} pred={pred} historico={historico} deriva={deriva} onSkip={()=>setShowOnboard(false)} handleCSV={handleCSV} handleXLSX={handleXLSX} handleJSON={handleJSON} parseJSON={parseJSON} setHistorico={setHistorico} setDeriva={setDeriva} nombres={nombres} addingR={addingR} setAddingR={setAddingR} newRN={newRN} setNewRN={setNewRN}/>}
         {!showOnboard&&<button onClick={()=>setShowOnboard(true)} style={{background:C.panel,color:C.muted,border:`1px solid ${C.border}`,borderRadius:8,padding:"5px 14px",fontSize:11,fontWeight:700,cursor:"pointer",marginBottom:14}}>⚙️ Cargar archivos</button>}
         {demoMode&&<DemoBanner onExit={salirDemo}/>}
+        {pred&&!demoMode&&<DatoCongeladoBanner pred={pred}/>}
         <MeteoPanel/>
         {data&&<Semaforo data={data} pred={pred} toxUmbral={toxUmbral} alertasDisparadas={alertasDisp} alertas={alertas}/>}
         {data&&<ScoreSalud data={data}/>}
