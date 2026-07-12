@@ -1,8 +1,8 @@
 {
-  "generado": "2026-07-12T21:46:44.886343",
-  "ultimo_dato": "2026-07-12T20:03:35",
-  "ultimo_aur": 1.91,
-  "ultimo_mins": 102.0,
+  "generado": "2026-07-12T22:46:45.192255",
+  "ultimo_dato": "2026-07-12T21:50:38",
+  "ultimo_aur": 1.89,
+  "ultimo_mins": 103.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,46 +11,46 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 2.166,
-      "mins_pred": 101.0,
-      "trc_pred": 21.0,
+      "aur_pred": 2.184,
+      "mins_pred": 94.8,
+      "trc_pred": 20.9,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 24.7,
+      "temp_prev": 23.8,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-07-12T23:26:39.902517"
+      "ts_objetivo": "2026-07-13T00:26:40.452449"
     },
     "3c": {
-      "aur_pred": 1.9,
-      "mins_pred": 75.3,
-      "trc_pred": 21.0,
-      "prob_dilucion": 0.0,
-      "precip_mm_prev": 0.0,
-      "temp_prev": 22.1,
-      "ciclos": 3,
-      "horas_eq": 5.0,
-      "ts_objetivo": "2026-07-13T02:46:39.902517"
-    },
-    "6h": {
-      "aur_pred": 1.907,
-      "mins_pred": 74.6,
-      "trc_pred": 21.0,
+      "aur_pred": 1.995,
+      "mins_pred": 71.1,
+      "trc_pred": 20.9,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 22.4,
+      "ciclos": 3,
+      "horas_eq": 5.0,
+      "ts_objetivo": "2026-07-13T03:46:40.452449"
+    },
+    "6h": {
+      "aur_pred": 1.949,
+      "mins_pred": 71.8,
+      "trc_pred": 20.9,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 22.8,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-07-13T04:26:39.902517"
+      "ts_objetivo": "2026-07-13T05:26:40.452449"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 25.8,
+    "temp": 24.7,
     "precip": 0.0,
-    "viento": 3.8,
-    "humedad": 52.0,
+    "viento": 3.2,
+    "humedad": 55.0,
     "presion": 1001.1
   },
   "lluvia_prevista": {
@@ -60,7 +60,7 @@
     "ok": true
   },
   "sesgo_aplicado_1c": {
-    "aur": -0.035,
-    "mins": 16.3
+    "aur": -0.013,
+    "mins": 13.4
   }
 }
