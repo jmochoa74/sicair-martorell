@@ -64,5 +64,16 @@
         "texto": "Recovery automatico activado — AUR cayo 46% sin evidencia de dilucion/lluvia"
       }
     ]
+  },
+  {
+    "ts": "2026-07-15T14:46:47.264722",
+    "aur": 1.83,
+    "eventos": [
+      {
+        "tipo": "recovery_auto",
+        "icono": "🤖",
+        "texto": "Recovery automatico activado — AUR cayo 42% sin evidencia de dilucion/lluvia"
+      }
+    ]
   }
 ]
