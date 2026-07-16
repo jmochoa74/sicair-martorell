@@ -1,7 +1,7 @@
 {
-  "generado": "2026-07-16T08:46:49.243057",
-  "n_ciclos": 12713,
-  "ultimo_dato": "2026-07-16T06:43:54",
+  "generado": "2026-07-16T09:46:51.828972",
+  "n_ciclos": 12715,
+  "ultimo_dato": "2026-07-16T08:29:07",
   "ciclos": [
     {
       "datetime": "2022-02-23T07:24:41",
@@ -190621,7 +190621,7 @@
       "sobreaireoMin": 51.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 27.2
+      "temp": 27.7
     },
     {
       "datetime": "2026-07-16T03:11:37",
@@ -190636,7 +190636,7 @@
       "sobreaireoMin": 51.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 27.2
+      "temp": 27.7
     },
     {
       "datetime": "2026-07-16T05:02:40",
@@ -190651,7 +190651,7 @@
       "sobreaireoMin": 49.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 26.0
+      "temp": 26.7
     },
     {
       "datetime": "2026-07-16T05:02:53",
@@ -190666,7 +190666,7 @@
       "sobreaireoMin": 49.4,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 26.0
+      "temp": 26.7
     },
     {
       "datetime": "2026-07-16T06:43:53",
@@ -190681,7 +190681,7 @@
       "sobreaireoMin": 56.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 25.7
+      "temp": 26.4
     },
     {
       "datetime": "2026-07-16T06:43:54",
@@ -190696,7 +190696,37 @@
       "sobreaireoMin": 56.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 25.7
+      "temp": 26.4
+    },
+    {
+      "datetime": "2026-07-16T08:29:07",
+      "label": "16/07/2026 08:29",
+      "AUR": 3.43,
+      "RN": 12.0,
+      "TRC": 9.6,
+      "TRH": 9.2,
+      "minsReal": 88,
+      "minsTeo": 84,
+      "minsFormula": 47.6,
+      "sobreaireoMin": 40.4,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 27.2
+    },
+    {
+      "datetime": "2026-07-16T08:29:07",
+      "label": "16/07/2026 08:29",
+      "AUR": 3.43,
+      "RN": 12.0,
+      "TRC": 9.6,
+      "TRH": 9.2,
+      "minsReal": 88,
+      "minsTeo": 84,
+      "minsFormula": 47.6,
+      "sobreaireoMin": 40.4,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 27.2
     }
   ]
 }
