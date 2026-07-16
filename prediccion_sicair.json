@@ -1,8 +1,8 @@
 {
-  "generado": "2026-07-16T04:46:46.792608",
-  "ultimo_dato": "2026-07-16T03:11:37",
-  "ultimo_aur": 2.57,
-  "ultimo_mins": 104.0,
+  "generado": "2026-07-16T05:46:45.188251",
+  "ultimo_dato": "2026-07-16T05:02:53",
+  "ultimo_aur": 3.34,
+  "ultimo_mins": 88.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,47 +11,47 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 2.42,
-      "mins_pred": 86.0,
-      "trc_pred": 13.7,
+      "aur_pred": 3.628,
+      "mins_pred": 87.6,
+      "trc_pred": 10.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 24.0,
+      "temp_prev": 23.1,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-07-16T06:26:40.494197"
+      "ts_objetivo": "2026-07-16T07:26:39.567542"
     },
     "3c": {
-      "aur_pred": 2.456,
-      "mins_pred": 72.7,
-      "trc_pred": 13.7,
+      "aur_pred": 3.092,
+      "mins_pred": 77.0,
+      "trc_pred": 10.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 30.0,
+      "temp_prev": 32.4,
       "ciclos": 3,
       "horas_eq": 5.0,
-      "ts_objetivo": "2026-07-16T09:46:40.494197"
+      "ts_objetivo": "2026-07-16T10:46:39.567542"
     },
     "6h": {
-      "aur_pred": 2.123,
-      "mins_pred": 78.5,
-      "trc_pred": 13.7,
+      "aur_pred": 2.587,
+      "mins_pred": 77.4,
+      "trc_pred": 10.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 31.9,
+      "temp_prev": 31.7,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-07-16T11:26:40.494197"
+      "ts_objetivo": "2026-07-16T12:26:39.567542"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 24.2,
+    "temp": 23.6,
     "precip": 0.0,
-    "viento": 2.1,
-    "humedad": 92.0,
-    "presion": 1003.3
+    "viento": 2.5,
+    "humedad": 89.0,
+    "presion": 1003.6
   },
   "lluvia_prevista": {
     "h6": 0.0,
@@ -60,7 +60,7 @@
     "ok": true
   },
   "sesgo_aplicado_1c": {
-    "aur": -0.03,
-    "mins": 11.8
+    "aur": 0.165,
+    "mins": 11.5
   }
 }
