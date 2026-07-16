@@ -1,7 +1,7 @@
 {
-  "generado": "2026-07-16T02:46:54.218944",
-  "n_ciclos": 12707,
-  "ultimo_dato": "2026-07-16T01:29:44",
+  "generado": "2026-07-16T03:46:53.026988",
+  "n_ciclos": 12709,
+  "ultimo_dato": "2026-07-16T03:11:37",
   "ciclos": [
     {
       "datetime": "2022-02-23T07:24:41",
@@ -190607,6 +190607,36 @@
       "dilucion": 0,
       "precip": 0.0,
       "temp": 28.9
+    },
+    {
+      "datetime": "2026-07-16T03:11:37",
+      "label": "16/07/2026 03:11",
+      "AUR": 2.57,
+      "RN": 9.0,
+      "TRC": 13.7,
+      "TRH": 14.0,
+      "minsReal": 104,
+      "minsTeo": 102,
+      "minsFormula": 53.0,
+      "sobreaireoMin": 51.0,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 27.2
+    },
+    {
+      "datetime": "2026-07-16T03:11:37",
+      "label": "16/07/2026 03:11",
+      "AUR": 2.57,
+      "RN": 9.0,
+      "TRC": 13.7,
+      "TRH": 14.0,
+      "minsReal": 104,
+      "minsTeo": 102,
+      "minsFormula": 53.0,
+      "sobreaireoMin": 51.0,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 27.2
     }
   ]
 }
