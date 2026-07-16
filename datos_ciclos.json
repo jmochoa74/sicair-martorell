@@ -1,7 +1,7 @@
 {
-  "generado": "2026-07-16T01:46:52.943151",
-  "n_ciclos": 12705,
-  "ultimo_dato": "2026-07-15T23:48:20",
+  "generado": "2026-07-16T02:46:54.218944",
+  "n_ciclos": 12707,
+  "ultimo_dato": "2026-07-16T01:29:44",
   "ciclos": [
     {
       "datetime": "2022-02-23T07:24:41",
@@ -190501,7 +190501,7 @@
       "sobreaireoMin": -9.2,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 33.7
+      "temp": 34.0
     },
     {
       "datetime": "2026-07-15T20:27:44",
@@ -190516,7 +190516,7 @@
       "sobreaireoMin": -9.2,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 33.7
+      "temp": 34.0
     },
     {
       "datetime": "2026-07-15T22:08:46",
@@ -190531,7 +190531,7 @@
       "sobreaireoMin": -29.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 31.3
+      "temp": 31.0
     },
     {
       "datetime": "2026-07-15T22:08:46",
@@ -190546,7 +190546,7 @@
       "sobreaireoMin": -29.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 31.3
+      "temp": 31.0
     },
     {
       "datetime": "2026-07-15T23:48:19",
@@ -190561,7 +190561,7 @@
       "sobreaireoMin": -27.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 30.3
+      "temp": 29.3
     },
     {
       "datetime": "2026-07-15T23:48:20",
@@ -190576,7 +190576,37 @@
       "sobreaireoMin": -27.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 30.3
+      "temp": 29.3
+    },
+    {
+      "datetime": "2026-07-16T01:29:44",
+      "label": "16/07/2026 01:29",
+      "AUR": 1.37,
+      "RN": 4.8,
+      "TRC": 43.3,
+      "TRH": 9.0,
+      "minsReal": 107,
+      "minsTeo": 105,
+      "minsFormula": 120.2,
+      "sobreaireoMin": -13.2,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 28.9
+    },
+    {
+      "datetime": "2026-07-16T01:29:44",
+      "label": "16/07/2026 01:29",
+      "AUR": 1.37,
+      "RN": 4.8,
+      "TRC": 43.3,
+      "TRH": 9.0,
+      "minsReal": 107,
+      "minsTeo": 105,
+      "minsFormula": 120.2,
+      "sobreaireoMin": -13.2,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 28.9
     }
   ]
 }
