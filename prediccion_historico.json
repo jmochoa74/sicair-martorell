@@ -6271,5 +6271,33 @@
       "trc_pred": 9.8,
       "prob_dilucion": 0.0
     }
+  },
+  {
+    "ts_prediccion": "2026-07-16T16:46:54.771100",
+    "ultimo_dato_ts": "2026-07-16T15:18:44",
+    "ultimo_aur": 1.43,
+    "ultimo_mins": 91.0,
+    "duracion_media_min": 100.0,
+    "ts_objetivo_1c": "2026-07-16T16:58:44",
+    "pred_1c": {
+      "aur_pred": 1.605,
+      "mins_pred": 93.7,
+      "trc_pred": 30.0,
+      "prob_dilucion": 0.0
+    }
+  },
+  {
+    "ts_prediccion": "2026-07-17T11:43:38.014193",
+    "ultimo_dato_ts": "2026-07-17T10:09:38",
+    "ultimo_aur": 3.4,
+    "ultimo_mins": 123.0,
+    "duracion_media_min": 100.0,
+    "ts_objetivo_1c": "2026-07-17T11:49:38",
+    "pred_1c": {
+      "aur_pred": 3.375,
+      "mins_pred": 83.5,
+      "trc_pred": 9.4,
+      "prob_dilucion": 0.0
+    }
   }
 ]
