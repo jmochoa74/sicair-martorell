@@ -1,8 +1,8 @@
 {
-  "generado": "2026-07-20T20:46:44.038727",
-  "ultimo_dato": "2026-07-20T18:43:50",
-  "ultimo_aur": 2.63,
-  "ultimo_mins": 92.0,
+  "generado": "2026-07-20T21:46:43.670568",
+  "ultimo_dato": "2026-07-20T20:23:43",
+  "ultimo_aur": 2.6,
+  "ultimo_mins": 88.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,47 +11,47 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 2.867,
-      "mins_pred": 85.6,
-      "trc_pred": 12.7,
+      "aur_pred": 2.141,
+      "mins_pred": 88.9,
+      "trc_pred": 12.9,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 26.9,
+      "temp_prev": 25.9,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-07-20T22:26:39.071423"
+      "ts_objetivo": "2026-07-20T23:26:38.747289"
     },
     "3c": {
-      "aur_pred": 3.152,
-      "mins_pred": 75.6,
-      "trc_pred": 12.7,
-      "prob_dilucion": 0.0,
-      "precip_mm_prev": 0.0,
-      "temp_prev": 24.5,
-      "ciclos": 3,
-      "horas_eq": 5.0,
-      "ts_objetivo": "2026-07-21T01:46:39.071423"
-    },
-    "6h": {
-      "aur_pred": 2.619,
-      "mins_pred": 73.6,
-      "trc_pred": 12.7,
+      "aur_pred": 2.407,
+      "mins_pred": 74.5,
+      "trc_pred": 12.9,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 24.4,
+      "ciclos": 3,
+      "horas_eq": 5.0,
+      "ts_objetivo": "2026-07-21T02:46:38.747289"
+    },
+    "6h": {
+      "aur_pred": 2.221,
+      "mins_pred": 68.9,
+      "trc_pred": 12.9,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 24.1,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-07-21T03:26:39.071423"
+      "ts_objetivo": "2026-07-21T04:26:38.747289"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 28.5,
+    "temp": 26.9,
     "precip": 0.0,
-    "viento": 4.8,
-    "humedad": 68.0,
-    "presion": 999.5
+    "viento": 2.9,
+    "humedad": 79.0,
+    "presion": 1000.1
   },
   "lluvia_prevista": {
     "h6": 0.0,
@@ -60,7 +60,7 @@
     "ok": true
   },
   "sesgo_aplicado_1c": {
-    "aur": -0.038,
-    "mins": 3.9
+    "aur": -0.134,
+    "mins": 4.0
   }
 }
