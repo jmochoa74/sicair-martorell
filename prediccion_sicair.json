@@ -1,8 +1,8 @@
 {
-  "generado": "2026-07-23T13:46:44.719088",
-  "ultimo_dato": "2026-07-23T11:57:41",
-  "ultimo_aur": 3.43,
-  "ultimo_mins": 89.0,
+  "generado": "2026-07-23T14:46:41.272526",
+  "ultimo_dato": "2026-07-23T13:43:54",
+  "ultimo_aur": 3.49,
+  "ultimo_mins": 92.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,47 +11,47 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 3.267,
-      "mins_pred": 89.6,
+      "aur_pred": 3.416,
+      "mins_pred": 82.2,
       "trc_pred": 9.2,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 33.1,
+      "temp_prev": 32.4,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-07-23T15:26:35.520395"
+      "ts_objetivo": "2026-07-23T16:26:36.304740"
     },
     "3c": {
-      "aur_pred": 2.656,
-      "mins_pred": 82.4,
+      "aur_pred": 3.094,
+      "mins_pred": 76.0,
       "trc_pred": 9.2,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 30.2,
+      "temp_prev": 29.1,
       "ciclos": 3,
       "horas_eq": 5.0,
-      "ts_objetivo": "2026-07-23T18:46:35.520395"
+      "ts_objetivo": "2026-07-23T19:46:36.304740"
     },
     "6h": {
-      "aur_pred": 2.285,
-      "mins_pred": 80.1,
+      "aur_pred": 2.704,
+      "mins_pred": 78.8,
       "trc_pred": 9.2,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 28.9,
+      "temp_prev": 27.8,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-07-23T20:26:35.520395"
+      "ts_objetivo": "2026-07-23T21:26:36.304740"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 33.5,
+    "temp": 32.9,
     "precip": 0.0,
-    "viento": 15.1,
-    "humedad": 25.0,
-    "presion": 1001.7
+    "viento": 16.1,
+    "humedad": 31.0,
+    "presion": 1001.3
   },
   "lluvia_prevista": {
     "h6": 0.0,
@@ -60,7 +60,7 @@
     "ok": true
   },
   "sesgo_aplicado_1c": {
-    "aur": 0.128,
+    "aur": 0.157,
     "mins": 3.1
   }
 }
