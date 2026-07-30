@@ -8875,5 +8875,19 @@
       "trc_pred": 30.0,
       "prob_dilucion": 0.0
     }
+  },
+  {
+    "ts_prediccion": "2026-07-30T19:46:51.748131",
+    "ultimo_dato_ts": "2026-07-30T18:52:53",
+    "ultimo_aur": 1.54,
+    "ultimo_mins": 140.0,
+    "duracion_media_min": 100.0,
+    "ts_objetivo_1c": "2026-07-30T20:32:53",
+    "pred_1c": {
+      "aur_pred": 1.848,
+      "mins_pred": 100.6,
+      "trc_pred": 28.9,
+      "prob_dilucion": 0.0
+    }
   }
 ]
