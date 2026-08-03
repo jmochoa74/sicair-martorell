@@ -1,8 +1,8 @@
 {
-  "generado": "2026-08-03T07:46:42.237435",
-  "ultimo_dato": "2026-08-03T06:03:14",
-  "ultimo_aur": 3.57,
-  "ultimo_mins": 62.0,
+  "generado": "2026-08-03T08:46:42.705147",
+  "ultimo_dato": "2026-08-03T07:44:50",
+  "ultimo_aur": 3.91,
+  "ultimo_mins": 64.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,47 +11,47 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 3.407,
-      "mins_pred": 69.2,
-      "trc_pred": 8.7,
+      "aur_pred": 3.953,
+      "mins_pred": 53.0,
+      "trc_pred": 7.8,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 26.4,
+      "temp_prev": 28.1,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-08-03T09:26:36.884501"
+      "ts_objetivo": "2026-08-03T10:26:37.597610"
     },
     "3c": {
-      "aur_pred": 3.978,
-      "mins_pred": 84.6,
-      "trc_pred": 8.7,
+      "aur_pred": 3.317,
+      "mins_pred": 79.8,
+      "trc_pred": 7.8,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 31.6,
+      "temp_prev": 32.2,
       "ciclos": 3,
       "horas_eq": 5.0,
-      "ts_objetivo": "2026-08-03T12:46:36.884501"
+      "ts_objetivo": "2026-08-03T13:46:37.597610"
     },
     "6h": {
-      "aur_pred": 2.725,
-      "mins_pred": 92.1,
-      "trc_pred": 8.7,
+      "aur_pred": 2.839,
+      "mins_pred": 86.4,
+      "trc_pred": 7.8,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 32.5,
+      "temp_prev": 32.2,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-08-03T14:26:36.884501"
+      "ts_objetivo": "2026-08-03T15:26:37.597610"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 24.0,
+    "temp": 26.3,
     "precip": 0.0,
-    "viento": 3.0,
-    "humedad": 86.0,
-    "presion": 998.6
+    "viento": 4.7,
+    "humedad": 73.0,
+    "presion": 998.9
   },
   "lluvia_prevista": {
     "h6": 0.0,
@@ -60,7 +60,7 @@
     "ok": true
   },
   "sesgo_aplicado_1c": {
-    "aur": -0.099,
-    "mins": -9.1
+    "aur": -0.024,
+    "mins": -10.8
   }
 }
