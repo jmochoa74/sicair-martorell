@@ -1,8 +1,8 @@
 {
-  "generado": "2026-08-04T00:46:41.325231",
-  "ultimo_dato": "2026-08-03T23:08:08",
-  "ultimo_aur": 1.4,
-  "ultimo_mins": 80.0,
+  "generado": "2026-08-04T01:46:57.838880",
+  "ultimo_dato": "2026-08-04T00:50:13",
+  "ultimo_aur": 1.63,
+  "ultimo_mins": 72.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,47 +11,47 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 1.285,
-      "mins_pred": 93.7,
-      "trc_pred": 30.0,
+      "aur_pred": 1.337,
+      "mins_pred": 74.3,
+      "trc_pred": 28.3,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 24.7,
+      "temp_prev": 24.1,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-08-04T02:26:36.398489"
+      "ts_objetivo": "2026-08-04T03:26:52.311275"
     },
     "3c": {
-      "aur_pred": 1.719,
-      "mins_pred": 85.6,
-      "trc_pred": 30.0,
+      "aur_pred": 2.026,
+      "mins_pred": 74.1,
+      "trc_pred": 28.3,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 23.7,
       "ciclos": 3,
       "horas_eq": 5.0,
-      "ts_objetivo": "2026-08-04T05:46:36.398489"
+      "ts_objetivo": "2026-08-04T06:46:52.311275"
     },
     "6h": {
-      "aur_pred": 1.482,
-      "mins_pred": 83.1,
-      "trc_pred": 30.0,
+      "aur_pred": 1.684,
+      "mins_pred": 87.8,
+      "trc_pred": 28.3,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 23.7,
+      "temp_prev": 24.4,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-08-04T07:26:36.398489"
+      "ts_objetivo": "2026-08-04T08:26:52.311275"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 25.6,
+    "temp": 24.7,
     "precip": 0.0,
-    "viento": 2.1,
-    "humedad": 82.0,
-    "presion": 999.2
+    "viento": 2.9,
+    "humedad": 84.0,
+    "presion": 999.3
   },
   "lluvia_prevista": {
     "h6": 0.0,
@@ -60,7 +60,7 @@
     "ok": true
   },
   "sesgo_aplicado_1c": {
-    "aur": -0.37,
-    "mins": -2.9
+    "aur": -0.389,
+    "mins": -4.2
   }
 }
