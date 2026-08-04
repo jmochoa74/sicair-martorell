@@ -1,7 +1,7 @@
 {
-  "generado": "2026-08-04T15:46:47.481553",
-  "ultimo_dato": "2026-08-04T14:25:39",
-  "ultimo_aur": 1.49,
+  "generado": "2026-08-04T16:46:44.979580",
+  "ultimo_dato": "2026-08-04T16:04:02",
+  "ultimo_aur": 1.54,
   "ultimo_mins": 82.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
@@ -11,47 +11,47 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 1.811,
-      "mins_pred": 81.4,
+      "aur_pred": 1.652,
+      "mins_pred": 84.1,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 31.6,
+      "temp_prev": 30.9,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-08-04T17:26:41.765547"
+      "ts_objetivo": "2026-08-04T18:26:38.133019"
     },
     "3c": {
-      "aur_pred": 1.864,
-      "mins_pred": 83.0,
-      "trc_pred": 30.0,
-      "prob_dilucion": 0.0,
-      "precip_mm_prev": 0.0,
-      "temp_prev": 28.2,
-      "ciclos": 3,
-      "horas_eq": 5.0,
-      "ts_objetivo": "2026-08-04T20:46:41.765547"
-    },
-    "6h": {
-      "aur_pred": 1.283,
-      "mins_pred": 85.6,
+      "aur_pred": 1.994,
+      "mins_pred": 92.1,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 27.4,
+      "ciclos": 3,
+      "horas_eq": 5.0,
+      "ts_objetivo": "2026-08-04T21:46:38.133019"
+    },
+    "6h": {
+      "aur_pred": 1.422,
+      "mins_pred": 88.4,
+      "trc_pred": 30.0,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 26.6,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-08-04T22:26:41.765547"
+      "ts_objetivo": "2026-08-04T23:26:38.133019"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 31.9,
+    "temp": 31.6,
     "precip": 0.0,
-    "viento": 17.6,
+    "viento": 17.0,
     "humedad": 55.0,
-    "presion": 1001.3
+    "presion": 1001.4
   },
   "lluvia_prevista": {
     "h6": 0.0,
@@ -60,7 +60,7 @@
     "ok": true
   },
   "sesgo_aplicado_1c": {
-    "aur": 0.004,
-    "mins": -0.4
+    "aur": -0.032,
+    "mins": -0.0
   }
 }
