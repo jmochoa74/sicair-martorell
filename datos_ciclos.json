@@ -1,7 +1,7 @@
 {
-  "generado": "2026-08-05T20:46:56.660450",
-  "n_ciclos": 13048,
-  "ultimo_dato": "2026-08-05T19:24:29",
+  "generado": "2026-08-05T21:46:50.477194",
+  "n_ciclos": 13050,
+  "ultimo_dato": "2026-08-05T21:15:36",
   "ciclos": [
     {
       "datetime": "2022-02-23T07:24:41",
@@ -195616,7 +195616,7 @@
       "sobreaireoMin": 15.3,
       "dilucion": 0,
       "precip": 0.1,
-      "temp": 35.2
+      "temp": 34.9
     },
     {
       "datetime": "2026-08-05T14:24:35",
@@ -195631,7 +195631,7 @@
       "sobreaireoMin": 15.3,
       "dilucion": 0,
       "precip": 0.1,
-      "temp": 35.2
+      "temp": 34.9
     },
     {
       "datetime": "2026-08-05T16:02:18",
@@ -195646,7 +195646,7 @@
       "sobreaireoMin": -36.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 34.6
+      "temp": 34.7
     },
     {
       "datetime": "2026-08-05T16:02:20",
@@ -195661,7 +195661,7 @@
       "sobreaireoMin": -36.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 34.6
+      "temp": 34.7
     },
     {
       "datetime": "2026-08-05T17:43:35",
@@ -195676,7 +195676,7 @@
       "sobreaireoMin": 40.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 33.1
+      "temp": 33.2
     },
     {
       "datetime": "2026-08-05T17:43:36",
@@ -195691,7 +195691,7 @@
       "sobreaireoMin": 40.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 33.1
+      "temp": 33.2
     },
     {
       "datetime": "2026-08-05T19:24:29",
@@ -195706,7 +195706,7 @@
       "sobreaireoMin": 67.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 32.4
+      "temp": 32.2
     },
     {
       "datetime": "2026-08-05T19:24:29",
@@ -195721,7 +195721,37 @@
       "sobreaireoMin": 67.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 32.4
+      "temp": 32.2
+    },
+    {
+      "datetime": "2026-08-05T21:15:23",
+      "label": "05/08/2026 21:15",
+      "AUR": 3.29,
+      "RN": 11.5,
+      "TRC": 9.7,
+      "TRH": 7.6,
+      "minsReal": 115,
+      "minsTeo": 113,
+      "minsFormula": 51.1,
+      "sobreaireoMin": 63.9,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 29.4
+    },
+    {
+      "datetime": "2026-08-05T21:15:36",
+      "label": "05/08/2026 21:15",
+      "AUR": 3.29,
+      "RN": 11.5,
+      "TRC": 9.7,
+      "TRH": 7.6,
+      "minsReal": 115,
+      "minsTeo": 113,
+      "minsFormula": 51.1,
+      "sobreaireoMin": 63.9,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 29.4
     }
   ]
 }
