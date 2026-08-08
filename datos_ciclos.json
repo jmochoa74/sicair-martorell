@@ -1,5 +1,5 @@
 {
-  "generado": "2026-08-08T08:46:49.496776",
+  "generado": "2026-08-08T09:46:49.886303",
   "n_ciclos": 13116,
   "ultimo_dato": "2026-08-08T08:15:01",
   "ciclos": [
@@ -196636,7 +196636,7 @@
       "sobreaireoMin": 29.9,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 24.2
+      "temp": 23.6
     },
     {
       "datetime": "2026-08-08T02:58:38",
@@ -196651,7 +196651,7 @@
       "sobreaireoMin": 29.9,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 24.2
+      "temp": 23.6
     },
     {
       "datetime": "2026-08-08T04:37:41",
@@ -196666,7 +196666,7 @@
       "sobreaireoMin": 26.7,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 22.9
+      "temp": 22.3
     },
     {
       "datetime": "2026-08-08T04:37:41",
@@ -196679,21 +196679,6 @@
       "minsTeo": 70,
       "minsFormula": 45.3,
       "sobreaireoMin": 26.7,
-      "dilucion": 0,
-      "precip": 0.0,
-      "temp": 22.9
-    },
-    {
-      "datetime": "2026-08-08T06:19:15",
-      "label": "08/08/2026 06:19",
-      "AUR": 3.51,
-      "RN": 12.3,
-      "TRC": 8.4,
-      "TRH": 11.0,
-      "minsReal": 81,
-      "minsTeo": 79,
-      "minsFormula": 42.8,
-      "sobreaireoMin": 38.2,
       "dilucion": 0,
       "precip": 0.0,
       "temp": 22.3
@@ -196711,7 +196696,22 @@
       "sobreaireoMin": 38.2,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 22.3
+      "temp": 21.9
+    },
+    {
+      "datetime": "2026-08-08T06:19:15",
+      "label": "08/08/2026 06:19",
+      "AUR": 3.51,
+      "RN": 12.3,
+      "TRC": 8.4,
+      "TRH": 11.0,
+      "minsReal": 81,
+      "minsTeo": 79,
+      "minsFormula": 42.8,
+      "sobreaireoMin": 38.2,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 21.9
     },
     {
       "datetime": "2026-08-08T08:14:48",
@@ -196726,7 +196726,7 @@
       "sobreaireoMin": 43.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 23.2
+      "temp": 23.3
     },
     {
       "datetime": "2026-08-08T08:15:01",
@@ -196741,7 +196741,7 @@
       "sobreaireoMin": 43.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 23.2
+      "temp": 23.3
     }
   ]
 }
