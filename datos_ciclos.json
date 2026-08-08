@@ -1,7 +1,7 @@
 {
-  "generado": "2026-08-08T20:46:50.731929",
-  "n_ciclos": 13128,
-  "ultimo_dato": "2026-08-08T18:46:58",
+  "generado": "2026-08-08T21:46:48.517717",
+  "n_ciclos": 13130,
+  "ultimo_dato": "2026-08-08T20:33:04",
   "ciclos": [
     {
       "datetime": "2022-02-23T07:24:41",
@@ -196846,7 +196846,7 @@
       "sobreaireoMin": 29.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 33.5
+      "temp": 33.9
     },
     {
       "datetime": "2026-08-08T15:18:14",
@@ -196861,7 +196861,7 @@
       "sobreaireoMin": 29.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 33.5
+      "temp": 33.9
     },
     {
       "datetime": "2026-08-08T17:05:05",
@@ -196876,7 +196876,7 @@
       "sobreaireoMin": 30.7,
       "dilucion": 0,
       "precip": 0.1,
-      "temp": 33.1
+      "temp": 34.3
     },
     {
       "datetime": "2026-08-08T17:05:11",
@@ -196891,6 +196891,21 @@
       "sobreaireoMin": 30.7,
       "dilucion": 0,
       "precip": 0.1,
+      "temp": 34.3
+    },
+    {
+      "datetime": "2026-08-08T18:46:58",
+      "label": "08/08/2026 18:46",
+      "AUR": 3.31,
+      "RN": 11.6,
+      "TRC": 9.2,
+      "TRH": 9.0,
+      "minsReal": 82,
+      "minsTeo": 80,
+      "minsFormula": 45.1,
+      "sobreaireoMin": 36.9,
+      "dilucion": 0,
+      "precip": 0.0,
       "temp": 33.1
     },
     {
@@ -196906,22 +196921,37 @@
       "sobreaireoMin": 36.9,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 32.8
+      "temp": 33.1
     },
     {
-      "datetime": "2026-08-08T18:46:58",
-      "label": "08/08/2026 18:46",
-      "AUR": 3.31,
-      "RN": 11.6,
-      "TRC": 9.2,
+      "datetime": "2026-08-08T20:32:51",
+      "label": "08/08/2026 20:32",
+      "AUR": 3.46,
+      "RN": 12.1,
+      "TRC": 8.9,
       "TRH": 9.0,
       "minsReal": 82,
       "minsTeo": 80,
-      "minsFormula": 45.1,
-      "sobreaireoMin": 36.9,
+      "minsFormula": 43.3,
+      "sobreaireoMin": 38.7,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 32.8
+      "temp": 30.7
+    },
+    {
+      "datetime": "2026-08-08T20:33:04",
+      "label": "08/08/2026 20:33",
+      "AUR": 3.46,
+      "RN": 12.1,
+      "TRC": 8.9,
+      "TRH": 9.0,
+      "minsReal": 82,
+      "minsTeo": 80,
+      "minsFormula": 43.3,
+      "sobreaireoMin": 38.7,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 30.7
     }
   ]
 }
