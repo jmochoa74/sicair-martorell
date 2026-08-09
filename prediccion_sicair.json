@@ -1,7 +1,7 @@
 {
-  "generado": "2026-08-09T05:46:42.223363",
-  "ultimo_dato": "2026-08-09T03:36:23",
-  "ultimo_aur": 3.49,
+  "generado": "2026-08-09T06:46:45.849948",
+  "ultimo_dato": "2026-08-09T05:29:03",
+  "ultimo_aur": 3.51,
   "ultimo_mins": 75.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
@@ -11,47 +11,47 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 3.647,
-      "mins_pred": 73.0,
-      "trc_pred": 9.1,
+      "aur_pred": 3.73,
+      "mins_pred": 75.3,
+      "trc_pred": 8.7,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 22.5,
+      "temp_prev": 23.3,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-08-09T07:26:37.252330"
+      "ts_objetivo": "2026-08-09T08:26:41.084372"
     },
     "3c": {
-      "aur_pred": 3.891,
-      "mins_pred": 74.5,
-      "trc_pred": 9.1,
+      "aur_pred": 3.924,
+      "mins_pred": 79.2,
+      "trc_pred": 8.7,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 32.3,
+      "temp_prev": 34.0,
       "ciclos": 3,
       "horas_eq": 5.0,
-      "ts_objetivo": "2026-08-09T10:46:37.252330"
+      "ts_objetivo": "2026-08-09T11:46:41.084372"
     },
     "6h": {
-      "aur_pred": 3.618,
-      "mins_pred": 81.2,
-      "trc_pred": 9.1,
+      "aur_pred": 3.631,
+      "mins_pred": 82.1,
+      "trc_pred": 8.7,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 34.4,
+      "temp_prev": 35.3,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-08-09T12:26:37.252330"
+      "ts_objetivo": "2026-08-09T13:26:41.084372"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 22.6,
+    "temp": 22.4,
     "precip": 0.0,
-    "viento": 5.4,
+    "viento": 4.9,
     "humedad": 85.0,
-    "presion": 1001.8
+    "presion": 1002.4
   },
   "lluvia_prevista": {
     "h6": 0.0,
@@ -60,7 +60,7 @@
     "ok": true
   },
   "sesgo_aplicado_1c": {
-    "aur": 0.063,
-    "mins": 2.3
+    "aur": 0.084,
+    "mins": 2.4
   }
 }
