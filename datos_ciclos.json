@@ -1,7 +1,7 @@
 {
-  "generado": "2026-08-09T13:46:49.517789",
-  "n_ciclos": 13148,
-  "ultimo_dato": "2026-08-09T12:17:53",
+  "generado": "2026-08-09T14:46:49.300893",
+  "n_ciclos": 13150,
+  "ultimo_dato": "2026-08-09T14:08:58",
   "ciclos": [
     {
       "datetime": "2022-02-23T07:24:41",
@@ -197146,7 +197146,7 @@
       "sobreaireoMin": 42.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 26.6
+      "temp": 26.9
     },
     {
       "datetime": "2026-08-09T08:51:15",
@@ -197161,7 +197161,7 @@
       "sobreaireoMin": 42.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 26.6
+      "temp": 26.9
     },
     {
       "datetime": "2026-08-09T10:33:59",
@@ -197176,7 +197176,7 @@
       "sobreaireoMin": 32.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 32.3
+      "temp": 32.0
     },
     {
       "datetime": "2026-08-09T10:33:59",
@@ -197191,7 +197191,7 @@
       "sobreaireoMin": 32.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 32.3
+      "temp": 32.0
     },
     {
       "datetime": "2026-08-09T12:17:52",
@@ -197206,7 +197206,7 @@
       "sobreaireoMin": 29.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 34.2
+      "temp": 34.1
     },
     {
       "datetime": "2026-08-09T12:17:53",
@@ -197221,7 +197221,37 @@
       "sobreaireoMin": 29.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 34.2
+      "temp": 34.1
+    },
+    {
+      "datetime": "2026-08-09T14:08:47",
+      "label": "09/08/2026 14:08",
+      "AUR": 3.4,
+      "RN": 11.9,
+      "TRC": 9.6,
+      "TRH": 7.6,
+      "minsReal": 78,
+      "minsTeo": 76,
+      "minsFormula": 49.2,
+      "sobreaireoMin": 28.8,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 35.9
+    },
+    {
+      "datetime": "2026-08-09T14:08:58",
+      "label": "09/08/2026 14:08",
+      "AUR": 3.4,
+      "RN": 11.9,
+      "TRC": 9.6,
+      "TRH": 7.6,
+      "minsReal": 78,
+      "minsTeo": 76,
+      "minsFormula": 49.2,
+      "sobreaireoMin": 28.8,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 35.9
     }
   ]
 }
