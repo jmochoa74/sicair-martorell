@@ -1,5 +1,5 @@
 {
-  "generado": "2026-08-15T02:46:46.530773",
+  "generado": "2026-08-15T03:46:45.405339",
   "ultimo_dato": "2026-08-15T01:49:36",
   "ultimo_aur": 3.09,
   "ultimo_mins": 118.0,
@@ -11,46 +11,46 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 2.907,
+      "aur_pred": 2.908,
       "mins_pred": 85.3,
       "trc_pred": 10.9,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 23.7,
+      "temp_prev": 23.1,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-08-15T04:26:41.352702"
+      "ts_objetivo": "2026-08-15T05:26:40.134403"
     },
     "3c": {
-      "aur_pred": 3.325,
-      "mins_pred": 70.4,
-      "trc_pred": 10.9,
-      "prob_dilucion": 0.0,
-      "precip_mm_prev": 0.0,
-      "temp_prev": 22.9,
-      "ciclos": 3,
-      "horas_eq": 5.0,
-      "ts_objetivo": "2026-08-15T07:46:41.352702"
-    },
-    "6h": {
-      "aur_pred": 2.574,
-      "mins_pred": 77.8,
+      "aur_pred": 3.39,
+      "mins_pred": 74.5,
       "trc_pred": 10.9,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 26.5,
+      "ciclos": 3,
+      "horas_eq": 5.0,
+      "ts_objetivo": "2026-08-15T08:46:40.134403"
+    },
+    "6h": {
+      "aur_pred": 2.719,
+      "mins_pred": 81.6,
+      "trc_pred": 10.9,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 29.7,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-08-15T09:26:41.352702"
+      "ts_objetivo": "2026-08-15T10:26:40.134403"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 24.3,
+    "temp": 23.7,
     "precip": 0.0,
-    "viento": 3.6,
-    "humedad": 60.0,
+    "viento": 3.5,
+    "humedad": 54.0,
     "presion": 1001.2
   },
   "lluvia_prevista": {
