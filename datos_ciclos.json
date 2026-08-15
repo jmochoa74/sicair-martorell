@@ -1,7 +1,7 @@
 {
-  "generado": "2026-08-15T20:46:46.619280",
-  "n_ciclos": 13237,
-  "ultimo_dato": "2026-08-15T18:33:49",
+  "generado": "2026-08-15T21:46:52.086574",
+  "n_ciclos": 13239,
+  "ultimo_dato": "2026-08-15T20:16:01",
   "ciclos": [
     {
       "datetime": "2022-02-23T07:24:41",
@@ -198481,7 +198481,7 @@
       "sobreaireoMin": 42.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 31.7
+      "temp": 29.1
     },
     {
       "datetime": "2026-08-15T14:42:50",
@@ -198496,7 +198496,7 @@
       "sobreaireoMin": 42.0,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 31.7
+      "temp": 29.1
     },
     {
       "datetime": "2026-08-15T16:44:55",
@@ -198511,7 +198511,7 @@
       "sobreaireoMin": 43.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 32.0
+      "temp": 32.4
     },
     {
       "datetime": "2026-08-15T16:45:02",
@@ -198526,7 +198526,7 @@
       "sobreaireoMin": 43.5,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 32.0
+      "temp": 32.4
     },
     {
       "datetime": "2026-08-15T18:33:38",
@@ -198541,7 +198541,7 @@
       "sobreaireoMin": 41.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 32.3
+      "temp": 33.0
     },
     {
       "datetime": "2026-08-15T18:33:49",
@@ -198556,7 +198556,37 @@
       "sobreaireoMin": 41.6,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 32.3
+      "temp": 33.0
+    },
+    {
+      "datetime": "2026-08-15T20:16:01",
+      "label": "15/08/2026 20:16",
+      "AUR": 2.89,
+      "RN": 10.1,
+      "TRC": 11.8,
+      "TRH": 9.3,
+      "minsReal": 86,
+      "minsTeo": 84,
+      "minsFormula": 50.7,
+      "sobreaireoMin": 35.3,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 32.6
+    },
+    {
+      "datetime": "2026-08-15T20:16:01",
+      "label": "15/08/2026 20:16",
+      "AUR": 2.89,
+      "RN": 10.1,
+      "TRC": 11.8,
+      "TRH": 9.3,
+      "minsReal": 86,
+      "minsTeo": 84,
+      "minsFormula": 50.7,
+      "sobreaireoMin": 35.3,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 32.6
     }
   ]
 }
