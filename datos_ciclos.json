@@ -1,7 +1,7 @@
 {
-  "generado": "2026-08-16T01:46:48.707367",
-  "n_ciclos": 13243,
-  "ultimo_dato": "2026-08-15T23:41:19",
+  "generado": "2026-08-16T02:46:50.528404",
+  "n_ciclos": 13245,
+  "ultimo_dato": "2026-08-16T01:27:23",
   "ciclos": [
     {
       "datetime": "2022-02-23T07:24:41",
@@ -198571,7 +198571,7 @@
       "sobreaireoMin": 35.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 32.6
+      "temp": 31.5
     },
     {
       "datetime": "2026-08-15T20:16:01",
@@ -198586,7 +198586,7 @@
       "sobreaireoMin": 35.3,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 32.6
+      "temp": 31.5
     },
     {
       "datetime": "2026-08-15T21:56:55",
@@ -198601,7 +198601,7 @@
       "sobreaireoMin": 34.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 30.4
+      "temp": 30.0
     },
     {
       "datetime": "2026-08-15T21:56:55",
@@ -198616,7 +198616,7 @@
       "sobreaireoMin": 34.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 30.4
+      "temp": 30.0
     },
     {
       "datetime": "2026-08-15T23:41:18",
@@ -198631,7 +198631,7 @@
       "sobreaireoMin": 32.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 29.7
+      "temp": 27.7
     },
     {
       "datetime": "2026-08-15T23:41:19",
@@ -198646,7 +198646,37 @@
       "sobreaireoMin": 32.8,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 29.7
+      "temp": 27.7
+    },
+    {
+      "datetime": "2026-08-16T01:27:13",
+      "label": "16/08/2026 01:27",
+      "AUR": 3.17,
+      "RN": 11.1,
+      "TRC": 10.3,
+      "TRH": 12.0,
+      "minsReal": 82,
+      "minsTeo": 80,
+      "minsFormula": 45.7,
+      "sobreaireoMin": 36.3,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 26.7
+    },
+    {
+      "datetime": "2026-08-16T01:27:23",
+      "label": "16/08/2026 01:27",
+      "AUR": 3.17,
+      "RN": 11.1,
+      "TRC": 10.3,
+      "TRH": 12.0,
+      "minsReal": 82,
+      "minsTeo": 80,
+      "minsFormula": 45.7,
+      "sobreaireoMin": 36.3,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 26.7
     }
   ]
 }
