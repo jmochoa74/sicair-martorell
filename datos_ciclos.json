@@ -1,7 +1,7 @@
 {
-  "generado": "2026-08-17T08:46:51.206191",
-  "n_ciclos": 13275,
-  "ultimo_dato": "2026-08-17T06:33:23",
+  "generado": "2026-08-17T09:46:49.472114",
+  "n_ciclos": 13277,
+  "ultimo_dato": "2026-08-17T08:33:20",
   "ciclos": [
     {
       "datetime": "2022-02-23T07:24:41",
@@ -199051,7 +199051,7 @@
       "sobreaireoMin": 24.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 25.5
+      "temp": 25.3
     },
     {
       "datetime": "2026-08-17T02:49:48",
@@ -199066,7 +199066,7 @@
       "sobreaireoMin": 24.1,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 25.5
+      "temp": 25.3
     },
     {
       "datetime": "2026-08-17T04:32:31",
@@ -199081,7 +199081,7 @@
       "sobreaireoMin": 25.7,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 24.4
+      "temp": 24.3
     },
     {
       "datetime": "2026-08-17T04:32:31",
@@ -199096,7 +199096,7 @@
       "sobreaireoMin": 25.7,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 24.4
+      "temp": 24.3
     },
     {
       "datetime": "2026-08-17T06:33:13",
@@ -199127,6 +199127,36 @@
       "dilucion": 0,
       "precip": 0.0,
       "temp": 23.3
+    },
+    {
+      "datetime": "2026-08-17T08:33:07",
+      "label": "17/08/2026 08:33",
+      "AUR": 3.69,
+      "RN": 12.9,
+      "TRC": 8.5,
+      "TRH": 13.6,
+      "minsReal": 82,
+      "minsTeo": 80,
+      "minsFormula": 37.4,
+      "sobreaireoMin": 44.6,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 26.7
+    },
+    {
+      "datetime": "2026-08-17T08:33:20",
+      "label": "17/08/2026 08:33",
+      "AUR": 3.69,
+      "RN": 12.9,
+      "TRC": 8.5,
+      "TRH": 13.6,
+      "minsReal": 82,
+      "minsTeo": 80,
+      "minsFormula": 37.4,
+      "sobreaireoMin": 44.6,
+      "dilucion": 0,
+      "precip": 0.0,
+      "temp": 26.7
     }
   ]
 }
