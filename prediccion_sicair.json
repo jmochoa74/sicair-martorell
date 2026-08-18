@@ -1,5 +1,5 @@
 {
-  "generado": "2026-08-18T12:46:41.729895",
+  "generado": "2026-08-18T13:14:44.033093",
   "ultimo_dato": "2026-08-18T12:13:53",
   "ultimo_aur": 3.46,
   "ultimo_mins": 101.0,
@@ -11,37 +11,37 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 3.623,
-      "mins_pred": 100.9,
+      "aur_pred": 3.542,
+      "mins_pred": 100.8,
       "trc_pred": 9.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 34.8,
+      "temp_prev": 36.2,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-08-18T14:26:36.493909"
+      "ts_objetivo": "2026-08-18T14:54:38.631557"
     },
     "3c": {
-      "aur_pred": 3.255,
-      "mins_pred": 85.0,
+      "aur_pred": 3.0,
+      "mins_pred": 82.3,
       "trc_pred": 9.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 31.6,
       "ciclos": 3,
       "horas_eq": 5.0,
-      "ts_objetivo": "2026-08-18T17:46:36.493909"
+      "ts_objetivo": "2026-08-18T18:14:38.631557"
     },
     "6h": {
-      "aur_pred": 2.913,
-      "mins_pred": 79.9,
+      "aur_pred": 2.772,
+      "mins_pred": 79.5,
       "trc_pred": 9.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 31.0,
+      "temp_prev": 30.0,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-08-18T19:26:36.493909"
+      "ts_objetivo": "2026-08-18T19:54:38.631557"
     },
     "tox_prob": 0.05
   },
