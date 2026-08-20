@@ -1,5 +1,5 @@
 {
-  "generado": "2026-08-20T17:46:42.551745",
+  "generado": "2026-08-20T18:46:38.880575",
   "ultimo_dato": "2026-08-20T16:41:58",
   "ultimo_aur": 2.14,
   "ultimo_mins": 86.0,
@@ -11,52 +11,52 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 2.123,
-      "mins_pred": 98.3,
+      "aur_pred": 2.104,
+      "mins_pred": 99.1,
       "trc_pred": 17.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 30.2,
+      "temp_prev": 29.4,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-08-20T19:26:35.613682"
+      "ts_objetivo": "2026-08-20T20:26:33.592785"
     },
     "3c": {
-      "aur_pred": 2.213,
-      "mins_pred": 85.4,
-      "trc_pred": 17.0,
-      "prob_dilucion": 0.46,
-      "precip_mm_prev": 2.3,
-      "temp_prev": 27.2,
-      "ciclos": 3,
-      "horas_eq": 5.0,
-      "ts_objetivo": "2026-08-20T22:46:35.613682"
-    },
-    "6h": {
-      "aur_pred": 2.102,
-      "mins_pred": 81.1,
+      "aur_pred": 2.195,
+      "mins_pred": 84.2,
       "trc_pred": 17.0,
       "prob_dilucion": 0.02,
       "precip_mm_prev": 0.1,
-      "temp_prev": 24.4,
+      "temp_prev": 23.8,
+      "ciclos": 3,
+      "horas_eq": 5.0,
+      "ts_objetivo": "2026-08-20T23:46:33.592785"
+    },
+    "6h": {
+      "aur_pred": 2.095,
+      "mins_pred": 82.4,
+      "trc_pred": 17.0,
+      "prob_dilucion": 0.74,
+      "precip_mm_prev": 3.7,
+      "temp_prev": 22.8,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-08-21T00:26:35.613682"
+      "ts_objetivo": "2026-08-21T01:26:33.592785"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 30.2,
-    "precip": 1.6,
-    "viento": 13.4,
-    "humedad": 74.0,
-    "presion": 997.9
+    "temp": 30.0,
+    "precip": 0.0,
+    "viento": 7.4,
+    "humedad": 67.0,
+    "presion": 996.9
   },
   "lluvia_prevista": {
-    "h6": 2.4,
+    "h6": 6.1,
     "h12": 15.1,
-    "h24": 15.1,
+    "h24": 15.3,
     "ok": true
   },
   "sesgo_aplicado_1c": {
