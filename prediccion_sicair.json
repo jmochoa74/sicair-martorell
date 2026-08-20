@@ -1,5 +1,5 @@
 {
-  "generado": "2026-08-21T00:46:54.086294",
+  "generado": "2026-08-21T01:46:53.051931",
   "ultimo_dato": "2026-08-21T00:12:09",
   "ultimo_aur": 1.86,
   "ultimo_mins": 95.0,
@@ -11,52 +11,52 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 2.254,
-      "mins_pred": 84.7,
+      "aur_pred": 2.263,
+      "mins_pred": 83.0,
       "trc_pred": 22.3,
-      "prob_dilucion": 0.64,
-      "precip_mm_prev": 3.2,
-      "temp_prev": 22.8,
+      "prob_dilucion": 0.08,
+      "precip_mm_prev": 0.4,
+      "temp_prev": 22.6,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-08-21T02:26:49.227579"
+      "ts_objetivo": "2026-08-21T03:26:48.240461"
     },
     "3c": {
-      "aur_pred": 2.66,
-      "mins_pred": 64.5,
-      "trc_pred": 22.3,
-      "prob_dilucion": 0.0,
-      "precip_mm_prev": 0.0,
-      "temp_prev": 22.2,
-      "ciclos": 3,
-      "horas_eq": 5.0,
-      "ts_objetivo": "2026-08-21T05:46:49.227579"
-    },
-    "6h": {
-      "aur_pred": 2.325,
-      "mins_pred": 76.4,
+      "aur_pred": 2.835,
+      "mins_pred": 72.3,
       "trc_pred": 22.3,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 21.5,
+      "ciclos": 3,
+      "horas_eq": 5.0,
+      "ts_objetivo": "2026-08-21T06:46:48.240461"
+    },
+    "6h": {
+      "aur_pred": 2.498,
+      "mins_pred": 79.9,
+      "trc_pred": 22.3,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 21.9,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-08-21T07:26:49.227579"
+      "ts_objetivo": "2026-08-21T08:26:48.240461"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 25.0,
-    "precip": 0.0,
-    "viento": 2.7,
-    "humedad": 77.0,
-    "presion": 996.7
+    "temp": 22.8,
+    "precip": 3.2,
+    "viento": 1.3,
+    "humedad": 87.0,
+    "presion": 996.3
   },
   "lluvia_prevista": {
-    "h6": 8.4,
-    "h12": 8.4,
-    "h24": 8.8,
+    "h6": 5.2,
+    "h12": 5.2,
+    "h24": 5.6,
     "ok": true
   },
   "sesgo_aplicado_1c": {
