@@ -1,5 +1,5 @@
 {
-  "generado": "2026-08-21T13:46:42.886559",
+  "generado": "2026-08-21T14:46:42.847432",
   "n_ciclos": 11959,
   "ultimo_dato": "2026-08-21T12:15:23",
   "ciclos": [
@@ -179371,7 +179371,7 @@
       "sobreaireoMin": 29.7,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 23.6
+      "temp": 24.4
     },
     {
       "datetime": "2026-08-21T12:15:23",
@@ -179386,7 +179386,7 @@
       "sobreaireoMin": 39.2,
       "dilucion": 0,
       "precip": 0.0,
-      "temp": 27.4
+      "temp": 27.2
     }
   ]
 }
