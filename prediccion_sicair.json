@@ -1,8 +1,8 @@
 {
-  "generado": "2026-08-24T22:46:42.556049",
-  "ultimo_dato": "2026-08-24T21:17:38",
-  "ultimo_aur": 1.31,
-  "ultimo_mins": 107.0,
+  "generado": "2026-08-24T23:46:39.122364",
+  "ultimo_dato": "2026-08-24T23:11:38",
+  "ultimo_aur": 1.34,
+  "ultimo_mins": 104.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,56 +11,56 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 1.688,
-      "mins_pred": 103.4,
-      "trc_pred": 30.0,
-      "prob_dilucion": 0.02,
-      "precip_mm_prev": 0.1,
-      "temp_prev": 22.5,
-      "ciclos": 1,
-      "horas_eq": 1.7,
-      "ts_objetivo": "2026-08-25T00:26:35.878689"
-    },
-    "3c": {
-      "aur_pred": 2.158,
-      "mins_pred": 81.7,
+      "aur_pred": 1.432,
+      "mins_pred": 98.8,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 21.7,
+      "temp_prev": 22.3,
+      "ciclos": 1,
+      "horas_eq": 1.7,
+      "ts_objetivo": "2026-08-25T01:26:33.811094"
+    },
+    "3c": {
+      "aur_pred": 1.981,
+      "mins_pred": 78.8,
+      "trc_pred": 30.0,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 21.8,
       "ciclos": 3,
       "horas_eq": 5.0,
-      "ts_objetivo": "2026-08-25T03:46:35.878689"
+      "ts_objetivo": "2026-08-25T04:46:33.811094"
     },
     "6h": {
-      "aur_pred": 1.971,
-      "mins_pred": 78.1,
+      "aur_pred": 1.874,
+      "mins_pred": 76.8,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 21.6,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-08-25T05:26:35.878689"
+      "ts_objetivo": "2026-08-25T06:26:33.811094"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 22.9,
-    "precip": 0.0,
-    "viento": 4.4,
-    "humedad": 84.0,
-    "presion": 998.6
+    "temp": 22.5,
+    "precip": 1.0,
+    "viento": 4.7,
+    "humedad": 85.0,
+    "presion": 998.7
   },
   "lluvia_prevista": {
-    "h6": 0.1,
-    "h12": 0.1,
-    "h24": 0.1,
+    "h6": 0.0,
+    "h12": 0.0,
+    "h24": 0.0,
     "ok": true
   },
   "sesgo_aplicado_1c": {
-    "aur": 0.001,
-    "mins": 4.6
+    "aur": -0.135,
+    "mins": 4.0
   }
 }
