@@ -1,5 +1,6 @@
 {
-  "activo": false,
-  "ciclos": 0,
-  "updated": "2026-08-26T02:46:40.081897"
+  "activo": true,
+  "ciclos": 8,
+  "updated": "2026-08-26T05:46:39.909593",
+  "motivo": "caida 43% sin dilucion"
 }
