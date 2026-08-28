@@ -13691,5 +13691,19 @@
       "trc_pred": 9.2,
       "prob_dilucion": 0.0
     }
+  },
+  {
+    "ts_prediccion": "2026-08-28T08:46:46.866901",
+    "ultimo_dato_ts": "2026-08-28T08:13:03",
+    "ultimo_aur": 3.6,
+    "ultimo_mins": 84.0,
+    "duracion_media_min": 100.0,
+    "ts_objetivo_1c": "2026-08-28T09:53:03",
+    "pred_1c": {
+      "aur_pred": 3.349,
+      "mins_pred": 79.1,
+      "trc_pred": 8.6,
+      "prob_dilucion": 0.0
+    }
   }
 ]
