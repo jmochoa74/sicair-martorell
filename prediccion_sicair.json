@@ -1,8 +1,8 @@
 {
-  "generado": "2026-08-31T01:46:40.682840",
-  "ultimo_dato": "2026-08-30T23:22:45",
-  "ultimo_aur": 1.4,
-  "ultimo_mins": 108.0,
+  "generado": "2026-08-31T02:46:40.429413",
+  "ultimo_dato": "2026-08-31T01:40:30",
+  "ultimo_aur": 1.6,
+  "ultimo_mins": 104.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,47 +11,47 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 1.502,
-      "mins_pred": 92.7,
+      "aur_pred": 1.492,
+      "mins_pred": 80.3,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 20.1,
+      "temp_prev": 19.6,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-08-31T03:26:35.091989"
+      "ts_objetivo": "2026-08-31T04:26:35.564643"
     },
     "3c": {
-      "aur_pred": 2.568,
-      "mins_pred": 74.5,
+      "aur_pred": 2.68,
+      "mins_pred": 71.5,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 18.4,
+      "temp_prev": 18.7,
       "ciclos": 3,
       "horas_eq": 5.0,
-      "ts_objetivo": "2026-08-31T06:46:35.091989"
+      "ts_objetivo": "2026-08-31T07:46:35.564643"
     },
     "6h": {
-      "aur_pred": 2.072,
-      "mins_pred": 77.4,
+      "aur_pred": 2.274,
+      "mins_pred": 75.4,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 18.8,
+      "temp_prev": 21.4,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-08-31T08:26:35.091989"
+      "ts_objetivo": "2026-08-31T09:26:35.564643"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 20.8,
+    "temp": 20.0,
     "precip": 0.0,
-    "viento": 4.5,
-    "humedad": 76.0,
-    "presion": 1003.8
+    "viento": 3.6,
+    "humedad": 78.0,
+    "presion": 1004.0
   },
   "lluvia_prevista": {
     "h6": 0.0,
@@ -60,7 +60,7 @@
     "ok": true
   },
   "sesgo_aplicado_1c": {
-    "aur": -0.192,
-    "mins": 3.1
+    "aur": -0.245,
+    "mins": 3.9
   }
 }
