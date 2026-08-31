@@ -1,8 +1,8 @@
 {
-  "generado": "2026-09-01T00:46:42.515889",
-  "ultimo_dato": "2026-08-31T23:12:36",
-  "ultimo_aur": 1.2,
-  "ultimo_mins": 103.0,
+  "generado": "2026-09-01T01:46:55.704887",
+  "ultimo_dato": "2026-09-01T01:11:19",
+  "ultimo_aur": 1.26,
+  "ultimo_mins": 108.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,47 +11,47 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 1.478,
-      "mins_pred": 102.2,
+      "aur_pred": 1.263,
+      "mins_pred": 93.0,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 22.3,
+      "temp_prev": 22.0,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-09-01T02:26:35.752791"
+      "ts_objetivo": "2026-09-01T03:26:50.177939"
     },
     "3c": {
-      "aur_pred": 2.694,
-      "mins_pred": 83.2,
+      "aur_pred": 2.876,
+      "mins_pred": 82.2,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 20.6,
+      "temp_prev": 20.2,
       "ciclos": 3,
       "horas_eq": 5.0,
-      "ts_objetivo": "2026-09-01T05:46:35.752791"
+      "ts_objetivo": "2026-09-01T06:46:50.177939"
     },
     "6h": {
-      "aur_pred": 1.581,
-      "mins_pred": 82.5,
+      "aur_pred": 1.526,
+      "mins_pred": 86.0,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 20.2,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-09-01T07:26:35.752791"
+      "ts_objetivo": "2026-09-01T08:26:50.177939"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 22.9,
+    "temp": 22.3,
     "precip": 0.0,
-    "viento": 2.1,
-    "humedad": 91.0,
-    "presion": 1007.6
+    "viento": 3.4,
+    "humedad": 93.0,
+    "presion": 1007.4
   },
   "lluvia_prevista": {
     "h6": 0.0,
@@ -60,7 +60,7 @@
     "ok": true
   },
   "sesgo_aplicado_1c": {
-    "aur": -0.216,
-    "mins": 8.4
+    "aur": -0.334,
+    "mins": 8.1
   }
 }
