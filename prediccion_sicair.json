@@ -1,8 +1,8 @@
 {
-  "generado": "2026-08-31T22:46:41.126968",
-  "ultimo_dato": "2026-08-31T21:03:04",
+  "generado": "2026-08-31T23:46:39.815858",
+  "ultimo_dato": "2026-08-31T23:12:36",
   "ultimo_aur": 1.2,
-  "ultimo_mins": 111.0,
+  "ultimo_mins": 103.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,46 +11,46 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 1.573,
-      "mins_pred": 101.7,
+      "aur_pred": 1.47,
+      "mins_pred": 106.5,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 23.6,
+      "temp_prev": 22.9,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-09-01T00:26:35.402720"
+      "ts_objetivo": "2026-09-01T01:26:34.389523"
     },
     "3c": {
-      "aur_pred": 2.272,
-      "mins_pred": 82.1,
-      "trc_pred": 30.0,
-      "prob_dilucion": 0.0,
-      "precip_mm_prev": 0.0,
-      "temp_prev": 21.6,
-      "ciclos": 3,
-      "horas_eq": 5.0,
-      "ts_objetivo": "2026-09-01T03:46:35.402720"
-    },
-    "6h": {
-      "aur_pred": 1.616,
-      "mins_pred": 75.6,
+      "aur_pred": 2.683,
+      "mins_pred": 78.8,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 21.2,
+      "ciclos": 3,
+      "horas_eq": 5.0,
+      "ts_objetivo": "2026-09-01T04:46:34.389523"
+    },
+    "6h": {
+      "aur_pred": 1.581,
+      "mins_pred": 79.5,
+      "trc_pred": 30.0,
+      "prob_dilucion": 0.0,
+      "precip_mm_prev": 0.0,
+      "temp_prev": 20.6,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-09-01T05:26:35.402720"
+      "ts_objetivo": "2026-09-01T06:26:34.389523"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 24.0,
+    "temp": 23.3,
     "precip": 0.0,
-    "viento": 2.9,
-    "humedad": 84.0,
+    "viento": 1.8,
+    "humedad": 88.0,
     "presion": 1007.2
   },
   "lluvia_prevista": {
@@ -60,7 +60,7 @@
     "ok": true
   },
   "sesgo_aplicado_1c": {
-    "aur": -0.149,
-    "mins": 8.5
+    "aur": -0.216,
+    "mins": 8.4
   }
 }
