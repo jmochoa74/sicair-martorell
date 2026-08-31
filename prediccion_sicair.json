@@ -1,8 +1,8 @@
 {
-  "generado": "2026-08-31T19:46:42.858854",
-  "ultimo_dato": "2026-08-31T16:53:48",
-  "ultimo_aur": 1.34,
-  "ultimo_mins": 91.0,
+  "generado": "2026-08-31T20:46:44.069227",
+  "ultimo_dato": "2026-08-31T19:19:00",
+  "ultimo_aur": 1.14,
+  "ultimo_mins": 111.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,47 +11,47 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 1.534,
-      "mins_pred": 109.3,
+      "aur_pred": 1.541,
+      "mins_pred": 106.7,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 25.1,
+      "temp_prev": 24.6,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-08-31T21:26:35.088209"
+      "ts_objetivo": "2026-08-31T22:26:36.210896"
     },
     "3c": {
-      "aur_pred": 2.013,
-      "mins_pred": 88.9,
+      "aur_pred": 2.125,
+      "mins_pred": 82.6,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 23.0,
+      "temp_prev": 22.5,
       "ciclos": 3,
       "horas_eq": 5.0,
-      "ts_objetivo": "2026-09-01T00:46:35.088209"
+      "ts_objetivo": "2026-09-01T01:46:36.210896"
     },
     "6h": {
-      "aur_pred": 1.834,
-      "mins_pred": 81.0,
+      "aur_pred": 1.805,
+      "mins_pred": 80.8,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 22.3,
+      "temp_prev": 22.0,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-09-01T02:26:35.088209"
+      "ts_objetivo": "2026-09-01T03:26:36.210896"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 26.1,
+    "temp": 25.1,
     "precip": 0.0,
-    "viento": 11.6,
-    "humedad": 70.0,
-    "presion": 1005.1
+    "viento": 7.1,
+    "humedad": 76.0,
+    "presion": 1006.0
   },
   "lluvia_prevista": {
     "h6": 0.0,
@@ -60,7 +60,7 @@
     "ok": true
   },
   "sesgo_aplicado_1c": {
-    "aur": -0.081,
+    "aur": -0.105,
     "mins": 9.2
   }
 }
