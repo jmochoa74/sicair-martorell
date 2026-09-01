@@ -15,18 +15,16 @@ const TIPOS_INC = [
   {id:"parada",label:"🛑 Parada",color:C.red},
   {id:"averia",label:"🔧 Avería",color:C.amber},
   {id:"carga",label:"📥 Cambio carga",color:C.blue},
-  {id:"toxicidad",label:"☣️ Toxicidad",color:C.purple},
   {id:"otro",label:"📝 Otro",color:C.muted},
 ];
 const ALERT_DEF = [
   {id:"aur_bajo",label:"AUR mínimo",icon:"🔬",unit:"mg O₂/L·h",campo:"AUR",tipo:"min",valor:0.8,activa:true,sonido:true,severidad:"critica"},
   {id:"aur_alto",label:"AUR máximo",icon:"🔬",unit:"mg O₂/L·h",campo:"AUR",tipo:"max",valor:5.0,activa:true,sonido:false,severidad:"aviso"},
-  {id:"tox",label:"SICTOX toxicidad",icon:"☣️",unit:"%",campo:"toxProb",tipo:"max",valor:40,activa:true,sonido:true,severidad:"critica"},
   {id:"mins_alto",label:"Soplante exceso",icon:"💨",unit:"min/ciclo",campo:"minsReal",tipo:"max",valor:120,activa:true,sonido:false,severidad:"aviso"},
   {id:"energia",label:"Sobreconsumo energía",icon:"⚡",unit:"% desviac.",campo:"energPct",tipo:"max",valor:20,activa:true,sonido:false,severidad:"aviso"},
   {id:"ciclo_anom",label:"Ciclo anómalo",icon:"⚠️",unit:"% desviación",campo:"cicloDesv",tipo:"max",valor:20,activa:true,sonido:true,severidad:"critica"},
-  {id:"trc_alto",label:"TRC demasiado alto",icon:"🧫",unit:"días",campo:"TRC",tipo:"max",valor:30,activa:true,sonido:false,severidad:"aviso"},
-  {id:"trc_bajo",label:"TRC demasiado bajo",icon:"🧫",unit:"días",campo:"TRC",tipo:"min",valor:5,activa:true,sonido:true,severidad:"critica"},
+  {id:"trc_alto",label:"TRC demasiado alto",icon:"🧫",unit:"días",campo:"TRCsuave",tipo:"max",valor:25,activa:true,sonido:false,severidad:"aviso"},
+  {id:"trc_bajo",label:"TRC demasiado bajo",icon:"🧫",unit:"días",campo:"TRCsuave",tipo:"min",valor:5,activa:true,sonido:true,severidad:"critica"},
 ];
 
 
@@ -298,6 +296,28 @@ function playAlertTone(type="warning") {
     setTimeout(()=>ctx.close(), 2000);
   } catch {}
 }
+// El TRC (edad del fango) que llega ciclo a ciclo desde el respirómetro se
+// calcula con la tasa de nitrificación de ese ciclo puntual y por eso es muy
+// ruidoso (puede pasar de 8d a 70d entre dos ciclos consecutivos). La edad
+// real del fango es una magnitud física que apenas cambia en un día, así que
+// para el estado actual, las alertas y los informes usamos una mediana móvil
+// de los últimos VENTANA_TRC_DIAS — el dato bruto por ciclo se conserva en
+// TRC (para exportar/depurar) y el valor operativo va en TRCsuave.
+const VENTANA_TRC_DIAS = 3;
+function suavizarTRC(rows, ventanaDias = VENTANA_TRC_DIAS) {
+  const ms = ventanaDias * 86400000;
+  let lo = 0;
+  return rows.map((r, i) => {
+    const t = r.datetime.getTime();
+    while (rows[lo].datetime.getTime() < t - ms) lo++;
+    const vals = [];
+    for (let j = lo; j <= i; j++) { const v = rows[j].TRC; if (v > 0 && v < 300) vals.push(v); }
+    vals.sort((a, b) => a - b);
+    const n = vals.length;
+    const mediana = n ? (n % 2 ? vals[(n - 1) / 2] : (vals[n / 2 - 1] + vals[n / 2]) / 2) : null;
+    return { ...r, TRCsuave: mediana ?? (r.TRC > 0 ? r.TRC : null) };
+  });
+}
 function evaluarAlertas(alertas, data, pred) {
   if (!data||!alertas.length) return [];
   const last = data.at(-1);
@@ -305,7 +325,7 @@ function evaluarAlertas(alertas, data, pred) {
   const energPct = tT ? Math.abs((tR-tT)/tT*100) : 0;
   const aurPred1c = pred?.predicciones?.["1c"]?.aur_pred;
   const cicloDesv = aurPred1c&&last?.AUR ? Math.abs((last.AUR-aurPred1c)/aurPred1c*100) : 0;
-  const vals = {AUR:last?.AUR||0, minsReal:last?.minsReal||0, TRC:last?.TRC||0, toxProb:(pred?.predicciones?.tox_prob||0)*100, energPct, cicloDesv};
+  const vals = {AUR:last?.AUR||0, minsReal:last?.minsReal||0, TRC:last?.TRC||0, TRCsuave:last?.TRCsuave??last?.TRC??0, energPct, cicloDesv};
   return alertas.filter(a=>a.activa).map(a => {
     const v = vals[a.campo];
     if (v==null) return null;
@@ -336,8 +356,8 @@ function calcularScore(data) {
   const last = data.at(-1);
   const aur = last.AUR;
   const aurS = aur>=0.8&&aur<=5.0 ? 100 : aur<0.8 ? Math.max(0,aur/0.8*100) : Math.max(0,100-(aur-5.0)*20);
-  const trc = last.TRC;
-  const trcS = trc>=5&&trc<=15 ? 100 : trc<5 ? Math.max(0,trc/5*100) : Math.max(0,100-(trc-15)*8);
+  const trc = last.TRCsuave??last.TRC;
+  const trcS = trc>=5&&trc<=25 ? 100 : trc<5 ? Math.max(0,trc/5*100) : Math.max(0,100-(trc-25)*8);
   const ult20 = data.slice(-20);
   const tR=ult20.reduce((s,d)=>s+d.minsReal,0), tT=ult20.reduce((s,d)=>s+d.minsTeo,0);
   const eficS = tT ? Math.min(100,Math.max(0,100-(tR-tT)/tT*100)) : 100;
@@ -520,13 +540,13 @@ function ScoreSalud({data}) {
   );
 }
 
-function Semaforo({data,pred,toxUmbral,alertasDisparadas,alertas}) {
+function Semaforo({data,pred,alertasDisparadas,alertas}) {
   if (!data||!data.length) return null;
-  const last=data.at(-1), toxProb=(pred?.predicciones?.tox_prob||0)*100, aur=last?.AUR||0;
+  const last=data.at(-1), aur=last?.AUR||0;
   const diag = diagnosticarCausa(data,pred,alertas);
-  const trc=last?.TRC||0, trcFuera=trc<5||trc>15;
+  const trc=last?.TRCsuave??last?.TRC??0, trcFuera=trc<5||trc>25;
   let estado="verde", msg="Sistema operando correctamente";
-  if (alertasDisparadas?.some(a=>a.severidad==="critica")||toxProb>toxUmbral||diag) {
+  if (alertasDisparadas?.some(a=>a.severidad==="critica")||diag) {
     estado="rojo";
     msg = diag ? `⚠️ Ciclo anómalo — desviación ${diag.desv>0?"+":""}${diag.desv}%` : alertasDisparadas?.find(a=>a.severidad==="critica")?.label||"⚠️ Alerta crítica";
   } else if (alertasDisparadas?.length>0||aur<1.0||trcFuera) {
@@ -542,7 +562,6 @@ function Semaforo({data,pred,toxUmbral,alertasDisparadas,alertas}) {
         <div style={{display:"flex",gap:20,fontSize:12,color:C.muted,flexWrap:"wrap"}}>
           <span>AUR <b style={{color:C.text,fontWeight:600}}>{aur.toFixed(2)}</b> mg O₂/L·h</span>
           <span>TRC <b style={{color:trcFuera?trc<5?C.red:C.amber:C.text,fontWeight:600}}>{trc.toFixed(1)}</b> d</span>
-          <span>SICTOX <b style={{color:C.text,fontWeight:600}}>{toxProb.toFixed(1)}%</b></span>
           {alertasDisparadas?.length>0&&<span>Alertas <b style={{color:C.red,fontWeight:600}}>{alertasDisparadas.length}</b></span>}
         </div>
       </div>
@@ -551,11 +570,11 @@ function Semaforo({data,pred,toxUmbral,alertasDisparadas,alertas}) {
   );
 }
 
-function DiagnosticoPanel({data,pred,alertas,trcMin=5,trcMax=15}) {
+function DiagnosticoPanel({data,pred,alertas,trcMin=5,trcMax=25}) {
   if (!data?.length||!pred) return null;
   const last = data.at(-1);
   const diag = diagnosticarCausa(data,pred,alertas);
-  const trc = last.TRC, trcAlerta = trc<trcMin||trc>trcMax;
+  const trc = last.TRCsuave??last.TRC, trcAlerta = trc<trcMin||trc>trcMax;
   const trcColor = trc<trcMin?C.red:trc>trcMax?C.amber:C.green;
   const trcPreds = ["1c","3c","6h"].map(h=>({h,val:pred.predicciones?.[h]?.trc_pred})).filter(p=>p.val!=null);
   const trcSalida = trcPreds.find(p=>p.val<trcMin||p.val>trcMax);
@@ -677,27 +696,18 @@ function corregirLluvia(aurPred,minsPred,mm) {
   return {aurCorr:+(aurPred*(1-FACTOR_DIL)).toFixed(3),minsCorr:+(minsPred*(1-FACTOR_DIL)).toFixed(0),dilucion:true,mm};
 }
 
-function PredPanel({pred,toxUmbral,data}) {
+function PredPanel({pred,data}) {
   if (!pred) return null;
   const p=pred.predicciones, m=pred.metricas;
-  const toxPct = ((p.tox_prob||0)*100).toFixed(1);
-  const toxColor = p.tox_prob>toxUmbral/100?C.red:p.tox_prob>(toxUmbral/100)*0.5?C.amber:C.green;
   const lluvia = useLluviaPrevista();
   const trhActual = data?.at(-1)?.TRH??null;
   const durH = data&&data.length>2 ? (()=>{ const diffs=data.slice(1).map((d,i)=>(d.datetime-data[i].datetime)/3600000).filter(x=>x>=1&&x<=3); return diffs.length?diffs.reduce((s,v)=>s+v,0)/diffs.length:1.6; })() : 1.6;
   const HORZ = [{key:"1c",label:"+1 ciclo",desc:`~${Math.round(durH*60)} min`},{key:"3c",label:"+3 ciclos",desc:`~${Math.round(durH*3*60)} min`},{key:"6h",label:"+6h",desc:`~${Math.round(6/durH)} ciclos`}];
   return (
     <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"20px 24px",marginBottom:14}}>
-      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
-        <div>
-          <div style={{fontSize:14,fontWeight:700}}>🧠 Predicciones SICAIR</div>
-          <div style={{fontSize:11,color:C.muted,marginTop:2}}>Último dato: <b>{pred.ultimo_dato?.slice(0,16)}</b> · AUR: <b style={{color:C.green}}>{pred.ultimo_aur?.toFixed(2)} mg/L·h</b>{trhActual!=null&&<> · TRH: <b>{trhActual.toFixed(1)}h</b></>}</div>
-        </div>
-        <div style={{textAlign:"right"}}>
-          <div style={{fontSize:11,color:C.muted,marginBottom:4}}>SICTOX</div>
-          <div style={{fontSize:24,fontWeight:800,color:toxColor,fontFamily:"monospace"}}>{toxPct}%</div>
-          <Badge color={toxColor}>{p.tox_prob>(toxUmbral/100)?"⚠️ ALERTA":p.tox_prob>(toxUmbral/100)*0.5?"Vigilancia":"Normal"}</Badge>
-        </div>
+      <div style={{marginBottom:12}}>
+        <div style={{fontSize:14,fontWeight:700}}>🧠 Predicciones SICAIR</div>
+        <div style={{fontSize:11,color:C.muted,marginTop:2}}>Último dato: <b>{pred.ultimo_dato?.slice(0,16)}</b> · AUR: <b style={{color:C.green}}>{pred.ultimo_aur?.toFixed(2)} mg/L·h</b>{trhActual!=null&&<> · TRH: <b>{trhActual.toFixed(1)}h</b></>}</div>
       </div>
       {lluvia?.ok && (
         <div style={{background:lluvia.h24>=UMBRAL_MM?C.blueFade:"#f0fdf4",border:`1.5px solid ${lluvia.h24>=UMBRAL_MM?C.blue:C.green}`,borderRadius:10,padding:"10px 16px",marginBottom:12,display:"flex",alignItems:"center",gap:12}}>
@@ -1287,7 +1297,7 @@ function MultiPlantasPanel({reactores}) {
                 <td style={{padding:"10px 12px",textAlign:"right",fontWeight:800,color:col,fontFamily:"monospace"}}>{last?.AUR?.toFixed(2)||"—"}</td>
                 <td style={{padding:"10px 12px",textAlign:"right",fontFamily:"monospace",color:C.muted}}>{aurMed}</td>
                 <td style={{padding:"10px 12px",textAlign:"right",fontFamily:"monospace",color:C.amber}}>{last?.minsReal||"—"} min</td>
-                <td style={{padding:"10px 12px",textAlign:"right",fontFamily:"monospace",color:C.purple}}>{last?.TRC?.toFixed(1)||"—"} d</td>
+                <td style={{padding:"10px 12px",textAlign:"right",fontFamily:"monospace",color:C.purple}}>{(last?.TRCsuave??last?.TRC)?.toFixed(1)||"—"} d</td>
                 <td style={{padding:"10px 12px",textAlign:"right"}}><Badge color={estCol}>{estado}</Badge></td>
               </tr>
             );
@@ -1615,67 +1625,7 @@ function OnboardingPanel({reactores,pred,historico,deriva,onSkip,handleCSV,handl
   );
 }
 
-function ModoQuiosco({data,pred,toxUmbral,incidencias,alertasDisparadas,onClose}) {
-  const [,setTick] = useState(0);
-  useEffect(()=>{ const iv=setInterval(()=>setTick(t=>t+1),1000); return()=>clearInterval(iv); },[]);
-  const now=new Date(), last=data?.at(-1), toxProb=(pred?.predicciones?.tox_prob||0)*100, aur=last?.AUR||0;
-  let estado="verde", msg="SISTEMA NORMAL";
-  if (alertasDisparadas?.some(a=>a.severidad==="critica")||toxProb>toxUmbral) { estado="rojo"; msg="⚠️ ALERTA CRÍTICA"; }
-  else if (alertasDisparadas?.length>0||aur<1.0) { estado="ambar"; msg="⚡ VIGILANCIA"; }
-  const col={verde:C.green,ambar:C.yellow,rojo:C.red}[estado], p=pred?.predicciones;
-  return (
-    <div style={{position:"fixed",inset:0,background:"#0d1117",zIndex:2000,display:"flex",flexDirection:"column",color:"#fff",fontFamily:"system-ui,sans-serif",padding:"24px 32px",boxSizing:"border-box"}}>
-      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:20,borderBottom:"1px solid #2d3748",paddingBottom:16}}>
-        <div style={{display:"flex",alignItems:"center",gap:16}}><SensaraLogo size={44}/><div><div style={{fontSize:18,fontWeight:800}}>SIC<span style={{color:C.green}}>AIR</span> 3.0</div><div style={{fontSize:12,color:"#6b7280"}}>Martorell · EDAR</div></div></div>
-        <div style={{display:"flex",alignItems:"center",gap:20}}>
-          <div style={{textAlign:"right"}}><div style={{fontSize:28,fontWeight:800,fontFamily:"monospace",color:C.green}}>{now.toLocaleTimeString("es-ES")}</div><div style={{fontSize:12,color:"#6b7280"}}>{now.toLocaleDateString("es-ES",{weekday:"long",day:"2-digit",month:"long"})}</div></div>
-          <button onClick={onClose} style={{background:"#2d3748",color:"#9ca3af",border:"none",borderRadius:8,padding:"8px 16px",fontSize:12,fontWeight:700,cursor:"pointer"}}>✕ Salir</button>
-        </div>
-      </div>
-      <div style={{background:col+"18",border:`2px solid ${col}`,borderRadius:16,padding:"16px 28px",marginBottom:20,display:"flex",alignItems:"center",gap:24}}>
-        <div style={{width:32,height:32,borderRadius:"50%",background:col,boxShadow:`0 0 20px 6px ${col}66`}}/>
-        <div style={{fontSize:22,fontWeight:900,color:col,letterSpacing:1}}>{msg}</div>
-        <div style={{marginLeft:"auto",display:"flex",gap:28}}>
-          {[{l:"AUR",v:aur.toFixed(2),u:"mg O₂/L·h",c:C.green},{l:"Soplante",v:last?.minsReal||"—",u:"min/ciclo",c:C.amber},{l:"SICTOX",v:toxProb.toFixed(1)+"%",u:"tox. pred.",c:toxProb>toxUmbral?C.red:C.green}].map(({l,v,u,c})=>(
-            <div key={l} style={{textAlign:"center"}}><div style={{fontSize:10,color:"#6b7280",textTransform:"uppercase"}}>{l}</div><div style={{fontSize:32,fontWeight:900,color:c,fontFamily:"monospace"}}>{v}</div><div style={{fontSize:11,color:"#6b7280"}}>{u}</div></div>
-          ))}
-        </div>
-      </div>
-      <div style={{display:"grid",gridTemplateColumns:"2fr 1fr",gap:16,flex:1,minHeight:0}}>
-        <div style={{background:"#161b22",borderRadius:12,padding:"16px 20px"}}>
-          <div style={{fontSize:12,fontWeight:700,color:"#9ca3af",marginBottom:8}}>AUR — últimos 40 ciclos</div>
-          <ResponsiveContainer width="100%" height={140}>
-            <ComposedChart data={data?.slice(-40).map(d=>({label:d.label,aur:d.AUR}))||[]} margin={{top:4,right:4,bottom:4,left:0}}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#2d3748"/>
-              <XAxis dataKey="label" tick={{fontSize:8,fill:"#4b5563"}} interval={8} angle={-20} textAnchor="end" height={30}/>
-              <YAxis domain={[0,6]} tick={{fontSize:8,fill:"#4b5563"}}/>
-              <Area dataKey="aur" fill={C.greenFade} stroke={C.green} strokeWidth={2} dot={false} connectNulls/>
-            </ComposedChart>
-          </ResponsiveContainer>
-          {p&&<div style={{display:"flex",gap:10,marginTop:12}}>{[{k:"1c",l:"+1 ciclo"},{k:"3c",l:"+3 ciclos"},{k:"6h",l:"+6h"}].map(({k,l})=>(
-            <div key={k} style={{flex:1,background:"#0d1117",borderRadius:8,padding:"8px",textAlign:"center",border:"1px solid #2d3748"}}>
-              <div style={{fontSize:10,color:"#6b7280"}}>{l}</div>
-              <div style={{fontSize:16,fontWeight:800,color:C.green,fontFamily:"monospace"}}>{p[k]?.aur_pred?.toFixed(2)||"—"}</div>
-              <div style={{fontSize:10,color:C.amber,fontFamily:"monospace"}}>{p[k]?.mins_pred?.toFixed(0)||"—"} min</div>
-            </div>
-          ))}</div>}
-        </div>
-        <div style={{background:"#161b22",borderRadius:12,padding:"14px 16px"}}>
-          <div style={{fontSize:11,fontWeight:700,color:"#9ca3af",marginBottom:10}}>📋 Últimas incidencias</div>
-          {!incidencias?.slice(0,4).length&&<div style={{fontSize:12,color:"#4b5563"}}>Sin incidencias.</div>}
-          {incidencias?.slice(0,4).map(inc=>(
-            <div key={inc.id} style={{borderLeft:`3px solid ${TIPOS_INC.find(t=>t.id===inc.tipo)?.color||C.muted}`,paddingLeft:10,marginBottom:10}}>
-              <div style={{fontSize:10,color:"#6b7280"}}>{inc.fecha?.replace("T"," ")}</div>
-              <div style={{fontSize:12,color:"#e2e8f0"}}>{inc.texto}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function generarInforme(data,pred,toxUmbral,incidencias,alertasDisparadas) {
+function generarInforme(data,pred,incidencias,alertasDisparadas) {
   if (!data) return "";
   const ahora=new Date().toLocaleString("es-ES"), last=data.at(-1), p=pred?.predicciones;
   const tR=data.reduce((s,d)=>s+d.minsReal,0), tT=data.reduce((s,d)=>s+d.minsTeo,0);
@@ -1683,7 +1633,7 @@ function generarInforme(data,pred,toxUmbral,incidencias,alertasDisparadas) {
   const s=calcularScore(data);
   const incStr=incidencias?.slice(0,5).map(i=>`  [${i.fecha?.replace("T"," ")}] ${TIPOS_INC.find(t=>t.id===i.tipo)?.label||i.tipo}: ${i.texto}`).join("\n")||"  Sin incidencias";
   const alertStr=alertasDisparadas?.length?alertasDisparadas.map(a=>`  ⚠️ ${a.label}: ${a.valorActual} ${a.unit}`).join("\n"):"  Sin alertas activas";
-  return `INFORME SICAIR 3.0 — SENSARA\nGenerado: ${ahora}\n${"═".repeat(40)}\nSCORE DE SALUD: ${s?.global??'—'}/100 — ${s?.estado??'—'}\nESTADO: AUR ${last?.AUR?.toFixed(2)??"—"} mg/L·h · TRC ${last?.TRC?.toFixed(1)??"—"} d · Sopl. ${last?.minsReal??"—"} min\nALERTAS:\n${alertStr}\nPREDICCIONES:\n  +1c: AUR ${p?.["1c"]?.aur_pred?.toFixed(2)??"—"} · ${p?.["1c"]?.mins_pred?.toFixed(0)??"—"} min · TRC ${p?.["1c"]?.trc_pred?.toFixed(1)??"—"} d\n  +3c: AUR ${p?.["3c"]?.aur_pred?.toFixed(2)??"—"} · ${p?.["3c"]?.mins_pred?.toFixed(0)??"—"} min · TRC ${p?.["3c"]?.trc_pred?.toFixed(1)??"—"} d\n  +6h: AUR ${p?.["6h"]?.aur_pred?.toFixed(2)??"—"} · ${p?.["6h"]?.mins_pred?.toFixed(0)??"—"} min · TRC ${p?.["6h"]?.trc_pred?.toFixed(1)??"—"} d\nAHORRO: ${ah.toLocaleString()} min · ${Math.abs(kwh).toLocaleString()} kWh · ${Math.abs(eur).toLocaleString()} €\nINCIDENCIAS:\n${incStr}\n${"═".repeat(40)}\nSENSARA · sensaratech.com · Logroño`;
+  return `INFORME SICAIR 3.0 — SENSARA\nGenerado: ${ahora}\n${"═".repeat(40)}\nSCORE DE SALUD: ${s?.global??'—'}/100 — ${s?.estado??'—'}\nESTADO: AUR ${last?.AUR?.toFixed(2)??"—"} mg/L·h · TRC ${(last?.TRCsuave??last?.TRC)?.toFixed(1)??"—"} d · Sopl. ${last?.minsReal??"—"} min\nALERTAS:\n${alertStr}\nPREDICCIONES:\n  +1c: AUR ${p?.["1c"]?.aur_pred?.toFixed(2)??"—"} · ${p?.["1c"]?.mins_pred?.toFixed(0)??"—"} min · TRC ${p?.["1c"]?.trc_pred?.toFixed(1)??"—"} d\n  +3c: AUR ${p?.["3c"]?.aur_pred?.toFixed(2)??"—"} · ${p?.["3c"]?.mins_pred?.toFixed(0)??"—"} min · TRC ${p?.["3c"]?.trc_pred?.toFixed(1)??"—"} d\n  +6h: AUR ${p?.["6h"]?.aur_pred?.toFixed(2)??"—"} · ${p?.["6h"]?.mins_pred?.toFixed(0)??"—"} min · TRC ${p?.["6h"]?.trc_pred?.toFixed(1)??"—"} d\nAHORRO: ${ah.toLocaleString()} min · ${Math.abs(kwh).toLocaleString()} kWh · ${Math.abs(eur).toLocaleString()} €\nINCIDENCIAS:\n${incStr}\n${"═".repeat(40)}\nSENSARA · sensaratech.com · Logroño`;
 }
 
 
@@ -1699,7 +1649,7 @@ function generarInformePDF(data, pred, historico, incidencias, periodo, diagHist
   if (!df.length) { alert("Sin datos para el período seleccionado."); return; }
   const aurMed = +(df.reduce((s,d)=>s+d.AUR,0)/df.length).toFixed(2);
   const minsMed = +(df.reduce((s,d)=>s+d.minsReal,0)/df.length).toFixed(0);
-  const trcMed = +(df.reduce((s,d)=>s+d.TRC,0)/df.length).toFixed(1);
+  const trcMed = +(df.reduce((s,d)=>s+(d.TRCsuave??d.TRC),0)/df.length).toFixed(1);
   const conF = df.filter(d=>d.minsFormula!=null);
   const sobMin = conF.length ? +(conF.reduce((s,d)=>s+(d.minsReal-(d.minsFormula||0)),0)/conF.length).toFixed(0) : 0;
   const ahMin = df.reduce((s,d)=>s+d.minsReal,0) - conF.reduce((s,d)=>s+(d.minsFormula||0),0);
@@ -1769,10 +1719,10 @@ function generarInformePDF(data, pred, historico, incidencias, periodo, diagHist
   const dAUR  = dfR.map(d=>({y:d.AUR, label:fmtLbl(d)}));
   const dReal = dfR.map(d=>({y:d.minsReal, label:fmtLbl(d)}));
   const dForm = dfR.filter(d=>d.minsFormula!=null).map(d=>({y:d.minsFormula, label:fmtLbl(d)}));
-  const dTRC  = dfR.map(d=>({y:d.TRC, label:fmtLbl(d)}));
+  const dTRC  = dfR.map(d=>({y:d.TRCsuave??d.TRC, label:fmtLbl(d)}));
   const svgAUR  = svgLinea(dAUR,  "#2d7a27", "AUR — Tasa de Nitrificación", "mg O₂/L·h");
   const svgMins = svgDoble(dReal, dForm);
-  const svgTRC  = svgLinea(dTRC,  "#1d4ed8", "TRC — Tiempo de Retención de Fango", "días");
+  const svgTRC  = svgLinea(dTRC,  "#1d4ed8", "TRC — Edad del fango (mediana móvil 3d)", "días");
   // Resumen diario para PDF
   const crP = cruzarHistoricoConReal(historico||[], data);
   const dRealPDF = {}, dPredPDF = {};
@@ -1848,7 +1798,7 @@ function generarInformePDF(data, pred, historico, incidencias, periodo, diagHist
   <hr/>
   <div class="st">AUR — Evolución</div><div class="chart">${svgAUR}</div>
   <div class="st">Minutos soplante — Real vs SICAIR</div><div class="chart">${svgMins}</div>
-  <div class="st">TRC — Tiempo de Retención de Fango</div><div class="chart">${svgTRC}</div>
+  <div class="st">TRC — Edad del fango (mediana móvil 3d)</div><div class="chart">${svgTRC}</div>
   <hr/>
   ${diasPDF.length>0?`<div class="st">Resumen diario — Minutos Real vs SICAIR</div>
   <table style="width:100%;border-collapse:collapse;font-size:10px;margin-bottom:12px">
@@ -2435,9 +2385,7 @@ export default function App() {
   const [autoError,   setAutoError]   = useState(null);
   const [informePDF,  setInformePDF]  = useState(false);
   const [tab,         setTab]         = useState("pred");
-  const [toxUmbral,   setToxUmbral]   = useState(40);
   const [informe,     setInforme]     = useState(null);
-  const [quiosco,     setQuiosco]     = useState(false);
   const [incidencias, setIncidencias] = useState(() => { try { return JSON.parse(localStorage.getItem("sicair_incidencias")||"[]"); } catch { return []; } });
   const [calidad,     setCalidad]     = useState(() => { try { return JSON.parse(localStorage.getItem("sicair_calidad")||"[]"); } catch { return []; } });
   const [alertas,     setAlertas]     = useState(ALERT_DEF);
@@ -2484,7 +2432,7 @@ export default function App() {
         const rows = jCiclos.ciclos.map(c => ({
           ...c, datetime: new Date(c.datetime),
         })).filter(c => c.AUR > 0 && c.minsReal > 0 && c.minsReal < 400);
-        if (rows.length) { setReactores({"R1": rows}); setDemoMode(false); setShowOnboard(false); setTab("pred"); }
+        if (rows.length) { setReactores({"R1": suavizarTRC(rows)}); setDemoMode(false); setShowOnboard(false); setTab("pred"); }
       }
     } catch(e) { setAutoError("Error cargando desde GitHub"); }
     setAutoLoading(false);
@@ -2529,7 +2477,6 @@ export default function App() {
 
   return (
     <div style={{background:C.bg,minHeight:"100vh",color:C.text,fontFamily:"system-ui,sans-serif"}}>
-      {quiosco&&<ModoQuiosco data={data} pred={pred} toxUmbral={toxUmbral} incidencias={incidencias} alertasDisparadas={alertasDisp} onClose={()=>setQuiosco(false)}/>}
       {informe&&<InformeModal texto={informe} onClose={()=>setInforme(null)}/>}
       {informePDF&&(
         <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.4)",zIndex:1000,display:"flex",alignItems:"center",justifyContent:"center"}} onClick={()=>setInformePDF(false)}>
@@ -2566,12 +2513,6 @@ export default function App() {
           {!demoMode&&<ModoDepuradoraBadge modo={modoDepuradora}/>}
           {!demoMode&&<RecoveryBadge estado={recoveryEstado}/>}
           {alertasDisp.length>0&&<Badge color={alertasDisp.some(a=>a.severidad==="critica")?C.red:C.amber}>🔔 {alertasDisp.length}</Badge>}
-          <div style={{display:"flex",alignItems:"center",gap:6,background:C.panel,border:`1px solid ${C.border}`,borderRadius:8,padding:"4px 10px"}}>
-            <span style={{fontSize:11,color:C.muted}}>SICTOX:</span>
-            <input type="range" min={10} max={80} value={toxUmbral} onChange={e=>setToxUmbral(+e.target.value)} style={{width:54,accentColor:C.green}}/>
-            <span style={{fontSize:12,fontWeight:700,color:C.green,fontFamily:"monospace",minWidth:30}}>{toxUmbral}%</span>
-          </div>
-          <button onClick={()=>setQuiosco(true)} style={{background:"#0d1117",color:"#fff",border:"none",borderRadius:8,padding:"6px 14px",fontSize:12,fontWeight:700,cursor:"pointer"}}>🖥 Quiosco</button>
           <button onClick={cargarDesdeGitHub} disabled={autoLoading} style={{background:autoLoading?"#f0f0f0":C.green,color:autoLoading?"#999":"#fff",border:"none",borderRadius:20,padding:"7px 18px",fontSize:12,fontWeight:600,cursor:autoLoading?"default":"pointer"}}>
             {autoLoading?"⏳":"↻"} Actualizar
           </button>
@@ -2585,7 +2526,7 @@ export default function App() {
         {demoMode&&<DemoBanner onExit={salirDemo}/>}
         {pred&&!demoMode&&<DatoCongeladoBanner pred={pred}/>}
         <MeteoPanel/>
-        {data&&<Semaforo data={data} pred={pred} toxUmbral={toxUmbral} alertasDisparadas={alertasDisp} alertas={alertas}/>}
+        {data&&<Semaforo data={data} pred={pred} alertasDisparadas={alertasDisp} alertas={alertas}/>}
         {data&&<ScoreSalud data={data}/>}
         {data&&(
           <div style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:12,marginBottom:24}}>
@@ -2611,7 +2552,7 @@ export default function App() {
           ))}
         </div>
 
-        {tab==="pred"        &&pred&&<PredPanel pred={pred} toxUmbral={toxUmbral} data={data}/>}
+        {tab==="pred"        &&pred&&<PredPanel pred={pred} data={data}/>}
         {tab==="pred"        &&pred&&data&&<DiagnosticoPanel data={data} pred={pred} alertas={alertas}/>}
         {tab==="pred"        &&pred&&data&&<HistoricoChart data={data} pred={pred} diagHistorico={diagHistorico} modoHistorico={modoHistorico}/>}
         {tab==="semana"      &&data&&<ComparativaPanel data={data}/>}
