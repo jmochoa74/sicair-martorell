@@ -1,8 +1,8 @@
 {
-  "generado": "2026-09-04T08:46:41.142041",
-  "ultimo_dato": "2026-09-04T06:36:00",
-  "ultimo_aur": 3.14,
-  "ultimo_mins": 89.0,
+  "generado": "2026-09-04T09:47:29.559643",
+  "ultimo_dato": "2026-09-04T09:03:03",
+  "ultimo_aur": 4.09,
+  "ultimo_mins": 93.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,46 +11,46 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 3.103,
-      "mins_pred": 91.4,
+      "aur_pred": 3.169,
+      "mins_pred": 85.3,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 27.3,
+      "temp_prev": 30.0,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-09-04T10:26:35.145391"
+      "ts_objetivo": "2026-09-04T11:27:24.063499"
     },
     "3c": {
-      "aur_pred": 3.205,
-      "mins_pred": 72.6,
-      "trc_pred": 25.3,
+      "aur_pred": 3.803,
+      "mins_pred": 69.9,
+      "trc_pred": 25.9,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
       "temp_prev": 36.5,
       "ciclos": 3,
       "horas_eq": 5.0,
-      "ts_objetivo": "2026-09-04T13:46:35.145391"
+      "ts_objetivo": "2026-09-04T14:47:24.063499"
     },
     "6h": {
-      "aur_pred": 2.707,
-      "mins_pred": 83.8,
-      "trc_pred": 13.8,
+      "aur_pred": 2.764,
+      "mins_pred": 82.8,
+      "trc_pred": 13.5,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 36.5,
+      "temp_prev": 35.4,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-09-04T15:26:35.145391"
+      "ts_objetivo": "2026-09-04T16:27:24.063499"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 24.7,
+    "temp": 27.3,
     "precip": 0.0,
-    "viento": 4.4,
-    "humedad": 76.0,
+    "viento": 4.7,
+    "humedad": 67.0,
     "presion": 1006.7
   },
   "lluvia_prevista": {
@@ -60,7 +60,7 @@
     "ok": true
   },
   "sesgo_aplicado_1c": {
-    "aur": -0.157,
-    "mins": 4.1
+    "aur": -0.127,
+    "mins": 4.0
   }
 }
