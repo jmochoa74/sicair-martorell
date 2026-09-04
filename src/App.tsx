@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
-import { ComposedChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, BarChart, Bar, Scatter, Legend, ReferenceArea } from "recharts";
+import { ComposedChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, BarChart, Bar, Scatter, Legend } from "recharts";
+import SN8Panel from "./SN8Panel";
 
 const C = {
   green:"#2d7a27", greenLight:"#4a9c3f", greenFade:"rgba(45,122,39,0.08)",
@@ -15,16 +16,18 @@ const TIPOS_INC = [
   {id:"parada",label:"🛑 Parada",color:C.red},
   {id:"averia",label:"🔧 Avería",color:C.amber},
   {id:"carga",label:"📥 Cambio carga",color:C.blue},
+  {id:"toxicidad",label:"☣️ Toxicidad",color:C.purple},
   {id:"otro",label:"📝 Otro",color:C.muted},
 ];
 const ALERT_DEF = [
   {id:"aur_bajo",label:"AUR mínimo",icon:"🔬",unit:"mg O₂/L·h",campo:"AUR",tipo:"min",valor:0.8,activa:true,sonido:true,severidad:"critica"},
   {id:"aur_alto",label:"AUR máximo",icon:"🔬",unit:"mg O₂/L·h",campo:"AUR",tipo:"max",valor:5.0,activa:true,sonido:false,severidad:"aviso"},
+  {id:"tox",label:"SICTOX toxicidad",icon:"☣️",unit:"%",campo:"toxProb",tipo:"max",valor:40,activa:true,sonido:true,severidad:"critica"},
   {id:"mins_alto",label:"Soplante exceso",icon:"💨",unit:"min/ciclo",campo:"minsReal",tipo:"max",valor:120,activa:true,sonido:false,severidad:"aviso"},
   {id:"energia",label:"Sobreconsumo energía",icon:"⚡",unit:"% desviac.",campo:"energPct",tipo:"max",valor:20,activa:true,sonido:false,severidad:"aviso"},
   {id:"ciclo_anom",label:"Ciclo anómalo",icon:"⚠️",unit:"% desviación",campo:"cicloDesv",tipo:"max",valor:20,activa:true,sonido:true,severidad:"critica"},
-  {id:"trc_alto",label:"TRC demasiado alto",icon:"🧫",unit:"días",campo:"TRCsuave",tipo:"max",valor:25,activa:true,sonido:false,severidad:"aviso"},
-  {id:"trc_bajo",label:"TRC demasiado bajo",icon:"🧫",unit:"días",campo:"TRCsuave",tipo:"min",valor:5,activa:true,sonido:true,severidad:"critica"},
+  {id:"trc_alto",label:"TRC demasiado alto",icon:"🧫",unit:"días",campo:"TRC",tipo:"max",valor:30,activa:true,sonido:false,severidad:"aviso"},
+  {id:"trc_bajo",label:"TRC demasiado bajo",icon:"🧫",unit:"días",campo:"TRC",tipo:"min",valor:5,activa:true,sonido:true,severidad:"critica"},
 ];
 
 
@@ -296,28 +299,6 @@ function playAlertTone(type="warning") {
     setTimeout(()=>ctx.close(), 2000);
   } catch {}
 }
-// El TRC (edad del fango) que llega ciclo a ciclo desde el respirómetro se
-// calcula con la tasa de nitrificación de ese ciclo puntual y por eso es muy
-// ruidoso (puede pasar de 8d a 70d entre dos ciclos consecutivos). La edad
-// real del fango es una magnitud física que apenas cambia en un día, así que
-// para el estado actual, las alertas y los informes usamos una mediana móvil
-// de los últimos VENTANA_TRC_DIAS — el dato bruto por ciclo se conserva en
-// TRC (para exportar/depurar) y el valor operativo va en TRCsuave.
-const VENTANA_TRC_DIAS = 3;
-function suavizarTRC(rows, ventanaDias = VENTANA_TRC_DIAS) {
-  const ms = ventanaDias * 86400000;
-  let lo = 0;
-  return rows.map((r, i) => {
-    const t = r.datetime.getTime();
-    while (rows[lo].datetime.getTime() < t - ms) lo++;
-    const vals = [];
-    for (let j = lo; j <= i; j++) { const v = rows[j].TRC; if (v > 0 && v < 300) vals.push(v); }
-    vals.sort((a, b) => a - b);
-    const n = vals.length;
-    const mediana = n ? (n % 2 ? vals[(n - 1) / 2] : (vals[n / 2 - 1] + vals[n / 2]) / 2) : null;
-    return { ...r, TRCsuave: mediana ?? (r.TRC > 0 ? r.TRC : null) };
-  });
-}
 function evaluarAlertas(alertas, data, pred) {
   if (!data||!alertas.length) return [];
   const last = data.at(-1);
@@ -325,7 +306,7 @@ function evaluarAlertas(alertas, data, pred) {
   const energPct = tT ? Math.abs((tR-tT)/tT*100) : 0;
   const aurPred1c = pred?.predicciones?.["1c"]?.aur_pred;
   const cicloDesv = aurPred1c&&last?.AUR ? Math.abs((last.AUR-aurPred1c)/aurPred1c*100) : 0;
-  const vals = {AUR:last?.AUR||0, minsReal:last?.minsReal||0, TRC:last?.TRC||0, TRCsuave:last?.TRCsuave??last?.TRC??0, energPct, cicloDesv};
+  const vals = {AUR:last?.AUR||0, minsReal:last?.minsReal||0, TRC:last?.TRC||0, toxProb:(pred?.predicciones?.tox_prob||0)*100, energPct, cicloDesv};
   return alertas.filter(a=>a.activa).map(a => {
     const v = vals[a.campo];
     if (v==null) return null;
@@ -356,8 +337,8 @@ function calcularScore(data) {
   const last = data.at(-1);
   const aur = last.AUR;
   const aurS = aur>=0.8&&aur<=5.0 ? 100 : aur<0.8 ? Math.max(0,aur/0.8*100) : Math.max(0,100-(aur-5.0)*20);
-  const trc = last.TRCsuave??last.TRC;
-  const trcS = trc>=5&&trc<=25 ? 100 : trc<5 ? Math.max(0,trc/5*100) : Math.max(0,100-(trc-25)*8);
+  const trc = last.TRC;
+  const trcS = trc>=5&&trc<=15 ? 100 : trc<5 ? Math.max(0,trc/5*100) : Math.max(0,100-(trc-15)*8);
   const ult20 = data.slice(-20);
   const tR=ult20.reduce((s,d)=>s+d.minsReal,0), tT=ult20.reduce((s,d)=>s+d.minsTeo,0);
   const eficS = tT ? Math.min(100,Math.max(0,100-(tR-tT)/tT*100)) : 100;
@@ -540,13 +521,13 @@ function ScoreSalud({data}) {
   );
 }
 
-function Semaforo({data,pred,alertasDisparadas,alertas}) {
+function Semaforo({data,pred,toxUmbral,alertasDisparadas,alertas}) {
   if (!data||!data.length) return null;
-  const last=data.at(-1), aur=last?.AUR||0;
+  const last=data.at(-1), toxProb=(pred?.predicciones?.tox_prob||0)*100, aur=last?.AUR||0;
   const diag = diagnosticarCausa(data,pred,alertas);
-  const trc=last?.TRCsuave??last?.TRC??0, trcFuera=trc<5||trc>25;
+  const trc=last?.TRC||0, trcFuera=trc<5||trc>15;
   let estado="verde", msg="Sistema operando correctamente";
-  if (alertasDisparadas?.some(a=>a.severidad==="critica")||diag) {
+  if (alertasDisparadas?.some(a=>a.severidad==="critica")||toxProb>toxUmbral||diag) {
     estado="rojo";
     msg = diag ? `⚠️ Ciclo anómalo — desviación ${diag.desv>0?"+":""}${diag.desv}%` : alertasDisparadas?.find(a=>a.severidad==="critica")?.label||"⚠️ Alerta crítica";
   } else if (alertasDisparadas?.length>0||aur<1.0||trcFuera) {
@@ -562,6 +543,7 @@ function Semaforo({data,pred,alertasDisparadas,alertas}) {
         <div style={{display:"flex",gap:20,fontSize:12,color:C.muted,flexWrap:"wrap"}}>
           <span>AUR <b style={{color:C.text,fontWeight:600}}>{aur.toFixed(2)}</b> mg O₂/L·h</span>
           <span>TRC <b style={{color:trcFuera?trc<5?C.red:C.amber:C.text,fontWeight:600}}>{trc.toFixed(1)}</b> d</span>
+          <span>SICTOX <b style={{color:C.text,fontWeight:600}}>{toxProb.toFixed(1)}%</b></span>
           {alertasDisparadas?.length>0&&<span>Alertas <b style={{color:C.red,fontWeight:600}}>{alertasDisparadas.length}</b></span>}
         </div>
       </div>
@@ -570,11 +552,11 @@ function Semaforo({data,pred,alertasDisparadas,alertas}) {
   );
 }
 
-function DiagnosticoPanel({data,pred,alertas,trcMin=5,trcMax=25}) {
+function DiagnosticoPanel({data,pred,alertas,trcMin=5,trcMax=15}) {
   if (!data?.length||!pred) return null;
   const last = data.at(-1);
   const diag = diagnosticarCausa(data,pred,alertas);
-  const trc = last.TRCsuave??last.TRC, trcAlerta = trc<trcMin||trc>trcMax;
+  const trc = last.TRC, trcAlerta = trc<trcMin||trc>trcMax;
   const trcColor = trc<trcMin?C.red:trc>trcMax?C.amber:C.green;
   const trcPreds = ["1c","3c","6h"].map(h=>({h,val:pred.predicciones?.[h]?.trc_pred})).filter(p=>p.val!=null);
   const trcSalida = trcPreds.find(p=>p.val<trcMin||p.val>trcMax);
@@ -645,7 +627,6 @@ function useLluviaPrevista() {
 // sicair_predict.py cada hora y volcado a modo_historico.json en GitHub.
 function useModoDepuradora() {
   const [modo,setModo] = useState(null);
-  const [historico,setHistorico] = useState([]);
   const cargar = useCallback(() => {
     fetch("https://raw.githubusercontent.com/jmochoa74/sicair-martorell/main/modo_historico.json?t="+Date.now())
       .then(r=>{ if(!r.ok) throw new Error(); return r.json(); })
@@ -653,11 +634,10 @@ function useModoDepuradora() {
         if (!Array.isArray(arr)||!arr.length) { setModo({ok:false}); return; }
         const ultimo = arr[arr.length-1];
         setModo({ok:true, modo:ultimo.modo, label:ultimo.modo_label, ts:ultimo.ts});
-        setHistorico(arr);
       }).catch(()=>setModo({ok:false}));
   }, []);
   useEffect(() => { cargar(); const iv=setInterval(cargar,10*60000); return()=>clearInterval(iv); }, [cargar]);
-  return {modo, historico};
+  return modo;
 }
 function ModoDepuradoraBadge({modo}) {
   if (!modo?.ok) return null;
@@ -671,43 +651,33 @@ function ModoDepuradoraBadge({modo}) {
   );
 }
 
-// Estado del modo recuperación (recovery.json), consultado con el mismo
-// token que usa RecoveryPanel para activar/desactivar — visible de un
-// vistazo en la cabecera, sin tener que entrar en Incidencias > Recovery.
-function useRecoveryEstado() {
-  const [estado, setEstado] = useState(null);
-  const cargar = useCallback(() => { leerRecovery().then(setEstado); }, []);
-  useEffect(() => { cargar(); const iv=setInterval(cargar,2*60000); return()=>clearInterval(iv); }, [cargar]);
-  return estado;
-}
-function RecoveryBadge({estado}) {
-  if (!estado) return null;
-  const col = estado.activo ? C.amber : C.green;
-  return (
-    <span title={estado.activo?`+30% aireación · ${estado.ciclos} ciclos restantes`:"Aireación normal"} style={{background:col+"18",color:col,border:`1px solid ${col}44`,borderRadius:6,padding:"4px 10px",fontSize:11,fontWeight:700,display:"inline-flex",alignItems:"center",gap:5}}>
-      {estado.activo?`🔄 Recovery ACTIVO (${estado.ciclos})`:"✅ Recovery inactivo"}
-    </span>
-  );
-}
-
 const UMBRAL_MM=2, FACTOR_DIL=0.30;
 function corregirLluvia(aurPred,minsPred,mm) {
   if (mm==null||mm<UMBRAL_MM) return {aurCorr:aurPred,minsCorr:minsPred,dilucion:false};
   return {aurCorr:+(aurPred*(1-FACTOR_DIL)).toFixed(3),minsCorr:+(minsPred*(1-FACTOR_DIL)).toFixed(0),dilucion:true,mm};
 }
 
-function PredPanel({pred,data}) {
+function PredPanel({pred,toxUmbral,data}) {
   if (!pred) return null;
   const p=pred.predicciones, m=pred.metricas;
+  const toxPct = ((p.tox_prob||0)*100).toFixed(1);
+  const toxColor = p.tox_prob>toxUmbral/100?C.red:p.tox_prob>(toxUmbral/100)*0.5?C.amber:C.green;
   const lluvia = useLluviaPrevista();
   const trhActual = data?.at(-1)?.TRH??null;
   const durH = data&&data.length>2 ? (()=>{ const diffs=data.slice(1).map((d,i)=>(d.datetime-data[i].datetime)/3600000).filter(x=>x>=1&&x<=3); return diffs.length?diffs.reduce((s,v)=>s+v,0)/diffs.length:1.6; })() : 1.6;
   const HORZ = [{key:"1c",label:"+1 ciclo",desc:`~${Math.round(durH*60)} min`},{key:"3c",label:"+3 ciclos",desc:`~${Math.round(durH*3*60)} min`},{key:"6h",label:"+6h",desc:`~${Math.round(6/durH)} ciclos`}];
   return (
     <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"20px 24px",marginBottom:14}}>
-      <div style={{marginBottom:12}}>
-        <div style={{fontSize:14,fontWeight:700}}>🧠 Predicciones SICAIR</div>
-        <div style={{fontSize:11,color:C.muted,marginTop:2}}>Último dato: <b>{pred.ultimo_dato?.slice(0,16)}</b> · AUR: <b style={{color:C.green}}>{pred.ultimo_aur?.toFixed(2)} mg/L·h</b>{trhActual!=null&&<> · TRH: <b>{trhActual.toFixed(1)}h</b></>}</div>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
+        <div>
+          <div style={{fontSize:14,fontWeight:700}}>🧠 Predicciones SICAIR</div>
+          <div style={{fontSize:11,color:C.muted,marginTop:2}}>Último dato: <b>{pred.ultimo_dato?.slice(0,16)}</b> · AUR: <b style={{color:C.green}}>{pred.ultimo_aur?.toFixed(2)} mg/L·h</b>{trhActual!=null&&<> · TRH: <b>{trhActual.toFixed(1)}h</b></>}</div>
+        </div>
+        <div style={{textAlign:"right"}}>
+          <div style={{fontSize:11,color:C.muted,marginBottom:4}}>SICTOX</div>
+          <div style={{fontSize:24,fontWeight:800,color:toxColor,fontFamily:"monospace"}}>{toxPct}%</div>
+          <Badge color={toxColor}>{p.tox_prob>(toxUmbral/100)?"⚠️ ALERTA":p.tox_prob>(toxUmbral/100)*0.5?"Vigilancia":"Normal"}</Badge>
+        </div>
       </div>
       {lluvia?.ok && (
         <div style={{background:lluvia.h24>=UMBRAL_MM?C.blueFade:"#f0fdf4",border:`1.5px solid ${lluvia.h24>=UMBRAL_MM?C.blue:C.green}`,borderRadius:10,padding:"10px 16px",marginBottom:12,display:"flex",alignItems:"center",gap:12}}>
@@ -761,47 +731,10 @@ function PredPanel({pred,data}) {
   );
 }
 
-// ¿Hay un evento "recovery_auto" en diagnosticos_historico.json a menos de
-// `ventanaMin` minutos de este ciclo? (los diagnósticos se registran cada
-// ciclo del predict, ~100min, así que medio ciclo de margen los empareja)
-function eventoRecoveryCercano(dt, diagHistorico, ventanaMin=50) {
-  if (!dt||!diagHistorico?.length) return false;
-  return diagHistorico.some(e => {
-    if (!e.eventos?.some(ev=>ev.tipo==="recovery_auto")) return false;
-    return Math.abs(new Date(e.ts)-dt)/60000 <= ventanaMin;
-  });
-}
-// Modo (sn8/sondas) vigente en una fecha, según las transiciones de modo_historico.json
-function modoEnFecha(dt, modoHistorico) {
-  if (!dt||!modoHistorico?.length) return null;
-  let last = null;
-  for (const m of modoHistorico) { if (new Date(m.ts) <= dt) last = m; else break; }
-  return last?.modo_label ?? null;
-}
-// Tramos contiguos en modo sondas dentro de la ventana visible del gráfico,
-// como {x1,x2} en las mismas categorías (label) que usa el eje X.
-function rangosSondas(hist, modoHistorico) {
-  const ranges = []; let start = null;
-  for (let i=0;i<hist.length;i++) {
-    const enSondas = modoEnFecha(hist[i].datetime, modoHistorico)==="sondas";
-    if (enSondas && start===null) start=i;
-    if (!enSondas && start!==null) { ranges.push({x1:hist[start].label,x2:hist[i-1].label}); start=null; }
-  }
-  if (start!==null) ranges.push({x1:hist[start].label,x2:hist[hist.length-1].label});
-  return ranges;
-}
-
-function HistoricoChart({data,pred,diagHistorico,modoHistorico}) {
+function HistoricoChart({data,pred}) {
   if (!data||!data.length) return null;
   const dA = detectAnomalias(data);
-  const hist = dA.slice(-60).map((d,i)=>({
-    label:d.label, datetime:d.datetime, aur:d.AUR,
-    anomalia:d.anomalia?d.AUR:null,
-    dilucion:d.dilucion>0?d.AUR:null,
-    recovery:eventoRecoveryCercano(d.datetime,diagHistorico)?d.AUR:null,
-    idx:i,
-  }));
-  const sondasRanges = rangosSondas(hist, modoHistorico);
+  const hist = dA.slice(-60).map((d,i)=>({label:d.label,aur:d.AUR,anomalia:d.anomalia?d.AUR:null,dilucion:d.dilucion>0?d.AUR:null,idx:i}));
   const reg = linReg(hist.map((d,i)=>({x:i,y:d.aur})));
   const histR = hist.map((d,i)=>({...d,tendencia:+(reg.m*i+reg.b).toFixed(3)}));
   const p=pred?.predicciones, last=hist.at(-1);
@@ -819,17 +752,15 @@ function HistoricoChart({data,pred,diagHistorico,modoHistorico}) {
         <div style={{fontSize:13,fontWeight:700}}>📈 Histórico + Predicciones</div>
         <div style={{display:"flex",gap:8}}>{nAnom>0&&<Badge color={C.red}>⚠️ {nAnom} anomalías</Badge>}<Badge color={reg.m>0?C.amber:C.green}>Tendencia {reg.m>0?"↑":"↓"} R²={reg.r2}</Badge></div>
       </div>
-      <div style={{fontSize:11,color:C.muted,marginBottom:8}}>🔴 Anomalías · 🔵 Dilución · 🟠 Recovery · ⬜ fondo = modo sondas · — — Pred.</div>
+      <div style={{fontSize:11,color:C.muted,marginBottom:8}}>🔴 Anomalías · 🔵 Dilución · — — Pred.</div>
       <ResponsiveContainer width="100%" height={180}>
         <ComposedChart data={combined} margin={{top:4,right:8,bottom:4,left:0}}>
           <CartesianGrid strokeDasharray="3 3" stroke={C.gridLine}/>
           <XAxis dataKey="label" tick={{fontSize:9,fill:C.muted}} interval={Math.floor(combined.length/8)} angle={-20} textAnchor="end" height={36}/>
           <YAxis domain={[0,6]} tick={{fontSize:9,fill:C.muted}}/><Tooltip content={<CT/>}/>
-          {sondasRanges.map((r,i)=><ReferenceArea key={`sonda${i}`} x1={r.x1} x2={r.x2} fill={C.muted} fillOpacity={0.16} strokeOpacity={0} ifOverflow="visible"/>)}
           <Line dataKey="aur" stroke={C.green} strokeWidth={2} dot={false} name="AUR real" connectNulls/>
           <Line dataKey="anomalia" stroke={C.red} strokeWidth={0} dot={{r:5,fill:C.red}} name="Anomalía" connectNulls/>
           <Line dataKey="dilucion" stroke={C.blue} strokeWidth={0} dot={{r:5,fill:C.blue}} name="Dilución" connectNulls/>
-          <Line dataKey="recovery" stroke={C.amber} strokeWidth={0} dot={{r:5,fill:C.amber,stroke:"#fff",strokeWidth:1}} name="Recovery" connectNulls/>
           <Line dataKey="aurPred" stroke={C.green} strokeWidth={2} strokeDasharray="6 3" dot={{r:5,fill:C.green}} name="AUR pred." connectNulls/>
           <Line dataKey="tendencia" stroke={C.amber} strokeWidth={1} strokeDasharray="3 3" dot={false} name="Tendencia" connectNulls/>
         </ComposedChart>
@@ -1297,7 +1228,7 @@ function MultiPlantasPanel({reactores}) {
                 <td style={{padding:"10px 12px",textAlign:"right",fontWeight:800,color:col,fontFamily:"monospace"}}>{last?.AUR?.toFixed(2)||"—"}</td>
                 <td style={{padding:"10px 12px",textAlign:"right",fontFamily:"monospace",color:C.muted}}>{aurMed}</td>
                 <td style={{padding:"10px 12px",textAlign:"right",fontFamily:"monospace",color:C.amber}}>{last?.minsReal||"—"} min</td>
-                <td style={{padding:"10px 12px",textAlign:"right",fontFamily:"monospace",color:C.purple}}>{(last?.TRCsuave??last?.TRC)?.toFixed(1)||"—"} d</td>
+                <td style={{padding:"10px 12px",textAlign:"right",fontFamily:"monospace",color:C.purple}}>{last?.TRC?.toFixed(1)||"—"} d</td>
                 <td style={{padding:"10px 12px",textAlign:"right"}}><Badge color={estCol}>{estado}</Badge></td>
               </tr>
             );
@@ -1418,21 +1349,11 @@ function ValidacionPanel({data,demoMode,historico}) {
         resultados.push({ts_obj:objetivo,horizonte:h,aur_pred:+predAUR.toFixed(3),aur_real:+vecino.AUR.toFixed(3),mins_pred:predMins!=null?+predMins.toFixed(0):null,mins_real:vecino.minsReal,err_aur_pct:errAUR,acierto:errAUR<=20,sesgo:+(predAUR-vecino.AUR).toFixed(3)});
       }
     }
-    const ordenados = resultados.sort((a,b)=>a.ts_obj-b.ts_obj);
-    setValRows(ordenados);
-    // Arrancar en la última página (datos más recientes) en vez de la primera.
-    setPaginaActual(Math.max(0,Math.ceil(ordenados.length/ROWS_PAG)-1));
+    setValRows(resultados.sort((a,b)=>a.ts_obj-b.ts_obj)); setPaginaActual(0);
   }, [histRaw,data,demoMode]);
 
   const filtradas = horizFiltro==="todos" ? valRows : valRows.filter(r=>r.horizonte===horizFiltro);
   const totalPags = Math.ceil(filtradas.length/ROWS_PAG);
-  // Al cambiar de filtro de horizonte, ir también a la última página de ese
-  // subconjunto (si no, se vuelve a la 1 y hay que darle otra vez a ▶ muchas veces).
-  const filtrarYUltimaPagina = h => {
-    setHorizFiltro(h);
-    const n = h==="todos" ? valRows.length : valRows.filter(r=>r.horizonte===h).length;
-    setPaginaActual(Math.max(0,Math.ceil(n/ROWS_PAG)-1));
-  };
   const pagina = filtradas.slice(paginaActual*ROWS_PAG,(paginaActual+1)*ROWS_PAG);
   const metricas = ["1c","3c","6h"].map(h => {
     const sub = valRows.filter(r=>r.horizonte===h); if(!sub.length) return {h,n:0};
@@ -1491,7 +1412,7 @@ function ValidacionPanel({data,demoMode,historico}) {
           <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"18px 20px",marginBottom:14}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
               <div style={{fontSize:13,fontWeight:700}}>📊 AUR Predicho vs Real</div>
-              <div style={{display:"flex",gap:6}}>{["todos","1c","3c","6h"].map(h=>(<button key={h} onClick={()=>filtrarYUltimaPagina(h)} style={{background:horizFiltro===h?C.green:"#fff",color:horizFiltro===h?"#fff":C.muted,border:`1px solid ${horizFiltro===h?C.green:C.border}`,borderRadius:6,padding:"4px 10px",fontSize:11,fontWeight:700,cursor:"pointer"}}>{h==="todos"?"Todos":`+${h}`}</button>))}</div>
+              <div style={{display:"flex",gap:6}}>{["todos","1c","3c","6h"].map(h=>(<button key={h} onClick={()=>{setHorizFiltro(h);setPaginaActual(0);}} style={{background:horizFiltro===h?C.green:"#fff",color:horizFiltro===h?"#fff":C.muted,border:`1px solid ${horizFiltro===h?C.green:C.border}`,borderRadius:6,padding:"4px 10px",fontSize:11,fontWeight:700,cursor:"pointer"}}>{h==="todos"?"Todos":`+${h}`}</button>))}</div>
             </div>
             <ResponsiveContainer width="100%" height={200}>
               <ComposedChart data={filtradas.slice(-60).map(r=>({label:r.ts_obj.toISOString().slice(5,16).replace("T"," "),pred:r.aur_pred,real:r.aur_real,error:r.err_aur_pct}))} margin={{top:4,right:8,bottom:4,left:0}}>
@@ -1509,7 +1430,7 @@ function ValidacionPanel({data,demoMode,historico}) {
           <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"18px 20px",marginBottom:14}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
               <div style={{fontSize:13,fontWeight:700}}>💨 Minutos Predichos vs Reales</div>
-              <div style={{display:"flex",gap:6}}>{["todos","1c","3c","6h"].map(h=>(<button key={h} onClick={()=>filtrarYUltimaPagina(h)} style={{background:horizFiltro===h?C.amber:"#fff",color:horizFiltro===h?"#fff":C.muted,border:`1px solid ${horizFiltro===h?C.amber:C.border}`,borderRadius:6,padding:"4px 10px",fontSize:11,fontWeight:700,cursor:"pointer"}}>{h==="todos"?"Todos":`+${h}`}</button>))}</div>
+              <div style={{display:"flex",gap:6}}>{["todos","1c","3c","6h"].map(h=>(<button key={h} onClick={()=>{setHorizFiltro(h);setPaginaActual(0);}} style={{background:horizFiltro===h?C.amber:"#fff",color:horizFiltro===h?"#fff":C.muted,border:`1px solid ${horizFiltro===h?C.amber:C.border}`,borderRadius:6,padding:"4px 10px",fontSize:11,fontWeight:700,cursor:"pointer"}}>{h==="todos"?"Todos":`+${h}`}</button>))}</div>
             </div>
             <ResponsiveContainer width="100%" height={200}>
               <ComposedChart data={filtradas.filter(r=>r.mins_pred!=null).slice(-60).map(r=>({label:r.ts_obj.toISOString().slice(5,16).replace("T"," "),pred:r.mins_pred,real:r.mins_real,error:r.mins_pred!=null&&r.mins_real!=null?+(Math.abs(r.mins_pred-r.mins_real)/r.mins_real*100).toFixed(1):null}))} margin={{top:4,right:8,bottom:4,left:0}}>
@@ -1528,11 +1449,9 @@ function ValidacionPanel({data,demoMode,historico}) {
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
               <div style={{fontSize:13,fontWeight:700}}>📋 Detalle ({filtradas.length} puntos)</div>
               <div style={{display:"flex",gap:8,alignItems:"center"}}>
-                <button onClick={()=>setPaginaActual(0)} disabled={paginaActual===0} title="Primera página (datos más antiguos)" style={{background:"#fff",border:`1px solid ${C.border}`,borderRadius:6,padding:"4px 10px",cursor:"pointer",fontSize:12}}>⏮</button>
                 <button onClick={()=>setPaginaActual(p=>Math.max(0,p-1))} disabled={paginaActual===0} style={{background:"#fff",border:`1px solid ${C.border}`,borderRadius:6,padding:"4px 10px",cursor:"pointer",fontSize:12}}>◀</button>
                 <span style={{fontSize:12,color:C.muted}}>{paginaActual+1} / {Math.max(1,totalPags)}</span>
                 <button onClick={()=>setPaginaActual(p=>Math.min(totalPags-1,p+1))} disabled={paginaActual>=totalPags-1} style={{background:"#fff",border:`1px solid ${C.border}`,borderRadius:6,padding:"4px 10px",cursor:"pointer",fontSize:12}}>▶</button>
-                <button onClick={()=>setPaginaActual(totalPags-1)} disabled={paginaActual>=totalPags-1} title="Última página (datos más recientes)" style={{background:"#fff",border:`1px solid ${C.border}`,borderRadius:6,padding:"4px 10px",cursor:"pointer",fontSize:12}}>⏭</button>
               </div>
             </div>
             <div style={{overflowX:"auto"}}>
@@ -1625,7 +1544,67 @@ function OnboardingPanel({reactores,pred,historico,deriva,onSkip,handleCSV,handl
   );
 }
 
-function generarInforme(data,pred,incidencias,alertasDisparadas) {
+function ModoQuiosco({data,pred,toxUmbral,incidencias,alertasDisparadas,onClose}) {
+  const [,setTick] = useState(0);
+  useEffect(()=>{ const iv=setInterval(()=>setTick(t=>t+1),1000); return()=>clearInterval(iv); },[]);
+  const now=new Date(), last=data?.at(-1), toxProb=(pred?.predicciones?.tox_prob||0)*100, aur=last?.AUR||0;
+  let estado="verde", msg="SISTEMA NORMAL";
+  if (alertasDisparadas?.some(a=>a.severidad==="critica")||toxProb>toxUmbral) { estado="rojo"; msg="⚠️ ALERTA CRÍTICA"; }
+  else if (alertasDisparadas?.length>0||aur<1.0) { estado="ambar"; msg="⚡ VIGILANCIA"; }
+  const col={verde:C.green,ambar:C.yellow,rojo:C.red}[estado], p=pred?.predicciones;
+  return (
+    <div style={{position:"fixed",inset:0,background:"#0d1117",zIndex:2000,display:"flex",flexDirection:"column",color:"#fff",fontFamily:"system-ui,sans-serif",padding:"24px 32px",boxSizing:"border-box"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:20,borderBottom:"1px solid #2d3748",paddingBottom:16}}>
+        <div style={{display:"flex",alignItems:"center",gap:16}}><SensaraLogo size={44}/><div><div style={{fontSize:18,fontWeight:800}}>SIC<span style={{color:C.green}}>AIR</span> 3.0</div><div style={{fontSize:12,color:"#6b7280"}}>Martorell · EDAR</div></div></div>
+        <div style={{display:"flex",alignItems:"center",gap:20}}>
+          <div style={{textAlign:"right"}}><div style={{fontSize:28,fontWeight:800,fontFamily:"monospace",color:C.green}}>{now.toLocaleTimeString("es-ES")}</div><div style={{fontSize:12,color:"#6b7280"}}>{now.toLocaleDateString("es-ES",{weekday:"long",day:"2-digit",month:"long"})}</div></div>
+          <button onClick={onClose} style={{background:"#2d3748",color:"#9ca3af",border:"none",borderRadius:8,padding:"8px 16px",fontSize:12,fontWeight:700,cursor:"pointer"}}>✕ Salir</button>
+        </div>
+      </div>
+      <div style={{background:col+"18",border:`2px solid ${col}`,borderRadius:16,padding:"16px 28px",marginBottom:20,display:"flex",alignItems:"center",gap:24}}>
+        <div style={{width:32,height:32,borderRadius:"50%",background:col,boxShadow:`0 0 20px 6px ${col}66`}}/>
+        <div style={{fontSize:22,fontWeight:900,color:col,letterSpacing:1}}>{msg}</div>
+        <div style={{marginLeft:"auto",display:"flex",gap:28}}>
+          {[{l:"AUR",v:aur.toFixed(2),u:"mg O₂/L·h",c:C.green},{l:"Soplante",v:last?.minsReal||"—",u:"min/ciclo",c:C.amber},{l:"SICTOX",v:toxProb.toFixed(1)+"%",u:"tox. pred.",c:toxProb>toxUmbral?C.red:C.green}].map(({l,v,u,c})=>(
+            <div key={l} style={{textAlign:"center"}}><div style={{fontSize:10,color:"#6b7280",textTransform:"uppercase"}}>{l}</div><div style={{fontSize:32,fontWeight:900,color:c,fontFamily:"monospace"}}>{v}</div><div style={{fontSize:11,color:"#6b7280"}}>{u}</div></div>
+          ))}
+        </div>
+      </div>
+      <div style={{display:"grid",gridTemplateColumns:"2fr 1fr",gap:16,flex:1,minHeight:0}}>
+        <div style={{background:"#161b22",borderRadius:12,padding:"16px 20px"}}>
+          <div style={{fontSize:12,fontWeight:700,color:"#9ca3af",marginBottom:8}}>AUR — últimos 40 ciclos</div>
+          <ResponsiveContainer width="100%" height={140}>
+            <ComposedChart data={data?.slice(-40).map(d=>({label:d.label,aur:d.AUR}))||[]} margin={{top:4,right:4,bottom:4,left:0}}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#2d3748"/>
+              <XAxis dataKey="label" tick={{fontSize:8,fill:"#4b5563"}} interval={8} angle={-20} textAnchor="end" height={30}/>
+              <YAxis domain={[0,6]} tick={{fontSize:8,fill:"#4b5563"}}/>
+              <Area dataKey="aur" fill={C.greenFade} stroke={C.green} strokeWidth={2} dot={false} connectNulls/>
+            </ComposedChart>
+          </ResponsiveContainer>
+          {p&&<div style={{display:"flex",gap:10,marginTop:12}}>{[{k:"1c",l:"+1 ciclo"},{k:"3c",l:"+3 ciclos"},{k:"6h",l:"+6h"}].map(({k,l})=>(
+            <div key={k} style={{flex:1,background:"#0d1117",borderRadius:8,padding:"8px",textAlign:"center",border:"1px solid #2d3748"}}>
+              <div style={{fontSize:10,color:"#6b7280"}}>{l}</div>
+              <div style={{fontSize:16,fontWeight:800,color:C.green,fontFamily:"monospace"}}>{p[k]?.aur_pred?.toFixed(2)||"—"}</div>
+              <div style={{fontSize:10,color:C.amber,fontFamily:"monospace"}}>{p[k]?.mins_pred?.toFixed(0)||"—"} min</div>
+            </div>
+          ))}</div>}
+        </div>
+        <div style={{background:"#161b22",borderRadius:12,padding:"14px 16px"}}>
+          <div style={{fontSize:11,fontWeight:700,color:"#9ca3af",marginBottom:10}}>📋 Últimas incidencias</div>
+          {!incidencias?.slice(0,4).length&&<div style={{fontSize:12,color:"#4b5563"}}>Sin incidencias.</div>}
+          {incidencias?.slice(0,4).map(inc=>(
+            <div key={inc.id} style={{borderLeft:`3px solid ${TIPOS_INC.find(t=>t.id===inc.tipo)?.color||C.muted}`,paddingLeft:10,marginBottom:10}}>
+              <div style={{fontSize:10,color:"#6b7280"}}>{inc.fecha?.replace("T"," ")}</div>
+              <div style={{fontSize:12,color:"#e2e8f0"}}>{inc.texto}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function generarInforme(data,pred,toxUmbral,incidencias,alertasDisparadas) {
   if (!data) return "";
   const ahora=new Date().toLocaleString("es-ES"), last=data.at(-1), p=pred?.predicciones;
   const tR=data.reduce((s,d)=>s+d.minsReal,0), tT=data.reduce((s,d)=>s+d.minsTeo,0);
@@ -1633,7 +1612,7 @@ function generarInforme(data,pred,incidencias,alertasDisparadas) {
   const s=calcularScore(data);
   const incStr=incidencias?.slice(0,5).map(i=>`  [${i.fecha?.replace("T"," ")}] ${TIPOS_INC.find(t=>t.id===i.tipo)?.label||i.tipo}: ${i.texto}`).join("\n")||"  Sin incidencias";
   const alertStr=alertasDisparadas?.length?alertasDisparadas.map(a=>`  ⚠️ ${a.label}: ${a.valorActual} ${a.unit}`).join("\n"):"  Sin alertas activas";
-  return `INFORME SICAIR 3.0 — SENSARA\nGenerado: ${ahora}\n${"═".repeat(40)}\nSCORE DE SALUD: ${s?.global??'—'}/100 — ${s?.estado??'—'}\nESTADO: AUR ${last?.AUR?.toFixed(2)??"—"} mg/L·h · TRC ${(last?.TRCsuave??last?.TRC)?.toFixed(1)??"—"} d · Sopl. ${last?.minsReal??"—"} min\nALERTAS:\n${alertStr}\nPREDICCIONES:\n  +1c: AUR ${p?.["1c"]?.aur_pred?.toFixed(2)??"—"} · ${p?.["1c"]?.mins_pred?.toFixed(0)??"—"} min · TRC ${p?.["1c"]?.trc_pred?.toFixed(1)??"—"} d\n  +3c: AUR ${p?.["3c"]?.aur_pred?.toFixed(2)??"—"} · ${p?.["3c"]?.mins_pred?.toFixed(0)??"—"} min · TRC ${p?.["3c"]?.trc_pred?.toFixed(1)??"—"} d\n  +6h: AUR ${p?.["6h"]?.aur_pred?.toFixed(2)??"—"} · ${p?.["6h"]?.mins_pred?.toFixed(0)??"—"} min · TRC ${p?.["6h"]?.trc_pred?.toFixed(1)??"—"} d\nAHORRO: ${ah.toLocaleString()} min · ${Math.abs(kwh).toLocaleString()} kWh · ${Math.abs(eur).toLocaleString()} €\nINCIDENCIAS:\n${incStr}\n${"═".repeat(40)}\nSENSARA · sensaratech.com · Logroño`;
+  return `INFORME SICAIR 3.0 — SENSARA\nGenerado: ${ahora}\n${"═".repeat(40)}\nSCORE DE SALUD: ${s?.global??'—'}/100 — ${s?.estado??'—'}\nESTADO: AUR ${last?.AUR?.toFixed(2)??"—"} mg/L·h · TRC ${last?.TRC?.toFixed(1)??"—"} d · Sopl. ${last?.minsReal??"—"} min\nALERTAS:\n${alertStr}\nPREDICCIONES:\n  +1c: AUR ${p?.["1c"]?.aur_pred?.toFixed(2)??"—"} · ${p?.["1c"]?.mins_pred?.toFixed(0)??"—"} min · TRC ${p?.["1c"]?.trc_pred?.toFixed(1)??"—"} d\n  +3c: AUR ${p?.["3c"]?.aur_pred?.toFixed(2)??"—"} · ${p?.["3c"]?.mins_pred?.toFixed(0)??"—"} min · TRC ${p?.["3c"]?.trc_pred?.toFixed(1)??"—"} d\n  +6h: AUR ${p?.["6h"]?.aur_pred?.toFixed(2)??"—"} · ${p?.["6h"]?.mins_pred?.toFixed(0)??"—"} min · TRC ${p?.["6h"]?.trc_pred?.toFixed(1)??"—"} d\nAHORRO: ${ah.toLocaleString()} min · ${Math.abs(kwh).toLocaleString()} kWh · ${Math.abs(eur).toLocaleString()} €\nINCIDENCIAS:\n${incStr}\n${"═".repeat(40)}\nSENSARA · sensaratech.com · Logroño`;
 }
 
 
@@ -1649,7 +1628,7 @@ function generarInformePDF(data, pred, historico, incidencias, periodo, diagHist
   if (!df.length) { alert("Sin datos para el período seleccionado."); return; }
   const aurMed = +(df.reduce((s,d)=>s+d.AUR,0)/df.length).toFixed(2);
   const minsMed = +(df.reduce((s,d)=>s+d.minsReal,0)/df.length).toFixed(0);
-  const trcMed = +(df.reduce((s,d)=>s+(d.TRCsuave??d.TRC),0)/df.length).toFixed(1);
+  const trcMed = +(df.reduce((s,d)=>s+d.TRC,0)/df.length).toFixed(1);
   const conF = df.filter(d=>d.minsFormula!=null);
   const sobMin = conF.length ? +(conF.reduce((s,d)=>s+(d.minsReal-(d.minsFormula||0)),0)/conF.length).toFixed(0) : 0;
   const ahMin = df.reduce((s,d)=>s+d.minsReal,0) - conF.reduce((s,d)=>s+(d.minsFormula||0),0);
@@ -1719,10 +1698,10 @@ function generarInformePDF(data, pred, historico, incidencias, periodo, diagHist
   const dAUR  = dfR.map(d=>({y:d.AUR, label:fmtLbl(d)}));
   const dReal = dfR.map(d=>({y:d.minsReal, label:fmtLbl(d)}));
   const dForm = dfR.filter(d=>d.minsFormula!=null).map(d=>({y:d.minsFormula, label:fmtLbl(d)}));
-  const dTRC  = dfR.map(d=>({y:d.TRCsuave??d.TRC, label:fmtLbl(d)}));
+  const dTRC  = dfR.map(d=>({y:d.TRC, label:fmtLbl(d)}));
   const svgAUR  = svgLinea(dAUR,  "#2d7a27", "AUR — Tasa de Nitrificación", "mg O₂/L·h");
   const svgMins = svgDoble(dReal, dForm);
-  const svgTRC  = svgLinea(dTRC,  "#1d4ed8", "TRC — Edad del fango (mediana móvil 3d)", "días");
+  const svgTRC  = svgLinea(dTRC,  "#1d4ed8", "TRC — Tiempo de Retención de Fango", "días");
   // Resumen diario para PDF
   const crP = cruzarHistoricoConReal(historico||[], data);
   const dRealPDF = {}, dPredPDF = {};
@@ -1798,7 +1777,7 @@ function generarInformePDF(data, pred, historico, incidencias, periodo, diagHist
   <hr/>
   <div class="st">AUR — Evolución</div><div class="chart">${svgAUR}</div>
   <div class="st">Minutos soplante — Real vs SICAIR</div><div class="chart">${svgMins}</div>
-  <div class="st">TRC — Edad del fango (mediana móvil 3d)</div><div class="chart">${svgTRC}</div>
+  <div class="st">TRC — Tiempo de Retención de Fango</div><div class="chart">${svgTRC}</div>
   <hr/>
   ${diasPDF.length>0?`<div class="st">Resumen diario — Minutos Real vs SICAIR</div>
   <table style="width:100%;border-collapse:collapse;font-size:10px;margin-bottom:12px">
@@ -2385,7 +2364,9 @@ export default function App() {
   const [autoError,   setAutoError]   = useState(null);
   const [informePDF,  setInformePDF]  = useState(false);
   const [tab,         setTab]         = useState("pred");
+  const [toxUmbral,   setToxUmbral]   = useState(40);
   const [informe,     setInforme]     = useState(null);
+  const [quiosco,     setQuiosco]     = useState(false);
   const [incidencias, setIncidencias] = useState(() => { try { return JSON.parse(localStorage.getItem("sicair_incidencias")||"[]"); } catch { return []; } });
   const [calidad,     setCalidad]     = useState(() => { try { return JSON.parse(localStorage.getItem("sicair_calidad")||"[]"); } catch { return []; } });
   const [alertas,     setAlertas]     = useState(ALERT_DEF);
@@ -2394,8 +2375,7 @@ export default function App() {
   const [addingR,     setAddingR]     = useState(false);
   const [newRN,       setNewRN]       = useState("R2");
   const prevDispRef = useRef([]);
-  const {modo: modoDepuradora, historico: modoHistorico} = useModoDepuradora();
-  const recoveryEstado = useRecoveryEstado();
+  const modoDepuradora = useModoDepuradora();
 
   const nombres = Object.keys(reactores);
   const data = nombres.length>0 ? reactores[nombres[0]] : null;
@@ -2432,7 +2412,7 @@ export default function App() {
         const rows = jCiclos.ciclos.map(c => ({
           ...c, datetime: new Date(c.datetime),
         })).filter(c => c.AUR > 0 && c.minsReal > 0 && c.minsReal < 400);
-        if (rows.length) { setReactores({"R1": suavizarTRC(rows)}); setDemoMode(false); setShowOnboard(false); setTab("pred"); }
+        if (rows.length) { setReactores({"R1": rows}); setDemoMode(false); setShowOnboard(false); setTab("pred"); }
       }
     } catch(e) { setAutoError("Error cargando desde GitHub"); }
     setAutoLoading(false);
@@ -2465,6 +2445,7 @@ export default function App() {
 
   const tabs = [
     {id:"pred",        label:"🧠 Predicciones",  disabled:!pred},
+    {id:"historico",   label:"📈 Histórico",      disabled:!data},
     {id:"semana",      label:"📅 Semanal",        disabled:!data},
     {id:"calidad",     label:"🧪 Calidad efluente", disabled:false},
     {id:"incidencias", label:"📋 Incidencias",    disabled:false, badge:incidencias.length},
@@ -2473,10 +2454,12 @@ export default function App() {
     {id:"exportar",    label:"📤 Exportar CSV",   disabled:!data||demoMode},
     {id:"diario",      label:"📅 Resumen diario",  disabled:!data},
     {id:"soplante",    label:"⚡ Soplante VSD",    disabled:!pred},
+    {id:"sn8",         label:"⚙️ SN-8",           disabled:false},
   ];
 
   return (
     <div style={{background:C.bg,minHeight:"100vh",color:C.text,fontFamily:"system-ui,sans-serif"}}>
+      {quiosco&&<ModoQuiosco data={data} pred={pred} toxUmbral={toxUmbral} incidencias={incidencias} alertasDisparadas={alertasDisp} onClose={()=>setQuiosco(false)}/>}
       {informe&&<InformeModal texto={informe} onClose={()=>setInforme(null)}/>}
       {informePDF&&(
         <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.4)",zIndex:1000,display:"flex",alignItems:"center",justifyContent:"center"}} onClick={()=>setInformePDF(false)}>
@@ -2511,8 +2494,13 @@ export default function App() {
           {nombres.map((n,i)=><Badge key={n} color={RC[i]}>{n}: {reactores[n].length}</Badge>)}
           {pred&&!demoMode&&<Badge color={C.purple}>🧠 Modelo cargado</Badge>}
           {!demoMode&&<ModoDepuradoraBadge modo={modoDepuradora}/>}
-          {!demoMode&&<RecoveryBadge estado={recoveryEstado}/>}
           {alertasDisp.length>0&&<Badge color={alertasDisp.some(a=>a.severidad==="critica")?C.red:C.amber}>🔔 {alertasDisp.length}</Badge>}
+          <div style={{display:"flex",alignItems:"center",gap:6,background:C.panel,border:`1px solid ${C.border}`,borderRadius:8,padding:"4px 10px"}}>
+            <span style={{fontSize:11,color:C.muted}}>SICTOX:</span>
+            <input type="range" min={10} max={80} value={toxUmbral} onChange={e=>setToxUmbral(+e.target.value)} style={{width:54,accentColor:C.green}}/>
+            <span style={{fontSize:12,fontWeight:700,color:C.green,fontFamily:"monospace",minWidth:30}}>{toxUmbral}%</span>
+          </div>
+          <button onClick={()=>setQuiosco(true)} style={{background:"#0d1117",color:"#fff",border:"none",borderRadius:8,padding:"6px 14px",fontSize:12,fontWeight:700,cursor:"pointer"}}>🖥 Quiosco</button>
           <button onClick={cargarDesdeGitHub} disabled={autoLoading} style={{background:autoLoading?"#f0f0f0":C.green,color:autoLoading?"#999":"#fff",border:"none",borderRadius:20,padding:"7px 18px",fontSize:12,fontWeight:600,cursor:autoLoading?"default":"pointer"}}>
             {autoLoading?"⏳":"↻"} Actualizar
           </button>
@@ -2526,7 +2514,7 @@ export default function App() {
         {demoMode&&<DemoBanner onExit={salirDemo}/>}
         {pred&&!demoMode&&<DatoCongeladoBanner pred={pred}/>}
         <MeteoPanel/>
-        {data&&<Semaforo data={data} pred={pred} alertasDisparadas={alertasDisp} alertas={alertas}/>}
+        {data&&<Semaforo data={data} pred={pred} toxUmbral={toxUmbral} alertasDisparadas={alertasDisp} alertas={alertas}/>}
         {data&&<ScoreSalud data={data}/>}
         {data&&(
           <div style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:12,marginBottom:24}}>
@@ -2552,9 +2540,10 @@ export default function App() {
           ))}
         </div>
 
-        {tab==="pred"        &&pred&&<PredPanel pred={pred} data={data}/>}
+        {tab==="pred"        &&pred&&<PredPanel pred={pred} toxUmbral={toxUmbral} data={data}/>}
         {tab==="pred"        &&pred&&data&&<DiagnosticoPanel data={data} pred={pred} alertas={alertas}/>}
-        {tab==="pred"        &&pred&&data&&<HistoricoChart data={data} pred={pred} diagHistorico={diagHistorico} modoHistorico={modoHistorico}/>}
+        {tab==="pred"        &&pred&&data&&<HistoricoChart data={data} pred={pred}/>}
+        {tab==="historico"   &&data&&<HistoricoChart data={data} pred={pred}/>}
         {tab==="semana"      &&data&&<ComparativaPanel data={data}/>}
         {tab==="calidad"     &&<CalidadEfluentePanel calidad={calidad} setCalidad={v=>{setCalidad(v);try{localStorage.setItem("sicair_calidad",JSON.stringify(v));}catch{}}} data={data}/>}
         {tab==="incidencias" &&<IncidenciasPanel incidencias={incidencias} setIncidencias={setIncidencias} diagHistorico={diagHistorico} setDiagHistorico={setDiagHistorico} parseJSON={parseJSON}/>}
@@ -2563,6 +2552,7 @@ export default function App() {
         {tab==="exportar"    &&data&&!demoMode&&<ExportCSV data={data}/>}
         {tab==="diario"      &&data&&<ResumenDiarioPanel data={data} historico={historico} demoMode={demoMode}/>}
         {tab==="soplante"    &&pred&&<ModeloFisicoPanel pred={pred} data={data}/>}
+        {tab==="sn8"         &&<SN8Panel C={C} planta="martorell"/>}
 
         <div style={{marginTop:40,textAlign:"center",fontSize:11,color:"#ccc",paddingTop:24,borderTop:"1px solid #f4f4f4",display:"flex",justifyContent:"center",alignItems:"center",gap:8}}>
           <SensaraLogo size={18}/>
