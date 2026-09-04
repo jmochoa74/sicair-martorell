@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from "react";
-import { ComposedChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, BarChart, Bar, Scatter, Legend } from "recharts";
+import { ComposedChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, BarChart, Bar, Scatter, Legend, ReferenceArea } from "recharts";
 import SN8Panel from "./SN8Panel";
 
 const C = {
@@ -627,6 +627,7 @@ function useLluviaPrevista() {
 // sicair_predict.py cada hora y volcado a modo_historico.json en GitHub.
 function useModoDepuradora() {
   const [modo,setModo] = useState(null);
+  const [historico,setHistorico] = useState([]);
   const cargar = useCallback(() => {
     fetch("https://raw.githubusercontent.com/jmochoa74/sicair-martorell/main/modo_historico.json?t="+Date.now())
       .then(r=>{ if(!r.ok) throw new Error(); return r.json(); })
@@ -634,10 +635,11 @@ function useModoDepuradora() {
         if (!Array.isArray(arr)||!arr.length) { setModo({ok:false}); return; }
         const ultimo = arr[arr.length-1];
         setModo({ok:true, modo:ultimo.modo, label:ultimo.modo_label, ts:ultimo.ts});
+        setHistorico(arr);
       }).catch(()=>setModo({ok:false}));
   }, []);
   useEffect(() => { cargar(); const iv=setInterval(cargar,10*60000); return()=>clearInterval(iv); }, [cargar]);
-  return modo;
+  return {modo, historico};
 }
 function ModoDepuradoraBadge({modo}) {
   if (!modo?.ok) return null;
@@ -647,6 +649,25 @@ function ModoDepuradoraBadge({modo}) {
   return (
     <span title={antig!=null?`Desde hace ~${antig}h (${modo.ts?.slice(0,16).replace("T"," ")})`:""} style={{background:col+"18",color:col,border:`1px solid ${col}44`,borderRadius:6,padding:"4px 10px",fontSize:11,fontWeight:700,display:"inline-flex",alignItems:"center",gap:5}}>
       {esSN8?"🔬":"🧪"} Modo {esSN8?"SN8":"Sondas"}
+    </span>
+  );
+}
+
+// Estado del modo recuperación (recovery.json), consultado con el mismo
+// token que usa RecoveryPanel para activar/desactivar — visible de un
+// vistazo en la cabecera, sin tener que entrar en Incidencias > Recovery.
+function useRecoveryEstado() {
+  const [estado, setEstado] = useState(null);
+  const cargar = useCallback(() => { leerRecovery().then(setEstado); }, []);
+  useEffect(() => { cargar(); const iv=setInterval(cargar,2*60000); return()=>clearInterval(iv); }, [cargar]);
+  return estado;
+}
+function RecoveryBadge({estado}) {
+  if (!estado) return null;
+  const col = estado.activo ? C.amber : C.green;
+  return (
+    <span title={estado.activo?`+30% aireación · ${estado.ciclos} ciclos restantes`:"Aireación normal"} style={{background:col+"18",color:col,border:`1px solid ${col}44`,borderRadius:6,padding:"4px 10px",fontSize:11,fontWeight:700,display:"inline-flex",alignItems:"center",gap:5}}>
+      {estado.activo?`🔄 Recovery ACTIVO (${estado.ciclos})`:"✅ Recovery inactivo"}
     </span>
   );
 }
@@ -702,15 +723,13 @@ function PredPanel({pred,toxUmbral,data}) {
             <div key={key} style={{background:"#fff",border:`1.5px solid ${dil?C.blue:C.border}`,borderRadius:8,padding:"14px 16px",position:"relative"}}>
               {dil&&<div style={{position:"absolute",top:8,right:8}}><Badge color={C.blue}>🌧</Badge></div>}
               <div style={{marginBottom:8}}><div style={{fontSize:13,fontWeight:800}}>{label}</div><div style={{fontSize:10,color:C.muted}}>{desc}</div></div>
-              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:6,marginBottom:6}}>
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:6,marginBottom:6}}>
                 <div><div style={{fontSize:10,color:C.muted}}>AUR</div><div style={{fontSize:18,fontWeight:800,color:C.green,fontFamily:"monospace"}}>{c.aurCorr.toFixed(2)}</div><div style={{fontSize:10,color:C.muted}}>mg/L·h</div></div>
-                <div style={{textAlign:"center"}}><div style={{fontSize:10,color:C.muted}}>Soplante</div><div style={{fontSize:18,fontWeight:800,color:C.amber,fontFamily:"monospace"}}>{c.minsCorr||"—"}</div><div style={{fontSize:10,color:C.muted}}>min/ciclo</div></div>
-                <div style={{textAlign:"right"}}><div style={{fontSize:10,color:C.muted}}>TRC</div><div style={{fontSize:18,fontWeight:800,color:C.purple,fontFamily:"monospace"}}>{p[key]?.trc_pred?.toFixed(1)||"—"}</div><div style={{fontSize:10,color:C.muted}}>días</div></div>
+                <div style={{textAlign:"right"}}><div style={{fontSize:10,color:C.muted}}>Soplante</div><div style={{fontSize:18,fontWeight:800,color:C.amber,fontFamily:"monospace"}}>{c.minsCorr||"—"}</div><div style={{fontSize:10,color:C.muted}}>min/ciclo</div></div>
               </div>
               <div style={{display:"flex",gap:4,flexWrap:"wrap"}}>
                 {m?.[key]?.mape_aur!=null&&<Badge color={C.green}>AUR {m[key].mape_aur}%</Badge>}
                 {m?.[key]?.mape_mins!=null&&<Badge color={C.amber}>Min {m[key].mape_mins}%</Badge>}
-                {m?.[key]?.mape_trc!=null&&<Badge color={C.purple}>TRC {m[key].mape_trc}%</Badge>}
                 {p[key]?.prob_dilucion!=null&&<Badge color={C.blue}>💧 {(p[key].prob_dilucion*100).toFixed(0)}%</Badge>}
               </div>
             </div>
@@ -731,10 +750,47 @@ function PredPanel({pred,toxUmbral,data}) {
   );
 }
 
-function HistoricoChart({data,pred}) {
+// ¿Hay un evento "recovery_auto" en diagnosticos_historico.json a menos de
+// `ventanaMin` minutos de este ciclo? (los diagnósticos se registran cada
+// ciclo del predict, ~100min, así que medio ciclo de margen los empareja)
+function eventoRecoveryCercano(dt, diagHistorico, ventanaMin=50) {
+  if (!dt||!diagHistorico?.length) return false;
+  return diagHistorico.some(e => {
+    if (!e.eventos?.some(ev=>ev.tipo==="recovery_auto")) return false;
+    return Math.abs(new Date(e.ts)-dt)/60000 <= ventanaMin;
+  });
+}
+// Modo (sn8/sondas) vigente en una fecha, según las transiciones de modo_historico.json
+function modoEnFecha(dt, modoHistorico) {
+  if (!dt||!modoHistorico?.length) return null;
+  let last = null;
+  for (const m of modoHistorico) { if (new Date(m.ts) <= dt) last = m; else break; }
+  return last?.modo_label ?? null;
+}
+// Tramos contiguos en modo sondas dentro de la ventana visible del gráfico,
+// como {x1,x2} en las mismas categorías (label) que usa el eje X.
+function rangosSondas(hist, modoHistorico) {
+  const ranges = []; let start = null;
+  for (let i=0;i<hist.length;i++) {
+    const enSondas = modoEnFecha(hist[i].datetime, modoHistorico)==="sondas";
+    if (enSondas && start===null) start=i;
+    if (!enSondas && start!==null) { ranges.push({x1:hist[start].label,x2:hist[i-1].label}); start=null; }
+  }
+  if (start!==null) ranges.push({x1:hist[start].label,x2:hist[hist.length-1].label});
+  return ranges;
+}
+
+function HistoricoChart({data,pred,diagHistorico,modoHistorico}) {
   if (!data||!data.length) return null;
   const dA = detectAnomalias(data);
-  const hist = dA.slice(-60).map((d,i)=>({label:d.label,aur:d.AUR,anomalia:d.anomalia?d.AUR:null,dilucion:d.dilucion>0?d.AUR:null,idx:i}));
+  const hist = dA.slice(-60).map((d,i)=>({
+    label:d.label, datetime:d.datetime, aur:d.AUR,
+    anomalia:d.anomalia?d.AUR:null,
+    dilucion:d.dilucion>0?d.AUR:null,
+    recovery:eventoRecoveryCercano(d.datetime,diagHistorico)?d.AUR:null,
+    idx:i,
+  }));
+  const sondasRanges = rangosSondas(hist, modoHistorico);
   const reg = linReg(hist.map((d,i)=>({x:i,y:d.aur})));
   const histR = hist.map((d,i)=>({...d,tendencia:+(reg.m*i+reg.b).toFixed(3)}));
   const p=pred?.predicciones, last=hist.at(-1);
@@ -752,15 +808,17 @@ function HistoricoChart({data,pred}) {
         <div style={{fontSize:13,fontWeight:700}}>📈 Histórico + Predicciones</div>
         <div style={{display:"flex",gap:8}}>{nAnom>0&&<Badge color={C.red}>⚠️ {nAnom} anomalías</Badge>}<Badge color={reg.m>0?C.amber:C.green}>Tendencia {reg.m>0?"↑":"↓"} R²={reg.r2}</Badge></div>
       </div>
-      <div style={{fontSize:11,color:C.muted,marginBottom:8}}>🔴 Anomalías · 🔵 Dilución · — — Pred.</div>
+      <div style={{fontSize:11,color:C.muted,marginBottom:8}}>🔴 Anomalías · 🔵 Dilución · 🟠 Recovery · ⬜ fondo = modo sondas · — — Pred.</div>
       <ResponsiveContainer width="100%" height={180}>
         <ComposedChart data={combined} margin={{top:4,right:8,bottom:4,left:0}}>
           <CartesianGrid strokeDasharray="3 3" stroke={C.gridLine}/>
           <XAxis dataKey="label" tick={{fontSize:9,fill:C.muted}} interval={Math.floor(combined.length/8)} angle={-20} textAnchor="end" height={36}/>
           <YAxis domain={[0,6]} tick={{fontSize:9,fill:C.muted}}/><Tooltip content={<CT/>}/>
+          {sondasRanges.map((r,i)=><ReferenceArea key={`sonda${i}`} x1={r.x1} x2={r.x2} fill={C.muted} fillOpacity={0.16} strokeOpacity={0} ifOverflow="visible"/>)}
           <Line dataKey="aur" stroke={C.green} strokeWidth={2} dot={false} name="AUR real" connectNulls/>
           <Line dataKey="anomalia" stroke={C.red} strokeWidth={0} dot={{r:5,fill:C.red}} name="Anomalía" connectNulls/>
           <Line dataKey="dilucion" stroke={C.blue} strokeWidth={0} dot={{r:5,fill:C.blue}} name="Dilución" connectNulls/>
+          <Line dataKey="recovery" stroke={C.amber} strokeWidth={0} dot={{r:5,fill:C.amber,stroke:"#fff",strokeWidth:1}} name="Recovery" connectNulls/>
           <Line dataKey="aurPred" stroke={C.green} strokeWidth={2} strokeDasharray="6 3" dot={{r:5,fill:C.green}} name="AUR pred." connectNulls/>
           <Line dataKey="tendencia" stroke={C.amber} strokeWidth={1} strokeDasharray="3 3" dot={false} name="Tendencia" connectNulls/>
         </ComposedChart>
@@ -1349,11 +1407,19 @@ function ValidacionPanel({data,demoMode,historico}) {
         resultados.push({ts_obj:objetivo,horizonte:h,aur_pred:+predAUR.toFixed(3),aur_real:+vecino.AUR.toFixed(3),mins_pred:predMins!=null?+predMins.toFixed(0):null,mins_real:vecino.minsReal,err_aur_pct:errAUR,acierto:errAUR<=20,sesgo:+(predAUR-vecino.AUR).toFixed(3)});
       }
     }
-    setValRows(resultados.sort((a,b)=>a.ts_obj-b.ts_obj)); setPaginaActual(0);
+    const ordenados = resultados.sort((a,b)=>b.ts_obj-a.ts_obj); // recientes primero
+    setValRows(ordenados);
+    setPaginaActual(0); // página 1 = datos más recientes
   }, [histRaw,data,demoMode]);
 
   const filtradas = horizFiltro==="todos" ? valRows : valRows.filter(r=>r.horizonte===horizFiltro);
   const totalPags = Math.ceil(filtradas.length/ROWS_PAG);
+  // Al cambiar de filtro de horizonte, ir también a la última página de ese
+  // subconjunto (si no, se vuelve a la 1 y hay que darle otra vez a ▶ muchas veces).
+  const filtrarYUltimaPagina = h => {
+    setHorizFiltro(h);
+    setPaginaActual(0); // recientes primero
+  };
   const pagina = filtradas.slice(paginaActual*ROWS_PAG,(paginaActual+1)*ROWS_PAG);
   const metricas = ["1c","3c","6h"].map(h => {
     const sub = valRows.filter(r=>r.horizonte===h); if(!sub.length) return {h,n:0};
@@ -1412,10 +1478,10 @@ function ValidacionPanel({data,demoMode,historico}) {
           <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"18px 20px",marginBottom:14}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
               <div style={{fontSize:13,fontWeight:700}}>📊 AUR Predicho vs Real</div>
-              <div style={{display:"flex",gap:6}}>{["todos","1c","3c","6h"].map(h=>(<button key={h} onClick={()=>{setHorizFiltro(h);setPaginaActual(0);}} style={{background:horizFiltro===h?C.green:"#fff",color:horizFiltro===h?"#fff":C.muted,border:`1px solid ${horizFiltro===h?C.green:C.border}`,borderRadius:6,padding:"4px 10px",fontSize:11,fontWeight:700,cursor:"pointer"}}>{h==="todos"?"Todos":`+${h}`}</button>))}</div>
+              <div style={{display:"flex",gap:6}}>{["todos","1c","3c","6h"].map(h=>(<button key={h} onClick={()=>filtrarYUltimaPagina(h)} style={{background:horizFiltro===h?C.green:"#fff",color:horizFiltro===h?"#fff":C.muted,border:`1px solid ${horizFiltro===h?C.green:C.border}`,borderRadius:6,padding:"4px 10px",fontSize:11,fontWeight:700,cursor:"pointer"}}>{h==="todos"?"Todos":`+${h}`}</button>))}</div>
             </div>
             <ResponsiveContainer width="100%" height={200}>
-              <ComposedChart data={filtradas.slice(-60).map(r=>({label:r.ts_obj.toISOString().slice(5,16).replace("T"," "),pred:r.aur_pred,real:r.aur_real,error:r.err_aur_pct}))} margin={{top:4,right:8,bottom:4,left:0}}>
+              <ComposedChart data={[...filtradas.slice(0,60)].reverse().map(r=>({label:r.ts_obj.toISOString().slice(5,16).replace("T"," "),pred:r.aur_pred,real:r.aur_real,error:r.err_aur_pct}))} margin={{top:4,right:8,bottom:4,left:0}}>
                 <CartesianGrid strokeDasharray="3 3" stroke={C.gridLine}/>
                 <XAxis dataKey="label" tick={{fontSize:9,fill:C.muted}} interval={8} angle={-20} textAnchor="end" height={36}/>
                 <YAxis yAxisId="aur" domain={[0,6]} tick={{fontSize:9,fill:C.muted}}/>
@@ -1430,10 +1496,10 @@ function ValidacionPanel({data,demoMode,historico}) {
           <div style={{background:"#fff",border:"1px solid #f0f0f0",borderRadius:16,boxShadow:"0 1px 3px rgba(0,0,0,0.05)",padding:"18px 20px",marginBottom:14}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
               <div style={{fontSize:13,fontWeight:700}}>💨 Minutos Predichos vs Reales</div>
-              <div style={{display:"flex",gap:6}}>{["todos","1c","3c","6h"].map(h=>(<button key={h} onClick={()=>{setHorizFiltro(h);setPaginaActual(0);}} style={{background:horizFiltro===h?C.amber:"#fff",color:horizFiltro===h?"#fff":C.muted,border:`1px solid ${horizFiltro===h?C.amber:C.border}`,borderRadius:6,padding:"4px 10px",fontSize:11,fontWeight:700,cursor:"pointer"}}>{h==="todos"?"Todos":`+${h}`}</button>))}</div>
+              <div style={{display:"flex",gap:6}}>{["todos","1c","3c","6h"].map(h=>(<button key={h} onClick={()=>filtrarYUltimaPagina(h)} style={{background:horizFiltro===h?C.amber:"#fff",color:horizFiltro===h?"#fff":C.muted,border:`1px solid ${horizFiltro===h?C.amber:C.border}`,borderRadius:6,padding:"4px 10px",fontSize:11,fontWeight:700,cursor:"pointer"}}>{h==="todos"?"Todos":`+${h}`}</button>))}</div>
             </div>
             <ResponsiveContainer width="100%" height={200}>
-              <ComposedChart data={filtradas.filter(r=>r.mins_pred!=null).slice(-60).map(r=>({label:r.ts_obj.toISOString().slice(5,16).replace("T"," "),pred:r.mins_pred,real:r.mins_real,error:r.mins_pred!=null&&r.mins_real!=null?+(Math.abs(r.mins_pred-r.mins_real)/r.mins_real*100).toFixed(1):null}))} margin={{top:4,right:8,bottom:4,left:0}}>
+              <ComposedChart data={[...filtradas.filter(r=>r.mins_pred!=null).slice(0,60)].reverse().map(r=>({label:r.ts_obj.toISOString().slice(5,16).replace("T"," "),pred:r.mins_pred,real:r.mins_real,error:r.mins_pred!=null&&r.mins_real!=null?+(Math.abs(r.mins_pred-r.mins_real)/r.mins_real*100).toFixed(1):null}))} margin={{top:4,right:8,bottom:4,left:0}}>
                 <CartesianGrid strokeDasharray="3 3" stroke={C.gridLine}/>
                 <XAxis dataKey="label" tick={{fontSize:9,fill:C.muted}} interval={8} angle={-20} textAnchor="end" height={36}/>
                 <YAxis yAxisId="mins" domain={[0,180]} tick={{fontSize:9,fill:C.muted}} unit=" min"/>
@@ -1449,9 +1515,11 @@ function ValidacionPanel({data,demoMode,historico}) {
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
               <div style={{fontSize:13,fontWeight:700}}>📋 Detalle ({filtradas.length} puntos)</div>
               <div style={{display:"flex",gap:8,alignItems:"center"}}>
+                <button onClick={()=>setPaginaActual(0)} disabled={paginaActual===0} title="Primera página (datos más recientes)" style={{background:"#fff",border:`1px solid ${C.border}`,borderRadius:6,padding:"4px 10px",cursor:"pointer",fontSize:12}}>⏮</button>
                 <button onClick={()=>setPaginaActual(p=>Math.max(0,p-1))} disabled={paginaActual===0} style={{background:"#fff",border:`1px solid ${C.border}`,borderRadius:6,padding:"4px 10px",cursor:"pointer",fontSize:12}}>◀</button>
                 <span style={{fontSize:12,color:C.muted}}>{paginaActual+1} / {Math.max(1,totalPags)}</span>
                 <button onClick={()=>setPaginaActual(p=>Math.min(totalPags-1,p+1))} disabled={paginaActual>=totalPags-1} style={{background:"#fff",border:`1px solid ${C.border}`,borderRadius:6,padding:"4px 10px",cursor:"pointer",fontSize:12}}>▶</button>
+                <button onClick={()=>setPaginaActual(totalPags-1)} disabled={paginaActual>=totalPags-1} title="Última página (datos más antiguos)" style={{background:"#fff",border:`1px solid ${C.border}`,borderRadius:6,padding:"4px 10px",cursor:"pointer",fontSize:12}}>⏭</button>
               </div>
             </div>
             <div style={{overflowX:"auto"}}>
@@ -2375,7 +2443,8 @@ export default function App() {
   const [addingR,     setAddingR]     = useState(false);
   const [newRN,       setNewRN]       = useState("R2");
   const prevDispRef = useRef([]);
-  const modoDepuradora = useModoDepuradora();
+  const {modo: modoDepuradora, historico: modoHistorico} = useModoDepuradora();
+  const recoveryEstado = useRecoveryEstado();
 
   const nombres = Object.keys(reactores);
   const data = nombres.length>0 ? reactores[nombres[0]] : null;
@@ -2445,7 +2514,6 @@ export default function App() {
 
   const tabs = [
     {id:"pred",        label:"🧠 Predicciones",  disabled:!pred},
-    {id:"historico",   label:"📈 Histórico",      disabled:!data},
     {id:"semana",      label:"📅 Semanal",        disabled:!data},
     {id:"calidad",     label:"🧪 Calidad efluente", disabled:false},
     {id:"incidencias", label:"📋 Incidencias",    disabled:false, badge:incidencias.length},
@@ -2459,7 +2527,6 @@ export default function App() {
 
   return (
     <div style={{background:C.bg,minHeight:"100vh",color:C.text,fontFamily:"system-ui,sans-serif"}}>
-      {quiosco&&<ModoQuiosco data={data} pred={pred} toxUmbral={toxUmbral} incidencias={incidencias} alertasDisparadas={alertasDisp} onClose={()=>setQuiosco(false)}/>}
       {informe&&<InformeModal texto={informe} onClose={()=>setInforme(null)}/>}
       {informePDF&&(
         <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.4)",zIndex:1000,display:"flex",alignItems:"center",justifyContent:"center"}} onClick={()=>setInformePDF(false)}>
@@ -2494,13 +2561,8 @@ export default function App() {
           {nombres.map((n,i)=><Badge key={n} color={RC[i]}>{n}: {reactores[n].length}</Badge>)}
           {pred&&!demoMode&&<Badge color={C.purple}>🧠 Modelo cargado</Badge>}
           {!demoMode&&<ModoDepuradoraBadge modo={modoDepuradora}/>}
+          {!demoMode&&<RecoveryBadge estado={recoveryEstado}/>}
           {alertasDisp.length>0&&<Badge color={alertasDisp.some(a=>a.severidad==="critica")?C.red:C.amber}>🔔 {alertasDisp.length}</Badge>}
-          <div style={{display:"flex",alignItems:"center",gap:6,background:C.panel,border:`1px solid ${C.border}`,borderRadius:8,padding:"4px 10px"}}>
-            <span style={{fontSize:11,color:C.muted}}>SICTOX:</span>
-            <input type="range" min={10} max={80} value={toxUmbral} onChange={e=>setToxUmbral(+e.target.value)} style={{width:54,accentColor:C.green}}/>
-            <span style={{fontSize:12,fontWeight:700,color:C.green,fontFamily:"monospace",minWidth:30}}>{toxUmbral}%</span>
-          </div>
-          <button onClick={()=>setQuiosco(true)} style={{background:"#0d1117",color:"#fff",border:"none",borderRadius:8,padding:"6px 14px",fontSize:12,fontWeight:700,cursor:"pointer"}}>🖥 Quiosco</button>
           <button onClick={cargarDesdeGitHub} disabled={autoLoading} style={{background:autoLoading?"#f0f0f0":C.green,color:autoLoading?"#999":"#fff",border:"none",borderRadius:20,padding:"7px 18px",fontSize:12,fontWeight:600,cursor:autoLoading?"default":"pointer"}}>
             {autoLoading?"⏳":"↻"} Actualizar
           </button>
@@ -2517,11 +2579,10 @@ export default function App() {
         {data&&<Semaforo data={data} pred={pred} toxUmbral={toxUmbral} alertasDisparadas={alertasDisp} alertas={alertas}/>}
         {data&&<ScoreSalud data={data}/>}
         {data&&(
-          <div style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:12,marginBottom:24}}>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:12,marginBottom:24}}>
             <KpiCard icon="🔬" label="AUR actual"    value={data.at(-1)?.AUR?.toFixed(2)||"—"}                     unit="mg O₂/L·h" color={C.green}/>
             <KpiCard icon="💨" label="Min soplante"  value={data.at(-1)?.minsReal||"—"}                            unit="min/ciclo"  color={C.amber}/>
             <KpiCard icon="🔮" label="AUR pred. +1c" value={pred?.predicciones?.["1c"]?.aur_pred?.toFixed(2)||"—"} unit="mg O₂/L·h" color={C.greenLight}/>
-            <KpiCard icon="🧫" label="TRC pred. +1c" value={pred?.predicciones?.["1c"]?.trc_pred?.toFixed(1)||"—"} unit="días"       color={C.purple}/>
             <KpiCard icon="🔔" label="Alertas"       value={alertasDisp.length||"0"} unit={alertasDisp.length?"⚠️ revisar":"✅ todo OK"} color={alertasDisp.length?C.red:C.green}/>
           </div>
         )}
@@ -2542,8 +2603,7 @@ export default function App() {
 
         {tab==="pred"        &&pred&&<PredPanel pred={pred} toxUmbral={toxUmbral} data={data}/>}
         {tab==="pred"        &&pred&&data&&<DiagnosticoPanel data={data} pred={pred} alertas={alertas}/>}
-        {tab==="pred"        &&pred&&data&&<HistoricoChart data={data} pred={pred}/>}
-        {tab==="historico"   &&data&&<HistoricoChart data={data} pred={pred}/>}
+        {tab==="pred"        &&pred&&data&&<HistoricoChart data={data} pred={pred} diagHistorico={diagHistorico} modoHistorico={modoHistorico}/>}
         {tab==="semana"      &&data&&<ComparativaPanel data={data}/>}
         {tab==="calidad"     &&<CalidadEfluentePanel calidad={calidad} setCalidad={v=>{setCalidad(v);try{localStorage.setItem("sicair_calidad",JSON.stringify(v));}catch{}}} data={data}/>}
         {tab==="incidencias" &&<IncidenciasPanel incidencias={incidencias} setIncidencias={setIncidencias} diagHistorico={diagHistorico} setDiagHistorico={setDiagHistorico} parseJSON={parseJSON}/>}
