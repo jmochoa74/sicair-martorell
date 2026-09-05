@@ -13,11 +13,18 @@
 // Detecta capacidades: si el estado trae claves de gobierno (operativo,
 // manual, hab_test1...) muestra control completo; si no, modo lectura.
 // ═══════════════════════════════════════════════════════════════════
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 // Backend compartido por todas las plantas (reverse_proxy /api -> :8000)
 const API = "https://sn8.sensaratech.com/api";
-const API_KEY = "CAMBIAR_KEY_DASHBOARD";     // clave de dashboard
+
+// Credenciales de login por planta (usuario operador, solo lectura de su instalación).
+// El estado del equipo lo publica el bridge del PC con influente="equipo".
+const LOGIN_PLANTA = {
+  martorell: { username: "operador_martorell", password: "SN8_martorell_3.0" },
+  // palacios: { username: "operador_palacios", password: "..." },  // añadir cuando toque
+};
+const INFLUENTE_EQUIPO = "equipo";
 
 const EQUIPOS = [
   {id:"bomba1", label:"Bomba 1", icon:"⛽", estado:"bomba1_man"},
@@ -59,6 +66,7 @@ export default function SN8Panel({ C, planta = "palacios" }) {
   const [pendientes,setPendientes]=useState([]);
   const [fuente,setFuente]=useState("offline");
   const [err,setErr]=useState(null);
+  const tokenRef = useRef(null);
 
   // Estilos base heredando la estética del dashboard
   const card = {background:"#fff",borderRadius:16,padding:"20px 22px",boxShadow:"0 1px 3px rgba(0,0,0,0.06)",border:"1px solid #f0f0f0",marginBottom:20};
@@ -72,14 +80,32 @@ export default function SN8Panel({ C, planta = "palacios" }) {
     <span style={{width:9,height:9,borderRadius:"50%",display:"inline-block",flexShrink:0,background:on?color:"#e0e0e0",boxShadow:on?`0 0 6px 2px ${color}55`:"none"}}/>
   );
 
+  // Login: obtiene y cachea el token JWT de la planta
+  const login=useCallback(async()=>{
+    const cred=LOGIN_PLANTA[planta];
+    if(!cred) return null;
+    const r=await fetch(`${API}/login`,{method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({username:cred.username,password:cred.password})});
+    if(!r.ok) throw new Error(`login ${r.status}`);
+    const j=await r.json();
+    tokenRef.current=j.token;
+    return j.token;
+  },[planta]);
+
   const cargar=useCallback(async()=>{
     try {
-      const r=await fetch(`${API}/sn8/estado?planta=${planta}`,{headers:{"X-Api-Key":API_KEY}});
-      if(!r.ok) throw 0;
-      const j=await r.json(); setD(j.estado); setPendientes(j.pendientes||[]); setFuente("backend"); return;
-    } catch {}
-    setFuente("offline");
-  },[planta]);
+      // Asegurar token (login la primera vez o si expiró)
+      if(!tokenRef.current) await login();
+      let r=await fetch(`${API}/datos/${planta}/${INFLUENTE_EQUIPO}`,
+        {headers:{Authorization:`Bearer ${tokenRef.current}`}});
+      // Si el token caducó (401), reloguear una vez y reintentar
+      if(r.status===401){ await login(); r=await fetch(`${API}/datos/${planta}/${INFLUENTE_EQUIPO}`,
+        {headers:{Authorization:`Bearer ${tokenRef.current}`}}); }
+      if(!r.ok) throw new Error(`datos ${r.status}`);
+      setD(await r.json()); setFuente("backend"); return;
+    } catch { tokenRef.current=null; setFuente("offline"); }
+  },[planta,login]);
   useEffect(()=>{ cargar(); const iv=setInterval(cargar,15000); return ()=>clearInterval(iv); },[cargar]);
 
   const escribir=useCallback(async(registro,valor)=>{
@@ -94,7 +120,7 @@ export default function SN8Panel({ C, planta = "palacios" }) {
     } catch(e){ setErr(`No se pudo enviar: ${e.message}`); }
   },[cargar,planta]);
 
-  const escrituraOK = fuente==="backend";
+  const escrituraOK = false; // gobierno por /api/datos es solo lectura; la escritura llegara con el bridge del SN8 nuevo
   const pendiente = reg => pendientes.some(p=>p.registro===reg);
   // Detección de capacidades: ¿el equipo publica variables de gobierno?
   const puedeGobernar = d && ("operativo" in d || "manual" in d || "hab_test1" in d);
@@ -247,9 +273,9 @@ export default function SN8Panel({ C, planta = "palacios" }) {
     <div>
       {/* Conexión */}
       <div style={{...subcard,marginBottom:16,display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:8,
-        background:fuente==="backend"?C.greenFade:C.redFade,border:`1px solid ${fuente==="backend"?C.green:C.red}33`}}>
+        background:fuente!=="offline"?C.greenFade:C.redFade,border:`1px solid ${fuente!=="offline"?C.green:C.red}33`}}>
         <span style={{fontSize:12,color:C.text}}>
-          {fuente==="backend"?(puedeGobernar?"🟢 Backend conectado · gobierno activo":"🟢 Backend conectado · solo lectura"):"🔴 Sin conexión con el SN-8"}
+          {fuente==="backend"?(puedeGobernar?"🟢 Conectado · gobierno activo":"🟢 Conectado al equipo · solo lectura"):"🔴 Sin conexión con el SN-8"}
         </span>
         {d?.ts&&<span style={{color:rancio?C.red:C.muted,fontFamily:"ui-monospace,monospace",fontSize:11,fontWeight:rancio?700:400}}>{rancio&&"⚠️ "}{String(d.ts).slice(0,16).replace("T"," ")} ({antiguedad} min)</span>}
       </div>
@@ -351,7 +377,7 @@ export default function SN8Panel({ C, planta = "palacios" }) {
         </div>
       </div>
 
-      {/* PARÁMETROS + CONSIGNAS */}
+      {/* PARÁMETROS + (CONSIGNAS solo con gobierno) + ESTADO EDAR */}
       <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20}}>
         <div style={{...card,marginBottom:0,borderTop:`3px solid ${C.purple}`}}>
           <div style={titulo}>🧫 Respirometría</div>
@@ -365,11 +391,30 @@ export default function SN8Panel({ C, planta = "palacios" }) {
           <VRow label="Min. totales aire" v={d?.min_total_aire} unit="min" decimals={0} hl={C.amber}/>
           <VRow label="Caudal entrada" v={d?.caudal_entrada} unit="m³/h" decimals={0}/>
         </div>
-        <div style={{...card,marginBottom:0,borderTop:`3px solid ${C.blue}`}}>
-          <div style={titulo}>🎯 Consignas de alarma</div>
-          <div style={{fontSize:11,color:C.muted,marginTop:-8,marginBottom:8}}>Editables{escrituraOK?"":" (requiere backend)"}</div>
-          {CONSIGNAS.map(cs=><ConsignaRow key={cs.id} cs={cs}/>)}
-        </div>
+
+        {puedeGobernar ? (
+          <div style={{...card,marginBottom:0,borderTop:`3px solid ${C.blue}`}}>
+            <div style={titulo}>🎯 Consignas de alarma</div>
+            <div style={{fontSize:11,color:C.muted,marginTop:-8,marginBottom:8}}>Editables{escrituraOK?"":" (requiere backend)"}</div>
+            {CONSIGNAS.map(cs=><ConsignaRow key={cs.id} cs={cs}/>)}
+          </div>
+        ) : (
+          <div style={{...card,marginBottom:0,borderTop:`3px solid ${C.blue}`}}>
+            <div style={titulo}>🏭 Estado EDAR</div>
+            <VRow label="Modo depuradora" v={d==null?null:(d.modo_depuradora===1?"SN8 / SICAIR":"Sonda O₂")} hl={d?.modo_depuradora===1?C.green:C.amber}/>
+            <VRow label="Test activo" v={d?.test_activo}/>
+            <div style={{marginTop:12}}>
+              <div style={{fontSize:11,color:C.muted,marginBottom:6}}>Soplantes</div>
+              <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
+                {[d?.soplante1,d?.soplante2,d?.soplante3,d?.soplante4,d?.soplante5].map((s,i)=>(
+                  <div key={i} style={{display:"flex",alignItems:"center",gap:5}}>
+                    <Dot on={s>=1}/><span style={{fontSize:11,color:s>=1?C.text:C.muted}}>S{i+1}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
