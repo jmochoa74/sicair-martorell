@@ -149,15 +149,23 @@ export default function SN8Panel({ C, planta = "palacios" }) {
   };
 
   // ── Gauge semicircular ──────────────────────────────────────────
-  const Gauge = ({label,v,min,max,unit,color,decimals=2}) => {
+  // Gauge con color segun rango: verde dentro de [okMin,okMax], ambar/rojo fuera.
+  // Si no se pasan okMin/okMax, usa el color fijo indicado.
+  const Gauge = ({label,v,min,max,unit,color,decimals=2,okMin,okMax}) => {
     const ok=v!=null&&!isNaN(v); const pct=ok?Math.min(1,Math.max(0,(v-min)/(max-min))):0; const arc=Math.PI*40;
+    let col=color;
+    if(ok && okMin!=null && okMax!=null){
+      if(v>=okMin && v<=okMax) col=C.green;
+      else if(v<okMin*0.8 || v>okMax*1.2) col=C.red;
+      else col=C.amber;
+    }
     return (
       <div style={{textAlign:"center",flex:1,minWidth:98}}>
         <svg viewBox="0 0 100 60" style={{width:"100%",maxWidth:116}}>
           <path d="M 10 52 A 40 40 0 0 1 90 52" fill="none" stroke="#f0f0f0" strokeWidth={9} strokeLinecap="round"/>
-          <path d="M 10 52 A 40 40 0 0 1 90 52" fill="none" stroke={color} strokeWidth={9} strokeLinecap="round"
-            strokeDasharray={arc} strokeDashoffset={arc*(1-pct)} style={{transition:"stroke-dashoffset .8s ease"}}/>
-          <text x={50} y={44} textAnchor="middle" fontSize={16} fontWeight={700} fill={ok?color:C.muted} fontFamily="ui-monospace,monospace">{ok?v.toFixed(decimals):"—"}</text>
+          <path d="M 10 52 A 40 40 0 0 1 90 52" fill="none" stroke={col} strokeWidth={9} strokeLinecap="round"
+            strokeDasharray={arc} strokeDashoffset={arc*(1-pct)} style={{transition:"stroke-dashoffset .8s ease, stroke .4s ease"}}/>
+          <text x={50} y={44} textAnchor="middle" fontSize={16} fontWeight={700} fill={ok?col:C.muted} fontFamily="ui-monospace,monospace">{ok?v.toFixed(decimals):"—"}</text>
           <text x={50} y={56} textAnchor="middle" fontSize={7} fill={C.muted}>{unit}</text>
         </svg>
         <div style={{fontSize:11,fontWeight:600,color:C.text,marginTop:-2}}>{label}</div>
@@ -165,14 +173,18 @@ export default function SN8Panel({ C, planta = "palacios" }) {
     );
   };
 
-  const VRow = ({label,v,unit,hl,decimals}) => (
+  const VRow = ({label,v,unit,hl,decimals,hideEmpty}) => {
+    const vacio = v==null||isNaN(v);
+    if(hideEmpty && vacio) return null;
+    return (
     <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",padding:"6px 0",borderBottom:"1px solid #f4f4f4"}}>
       <span style={{fontSize:12,color:C.muted}}>{label}</span>
       <span><span style={{fontSize:13,fontWeight:700,fontFamily:"ui-monospace,monospace",color:hl||C.text}}>
-        {v==null||isNaN(v)?"—":decimals!=null?Number(v).toFixed(decimals):v}</span>
+        {vacio?"—":decimals!=null?Number(v).toFixed(decimals):v}</span>
         {unit&&<span style={{fontSize:10,color:C.muted,marginLeft:4}}>{unit}</span>}</span>
     </div>
-  );
+    );
+  };
 
   // ── Tarjeta de test con fase real y temporizadores ──────────────
   const TestCard = ({t}) => {
@@ -286,6 +298,7 @@ export default function SN8Panel({ C, planta = "palacios" }) {
         <div style={{display:"flex",alignItems:"center",gap:12,flexWrap:"wrap",marginBottom:14}}>
           <div style={{fontSize:19,fontWeight:800,letterSpacing:0.3}}>SN-8 <span style={{opacity:0.85}}>ON-LINE</span></div>
           {puedeGobernar && <span style={{background:"rgba(255,255,255,0.22)",border:"1px solid rgba(255,255,255,0.4)",borderRadius:6,padding:"3px 12px",fontSize:12,fontWeight:800}}>Modo: {modo}</span>}
+          {!puedeGobernar && d?.test_activo && <span style={{background:"rgba(255,255,255,0.18)",borderRadius:20,padding:"3px 12px",fontSize:11,color:"#eaf3de"}}>{d.test_activo}</span>}
           {alarmas.length>0 && <span style={{background:"rgba(255,255,255,0.9)",color:C.red,borderRadius:6,padding:"3px 10px",fontSize:11,fontWeight:700}}>⚠️ {alarmas.length} alarma(s)</span>}
         </div>
 
@@ -297,30 +310,30 @@ export default function SN8Panel({ C, planta = "palacios" }) {
           </div>
         )}
 
-        <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:12}}>
-          {[
+        {(() => {
+          const kpis = [
             {l:"AUR", v:d?.aur, dec:2, u:"mg O₂/L·h"},
             {l:"RN", v:d?.rn, dec:1, u:"mg N/L·h"},
             {l:"SSVLM", v:d?.solidos, dec:0, u:"mg/L"},
             {l:"TRC", v:d?.trc, dec:2, u:"días"},
-          ].map(({l,v,u,dec})=>(
-            <div key={l} style={{background:"rgba(255,255,255,0.16)",border:"1px solid rgba(255,255,255,0.28)",borderRadius:12,padding:"12px 14px"}}>
-              <div style={{fontSize:9.5,color:"rgba(255,255,255,0.75)",textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>{l}</div>
-              <div style={{fontSize:24,fontWeight:800,color:"#fff",fontFamily:"ui-monospace,monospace",lineHeight:1}}>{v==null?"—":Number(v).toFixed(dec)}</div>
-              <div style={{fontSize:10,color:"rgba(255,255,255,0.75)",marginTop:3}}>{u}</div>
+          ].filter(k => k.v!=null && !isNaN(k.v));
+          const n = kpis.length || 1;
+          return (
+            <div style={{display:"grid",gridTemplateColumns:`repeat(${n},1fr)`,gap:12}}>
+              {kpis.map(({l,v,u,dec})=>(
+                <div key={l} style={{background:"rgba(255,255,255,0.16)",border:"1px solid rgba(255,255,255,0.28)",borderRadius:12,padding:"12px 14px"}}>
+                  <div style={{fontSize:9.5,color:"rgba(255,255,255,0.75)",textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>{l}</div>
+                  <div style={{fontSize:24,fontWeight:800,color:"#fff",fontFamily:"ui-monospace,monospace",lineHeight:1}}>{Number(v).toFixed(dec)}</div>
+                  <div style={{fontSize:10,color:"rgba(255,255,255,0.75)",marginTop:3}}>{u}</div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          );
+        })()}
       </div>
 
       {err && <div style={{background:C.redFade,border:`1px solid ${C.red}44`,borderRadius:10,padding:"10px 14px",fontSize:12,color:C.red,marginBottom:16}}>{err}</div>}
 
-      {/* Modo lectura si no hay gobierno */}
-      {d && !puedeGobernar && (
-        <div style={{...subcard,marginBottom:20,background:C.amberFade,border:`1px solid ${C.amber}33`,fontSize:12,color:C.text}}>
-          ℹ️ Este SN-8 (programa antiguo) solo publica lectura. El gobierno remoto (modo, equipos, tests) requiere el programa PLC nuevo.
-        </div>
-      )}
 
       {/* CONTROL DE TESTS */}
       {puedeGobernar && (
@@ -368,12 +381,12 @@ export default function SN8Panel({ C, planta = "palacios" }) {
       <div style={card}>
         <div style={titulo}>📡 Sensores en tiempo real</div>
         <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-          <Gauge label="Oxígeno" v={d?.oxigeno} min={0} max={12} unit="mg/L" color={C.blue}/>
-          <Gauge label="pH" v={d?.ph} min={4} max={10} unit="" color={C.green}/>
-          <Gauge label="Temperatura" v={d?.temp} min={0} max={35} unit="°C" color={C.amber} decimals={1}/>
+          <Gauge label="Oxígeno" v={d?.oxigeno} min={0} max={12} unit="mg/L" color={C.blue} okMin={1.5} okMax={4}/>
+          <Gauge label="pH" v={d?.ph} min={4} max={10} unit="" color={C.green} okMin={6.5} okMax={8.5}/>
+          <Gauge label="Temperatura" v={d?.temp} min={0} max={40} unit="°C" color={C.amber} decimals={1} okMin={12} okMax={30}/>
           <Gauge label="ORP" v={d?.orp} min={-500} max={500} unit="mV" color={C.muted} decimals={0}/>
-          <Gauge label="TRH" v={d?.trh} min={0} max={24} unit="h" color={C.purple} decimals={1}/>
-          <Gauge label="Inhibición" v={d?.inh} min={0} max={100} unit="%" color={C.red} decimals={0}/>
+          {d?.trh!=null && <Gauge label="TRH" v={d?.trh} min={0} max={24} unit="h" color={C.purple} decimals={1}/>}
+          {d?.inh!=null && <Gauge label="Inhibición" v={d?.inh} min={0} max={100} unit="%" color={C.red} decimals={0} okMin={0} okMax={20}/>}
         </div>
       </div>
 
@@ -382,14 +395,14 @@ export default function SN8Panel({ C, planta = "palacios" }) {
         <div style={{...card,marginBottom:0,borderTop:`3px solid ${C.purple}`}}>
           <div style={titulo}>🧫 Respirometría</div>
           <VRow label="AUR" v={d?.aur} unit="mg O₂/L·h" decimals={2} hl={C.green}/>
-          <VRow label="RN" v={d?.rn} unit="mg N/L·h" decimals={1}/>
-          <VRow label="NUR" v={d?.nur} unit="" decimals={1}/>
-          <VRow label="OUR" v={d?.our} decimals={0}/>
+          <VRow label="RN" v={d?.rn} unit="mg N/L·h" decimals={1} hideEmpty/>
+          <VRow label="NUR" v={d?.nur} unit="" decimals={1} hideEmpty/>
+          <VRow label="OUR" v={d?.our} decimals={1}/>
           <VRow label="SOUR" v={d?.sour} decimals={0}/>
-          <VRow label="DQOb" v={d?.dqob} unit="mg/L" decimals={0}/>
+          <VRow label="DQOb" v={d?.dqob} unit="mg/L" decimals={0} hideEmpty/>
           <VRow label="TRC" v={d?.trc} unit="días" decimals={2} hl={C.purple}/>
-          <VRow label="Min. totales aire" v={d?.min_total_aire} unit="min" decimals={0} hl={C.amber}/>
-          <VRow label="Caudal entrada" v={d?.caudal_entrada} unit="m³/h" decimals={0}/>
+          <VRow label="Min. totales aire" v={d?.min_total_aire} unit="min" decimals={0} hl={C.amber} hideEmpty/>
+          <VRow label="Caudal entrada" v={d?.caudal_entrada} unit="m³/h" decimals={0} hideEmpty/>
         </div>
 
         {puedeGobernar ? (
@@ -405,12 +418,16 @@ export default function SN8Panel({ C, planta = "palacios" }) {
             <VRow label="Test activo" v={d?.test_activo}/>
             <div style={{marginTop:12}}>
               <div style={{fontSize:11,color:C.muted,marginBottom:6}}>Soplantes</div>
-              <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
-                {[d?.soplante1,d?.soplante2,d?.soplante3,d?.soplante4,d?.soplante5].map((s,i)=>(
-                  <div key={i} style={{display:"flex",alignItems:"center",gap:5}}>
-                    <Dot on={s>=1}/><span style={{fontSize:11,color:s>=1?C.text:C.muted}}>S{i+1}</span>
-                  </div>
-                ))}
+              <div style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:6}}>
+                {[d?.soplante1,d?.soplante2,d?.soplante3,d?.soplante4,d?.soplante5].map((s,i)=>{
+                  const on=s>=1;
+                  return (
+                    <div key={i} style={{textAlign:"center",background:on?C.greenFade:"#fafafa",border:`1px solid ${on?C.green+"44":"#f0f0f0"}`,borderRadius:8,padding:"8px 2px"}}>
+                      <div style={{fontSize:15,color:on?C.green:C.muted}}>💨</div>
+                      <div style={{fontSize:11,fontWeight:on?700:400,color:on?C.green:C.muted,marginTop:2}}>S{i+1}</div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
