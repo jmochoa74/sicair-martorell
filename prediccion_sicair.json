@@ -1,8 +1,8 @@
 {
-  "generado": "2026-09-05T05:46:42.474423",
-  "ultimo_dato": "2026-09-05T04:09:44",
-  "ultimo_aur": 1.37,
-  "ultimo_mins": 98.0,
+  "generado": "2026-09-05T06:46:43.132621",
+  "ultimo_dato": "2026-09-05T06:15:47",
+  "ultimo_aur": 1.97,
+  "ultimo_mins": 95.0,
   "duracion_media_min": 100.0,
   "ciclos_por_horizonte": {
     "1c": 1,
@@ -11,46 +11,46 @@
   },
   "predicciones": {
     "1c": {
-      "aur_pred": 1.519,
-      "mins_pred": 92.0,
+      "aur_pred": 2.035,
+      "mins_pred": 86.5,
       "trc_pred": 30.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 22.9,
+      "temp_prev": 22.7,
       "ciclos": 1,
       "horas_eq": 1.7,
-      "ts_objetivo": "2026-09-05T07:26:35.438197"
+      "ts_objetivo": "2026-09-05T08:26:36.208460"
     },
     "3c": {
-      "aur_pred": 2.659,
-      "mins_pred": 73.7,
+      "aur_pred": 2.871,
+      "mins_pred": 71.3,
       "trc_pred": 25.0,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 31.9,
+      "temp_prev": 34.5,
       "ciclos": 3,
       "horas_eq": 5.0,
-      "ts_objetivo": "2026-09-05T10:46:35.438197"
+      "ts_objetivo": "2026-09-05T11:46:36.208460"
     },
     "6h": {
-      "aur_pred": 2.372,
-      "mins_pred": 81.2,
-      "trc_pred": 16.1,
+      "aur_pred": 2.744,
+      "mins_pred": 83.9,
+      "trc_pred": 15.1,
       "prob_dilucion": 0.0,
       "precip_mm_prev": 0.0,
-      "temp_prev": 34.3,
+      "temp_prev": 35.0,
       "ciclos": 4,
       "horas_eq": 6.7,
-      "ts_objetivo": "2026-09-05T12:26:35.438197"
+      "ts_objetivo": "2026-09-05T13:26:36.208460"
     },
     "tox_prob": 0.05
   },
   "metricas": {},
   "meteo_actual": {
-    "temp": 23.4,
+    "temp": 23.0,
     "precip": 0.0,
-    "viento": 5.2,
-    "humedad": 80.0,
+    "viento": 4.6,
+    "humedad": 74.0,
     "presion": 1006.8
   },
   "lluvia_prevista": {
@@ -60,7 +60,7 @@
     "ok": true
   },
   "sesgo_aplicado_1c": {
-    "aur": -0.244,
-    "mins": 8.9
+    "aur": -0.298,
+    "mins": 9.0
   }
 }
