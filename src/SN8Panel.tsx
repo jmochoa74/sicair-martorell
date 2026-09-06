@@ -14,6 +14,7 @@
 // manual, hab_test1...) muestra control completo; si no, modo lectura.
 // ═══════════════════════════════════════════════════════════════════
 import { useState, useEffect, useCallback, useRef } from "react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
 
 // Backend compartido por todas las plantas (reverse_proxy /api -> :8000)
 const API = "https://sn8.sensaratech.com/api";
@@ -25,6 +26,7 @@ const LOGIN_PLANTA = {
   // palacios: { username: "operador_palacios", password: "..." },  // añadir cuando toque
 };
 const INFLUENTE_EQUIPO = "equipo";
+const INFLUENTE_CURVAS = "curvas";
 
 const EQUIPOS = [
   {id:"bomba1", label:"Bomba 1", icon:"⛽", estado:"bomba1_man"},
@@ -67,6 +69,9 @@ export default function SN8Panel({ C, planta = "palacios" }) {
   const [fuente,setFuente]=useState("offline");
   const [err,setErr]=useState(null);
   const tokenRef = useRef(null);
+  const [curvas,setCurvas]=useState(null);   // {tests:[...]}
+  const [testSel,setTestSel]=useState(null); // id del test elegido
+  const [señales,setSeñales]=useState({ox:true,ph:false,temp:false});
 
   // Estilos base heredando la estética del dashboard
   const card = {background:"#fff",borderRadius:16,padding:"20px 22px",boxShadow:"0 1px 3px rgba(0,0,0,0.06)",border:"1px solid #f0f0f0",marginBottom:20};
@@ -93,19 +98,26 @@ export default function SN8Panel({ C, planta = "palacios" }) {
     return j.token;
   },[planta]);
 
+  // Fetch autenticado con reintento de login si el token caducó
+  const fetchAuth=useCallback(async(url)=>{
+    if(!tokenRef.current) await login();
+    let r=await fetch(url,{headers:{Authorization:`Bearer ${tokenRef.current}`}});
+    if(r.status===401){ await login(); r=await fetch(url,{headers:{Authorization:`Bearer ${tokenRef.current}`}}); }
+    return r;
+  },[login]);
+
   const cargar=useCallback(async()=>{
     try {
-      // Asegurar token (login la primera vez o si expiró)
-      if(!tokenRef.current) await login();
-      let r=await fetch(`${API}/datos/${planta}/${INFLUENTE_EQUIPO}`,
-        {headers:{Authorization:`Bearer ${tokenRef.current}`}});
-      // Si el token caducó (401), reloguear una vez y reintentar
-      if(r.status===401){ await login(); r=await fetch(`${API}/datos/${planta}/${INFLUENTE_EQUIPO}`,
-        {headers:{Authorization:`Bearer ${tokenRef.current}`}}); }
+      const r=await fetchAuth(`${API}/datos/${planta}/${INFLUENTE_EQUIPO}`);
       if(!r.ok) throw new Error(`datos ${r.status}`);
-      setD(await r.json()); setFuente("backend"); return;
-    } catch { tokenRef.current=null; setFuente("offline"); }
-  },[planta,login]);
+      setD(await r.json()); setFuente("backend");
+    } catch { tokenRef.current=null; setFuente("offline"); return; }
+    // Curvas de test (puede no existir todavía: no es error crítico)
+    try {
+      const rc=await fetchAuth(`${API}/datos/${planta}/${INFLUENTE_CURVAS}`);
+      if(rc.ok){ const j=await rc.json(); setCurvas(j); }
+    } catch {}
+  },[planta,fetchAuth]);
   useEffect(()=>{ cargar(); const iv=setInterval(cargar,15000); return ()=>clearInterval(iv); },[cargar]);
 
   const escribir=useCallback(async(registro,valor)=>{
@@ -174,13 +186,14 @@ export default function SN8Panel({ C, planta = "palacios" }) {
   };
 
   const VRow = ({label,v,unit,hl,decimals,hideEmpty}) => {
-    const vacio = v==null||isNaN(v);
+    const esNum = typeof v==="number";
+    const vacio = v==null || (esNum && isNaN(v));
     if(hideEmpty && vacio) return null;
+    const texto = vacio ? "—" : (esNum && decimals!=null ? v.toFixed(decimals) : v);
     return (
     <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",padding:"6px 0",borderBottom:"1px solid #f4f4f4"}}>
       <span style={{fontSize:12,color:C.muted}}>{label}</span>
-      <span><span style={{fontSize:13,fontWeight:700,fontFamily:"ui-monospace,monospace",color:hl||C.text}}>
-        {vacio?"—":decimals!=null?Number(v).toFixed(decimals):v}</span>
+      <span><span style={{fontSize:13,fontWeight:700,fontFamily:"ui-monospace,monospace",color:hl||C.text}}>{texto}</span>
         {unit&&<span style={{fontSize:10,color:C.muted,marginLeft:4}}>{unit}</span>}</span>
     </div>
     );
@@ -381,7 +394,7 @@ export default function SN8Panel({ C, planta = "palacios" }) {
       <div style={card}>
         <div style={titulo}>📡 Sensores en tiempo real</div>
         <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-          <Gauge label="Oxígeno" v={d?.oxigeno} min={0} max={12} unit="mg/L" color={C.blue} okMin={1.5} okMax={4}/>
+          <Gauge label="Oxígeno" v={d?.oxigeno} min={0} max={12} unit="mg/L" color={C.blue} okMin={1.5} okMax={5}/>
           <Gauge label="pH" v={d?.ph} min={4} max={10} unit="" color={C.green} okMin={6.5} okMax={8.5}/>
           <Gauge label="Temperatura" v={d?.temp} min={0} max={40} unit="°C" color={C.amber} decimals={1} okMin={12} okMax={30}/>
           <Gauge label="ORP" v={d?.orp} min={-500} max={500} unit="mV" color={C.muted} decimals={0}/>
@@ -398,7 +411,7 @@ export default function SN8Panel({ C, planta = "palacios" }) {
           <VRow label="RN" v={d?.rn} unit="mg N/L·h" decimals={1} hideEmpty/>
           <VRow label="NUR" v={d?.nur} unit="" decimals={1} hideEmpty/>
           <VRow label="OUR" v={d?.our} decimals={1}/>
-          <VRow label="SOUR" v={d?.sour} decimals={0}/>
+          <VRow label="SOUR" v={d?.sour} decimals={1}/>
           <VRow label="DQOb" v={d?.dqob} unit="mg/L" decimals={0} hideEmpty/>
           <VRow label="TRC" v={d?.trc} unit="días" decimals={2} hl={C.purple}/>
           <VRow label="Min. totales aire" v={d?.min_total_aire} unit="min" decimals={0} hl={C.amber} hideEmpty/>
@@ -433,6 +446,54 @@ export default function SN8Panel({ C, planta = "palacios" }) {
           </div>
         )}
       </div>
+
+      {/* GRÁFICAS DE TEST */}
+      {curvas?.tests?.length > 0 && (() => {
+        const tests = curvas.tests;
+        const sel = tests.find(t => t.id===testSel) || tests[0];
+        const nombreTipo = t => t.tipo==="nitri" ? "Nitrificación" : t.tipo==="respi" ? "Respirometría" : t.tipo;
+        const datos = (sel?.curva||[]).map((p,i) => ({t:i, ox:p.ox, ph:p.ph, temp:p.temp}));
+        return (
+          <div style={{...card,marginTop:20}}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:10,marginBottom:14}}>
+              <div style={titulo}>📈 Gráficas de test</div>
+              <div style={{display:"flex",gap:8,alignItems:"center",flexWrap:"wrap"}}>
+                {/* Selector de test */}
+                <select value={sel?.id} onChange={e=>setTestSel(Number(e.target.value))}
+                  style={{border:`1px solid ${C.border}`,borderRadius:8,padding:"6px 10px",fontSize:12,background:"#fff"}}>
+                  {tests.map(t=>(
+                    <option key={t.id} value={t.id}>
+                      {nombreTipo(t)} · {t.fecha} {String(t.hora).slice(0,5)}{t.metricas?.[0] ? ` · ${t.metricas[0].label} ${t.metricas[0].valor?.toFixed?.(2)??t.metricas[0].valor}` : ""}
+                    </option>
+                  ))}
+                </select>
+                {/* Señales */}
+                {[["ox","Oxígeno",C.blue],["ph","pH",C.green],["temp","Tª",C.amber]].map(([k,lbl,col])=>(
+                  <button key={k} onClick={()=>setSeñales(s=>({...s,[k]:!s[k]}))}
+                    style={{background:señales[k]?col:"#fff",color:señales[k]?"#fff":C.muted,
+                      border:`1px solid ${señales[k]?col:C.border}`,borderRadius:8,padding:"5px 12px",fontSize:11,fontWeight:700,cursor:"pointer"}}>{lbl}</button>
+                ))}
+              </div>
+            </div>
+            <div style={{fontSize:11,color:C.muted,marginBottom:10}}>
+              {nombreTipo(sel)} · {sel.fecha} {sel.hora} · {sel.n_puntos} puntos{(sel.metricas||[]).map(m=>` · ${m.label} ${m.valor?.toFixed?.(2)??m.valor}`).join("")}
+            </div>
+            <ResponsiveContainer width="100%" height={280}>
+              <LineChart data={datos} margin={{top:8,right:12,bottom:8,left:0}}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0"/>
+                <XAxis dataKey="t" tick={{fontSize:9,fill:C.muted}} interval={Math.max(0,Math.floor(datos.length/10))}
+                  label={{value:"punto",position:"insideBottom",offset:-4,fontSize:10,fill:C.muted}}/>
+                <YAxis tick={{fontSize:9,fill:C.muted}}/>
+                <Tooltip contentStyle={{fontSize:12,borderRadius:8,border:`1px solid ${C.border}`}}/>
+                <Legend wrapperStyle={{fontSize:11}}/>
+                {señales.ox && <Line dataKey="ox" name="Oxígeno" stroke={C.blue} strokeWidth={2} dot={false} isAnimationActive={false} connectNulls/>}
+                {señales.ph && <Line dataKey="ph" name="pH" stroke={C.green} strokeWidth={2} dot={false} isAnimationActive={false} connectNulls/>}
+                {señales.temp && <Line dataKey="temp" name="Temperatura" stroke={C.amber} strokeWidth={2} dot={false} isAnimationActive={false} connectNulls/>}
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        );
+      })()}
     </div>
   );
 }
